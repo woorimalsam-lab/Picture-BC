@@ -5121,6 +5121,149 @@ function setupWorksheetGenerator() {
                 </tr>
             </table>
         `;
+    } else if (type === "angeldevil") {
+        worksheetHTML += `
+            <div class="ws-section">
+                <h4>👼 두 마음(천사-악마) 토론 역할 대화록</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">주인공이 직면한 갈등 딜레마에 대해 마음속 천사와 악마의 입장에서 조언을 구성해 봅시다.</p>
+                <div style="background-color: #f2f6fc; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--accent-sage);">
+                    <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-sage);">📚 권장 토론 논제 (의사결정 상황):</p>
+                    <ul style="padding-left: 20px; font-size: 0.85rem; line-height: 1.6; color: #333333; margin: 0;">
+                        ${book.debatePropositions ? book.debatePropositions.map(t => `<li>${t}</li>`).join("") : '<li>추천 논제 정보가 없습니다.</li>'}
+                    </ul>
+                </div>
+                
+                <div style="margin-bottom: 16px;">
+                    <strong style="font-size: 0.9rem; color: #1e293b;">⚖️ 《${book.title}》의 의사결정 인물 및 상황 정의</strong>
+                    <textarea class="ws-textarea-box" style="min-height: 60px; margin-top: 6px;" placeholder="오늘 선택을 내려야 할 인물의 고민은 무엇인가요?..."></textarea>
+                </div>
+
+                <table class="ws-table">
+                    <tr>
+                        <th style="width: 50%; background-color: #e0f2fe; color: #0369a1;">👼 천사의 속삭임 (도덕, 이상, 신념)</th>
+                        <th style="width: 50%; background-color: #fee2e2; color: #b91c1c;">😈 악마의 속삭임 (현실, 이기심, 생존)</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea style="min-height: 220px;" placeholder="도덕적 가치, 배려, 타인의 권리, 궁극적인 신념의 관점에서 주인공이 올바른(이상적인) 선택을 하도록 설득력 있게 적으세요..."></textarea>
+                        </td>
+                        <td>
+                            <textarea style="min-height: 220px;" placeholder="지극히 현실적인 이해관계, 손익계산, 생존 본능, 이기적인 관점에서 주인공이 가장 손해를 안 보는 길을 가도록 집요하게 부추기세요..."></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>🛡️ 의사결정의 무게: 나의 최종 성찰</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">양쪽의 설득력 있는 주장을 모두 들은 후, 내가 생각하는 합리적인 의사결정의 결론과 책임 있는 이유를 쓰세요.</p>
+                <textarea class="ws-textarea-box" style="min-height: 120px;" placeholder="어느 한쪽을 선택했거나, 양쪽을 조화롭게 타협시켰나요? 나의 최선의 결론과 그 이유를 구체적으로 상술하세요..."></textarea>
+            </div>
+        `;
+    } else if (type === "doublepyramid") {
+        worksheetHTML += `
+            <div class="ws-section">
+                <h4>📐 쌍 피라미드 토론 수렴 활동지</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">개인의 생각에서 출발하여 짝, 그리고 모둠의 공동 생각으로 논의를 피라미드처럼 좁혀가며 수렴해 봅시다.</p>
+                <div style="background-color: #fcf8f2; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--accent-coral);">
+                    <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-coral);">📚 《${book.title}》 권장 토론 논제:</p>
+                    <ul style="padding-left: 20px; font-size: 0.85rem; line-height: 1.6; color: #333333; margin: 0;">
+                        ${book.debatePropositions ? book.debatePropositions.map(t => `<li>${t}</li>`).join("") : '<li>추천 논제 정보가 없습니다.</li>'}
+                    </ul>
+                </div>
+                
+                <table class="ws-table">
+                    <tr>
+                        <th style="background-color: #f8fafc;">👥 [1단계] 나의 최초 생각 및 주장</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea style="height: 80px;" placeholder="해당 논제에 대해 내가 가진 개인적인 주장과 타당한 근거를 자유롭게 작성하세요..."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #f1f5f9;">👥 [2단계] 짝 토의를 통한 의견 수렴 (짝과 합의한 최선의 근거)</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea style="height: 80px;" placeholder="짝과 내 의견을 공유하고 조율하여 도출한, 조금 더 보완되고 단단해진 하나의 공동 주장을 적으세요..."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th style="background-color: #e2e8f0;">👥 [3단계] 모둠 토의를 통한 의견 수렴 (모둠 공동 합의안)</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea style="height: 80px;" placeholder="모둠 전체(4~6명)가 각 짝의 합의안을 두고 토의하여 최종적으로 도출한 대표 피라미드 정점 주장을 정리하세요..."></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>🌟 상생의 타협: 찬성-반대 양측의 통합 대안 도출</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">모둠 내 찬성 피라미드와 반대 피라미드의 최정점 주장을 융합하여, 모두가 상생할 수 있는 창의적 제3의 대안을 설계해 보세요.</p>
+                <textarea class="ws-textarea-box" style="min-height: 100px;" placeholder="단순 찬반의 대립을 넘어, 《${book.title}》의 문제 상황을 평화롭고 지혜롭게 극복할 수 있는 통합 대안을 쓰세요..."></textarea>
+            </div>
+        `;
+    } else if (type === "hexadebate") {
+        worksheetHTML += `
+            <div class="ws-section">
+                <h4>⬡ 헥사 토론 육각형 개념 관계도 활동지</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">그림책 속 핵심 단어들과 개념들을 육각형 블록으로 연결하여 사건의 유기적인 관계를 시각적으로 논증합니다.</p>
+                <div style="background-color: #fcf8f2; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--accent-coral);">
+                    <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-coral);">📚 《${book.title}》의 권장 토론 논제 및 키워드 배경:</p>
+                    <ul style="padding-left: 20px; font-size: 0.85rem; line-height: 1.6; color: #333333; margin: 0;">
+                        ${book.debatePropositions ? book.debatePropositions.map(t => `<li>${t}</li>`).join("") : '<li>추천 논제 정보가 없습니다.</li>'}
+                    </ul>
+                </div>
+
+                <div style="margin-bottom: 20px;">
+                    <strong style="font-size: 0.9rem; color: #1e293b; display: block; margin-bottom: 8px;">⬡ 1단계: 우리가 선정한 6가지 핵심 헥사 개념 카드</strong>
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                        ${Array.from({ length: 6 }, (_, i) => `
+                            <div style="background: #fafafa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; text-align: center;">
+                                <span style="font-weight: 700; font-size: 0.75rem; color: var(--accent-coral); display: block; margin-bottom: 4px;">개념 ${i + 1}</span>
+                                <input type="text" style="width: 100%; border: 1px solid #ccc; border-radius: 4px; padding: 4px; font-size: 0.8rem; text-align: center;" placeholder="예: 생존, 연대, 두려움 등">
+                            </div>
+                        `).join("")}
+                    </div>
+                </div>
+
+                <table class="ws-table">
+                    <tr>
+                        <th style="width: 40%; background-color: #f1f5f9;">🔗 연결할 개념 (A ↔ B)</th>
+                        <th style="width: 60%; background-color: #f1f5f9;">🧐 두 개념을 잇는 논리적 근거 (연결 고리 설명)</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" style="width:100%; border:none; background:none; padding:4px;" placeholder="예: '두려움' ↔ '연대'">
+                        </td>
+                        <td>
+                            <textarea style="height: 60px;" placeholder="《${book.title}》의 줄거리나 사건 전개 과정을 근거로 삼아, 두 개념이 왜 인과관계 혹은 조화를 가지는지 설명하세요..."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" style="width:100%; border:none; background:none; padding:4px;" placeholder="예: '연대' ↔ '화합'">
+                        </td>
+                        <td>
+                            <textarea style="height: 60px;" placeholder="두 개념이 인물의 태도 변화나 갈등 해결에 어떻게 기여했는지 책의 묘사를 들어 서술하세요..."></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" style="width:100%; border:none; background:none; padding:4px;" placeholder="예: '상실' ↔ '성장'">
+                        </td>
+                        <td>
+                            <textarea style="height: 60px;" placeholder="이야기의 주제 의식을 관통하는 핵심 연결 고리를 책 속 구절이나 결말을 인용해 작성하세요..."></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>🔮 헥사 맵 완성 성찰: 개념의 융합으로 본 주제 의식</h4>
+                <textarea class="ws-textarea-box" style="min-height: 90px;" placeholder="각 개념을 유기적으로 이어 하나의 네트워크로 연결한 후, 《${book.title}》이 우리에게 궁극적으로 전하는 삶의 가치와 메시지를 정리하세요..."></textarea>
+            </div>
+        `;
     }
 
             const typeToTechId = {
