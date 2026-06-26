@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>생각의 꽃이 피는 그림책 토론 가이드</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css?v=1.3.6">
+</head>
+<body class="light-mode">
+    <!-- Navigation Bar -->
+    <header class="glass-header no-print">
+        <div class="header-container">
+            <a href="#" class="logo" style="display: flex; flex-direction: column; align-items: flex-start; gap: 2px;">
+                <span style="font-size: 0.72rem; font-weight: 500; color: var(--accent-coral); margin-left: 31px; line-height: 1; font-family: var(--font-sans);">그림책 토론을 쉽고 재미있게</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-book-open-reader"></i>
+                    <span>부천 토론교육연구회 수업탐구공동체</span>
+                </div>
+            </a>
+            <nav class="nav-links">
+                <a href="#search-section"><i class="fa-solid fa-magnifying-glass"></i> 검색/추천</a>
+                <a href="#books-section"><i class="fa-solid fa-book"></i> 그림책 서재</a>
+                <a href="#theory-section"><i class="fa-solid fa-graduation-cap"></i> 토론 이론</a>
+                <a href="#techniques-section"><i class="fa-solid fa-comments"></i> 토론 기법</a>
+                <a href="#worksheet-section" class="highlight-link"><i class="fa-solid fa-file-invoice"></i> 토론 학습지</a>
+                <a href="#archive-section"><i class="fa-solid fa-folder-open"></i> 수업 자료실</a>
+                <a href="#helper-section"><i class="fa-solid fa-wand-magic-sparkles"></i> 추천가이드</a>
+            </nav>
+            <div class="actions">
+                <button id="theme-toggle" class="btn-icon" aria-label="테마 전환">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="main-container">
+<!-- Hero Section -->
+    <section class="hero-section no-print">
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="badge">쉽고 재미있게 생각을 나누는 그림책 토론</span>
+                <h1>생각의 꽃을 피우는<br><span>그림책 토론 가이드</span></h1>
+                <p>그림책의 아름다운 감성과 혁신적인 토론 기법을 결합하여, 아이들의 비판적 사고와 따뜻한 공감 능력을 동시에 기르는 인터랙티브 안내서입니다.</p>
+                <div class="hero-buttons">
+                    <a href="#search-section" class="btn btn-primary" onclick="const link = document.querySelector('.nav-links a[href=\'#search-section\']'); if(link) link.click(); const inp = document.getElementById('search-input'); if(inp) setTimeout(() => inp.focus(), 150); return false;">맞춤 검색 시작하기</a>
+                    <a href="#worksheet-section" class="btn btn-secondary" onclick="const link = document.querySelector('.nav-links a[href=\'#worksheet-section\']'); if(link) link.click(); return false;"><i class="fa-solid fa-file-pen"></i> 학습지 즉석 제작</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <img src="images/debate_hero_banner.png" alt="그림책 토론 일러스트 배너" class="hero-image">
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. Search & Recommendation Section -->
+    <section id="search-section" class="search-section no-print">
+        <div class="section-title-wrapper">
+            <span class="sub-title">Search & Recommendation</span>
+            <h2>그림책 검색 & 기법 맞춤 추천</h2>
+            <p>보유하고 계신 그림책이나 적용하고 싶은 토론 기법을 검색해 보세요. 최적의 연계 추천이 실시간으로 제공됩니다.</p>
+        </div>
+
+        <div class="search-container">
+            <!-- Search Type Tabs -->
+            <div class="search-tabs">
+                <button class="search-tab-btn active" data-type="all"><i class="fa-solid fa-asterisk"></i> 통합 검색</button>
+                <button class="search-tab-btn" data-type="book"><i class="fa-solid fa-book"></i> 그림책 이름/작가로 찾기</button>
+                <button class="search-tab-btn" data-type="tech"><i class="fa-solid fa-comments"></i> 토론 기법명으로 찾기</button>
+            </div>
+
+            <!-- Search bar -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="search-input" placeholder="그림책 이름, 작가명, 줄거리 키워드 혹은 토론 기법을 입력하세요...">
+                <button id="clear-search" class="clear-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="filter-zone">
+                <span class="filter-label"><i class="fa-solid fa-tags"></i> 맞춤 필터:</span>
+                <div class="filter-tags" id="tag-filters">
+                    <button class="tag-btn active" data-filter="all">전체보기</button>
+                    <button class="tag-btn" data-filter="비경쟁">#비경쟁</button>
+                    <button class="tag-btn" data-filter="논리강화">#논리강화</button>
+                    <button class="tag-btn" data-filter="협동학습">#협동학습</button>
+                    <button class="tag-btn" data-filter="역할극">#역할극</button>
+                    <button class="tag-btn" data-filter="자기성찰">#자기성찰</button>
+                    <button class="tag-btn" data-filter="자연생태">#자연생태</button>
+                </div>
+            </div>
+
+            <!-- Real-time Results Panel -->
+            <div class="recommendation-results" id="results-panel">
+                <div class="empty-state">
+                    <i class="fa-solid fa-lightbulb"></i>
+                    <p>위 검색창에 그림책이나 토론 기법을 입력하시면 맞춤형 연계 추천 결과가 여기에 나타납니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Picture Book Showcase Section -->
+    <section id="books-section" class="books-section no-print">
+        <div class="section-title-wrapper">
+            <span class="sub-title">Picture Book Library</span>
+            <h2>그림책 서재</h2>
+            <p>토론 수업의 깊이를 더해주는 아름다운 그림책과 작가 소개, 줄거리입니다.</p>
+        </div>
+
+        <div class="books-grid" id="books-grid">
+            <!-- Books will be injected here via JS -->
+        </div>
+    </section>
+
+    <!-- 3. Debate Theory Section -->
+    <section id="theory-section" class="theory-section no-print">
+        <div class="section-title-wrapper">
+            <span class="sub-title">Debate Theory</span>
+            <h2>토론 이론</h2>
+        </div>
+        <div class="theory-grid" id="theory-grid">
+            <!-- Theory cards will be injected here via JS -->
+        </div>
+    </section>
+
+    <!-- 4. Debate Techniques Catalog Section -->
+    <section id="techniques-section" class="techniques-section no-print">
+        <div class="section-title-wrapper">
+            <span class="sub-title">Debate Techniques Catalog</span>
+            <h2>토론 기법</h2>
+            <p>다양한 그림책 토론 도서에서 검증된 토론 기법들을 한눈에 확인하고 수업에 적용해 보세요.</p>
+        </div>
+
+        <!-- NEW: Filter & Search Bar for Techniques -->
+        <div class="tech-filter-container">
+            <div class="tech-search-box">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="tech-search-input" placeholder="토론 기법 이름 또는 키워드를 검색하세요...">
+                <button id="clear-tech-search" class="clear-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="tech-filter-tabs">
+                <button class="tech-filter-btn active" data-filter="all">전체보기</button>
+                <button class="tech-filter-btn" data-filter="비경쟁">#비경쟁</button>
+                <button class="tech-filter-btn" data-filter="논리강화">#논리강화</button>
+                <button class="tech-filter-btn" data-filter="협동학습">#협동학습</button>
+                <button class="tech-filter-btn" data-filter="역할극">#역할극/감상</button>
+            </div>
+        </div>
+
+        <div class="techniques-grid" id="techniques-grid">
+            <!-- Techniques will be injected here via JS -->
+        </div>
+    </section>
+
+    <!-- 5. Interactive Worksheet Maker Section -->
+    <section id="worksheet-section" class="worksheet-section">
+        <div class="section-title-wrapper no-print">
+            <span class="sub-title">Printable Worksheet Generator</span>
+            <h2>그림책 토론 학습지 메이커</h2>
+            <p>그림책과 토론 양식을 선택한 후 직접 작성하거나 인쇄하여 학생들에게 나누어 주실 수 있습니다.</p>
+        </div>
+
+        <div class="worksheet-container no-print">
+            <div class="worksheet-selector-card">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="worksheet-book-select"><i class="fa-solid fa-book"></i> 동화책 선택</label>
+                        <select id="worksheet-book-select">
+                            <!-- Injected by JS -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="worksheet-type-select"><i class="fa-solid fa-file-invoice"></i> 학습지 유형 선택</label>
+                        <select id="worksheet-type-select">
+                            <option value="basic" selected>독서 전-중-후 기본 활동지</option>
+                            <option value="brainwriting">브레인라이팅 협동 아이디어 활동지</option>
+                            <option value="procon">프로콘 (Pro-Con) 역발상 토론 활동지</option>
+                            <option value="hotseating">핫시팅 (Hot-seating) 캐릭터 청문 활동지</option>
+                            <option value="carousel">회전목마 토론 회전 기록지</option>
+                            <option value="socratic">소크라틱 세미나 독서 대화록</option>
+                            <option value="worldcafe">월드카페 브레인스토밍 기록판</option>
+                            <option value="argument">논증 게임 주장-이유-근거 매칭지</option>
+                            <option value="doublepyramid">쌍 피라미드 토론 수렴 활동지</option>
+                            <option value="angeldevil">두 마음(천사-악마) 토론 역할 대화록</option>
+                            <option value="hexadebate">헥사 토론 육각형 개념 관계도</option>
+                            <option value="traffic">신호등 토론 전용 활동지</option>
+                            <option value="pmi">PMI 분석 토론 활동지</option>
+                            <option value="twostray">둘가고 둘남기 지식 순환 활동지</option>
+                            <option value="panorama">파노라마 다중 관점 렌즈 활동지</option>
+                            <option value="fan">선풍기 토론 경청 누적 릴레이 활동지</option>
+                            <option value="reason">인물 행동 '이유찾기' 활동지</option>
+                            <option value="valueline">가치수직선 토론 전용 활동지</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row-buttons" style="margin-top: 16px;">
+                    <button id="btn-generate-worksheet" class="btn btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> 학습지 생성하기</button>
+                    <button id="btn-print-worksheet" class="btn btn-secondary" style="border-color: var(--accent-coral); color: var(--accent-coral);"><i class="fa-solid fa-print"></i> A4 인쇄 / PDF 저장</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Printable Worksheet Preview Area -->
+        <div class="worksheet-preview-wrapper">
+            <div id="worksheet-paper" class="worksheet-paper">
+                <!-- Dynamically built by JS based on selection, styling is optimized for A4 print -->
+                <div class="print-instruction no-print">
+                    <i class="fa-solid fa-arrow-up"></i> 위 '학습지 생성하기'를 클릭하시면 여기에 인쇄 및 편집 가능한 학습지가 로드됩니다.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Debate Class Archive Section -->
+    <section id="archive-section" class="archive-section no-print">
+        <div class="section-title-wrapper">
+            <span class="sub-title">Debate Classroom Resources</span>
+            <h2>토론 수업 자료실</h2>
+            <p>교실 현장에서 바로 활용 가능한 PPT 발표 자료, 교사용 해설 PDF, 한글(HWP)/워드(DOCX) 활동지 원본 다운로드 공간입니다.</p>
+        </div>
+
+        <div class="archive-container">
+            <!-- Search & Filters for Archive -->
+            <div class="archive-search-box">
+                <i class="fa-solid fa-magnifying-glass archive-search-icon"></i>
+                <input type="text" id="archive-search-input" placeholder="자료명을 입력하세요 (예: 빨간 벽, 소크라틱, 신호등)...">
+                <button id="clear-archive-search" class="clear-btn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="archive-filters">
+                <button class="archive-filter-btn active" data-filter="all">전체보기</button>
+                <button class="archive-filter-btn" data-filter="theory"><i class="fa-solid fa-graduation-cap" style="color: #4A90E2;"></i> 토론 이론 및 가이드</button>
+                <button class="archive-filter-btn" data-filter="ppt"><i class="fa-regular fa-file-powerpoint" style="color: #D24726;"></i> 교사용 수업 PPT</button>
+                <button class="archive-filter-btn" data-filter="sheet"><i class="fa-regular fa-file-lines" style="color: #2ECC71;"></i> 학생용 활동지 및 대본</button>
+            </div>
+
+            <!-- Dynamic grid -->
+            <div class="archive-grid" id="archive-grid">
+                <!-- Injected by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Custom Debate Guide Helper Section -->
+    <section id="helper-section" class="helper-section no-print">
+        <div class="helper-card-container">
+            <div class="helper-intro">
+                <i class="fa-solid fa-wand-magic-sparkles magic-icon"></i>
+                <h3>그림책 토론 설계 헬퍼</h3>
+                <p>『그림책 토론 100』 및 『열두 달 그림책 토론』을 바탕으로 상황별 맞춤 가이드와 월별(열두 달) 추천 커리큘럼을 실시간으로 설계해 드립니다.</p>
+            </div>
+            
+            <div style="width: 100%;">
+                <!-- Helper Mode Tabs -->
+                <div class="helper-mode-tabs" style="display: flex; gap: 16px; margin-bottom: 24px; border-bottom: 2px solid var(--border-color); padding-bottom: 8px;">
+                    <button class="helper-tab-btn active" id="tab-helper-situation" style="background: none; border: none; font-size: 1.05rem; font-weight: 700; color: var(--accent-coral); cursor: pointer; padding-bottom: 8px; border-bottom: 3px solid var(--accent-coral); transition: all 0.3s; font-family: inherit;">상황별 맞춤 설계</button>
+                    <button class="helper-tab-btn" id="tab-helper-monthly" style="background: none; border: none; font-size: 1.05rem; font-weight: 700; color: var(--text-secondary); cursor: pointer; padding-bottom: 8px; border-bottom: 3px solid transparent; transition: all 0.3s; font-family: inherit;">열두 달(월별) 커리큘럼</button>
+                </div>
+
+                <!-- Form 1: Situation Helper -->
+                <div class="helper-form" id="helper-situation-form">
+                    <div class="form-group">
+                        <label for="helper-target"><i class="fa-solid fa-graduation-cap"></i> 참여 대상 학년</label>
+                        <select id="helper-target">
+                            <option value="low">초등 저학년 (놀이 및 직관 위주)</option>
+                            <option value="mid" selected>초등 중고학년 (소통 및 기본 논증)</option>
+                            <option value="middle">중학생 (관계적 자아 및 도덕적 책임)</option>
+                            <option value="high">고등학생 (실존적 고민 및 교과 연계)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="helper-goal"><i class="fa-solid fa-circle-check"></i> 토론 수업 핵심 목표</label>
+                        <select id="helper-goal">
+                            <option value="empathy" selected>공감과 관계에 대한 성찰 (감성/이해)</option>
+                            <option value="logical">논리적인 의사결정 및 근거 쓰기 (논리/말하기)</option>
+                            <option value="social">사회 문제 및 가치관 다루기 (성찰/토의)</option>
+                            <option value="fun">쉽고 재미있는 토론 경험 입문 (재미/활동)</option>
+                        </select>
+                    </div>
+                    <button id="btn-generate-guide" class="btn btn-primary btn-block">맞춤 가이드 생성</button>
+                </div>
+
+                <!-- Form 2: Monthly Helper -->
+                <div class="helper-form" id="helper-monthly-form" style="display: none; width: 100%;">
+                    <div class="form-group" style="width: 100%;">
+                        <label><i class="fa-regular fa-calendar-days"></i> 커리큘럼 탐색할 월 선택</label>
+                        <div class="month-grid" style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin-top: 10px;">
+                            <button class="month-btn active" data-month="3">3월</button>
+                            <button class="month-btn" data-month="4">4월</button>
+                            <button class="month-btn" data-month="5">5월</button>
+                            <button class="month-btn" data-month="6">6월</button>
+                            <button class="month-btn" data-month="7">7월</button>
+                            <button class="month-btn" data-month="8">8월</button>
+                            <button class="month-btn" data-month="9">9월</button>
+                            <button class="month-btn" data-month="10">10월</button>
+                            <button class="month-btn" data-month="11">11월</button>
+                            <button class="month-btn" data-month="12">12월</button>
+                            <button class="month-btn" data-month="1">1월</button>
+                            <button class="month-btn" data-month="2">2월</button>
+                        </div>
+                    </div>
+                    <button id="btn-show-monthly" class="btn btn-primary btn-block" style="margin-top: 16px;">월별 추천 도서 및 논제 보기</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Generated Guide Output -->
+        <div id="generated-guide-output" class="generated-guide-output hidden">
+            <!-- Rendered by JavaScript -->
+        </div>
+    </section>
+    </main>
+    <!-- Footer -->
+    <footer class="no-print">
+        <div class="footer-container">
+            <div class="footer-info">
+                <h4>부천 토론교육연구회 수업탐구공동체</h4>
+            </div>
+            <p class="copyright">&copy; 2026 부천 토론교육연구회 & Antigravity. All rights reserved. | made by woorimalsam</p>
+        </div>
+    </footer>
+
+    <!-- Detail Modal -->
+    <div id="detail-modal" class="modal-overlay no-print">
+        <div class="modal-content">
+            <button id="modal-close" class="modal-close-btn" aria-label="닫기"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modal-body">
+                <!-- Filled dynamically by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS -->
+    <script src="app.js?v=1.3.6"></script>
+</body>
+</html>
