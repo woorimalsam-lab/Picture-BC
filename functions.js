@@ -242,7 +242,7 @@ function renderTechniques() {
                 <div class="tech-tags" style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                     ${(tech.tags || []).map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
                 </div>
-                <p class="tech-desc">${tech.concept}</p>
+                <p class="tech-desc">${tech.easy || tech.concept}</p>
                 <div class="tech-footer" style="margin-top:auto; padding-top:14px; border-top:1px dashed var(--border-color); display:flex; justify-content:space-between; align-items:center;">
                     <span class="tech-matching-book" style="font-size:0.8rem; color:var(--text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px;">
                         <i class="fa-solid fa-book" style="margin-right: 4px; color:var(--accent-coral);"></i> ${booksText}
@@ -526,8 +526,15 @@ window.openModal = function(type, key) {
                     </div>
                 </div>
                 
+                ${tech.easy ? `
+                <div class="modal-section" style="margin-bottom:20px; background-color:var(--bg-secondary); border-radius:16px; padding:18px 20px; border-left:4px solid var(--accent-sage); border-bottom:none;">
+                    <h4 style="margin-bottom:8px; color:var(--accent-sage);"><i class="fa-solid fa-seedling"></i> 쉽게 말하면</h4>
+                    <p style="font-size:1.02rem; line-height:1.75; color:var(--text-primary); font-weight:500;">${tech.easy}</p>
+                </div>
+                ` : ""}
+
                 <div class="modal-section" style="margin-bottom:20px;">
-                    <h4><i class="fa-solid fa-lightbulb"></i> 핵심 개념</h4>
+                    <h4><i class="fa-solid fa-lightbulb"></i> 자세한 개념</h4>
                     <p style="font-size:0.95rem; line-height:1.6; color:var(--text-primary);">${tech.concept}</p>
                 </div>
                 
@@ -1255,7 +1262,8 @@ function setupMainSearch() {
                 if (query === "") return false;
                 const nameMatch = t.name && t.name.toLowerCase().includes(query);
                 const conceptMatch = t.concept && t.concept.toLowerCase().includes(query);
-                return nameMatch || conceptMatch;
+                const easyMatch = t.easy && t.easy.toLowerCase().includes(query);
+                return nameMatch || conceptMatch || easyMatch;
             });
 
             // Collect reference tags to find related techniques
@@ -1292,15 +1300,16 @@ function setupMainSearch() {
                 if (query !== "") {
                     const nameMatch = t.name && t.name.toLowerCase().includes(query);
                     const conceptMatch = t.concept && t.concept.toLowerCase().includes(query);
+                    const easyMatch = t.easy && t.easy.toLowerCase().includes(query);
                     const effectMatch = t.effect && t.effect.toLowerCase().includes(query);
-                    const stepsMatch = t.steps && t.steps.some(step => 
-                        (step.title && step.title.toLowerCase().includes(query)) || 
+                    const stepsMatch = t.steps && t.steps.some(step =>
+                        (step.title && step.title.toLowerCase().includes(query)) ||
                         (step.desc && step.desc.toLowerCase().includes(query))
                     );
                     const tipsMatch = t.tips && t.tips.some(tip => tip.toLowerCase().includes(query));
                     const tagsMatch = t.tags && t.tags.some(tag => tag.toLowerCase().includes(query));
 
-                    if (nameMatch || conceptMatch || effectMatch || stepsMatch || tipsMatch || tagsMatch) {
+                    if (nameMatch || conceptMatch || easyMatch || effectMatch || stepsMatch || tipsMatch || tagsMatch) {
                         score += 100;
                         isTextMatch = true;
                     }
@@ -1461,7 +1470,7 @@ function setupMainSearch() {
                         <div class="tech-tags" style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                             ${(tech.tags || []).map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
                         </div>
-                        <p class="tech-desc">${tech.concept}</p>
+                        <p class="tech-desc">${tech.easy || tech.concept}</p>
                         <div class="tech-footer" style="margin-top:auto; padding-top:14px; border-top:1px dashed var(--border-color); display:flex; justify-content:space-between; align-items:center;">
                             <span class="tech-matching-book" style="font-size:0.8rem; color:var(--text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px;">
                                 <i class="fa-solid fa-book" style="margin-right: 4px; color:var(--accent-coral);"></i> ${booksText}

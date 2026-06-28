@@ -3,6 +3,7 @@
         "id": "panorama",
         "name": "파노라마 토론",
         "concept": "단순한 주인공 중심의 찬반을 넘어서, 사건을 지켜본 주변 조연들, 동물, 심지어 무생물 사물의 다양한 관점 렌즈를 각각 부여받아 하나의 사건을 입체적 파노라마처럼 쪼개어 해석하고 토의하는 기법입니다.",
+        "easy": "하나의 사건을 주인공 입장에서만 보지 않고, 옆에서 지켜본 친구·동물·물건의 눈으로도 번갈아 살펴보는 토론이에요. 여러 시선을 모으면 사건이 입체적으로 보입니다.",
         "time": "80분 (2차시)",
         "prep": "인물/사물별 시선 렌즈 카드, 갈등 파노라마 시트",
         "effect": "나와 직접적 이해관계가 없는 3자 또는 소외된 대상의 위치에서 사물을 조망하는 탈자기중심적 사고와 고차원적 감수성을 키웁니다.",
@@ -58,6 +59,7 @@
         "id": "valuebar",
         "name": "가치수직선 토론",
         "concept": "특정 도덕적 딜레마 논제에 대해 0(절대 반대)부터 10(절대 찬성)까지 그려진 칠판이나 바닥의 긴 수직선 위에서 자신이 동의하는 위치에 직접 서서 그 이유를 설명하고, 타인의 말을 듣고 생각이 유연해지면 선 위를 자유롭게 이동하는 스펙트럼 토론입니다.",
+        "easy": "바닥이나 칠판에 0~10 눈금을 그려 놓고, 내 생각이 얼마나 찬성(또는 반대)인지 그 위치에 직접 서 보는 토론이에요. 친구 말을 듣고 생각이 바뀌면 자리를 옮길 수 있어요.",
         "time": "40분 (1차시)",
         "prep": "바닥에 부착할 0~10 수직선 테이프, 개인별 가치 마커",
         "effect": "세상의 가치가 '모 아니면 도'의 양극단만 있는 것이 아니라, 3의 입장이나 7의 입장처럼 미세하게 조율된 다양한 가치 스펙트럼이 존재함을 몸으로 체득합니다.",
@@ -119,6 +121,7 @@
         "id": "brainwriting",
         "name": "브레인라이팅 (Brainwriting)",
         "concept": "말 대신 종이나 포스트잇에 의견을 먼저 적고 시계방향으로 돌려가며 앞선 의견에 아이디어를 덧붙이는 침묵형 아이디어 도출 기법(6-3-5 기법 활용)입니다. (참조: 창의적 문제해결 기법)",
+        "easy": "말하지 않고 종이에 생각을 적은 뒤 옆 사람에게 돌려, 친구 아이디어에 내 생각을 덧붙여 가는 '조용한 토론'이에요. 발표가 부끄러운 친구도 편하게 참여할 수 있어요.",
         "time": "40분 (1차시)",
         "prep": "그림책, 전용 6칸/3칸 활동지, 모둠별 필기도구",
         "effect": "집단지성을 활용해 창의적인 문제해결력을 도출하며, 다수의 시선을 의식하는 내성적인 학생들도 심리적 부담 없이 평등하게 의견을 낼 수 있습니다.",
@@ -176,6 +179,7 @@
         "id": "procon",
         "name": "프로콘 (Pro-Con) 토론",
         "concept": "특정 논제에 대해 찬성(Pro)과 반대(Con)의 논리가 둘 다 타당성이 있음을 체화하기 위해, 두 입장을 신호에 맞춰 차례대로 강제 교대하며 모두 대변해 보는 인지적 전환 기법입니다. (참조: 교육학 스위칭 디베이트)",
+        "easy": "찬성과 반대를 한 번씩 모두 맡아 보는 토론이에요. 내가 반대했던 입장도 직접 말해 보면 '양쪽 다 일리가 있구나'를 느끼게 됩니다.",
         "time": "40분 ~ 80분 (1~2차시)",
         "prep": "그림책, 입론/반론 기록 시트, 타이머, 신호 태그",
         "effect": "이분법적인 흑백논리와 편견을 타파하고, 내가 반대하던 입장의 타당성까지 역지사지로 논증하게 하여 다각적인 사고를 키워 줍니다.",
@@ -240,6 +244,7 @@
         "id": "hotseating",
         "name": "핫시팅 (Hot-seating)",
         "concept": "그림책 속 중요 갈등 상황에 서 있는 특정 인물의 역할을 한 학생이 전담하여 '뜨거운 의자'에 앉고, 나머지 학생들이 청문위원처럼 인물에게 심층 질문을 던져 즉흥적으로 대답하는 연극식 토론입니다. (참조: 교육연극 기법)",
+        "easy": "한 친구가 책 속 인물이 되어 '뜨거운 의자'에 앉고, 나머지 친구들이 그 인물에게 궁금한 점을 질문하는 역할극 토론이에요. 인물의 속마음을 깊이 이해할 수 있어요.",
         "time": "40분 (1차시)",
         "prep": "핫시트 전용 중앙 의자, 캐릭터 소품(왕관, 스카프 등), 질문 작성 카드",
         "effect": "인물에 대한 정서적 공감대를 극대화하며, 겉으로 드러난 선택 이면의 심층 심리와 외적 억압 요인을 입체적으로 해석하는 다차원적 분석력을 키워 줍니다.",
@@ -297,6 +302,7 @@
         "id": "carousel",
         "name": "회전목마 토론 (Carousel)",
         "concept": "이중 동심원을 그려 마주 보고 앉아 1:1 토론을 짧게 진행한 뒤, 신호에 맞춰 바깥쪽 원의 참여자들이 한 칸씩 이동하여 새로운 파트너와 동일한 주제로 생각을 반복 조율하는 회전식 토론입니다. (참조: 에듀인뉴스 하브루타 칼럼)",
+        "easy": "두 겹의 원으로 마주 앉아 1:1로 짧게 이야기한 뒤, 신호에 맞춰 자리를 옮겨 새로운 짝과 같은 주제로 또 이야기하는 토론이에요. 여러 친구를 만나며 내 생각이 점점 단단해져요.",
         "time": "40분 ~ 80분 (1~2차시)",
         "prep": "동심원 배치가 가능한 열린 공간, 타이머, 진행 신호기(종)",
         "effect": "다수의 동료가 가진 다양한 논리를 단시간에 접하면서 내 논리의 허점을 보완하고, 타인의 우수한 의견을 신속하게 흡수하여 주장을 고도로 정교화할 수 있습니다.",
@@ -357,6 +363,7 @@
         "id": "socratic",
         "name": "소크라틱 세미나",
         "concept": "텍스트를 정밀하게 독해한 후, 정답이 없는 본질적인 열린 질문들을 생성하고 원형 좌석 대형에서 자발적으로 질문을 이어가며 텍스트가 지닌 궁극적인 가치와 철학을 캐내는 비경쟁 협력형 세미나입니다. (참조: 소크라테스식 문답법)",
+        "easy": "정답이 없는 질문을 만들어, 둥글게 앉아 서로 묻고 답하며 책의 깊은 의미를 함께 찾는 토론이에요. 이기는 게 아니라 같이 이해하는 것이 목표예요.",
         "time": "80분 (2차시)",
         "prep": "세미나 수평 룰 안내장, 관찰 피드백 기록 시트, 원형 좌석 배치",
         "effect": "논쟁이 아닌 본질적 이해를 추구하므로, 텍스트에 대한 고도의 문해력과 비판적 읽기, 타인 배려 경청 태도를 체득하게 됩니다.",
@@ -416,6 +423,7 @@
         "id": "worldcafe",
         "name": "월드카페 (World Cafe)",
         "concept": "카페와 같이 편안한 분위기를 조성하여 모둠별로 서로 다른 소주제 테이블에서 토론하다가, 호스트 1명만 고정 잔류하고 다른 멤버들은 유랑하며 지식을 융합하고 수렴하는 집단지성 기법입니다. (참조: 월드카페 방식)",
+        "easy": "카페처럼 편안한 분위기에서 테이블마다 다른 질문을 두고 이야기하다가, 한 명만 남고 나머지는 다른 테이블로 옮겨 다니며 아이디어를 섞는 토론이에요.",
         "time": "80분 (2차시)",
         "prep": "잔잔한 음악, 모둠 테이블 전지, 컬러 마커, 호스트 팻말",
         "effect": "아이디어들이 테이블을 자유롭게 교차 통과하며 융합되므로 창의적이고 자율적인 해법 도출에 유용하며 수평적인 브레인스토밍에 강합니다.",
@@ -477,6 +485,7 @@
         "id": "argumentgame",
         "name": "논증 게임 (Argumentation Game)",
         "concept": "주장-이유-근거라는 토론 논증의 필수 3요소를 카드 게임이나 보드판 규칙과 연계하여, 게임을 플레이하며 자연스럽게 주장에 설득력 있는 이유를 붙여 말하는 구조를 학습하는 놀이식 교육입니다. (참조: 교육 게이미피케이션)",
+        "easy": "'나는 ~라고 생각해(주장) + 왜냐하면 ~(이유) + 예를 들면 ~(근거)' 형식을 보드게임처럼 즐기며 익히는 토론이에요. 놀이로 조리 있게 말하는 힘을 길러요.",
         "time": "40분 (1차시)",
         "prep": "논증 게임 보드판, 주장/이유/근거 카드, 게임 말, 주사위",
         "effect": "토론에 대해 막연한 공포나 거부감을 느끼는 어린 학생들에게 조리 있는 문장 구사 능력을 재미있게 체득시킵니다.",
@@ -532,6 +541,7 @@
         "id": "trafficlight",
         "name": "신호등 토론 (Traffic Light)",
         "concept": "찬성은 초록색, 반대는 빨간색, 중립/보류는 노란색 카드를 활용하여 자신의 의견을 직관적으로 시각화하고, 토론이 진행되면서 생각이 바뀌면 언제든 카드를 바꿀 수 있게 허용하는 유연한 소통 기법입니다. (참조: 비경쟁 독서토론)",
+        "easy": "찬성은 초록, 반대는 빨강, 중립은 노랑 카드를 들어 내 생각을 한눈에 보여주는 토론이에요. 이야기를 듣다 생각이 바뀌면 카드 색을 바꿀 수 있어요.",
         "time": "40분 (1차시)",
         "prep": "신호등 카드 세트(모둠원당 3색 1장씩), 카드 기록 활동지",
         "effect": "타인의 합리적인 의견을 집중 경청하여 내 생각 기둥이 흔들리는 것을 '카드를 바꾸는 행위'로 긍정적으로 인정하게 하며 융통성 있는 마인드를 키워줍니다.",
@@ -593,6 +603,7 @@
         "id": "pmi",
         "name": "PMI 토론",
         "concept": "영국의 에드워드 드 보노(Edward de Bono)가 창안한 기법으로, 어떤 안건이나 현상에 대해 좋은 점(Plus), 나쁜 점(Minus), 흥미로운 점(Interesting)의 3가지 관점에서 감정을 배제하고 기계적으로 분석한 뒤 최적의 대안을 도출하는 훈련법입니다.",
+        "easy": "어떤 일을 좋은 점(P), 아쉬운 점(M), 흥미로운 점(I) 세 가지로 나눠 차분히 따져 보는 토론이에요. 감정으로 싸우지 않고 골고루 살펴보게 돼요.",
         "time": "40분 (1차시)",
         "prep": "PMI 3분할 활동지, 모둠 전지",
         "effect": "개인적인 감정적 호불호나 섣부른 찬반 결론에 빠지지 않고, 사안의 긍정적 측면과 부정적 측면을 냉철하고 다각적으로 바라보는 수평적 사고력이 발달합니다.",
@@ -652,6 +663,7 @@
         "id": "2stay2stray",
         "name": "둘 가고 둘 남기 (2 Stay 2 Stray)",
         "concept": "4인 1조 모둠에서 논의를 마친 뒤, 2명은 '가이드(Stay)'로 남아 자리를 지키고 나머지 2명은 '여행자(Stray)'가 되어 다른 모둠을 방문해 설명을 듣고 정보를 스크랩해 오는 활동적인 협동 학습입니다. (참조: 협동학습 직소 구조)",
+        "easy": "모둠 4명 중 2명은 남아서 설명하고, 2명은 다른 모둠을 돌아다니며 아이디어를 모아 오는 토론이에요. 교실 전체의 생각을 나눌 수 있어요.",
         "time": "40분 (1차시)",
         "prep": "모둠별 대형 전지, 마커펜, 여행자용 메모장",
         "effect": "모둠 내 활동에만 갇히지 않고 교실 전체의 아이디어를 물리적인 이동을 통해 활발히 공유하며, 가이드 역할의 학생은 설명 능력(메타인지)이 획기적으로 향상됩니다.",
@@ -709,6 +721,7 @@
         "id": "fan",
         "name": "선풍기 토론",
         "concept": "모둠원이 원 대형으로 둘러앉아, 선풍기 날개가 돌아가듯 1번이 스피치하면 2번은 1번의 핵심을 10초간 요약해 주고 자기 생각을 얹고, 3번은 2번의 말을 요약하고 얹는 식으로 끊임없이 꼬리를 무는 연쇄 경청 기법입니다.",
+        "easy": "앞사람 말을 한 줄로 요약한 뒤 내 생각을 덧붙여 차례차례 이어 가는 토론이에요. 선풍기 날개처럼 돌아가며 '잘 듣기'를 훈련해요.",
         "time": "40분 (1차시)",
         "prep": "선풍기 룰 안내판, 초시계, 발언 마이크(모형)",
         "effect": "내 말을 하기 위해 앞사람의 말을 기계적으로 경청하고 요약해야만 발언권이 주어지므로, 주의 산만함을 통제하고 경청의 품질을 극한으로 끌어올립니다.",
@@ -768,6 +781,7 @@
         "id": "reasoning",
         "name": "이유찾기 토론",
         "concept": "그림책에서 가장 납득하기 어려운 주인공의 기이한 선택이나 결과적 행동을 먼저 칠판에 적어둔 뒤, 텍스트의 행간과 그림의 구석구석에 숨겨진 작가의 의도와 복선을 모조리 역추적하여 타당한 인과 관계를 증명해 내는 탐정식 문해 토론입니다.",
+        "easy": "'주인공은 왜 그런 뜻밖의 선택을 했을까?'를 탐정처럼 책 속 단서를 찾아 증명하는 토론이에요. 그림과 문장 속 힌트가 모두 증거가 됩니다.",
         "time": "40분 (1차시)",
         "prep": "텍스트/그림 증거 수집 보드, 포스트잇, 돋보기(소품용)",
         "effect": "직관적 감상에 머무르지 않고, 글과 그림의 숨은 문맥을 현미경처럼 분석하는 정밀한 추론적 읽기 능력(Reading between the lines)을 극대화합니다.",
@@ -829,6 +843,7 @@
         "id": "havruta",
         "name": "하브루타 (Havruta)",
         "concept": "유대인의 전통적 학습법으로, 짝을 지어 마주 앉아 하나의 텍스트를 두고 끊임없이 '왜?'라고 질문하고 반박하며 논쟁하는 치열한 대화 기법입니다. 정답을 외우는 것이 아니라, 뇌를 격동시켜 스스로 철학적 진리를 찾아가도록 만듭니다.",
+        "easy": "짝과 마주 앉아 '왜?', '정말 그럴까?'를 끊임없이 주고받으며 생각을 깊게 파고드는 유대인식 토론이에요. 질문이 많을수록 좋아요.",
         "time": "40분 (1차시)",
         "prep": "그림책, 짝꿍 책상 배치, 질문 생성 가이드라인",
         "effect": "단순히 지식을 수용하는 수동적 태도에서 벗어나, 논리적으로 상대를 설득하고 방어하는 과정에서 고도의 사고력과 비판력을 훈련합니다.",
@@ -885,6 +900,7 @@
         "id": "carousel-debate",
         "name": "회전목마 토론 (짝 토론 포함)",
         "concept": "책상을 안쪽과 바깥쪽 둥근 원 모양으로 배치하고, 마치 회전목마가 돌아가듯 바깥쪽 학생들이 자리를 이동하며 새로운 짝과 1:1 찬반 토론(짝 토론)을 반복하는 역동적인 활동입니다.",
+        "easy": "회전목마처럼 자리를 옮겨 가며 여러 짝과 1:1 찬반 토론을 반복하는 활동이에요. 짧은 대화를 여러 번 하며 내 주장을 다듬어요.",
         "time": "40분",
         "prep": "회전목마 대형으로 책상 배치, 논제 카드",
         "effect": "여러 친구와 짧은 시간 안에 의견을 나누면서 자신의 주장을 다듬고, 다른 사람의 다양한 관점을 수용하는 유연성을 배웁니다.",
@@ -946,6 +962,7 @@
         "id": "eraser-debate",
         "name": "지우개 토론",
         "concept": "칠판에 모둠별로 도출한 다양한 의견이나 키워드를 적어둔 뒤, 상대방의 의견 중 덜 중요하거나 반박 가능한 것을 하나씩 '지워나가며' 최종적으로 가장 핵심적인 가치만 남기는 소거형 놀이 토론입니다.",
+        "easy": "칠판에 적은 여러 의견 중 덜 중요한 것을 근거를 대며 하나씩 '지워' 가장 중요한 핵심만 남기는 토론이에요. 게임처럼 재미있게 우선순위를 찾아요.",
         "time": "30분 ~ 40분",
         "prep": "칠판, 보드마카/분필, 지우개",
         "effect": "정보를 비교 분석하는 능력과 핵심을 파악하는 통찰력을 기르며, 게임 같은 요소로 흥미를 유발합니다.",
@@ -1002,6 +1019,7 @@
         "id": "ai-assisted-debate",
         "name": "디지털/AI 보조 토론",
         "concept": "패들렛, 띵커벨 같은 디지털 협업 도구를 활용해 아이디어를 시각화하거나, 챗GPT 등 생성형 AI를 가상의 토론 파트너로 삼아 논리를 강화하고 반박을 연습하는 현대적 토론 방식입니다.",
+        "easy": "패들렛 같은 도구나 AI를 토론 상대로 활용하는 요즘식 토론이에요. AI에게 '내 주장을 반박해 줘'라고 시켜 보고, 그 반박을 다시 꺾어 보며 논리를 단단히 해요.",
         "time": "40분 ~ 80분",
         "prep": "태블릿PC 또는 크롬북, 패들렛/띵커벨 링크, 생성형 AI(교사 통제 하에 사용)",
         "effect": "내향적인 학생들의 참여도를 높이고, AI의 객관적 데이터와 다각도 의견을 통해 학생들의 논거를 한층 심화시킬 수 있습니다.",
@@ -1062,6 +1080,7 @@
         "id": "doublepyramid",
         "name": "쌍 피라미드 토론",
         "concept": "피라미드식 합의를 찬성과 반대 양측에서 각각 독립적으로 진행하여 양 진영의 최종 대표 의견을 단 하나씩 추출한 뒤, 최종 두 입장을 조율하여 대안을 완성하는 수렴형 토론 기법입니다.",
+        "easy": "찬성 팀과 반대 팀이 각각 1:1 → 2:2로 의견을 모아 대표 의견을 하나씩 만든 뒤, 둘을 합쳐 더 나은 해결책을 찾는 토론이에요.",
         "time": "80분 (2차시)",
         "prep": "피라미드 안건 수렴 시트, 모둠 의견 수합용 보드",
         "effect": "모둠 내에서 소수의 의견이 무시되지 않고 피라미드 단계를 거치며 보강되는 과정을 통해 다수결의 함정을 극복하고, 구조적 합의 능력을 키웁니다.",
@@ -1117,6 +1136,7 @@
         "id": "angeldevil",
         "name": "두 마음(천사-악마) 토론",
         "concept": "갈등을 겪는 주인공(의사결정자) 한 명을 가운데 두고, 양옆에서 천사(배려/윤리)와 악마(현실/욕망)의 목소리를 대변하는 역할을 맡아 의사결정자의 마음을 흔들며 토론하는 역할극 기반의 기법입니다.",
+        "easy": "고민하는 주인공 양옆에서 한 편은 천사(착한 마음), 한 편은 악마(솔직한 욕심)가 되어 설득하는 역할극 토론이에요. 마음속 갈등을 눈으로 보여 줍니다.",
         "time": "40분 (1차시)",
         "prep": "천사/악마 머리띠, 고민 분석 상황지",
         "effect": "인물의 복잡하고 모순적인 내면적 딜레마를 입체적으로 이해하게 되며, 자신의 삶에서 겪는 갈등 상황에서도 스스로 판단할 수 있는 메타인지를 발달시킵니다.",
@@ -1172,6 +1192,7 @@
         "id": "hexadebate",
         "name": "헥사 토론",
         "concept": "육각형 블록(헥사 카드)에 책 속의 주요 개념, 사건, 감정 단어를 적고, 서로 관련된 육각형 면끼리 이어붙이면서 연결 고리가 형성되는 구체적인 이유를 논증하고 설득하는 시각적 협동 토론 기법입니다.",
+        "easy": "육각형 카드에 단어를 적고, 서로 관련 있는 카드끼리 이어 붙이며 '왜 연결되는지'를 설명하는 토론이에요. 사건과 감정의 관계가 벌집처럼 한눈에 보여요.",
         "time": "80분 (2차시)",
         "prep": "육각형 모조지 카드(헥사 블록), 마커펜, 보드",
         "effect": "개별적인 사건과 감정들이 어떻게 인과관계와 유기적 구조로 얽혀 있는지 시각화함으로써 계통적 사고와 논리적 연계 분석력을 극대화합니다.",
@@ -3084,7 +3105,7 @@ function renderTechniques() {
                 <div class="tech-tags" style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                     ${(tech.tags || []).map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
                 </div>
-                <p class="tech-desc">${tech.concept}</p>
+                <p class="tech-desc">${tech.easy || tech.concept}</p>
                 <div class="tech-footer" style="margin-top:auto; padding-top:14px; border-top:1px dashed var(--border-color); display:flex; justify-content:space-between; align-items:center;">
                     <span class="tech-matching-book" style="font-size:0.8rem; color:var(--text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px;">
                         <i class="fa-solid fa-book" style="margin-right: 4px; color:var(--accent-coral);"></i> ${booksText}
@@ -3368,8 +3389,15 @@ window.openModal = function(type, key) {
                     </div>
                 </div>
                 
+                ${tech.easy ? `
+                <div class="modal-section" style="margin-bottom:20px; background-color:var(--bg-secondary); border-radius:16px; padding:18px 20px; border-left:4px solid var(--accent-sage); border-bottom:none;">
+                    <h4 style="margin-bottom:8px; color:var(--accent-sage);"><i class="fa-solid fa-seedling"></i> 쉽게 말하면</h4>
+                    <p style="font-size:1.02rem; line-height:1.75; color:var(--text-primary); font-weight:500;">${tech.easy}</p>
+                </div>
+                ` : ""}
+
                 <div class="modal-section" style="margin-bottom:20px;">
-                    <h4><i class="fa-solid fa-lightbulb"></i> 핵심 개념</h4>
+                    <h4><i class="fa-solid fa-lightbulb"></i> 자세한 개념</h4>
                     <p style="font-size:0.95rem; line-height:1.6; color:var(--text-primary);">${tech.concept}</p>
                 </div>
                 
@@ -4097,7 +4125,8 @@ function setupMainSearch() {
                 if (query === "") return false;
                 const nameMatch = t.name && t.name.toLowerCase().includes(query);
                 const conceptMatch = t.concept && t.concept.toLowerCase().includes(query);
-                return nameMatch || conceptMatch;
+                const easyMatch = t.easy && t.easy.toLowerCase().includes(query);
+                return nameMatch || conceptMatch || easyMatch;
             });
 
             // Collect reference tags to find related techniques
@@ -4134,15 +4163,16 @@ function setupMainSearch() {
                 if (query !== "") {
                     const nameMatch = t.name && t.name.toLowerCase().includes(query);
                     const conceptMatch = t.concept && t.concept.toLowerCase().includes(query);
+                    const easyMatch = t.easy && t.easy.toLowerCase().includes(query);
                     const effectMatch = t.effect && t.effect.toLowerCase().includes(query);
-                    const stepsMatch = t.steps && t.steps.some(step => 
-                        (step.title && step.title.toLowerCase().includes(query)) || 
+                    const stepsMatch = t.steps && t.steps.some(step =>
+                        (step.title && step.title.toLowerCase().includes(query)) ||
                         (step.desc && step.desc.toLowerCase().includes(query))
                     );
                     const tipsMatch = t.tips && t.tips.some(tip => tip.toLowerCase().includes(query));
                     const tagsMatch = t.tags && t.tags.some(tag => tag.toLowerCase().includes(query));
 
-                    if (nameMatch || conceptMatch || effectMatch || stepsMatch || tipsMatch || tagsMatch) {
+                    if (nameMatch || conceptMatch || easyMatch || effectMatch || stepsMatch || tipsMatch || tagsMatch) {
                         score += 100;
                         isTextMatch = true;
                     }
@@ -4303,7 +4333,7 @@ function setupMainSearch() {
                         <div class="tech-tags" style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                             ${(tech.tags || []).map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
                         </div>
-                        <p class="tech-desc">${tech.concept}</p>
+                        <p class="tech-desc">${tech.easy || tech.concept}</p>
                         <div class="tech-footer" style="margin-top:auto; padding-top:14px; border-top:1px dashed var(--border-color); display:flex; justify-content:space-between; align-items:center;">
                             <span class="tech-matching-book" style="font-size:0.8rem; color:var(--text-secondary); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:180px;">
                                 <i class="fa-solid fa-book" style="margin-right: 4px; color:var(--accent-coral);"></i> ${booksText}
