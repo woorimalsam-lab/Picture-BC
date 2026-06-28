@@ -2365,7 +2365,9 @@ footer {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.35s ease, visibility 0.35s ease;
-    z-index: 1050;
+    /* 헤더(z-index:1000)보다 아래에 둬서, 헤더 안에 있는 메뉴 패널이
+       배경 위로 올라오게 함 → 메뉴가 또렷하게 보이고 탭이 막히지 않음 */
+    z-index: 998;
 }
 .nav-backdrop.open {
     opacity: 1;
@@ -2391,9 +2393,7 @@ footer {
         height: 100dvh;
         width: min(80vw, 320px);
         padding: 88px 20px 28px;
-        background: var(--header-bg);
-        backdrop-filter: var(--glass-blur);
-        -webkit-backdrop-filter: var(--glass-blur);
+        background: var(--bg-primary);   /* 불투명 배경: 메뉴 항목 또렷하게 */
         border-left: 1px solid var(--border-color);
         box-shadow: -14px 0 44px rgba(44, 62, 41, 0.18);
         transform: translateX(105%);
