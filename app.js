@@ -3974,9 +3974,15 @@ function renderReadingLevel(level) {
             </ul>
             <p class="reading-board-total"><i class="fa-solid fa-circle-info"></i> 전체 ${data.total}개 자료 · 매월 새 호 업데이트 (PDF는 지학사 사이트에서 내려받을 수 있어요)</p>`;
     }
-    grid.innerHTML = data.items.map((it, i) => `
+    grid.innerHTML = data.items.map((it, i) => {
+        const bookIdx = (typeof books !== 'undefined') ? books.findIndex(b => b.title === it.book) : -1;
+        const openAttr = bookIdx >= 0 ? `onclick="openModal('book', ${bookIdx})"` : '';
+        const moreBtn = bookIdx >= 0
+            ? `<button type="button" class="reading-book-more" onclick="openModal('book', ${bookIdx})">그림책 줄거리·연계 토론 기법 보기 <i class="fa-solid fa-arrow-right"></i></button>`
+            : '';
+        return `
         <div class="reading-card">
-            <div class="reading-cover">
+            <div class="reading-cover ${bookIdx >= 0 ? 'reading-cover-clickable' : ''}" ${openAttr} title="그림책 상세·연계 토론 기법 보기">
                 <div class="book-design-inner" data-book="${it.book}" style="background:${READING_GRADIENTS[i % READING_GRADIENTS.length]};">
                     <span class="book-design-title">${it.book}</span>
                     <i class="fa-solid fa-book book-design-icon"></i>
@@ -3986,6 +3992,7 @@ function renderReadingLevel(level) {
                 <span class="reading-area"><i class="fa-solid ${it.icon}"></i> ${it.area}</span>
                 <h4 class="reading-thesis">${it.thesis}</h4>
                 <p class="reading-book-line"><i class="fa-solid fa-book-open"></i> 추천 그림책 《${it.book}》</p>
+                ${moreBtn}
                 <div class="reading-block">
                     <span class="reading-block-label"><i class="fa-solid fa-arrows-split-up-and-left"></i> 확산 질문</span>
                     <ul>${it.questions.map(q => `<li>${q}</li>`).join("")}</ul>
@@ -3996,7 +4003,8 @@ function renderReadingLevel(level) {
                 </div>
             </div>
         </div>
-    `).join("");
+    `;
+    }).join("");
     // 추천 그림책 실제 표지 로딩 (서재의 표지 재사용)
     grid.querySelectorAll(".book-design-inner[data-book]").forEach(el => {
         fetchRealCover(el.getAttribute("data-book"), el);
