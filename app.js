@@ -30,7 +30,8 @@
             }
         ],
         "books": [
-            "완벽한 아이 팔아요"
+            "완벽한 아이 팔아요",
+            "플라스틱 섬"
         ],
         "tags": [
             "역할극",
@@ -88,7 +89,8 @@
         "books": [
             "밴드 브레멘",
             "원숭이 꽃신",
-            "아낌없이 주는 나무"
+            "아낌없이 주는 나무",
+            "비무장지대에 봄이 오면"
         ],
         "tags": [
             "비경쟁",
@@ -273,7 +275,8 @@
         "books": [
             "돼지책",
             "샌지와 빵집 주인",
-            "치과의사 드소토 선생님"
+            "치과의사 드소토 선생님",
+            "줄무늬가 생겼어요"
         ],
         "tags": [
             "역할극",
@@ -394,7 +397,9 @@
             "난 황금알을 낳을 거야!",
             "트리갭의 샘물",
             "토끼와 거북이, 두 번째 경주",
-            "알사탕"
+            "알사탕",
+            "적",
+            "꽃들에게 희망을"
         ],
         "tags": [
             "비경쟁",
@@ -871,7 +876,8 @@
         ],
         "books": [
             "강아지똥",
-            "까마귀 소년"
+            "까마귀 소년",
+            "세 가지 질문"
         ],
         "tags": [
             "비경쟁",
@@ -2645,6 +2651,144 @@ const books = [
             "합리적인 사회 발전을 위해 가치관의 대립 시 법적·제도적 가이드라인 마련이 필수적이다."
         ],
         "coverId": 55
+    },
+    {
+        "title": "플라스틱 섬",
+        "author": "이명애 글·그림",
+        "summary": "바다 한가운데, 사람은 살지 않지만 온갖 플라스틱 쓰레기가 떠밀려와 쌓이는 섬이 있습니다. 새들은 병뚜껑을 먹이로 착각해 삼키고, 바다거북은 비닐에 몸이 감기며, 물고기는 미세 플라스틱이 떠다니는 물속을 헤엄칩니다. 우리가 무심코 쓰고 버린 플라스틱이 어떻게 바다 생명과 생태계를 병들게 하는지, 담담하지만 강렬한 그림으로 보여 주는 환경 그림책입니다.",
+        "technique": "파노라마 토론",
+        "tags": [
+            "#환경",
+            "#해양생태",
+            "#플라스틱"
+        ],
+        "gradient": "linear-gradient(135deg, #48CAE4, #90E0EF)",
+        "icon": "fa-recycle",
+        "youtube": "https://www.youtube.com/results?search_query=플라스틱+섬+그림책+구연",
+        "debateTopics": [
+            "편리한 일회용 플라스틱 사용은 개인의 자유에 맡겨야 하는가, 사회가 강하게 규제해야 하는가?",
+            "만약 내가 이 섬의 바다거북이나 새라면, 인간에게 어떤 말을 전하고 싶을까?"
+        ],
+        "debatePropositions": [
+            "일회용 플라스틱의 생산과 판매는 법으로 전면 금지되어야 한다.",
+            "환경 보호의 책임은 소비자 개인보다 생산 기업과 정부에 더 크게 있다."
+        ],
+        "coverId": 57
+    },
+    {
+        "title": "비무장지대에 봄이 오면",
+        "author": "이억배 글·그림",
+        "summary": "철책으로 가로막힌 비무장지대(DMZ)를 사이에 두고, 갈 수 없는 고향 땅을 바라보는 한 할아버지의 마음을 그린 평화 그림책입니다. 사람은 오갈 수 없지만 그 빈 땅에는 봄마다 꽃이 피고 동물들이 자유로이 철책을 넘나듭니다. 분단의 슬픔과 그리움, 그리고 자연이 들려주는 평화와 화해의 바람을 잔잔하게 전합니다.",
+        "technique": "가치수직선 토론",
+        "tags": [
+            "#평화",
+            "#분단과통일",
+            "#생태"
+        ],
+        "gradient": "linear-gradient(135deg, #A7C957, #6A994E)",
+        "icon": "fa-dove",
+        "youtube": "https://www.youtube.com/results?search_query=비무장지대에+봄이+오면+그림책+구연",
+        "debateTopics": [
+            "비무장지대는 통일 이후 개발해야 하는가, 생태·평화 지역으로 보존해야 하는가?",
+            "만약 내가 철책 앞에 선 할아버지라면, 무엇을 가장 그리워했을까?"
+        ],
+        "debatePropositions": [
+            "비무장지대는 개발을 제한하고 생태·평화 보호구역으로 영구 보존해야 한다.",
+            "분단의 아픔을 잊지 않기 위해 평화·통일 교육은 강화되어야 한다."
+        ],
+        "coverId": 58
+    },
+    {
+        "title": "적",
+        "author": "다비드 칼리 글, 세르주 블로크 그림",
+        "summary": "깊이 판 두 개의 구덩이 속에서, 두 병사가 서로를 '적'이라 믿으며 끝없이 대치합니다. 그들은 교본을 통해 상대가 잔인한 괴물이라고 배웠습니다. 그러나 어느 날 적의 구덩이로 건너가 본 병사는, 그곳에도 자신과 똑같이 가족을 그리워하며 두려움에 떠는 한 사람이 있었음을 깨닫습니다. 전쟁이 만들어 내는 '적'이라는 허상과 그 어리석음을 날카롭게 보여 주는 반전(反戰) 그림책입니다.",
+        "technique": "소크라틱 세미나",
+        "tags": [
+            "#전쟁과평화",
+            "#편견",
+            "#인간존엄"
+        ],
+        "gradient": "linear-gradient(135deg, #6C757D, #ADB5BD)",
+        "icon": "fa-shield-halved",
+        "youtube": "https://www.youtube.com/results?search_query=적+다비드+칼리+그림책",
+        "debateTopics": [
+            "전쟁에서 '적'은 실제로 존재하는가, 아니면 만들어진 허상인가?",
+            "만약 내가 구덩이 속 병사라면, 적의 구덩이로 건너갈 용기를 낼 수 있을까?"
+        ],
+        "debatePropositions": [
+            "어떤 명분으로도 전쟁은 정당화될 수 없다.",
+            "적을 한 사람의 인간으로 마주하는 순간, 전쟁은 지속될 수 없다."
+        ],
+        "coverId": 59
+    },
+    {
+        "title": "줄무늬가 생겼어요",
+        "author": "데이비드 섀넌 글·그림",
+        "summary": "카밀라는 아욱콩(리마콩)을 무척 좋아하지만, 친구들이 싫어한다는 이유로 좋아하는 마음을 꼭꼭 숨깁니다. 그러던 어느 날 온몸에 알록달록한 줄무늬가 돋아나고, 사람들이 '별 모양!', '체크무늬!'라고 말할 때마다 몸이 그 말대로 변해 버립니다. 남의 시선에 자신을 끼워 맞추던 카밀라는, 결국 자신이 진짜 좋아하는 것을 솔직하게 인정하고 나서야 본래 모습을 되찾습니다. 또래의 시선과 '나다움' 사이에서 고민하는 마음을 유쾌하게 그린 그림책입니다.",
+        "technique": "핫시팅",
+        "tags": [
+            "#자기다움",
+            "#또래압력",
+            "#정체성"
+        ],
+        "gradient": "linear-gradient(135deg, #F15BB5, #FEE440)",
+        "icon": "fa-shirt",
+        "youtube": "https://www.youtube.com/results?search_query=줄무늬가+생겼어요+그림책+구연",
+        "debateTopics": [
+            "친구들에게 맞추기 위해 내가 좋아하는 것을 숨기는 것은 현명한 선택일까?",
+            "만약 내가 카밀라라면, 줄무늬가 사라지게 하려고 무엇을 했을까?"
+        ],
+        "debatePropositions": [
+            "집단에 어울리기 위해 자신의 취향을 감추는 것은 바람직하지 않다.",
+            "남과 다른 점을 드러낼 용기는 교육으로 길러질 수 있다."
+        ],
+        "coverId": 60
+    },
+    {
+        "title": "세 가지 질문",
+        "author": "존 J. 무스 글·그림 (톨스토이 원작)",
+        "summary": "소년 니콜라이는 '가장 중요한 때는 언제이고, 가장 중요한 사람은 누구이며, 가장 중요한 일은 무엇인가'라는 세 가지 질문의 답을 찾고 싶어 합니다. 현명한 거북이 레오를 찾아가 도움을 청하고, 폭풍 속에서 다친 판다와 아기를 돕는 과정에서 스스로 답을 깨닫습니다. 가장 중요한 때는 '바로 지금', 가장 중요한 사람은 '지금 함께 있는 사람', 가장 중요한 일은 '그 사람에게 선을 베푸는 것'이라는 톨스토이의 지혜를 그림책으로 풀어냈습니다.",
+        "technique": "하브루타",
+        "tags": [
+            "#삶의지혜",
+            "#현재",
+            "#선한삶"
+        ],
+        "gradient": "linear-gradient(135deg, #80ED99, #57CC99)",
+        "icon": "fa-circle-question",
+        "youtube": "https://www.youtube.com/results?search_query=세+가지+질문+존+무스+그림책",
+        "debateTopics": [
+            "인생에서 가장 중요한 것은 '지금 이 순간'인가, '미래를 위한 준비'인가?",
+            "누군가 나에게 도움을 청한다면, 내 일을 미뤄서라도 도와야 할까?"
+        ],
+        "debatePropositions": [
+            "가장 중요한 때는 언제나 '바로 지금'이다.",
+            "좋은 삶이란 거창한 목표보다 곁에 있는 사람에게 선을 베푸는 데 있다."
+        ],
+        "coverId": 61
+    },
+    {
+        "title": "꽃들에게 희망을",
+        "author": "트리나 폴러스 글·그림",
+        "summary": "호랑 애벌레는 그저 먹고 자라는 삶에 만족하지 못하고, 더 높은 곳에 무언가 있으리라 믿으며 길을 떠납니다. 애벌레들이 서로를 짓밟고 기어오르는 거대한 '애벌레 기둥' 꼭대기를 향해 오르지만, 그 끝에는 아무것도 없음을 깨닫습니다. 진정한 변화는 남을 밟고 오르는 경쟁이 아니라, 고치 속에서 자신을 내려놓고 나비가 되는 데 있음을 보여 주는 성장 우화입니다.",
+        "technique": "소크라틱 세미나",
+        "tags": [
+            "#경쟁사회",
+            "#자아실현",
+            "#성장"
+        ],
+        "gradient": "linear-gradient(135deg, #FFD166, #F9844A)",
+        "icon": "fa-bug",
+        "youtube": "https://www.youtube.com/results?search_query=꽃들에게+희망을+트리나+폴러스",
+        "debateTopics": [
+            "남을 앞질러 정상에 오르는 삶과, 경쟁을 멈추고 나만의 변화를 택하는 삶 중 무엇이 더 가치 있는가?",
+            "만약 내가 기둥을 오르던 애벌레라면, 무엇을 보고 내려올 결심을 했을까?"
+        ],
+        "debatePropositions": [
+            "끝없는 경쟁에서 이기는 것이 곧 성공을 의미하지는 않는다.",
+            "진정한 성장은 남과의 비교가 아니라 자기 변화에서 온다."
+        ],
+        "coverId": 62
     }
 ];
 
@@ -2868,6 +3012,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTechniques();
     renderTheory();
     renderBooks();
+    renderReferenceBooks();
+    initReadingReview();
     renderArchive(); // For worksheets/archive
     setupModal();
     setupArchiveSearch(); setupWorksheetGenerator();
@@ -3275,6 +3421,267 @@ function renderBooks() {
         // Fetch real cover
         fetchRealCover(book.title, designInner);
     });
+}
+
+// 이 사이트가 바탕으로 삼은 참고 도서 (그림책 서재와 동일한 카드 디자인)
+const referenceBooks = [
+    {
+        "title": "그림책 토론 100",
+        "meta": "그림책사랑교사모임 · 학교도서관저널(2025)",
+        "desc": "그림책 1권당 1가지 토론 활동을 도입부터 마무리까지 단계별로 안내하는 '활동 백과사전'. 본 사이트의 단계별 접근법(기초·기본·심화)과 다양한 토론 기법의 토대가 되었습니다.",
+        "tags": ["활동 백과", "단계별 학습"],
+        "cover": "images/ref_book_1.jpg",
+        "gradient": "linear-gradient(135deg, #E07A5F, #F2CC8F)",
+        "link": "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=358347471"
+    },
+    {
+        "title": "열두 달 그림책 토론",
+        "meta": "이영근 외(초등토론교육연구회) · 창비교육(2023)",
+        "desc": "학사 일정과 월별 학습 내용에 맞춰 36권의 그림책과 논제를 제안하는 수업 안내서. '추천가이드'의 열두 달(월별) 커리큘럼이 이 책의 구성을 따릅니다.",
+        "tags": ["월별 커리큘럼", "그림책 36선"],
+        "cover": "images/ref_book_2.jpg",
+        "gradient": "linear-gradient(135deg, #708A6F, #A7C4A0)",
+        "link": "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=311321866"
+    },
+    {
+        "title": "토론, 설득의 기술",
+        "meta": "양현모 외(리얼디베이트) · 리얼커뮤니케이션즈(2019)",
+        "desc": "로고스·파토스·에토스를 아우르는 설득과 논박 전략을 다룬 국내 토론 실용서. '토론 이론'의 설득 3요소와 효과적인 논박 전략 설명의 바탕입니다.",
+        "tags": ["설득·논증", "디베이트 실전"],
+        "cover": "images/ref_book_3.jpg",
+        "gradient": "linear-gradient(135deg, #3D5A80, #98C1D9)",
+        "link": "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=179669904"
+    },
+    {
+        "title": "말랑말랑 그림책 독서 토론",
+        "meta": "강원토론교육연구회 · 단비(2018)",
+        "desc": "정형화된 틀에서 벗어나 학생 스스로 던지는 질문에서 토론을 시작하는 질문 중심 그림책 독서토론을 담은 책. 본 사이트의 비경쟁·질문 중심 활동의 영감이 되었습니다.",
+        "tags": ["질문 중심", "비경쟁 토론"],
+        "cover": "images/ref_book_4.jpg",
+        "gradient": "linear-gradient(135deg, #CDB4DB, #FFC8DD)",
+        "link": "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=136732257"
+    }
+];
+
+function renderReferenceBooks() {
+    const container = document.getElementById("reference-grid");
+    if (!container) return;
+    container.innerHTML = "";
+    referenceBooks.forEach(book => {
+        const url = book.link.startsWith("search:")
+            ? "https://www.aladin.co.kr/search/wsearchresult.aspx?SearchWord=" + encodeURIComponent(book.link.slice(7))
+            : book.link;
+        const card = document.createElement("div");
+        card.className = "book-card reference-book-card";
+        card.onclick = () => window.open(url, "_blank", "noopener");
+        card.innerHTML = `
+            <div class="book-design" style="background:${book.gradient};">
+                <img class="ref-book-cover" src="${book.cover}" alt="${book.title} 표지"
+                     onerror="this.style.display='none';">
+            </div>
+            <div class="book-card-info">
+                <div>
+                    <h3>${book.title}</h3>
+                    <p class="book-author">${book.meta}</p>
+                    <p class="ref-desc">${book.desc}</p>
+                    <div class="ref-tags">
+                        ${(book.tags || []).map(t => `<span class="tech-tag">${t}</span>`).join("")}
+                    </div>
+                </div>
+                <span class="ref-link-hint">자세히 보기 <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// 독서평설(주제별 토론자료) — 학교급별 갈래 주제 + 그림책 + 논제/확산질문/생각거리
+const readingReview = {
+    elementary: {
+        label: "초등학교",
+        source: "https://www.jihak.co.kr/reading-review/data-board/elementary",
+        sourceName: "초등독서평설 자료실",
+        items: [
+            {
+                area: "사회·공동체", icon: "fa-people-roof", book: "돼지책",
+                thesis: "집안일은 가족이 똑같이 나누어 맡아야 한다.",
+                questions: ["엄마가 집을 나가자 집은 왜 '돼지우리'가 되었을까요?", "우리 집에서 '보이지 않게' 일하는 사람은 누구인가요?"],
+                think: "내가 날마다 당연하게 누리는 일 중, 누군가의 보이지 않는 수고로 가능한 것을 세 가지 찾아봅시다."
+            },
+            {
+                area: "자연·생명", icon: "fa-seedling", book: "강아지똥",
+                thesis: "세상에 쓸모없는 존재는 없다.",
+                questions: ["'쓸모'는 누가, 무엇을 기준으로 정하는 걸까요?", "강아지똥은 어떻게 민들레꽃을 피웠나요?"],
+                think: "하찮아 보이지만 사라지면 곤란해지는 것들을 떠올려 봅시다."
+            },
+            {
+                area: "인성·정직", icon: "fa-comment-dots", book: "나는 사실대로 말했을 뿐이야!",
+                thesis: "사실이라면 언제나 솔직하게 말하는 것이 옳다.",
+                questions: ["사실을 말해서 친구가 상처받았다면, 그래도 잘한 걸까요?", "'정직'과 '무례'는 어떻게 다를까요?"],
+                think: "상대를 배려하면서도 진실을 전하는 나만의 말하기 방법을 적어 봅시다."
+            },
+            {
+                area: "자기 이해", icon: "fa-water", book: "나는 강물처럼 말해요",
+                thesis: "남과 다른 점은 약점이 아니라 나만의 개성이다.",
+                questions: ["'강물처럼 말한다'는 말은 어떤 뜻일까요?", "내 안에서 잔잔히 흐르는 '나만의 강물'은 무엇일까요?"],
+                think: "부끄러워했지만 사실은 특별한 나의 점을 한 가지 자랑해 봅시다."
+            },
+            {
+                area: "환경·생태", icon: "fa-recycle", book: "플라스틱 섬",
+                thesis: "편리한 일회용품, 나의 자유인가 모두의 문제인가?",
+                questions: ["섬에 쌓인 플라스틱은 누가 만들어 보낸 것일까요?", "내가 오늘 쓴 일회용품은 결국 어디로 갈까요?"],
+                think: "일주일 동안 내가 쓰는 일회용 플라스틱을 적어 보고, 줄일 수 있는 것 한 가지를 정해 봅시다."
+            },
+            {
+                area: "자기다움·관계", icon: "fa-shirt", book: "줄무늬가 생겼어요",
+                thesis: "친구들에게 맞추려 내 취향을 숨기는 것은 괜찮은 일일까?",
+                questions: ["카밀라 몸에 줄무늬가 자꾸 생긴 진짜 까닭은 무엇일까요?", "남들이 뭐라 해도 지키고 싶은 '나만의 것'이 있나요?"],
+                think: "내가 좋아하지만 남 눈치 보느라 숨겼던 것을 한 가지 떠올려 봅시다."
+            }
+        ]
+    },
+    middle: {
+        label: "중학교",
+        source: "https://www.jihak.co.kr/reading-review/data-board/middle",
+        sourceName: "중학독서평설 자료실",
+        items: [
+            {
+                area: "사회·정의", icon: "fa-person-walking-arrow-right", book: "빨간 벽",
+                thesis: "모두가 당연하게 여기는 규칙도 한 번쯤 의심해 봐야 한다.",
+                questions: ["'빨간 벽' 너머에는 정말 위험만 있을까요?", "우리 사회에서 아무도 의심하지 않는 '빨간 벽'은 무엇일까요?"],
+                think: "'다들 그렇게 하니까' 따랐던 일 중, 다시 따져 볼 만한 것을 떠올려 봅시다."
+            },
+            {
+                area: "인문·실존", icon: "fa-cat", book: "100만 번 산 고양이",
+                thesis: "오래 사는 것보다 의미 있게 사는 것이 더 중요하다.",
+                questions: ["고양이는 100만 번을 살고도 왜 행복하지 않았을까요?", "'진짜 나의 삶'은 언제 시작된다고 생각하나요?"],
+                think: "내가 '진짜로 살아 있다'고 느끼는 순간은 언제인지 적어 봅시다."
+            },
+            {
+                area: "미디어·비판적 사고", icon: "fa-fish", book: "감기 걸린 물고기",
+                thesis: "다수가 믿는 말은 언제나 사실이다 — 과연 그럴까?",
+                questions: ["빨간 물고기는 정말 위험한 존재였나요?", "근거 없는 소문은 어떻게 '사실'처럼 퍼질까요?"],
+                think: "확인 없이 믿어 버렸다가 사실이 아니었던 정보 경험을 나눠 봅시다."
+            },
+            {
+                area: "환경·공존", icon: "fa-earth-asia", book: "시애틀 추장",
+                thesis: "인간은 자연을 사고팔 수 있는가?",
+                questions: ["땅을 '판다'는 말이 추장에게 왜 낯설게 들렸을까요?", "개발과 보존이 충돌할 때 무엇을 기준으로 삼아야 할까요?"],
+                think: "편리함을 얻는 대신 우리가 잃고 있는 자연을 구체적으로 적어 봅시다."
+            },
+            {
+                area: "평화·통일", icon: "fa-dove", book: "비무장지대에 봄이 오면",
+                thesis: "비무장지대, 개발할 것인가 그대로 보존할 것인가?",
+                questions: ["사람이 떠난 자리에 왜 오히려 생명이 가득해졌을까요?", "분단은 자연과 동물에게 어떤 영향을 줄까요?"],
+                think: "'평화'라는 말을 들으면 떠오르는 장면을 한 가지 그리거나 적어 봅시다."
+            },
+            {
+                area: "인문·삶의 지혜", icon: "fa-circle-question", book: "세 가지 질문",
+                thesis: "인생에서 가장 중요한 것은 '지금'인가, '미래를 위한 준비'인가?",
+                questions: ["니콜라이가 찾던 세 가지 질문의 답은 결국 무엇이었나요?", "'가장 중요한 사람'을 지금 곁에 있는 사람이라 한 까닭은 무엇일까요?"],
+                think: "오늘 내가 '바로 지금' 선을 베풀 수 있는 한 사람과 한 가지 일을 적어 봅시다."
+            }
+        ]
+    },
+    high: {
+        label: "고등학교",
+        source: "https://www.jihak.co.kr/reading-review/data-board/high",
+        sourceName: "고교독서평설 자료실",
+        items: [
+            {
+                area: "윤리·인간 존엄", icon: "fa-scale-balanced", book: "완벽한 아이 팔아요",
+                thesis: "사람을 능력과 조건으로 평가하는 사회는 정당한가?",
+                questions: ["'완벽한 아이'를 사고 싶어 하는 사회의 욕망은 어디서 올까요?", "반품된 아이에게는 어떤 권리가 있을까요?"],
+                think: "능력주의(메리토크라시)가 주는 공정함과, 그것이 가리는 그림자를 함께 따져 봅시다."
+            },
+            {
+                area: "실존·희망", icon: "fa-tree", book: "빨간 나무",
+                thesis: "희망은 발견되는 것인가, 스스로 만들어 내는 것인가?",
+                questions: ["절망의 한가운데 놓인 작은 '빨간 잎'은 무엇을 상징할까요?", "타인의 깊은 무력감에 우리는 어떻게 응답해야 할까요?"],
+                think: "무의미해 보이는 일상에서 의미를 길어 올리는 나만의 방법을 써 봅시다."
+            },
+            {
+                area: "자유·정의", icon: "fa-dove", book: "스갱 아저씨의 염소",
+                thesis: "안전한 속박과 위험한 자유 중 무엇을 택할 것인가?",
+                questions: ["염소의 마지막 밤은 패배일까요, 승리일까요?", "자유에는 어떤 책임과 대가가 따를까요?"],
+                think: "내가 안전을 위해 스스로 포기했던 자유가 있다면 무엇인지 돌아봅시다."
+            },
+            {
+                area: "생태·문명 비판", icon: "fa-hand-holding-heart", book: "아낌없이 주는 나무",
+                thesis: "'아낌없이 주는' 관계는 아름다운가, 일방적인가?",
+                questions: ["나무는 정말로 행복했을까요?", "'헌신하는 사랑'과 '건강한 관계'의 경계는 어디일까요?"],
+                think: "받기만 하는 관계와 주기만 하는 관계, 둘 다의 문제를 함께 생각해 봅시다."
+            },
+            {
+                area: "전쟁·평화", icon: "fa-shield-halved", book: "적",
+                thesis: "전쟁의 '적'은 실재하는가, 만들어진 허상인가?",
+                questions: ["두 병사는 왜 서로를 괴물이라 믿게 되었을까요?", "'적'을 한 사람의 인간으로 마주하면 무엇이 달라질까요?"],
+                think: "우리가 '우리 편'과 '남'을 가르는 보이지 않는 구덩이는 어디에 있는지 생각해 봅시다."
+            },
+            {
+                area: "경쟁·자아실현", icon: "fa-bug", book: "꽃들에게 희망을",
+                thesis: "남을 앞질러 정상에 오르는 삶과, 경쟁을 멈추고 나를 바꾸는 삶 중 무엇이 더 가치 있는가?",
+                questions: ["애벌레 기둥 꼭대기에는 왜 아무것도 없었을까요?", "'나비가 되는 것'은 우리 삶에서 무엇을 의미할까요?"],
+                think: "내가 무심코 오르고 있는 '애벌레 기둥'은 무엇인지, 정말 그 끝을 원하는지 따져 봅시다."
+            }
+        ]
+    }
+};
+
+const READING_GRADIENTS = [
+    "linear-gradient(135deg, #E07A5F, #F2CC8F)",
+    "linear-gradient(135deg, #708A6F, #A7C4A0)",
+    "linear-gradient(135deg, #3D5A80, #98C1D9)",
+    "linear-gradient(135deg, #CDB4DB, #FFC8DD)"
+];
+
+function renderReadingLevel(level) {
+    const grid = document.getElementById("reading-grid");
+    const sourceEl = document.getElementById("reading-source");
+    if (!grid) return;
+    const data = readingReview[level];
+    if (!data) return;
+    if (sourceEl) {
+        sourceEl.innerHTML = `자료 출처 · <a href="${data.source}" target="_blank" rel="noopener">지학사 ${data.sourceName} <i class="fa-solid fa-up-right-from-square"></i></a>`;
+    }
+    grid.innerHTML = data.items.map((it, i) => `
+        <div class="reading-card">
+            <div class="reading-cover">
+                <div class="book-design-inner" data-book="${it.book}" style="background:${READING_GRADIENTS[i % READING_GRADIENTS.length]};">
+                    <span class="book-design-title">${it.book}</span>
+                    <i class="fa-solid fa-book book-design-icon"></i>
+                </div>
+            </div>
+            <div class="reading-body">
+                <span class="reading-area"><i class="fa-solid ${it.icon}"></i> ${it.area}</span>
+                <h4 class="reading-thesis">${it.thesis}</h4>
+                <p class="reading-book-line"><i class="fa-solid fa-book-open"></i> 추천 그림책 《${it.book}》</p>
+                <div class="reading-block">
+                    <span class="reading-block-label"><i class="fa-solid fa-arrows-split-up-and-left"></i> 확산 질문</span>
+                    <ul>${it.questions.map(q => `<li>${q}</li>`).join("")}</ul>
+                </div>
+                <div class="reading-block">
+                    <span class="reading-block-label"><i class="fa-solid fa-lightbulb"></i> 생각할 거리</span>
+                    <p>${it.think}</p>
+                </div>
+            </div>
+        </div>
+    `).join("");
+    // 추천 그림책 실제 표지 로딩 (서재의 표지 재사용)
+    grid.querySelectorAll(".book-design-inner[data-book]").forEach(el => {
+        fetchRealCover(el.getAttribute("data-book"), el);
+    });
+}
+
+function initReadingReview() {
+    const tabs = document.querySelectorAll(".reading-level-btn");
+    if (!tabs.length) return;
+    tabs.forEach(btn => btn.addEventListener("click", () => {
+        tabs.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderReadingLevel(btn.getAttribute("data-level"));
+    }));
+    renderReadingLevel("elementary");
 }
 
 function renderArchive() {

@@ -2435,3 +2435,194 @@ footer {
     .logo > span { display: none; }
 }
 
+/* ===== 참고 도서 카드 (그림책 서재 디자인 재사용 + 보조 스타일) ===== */
+.ref-desc {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin-bottom: 12px;
+    word-break: keep-all;
+}
+.ref-tags {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+.ref-link-hint {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-coral);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.reference-book-card:hover .ref-link-hint {
+    gap: 9px;
+}
+.ref-book-cover {
+    width: auto;
+    height: 178px;
+    max-width: 88%;
+    border-radius: 4px 9px 9px 4px;
+    box-shadow: 0 8px 20px rgba(44, 62, 41, 0.22);
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.reference-book-card:hover .ref-book-cover {
+    transform: scale(1.06) rotate(2deg);
+}
+
+/* ===== 독서평설(주제별 토론자료) 섹션 ===== */
+.reading-section {
+    padding: 100px 24px;
+    background-color: var(--bg-secondary);
+}
+.reading-level-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto 14px;
+    flex-wrap: wrap;
+}
+.reading-level-btn {
+    padding: 10px 22px;
+    border-radius: 30px;
+    border: 1.5px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.reading-level-btn:hover {
+    color: var(--accent-coral);
+    border-color: var(--accent-coral);
+}
+.reading-level-btn.active {
+    background: var(--accent-coral);
+    border-color: var(--accent-coral);
+    color: #fff;
+}
+.reading-source {
+    text-align: center;
+    margin-bottom: 32px;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+}
+.reading-source a {
+    color: var(--accent-coral);
+    text-decoration: none;
+    font-weight: 700;
+}
+.reading-source a:hover { text-decoration: underline; }
+
+.reading-grid {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    gap: 24px;
+}
+.reading-card {
+    display: flex;
+    gap: 18px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.reading-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-hover);
+}
+.reading-cover {
+    flex-shrink: 0;
+    width: 104px;
+}
+.reading-cover .book-design-inner {
+    width: 104px !important;
+    height: 146px !important;
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: 0 6px 16px rgba(44, 62, 41, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.reading-cover .book-design-title {
+    font-size: 0.66rem;
+    margin-left: 0;
+}
+.reading-cover .book-design-icon { font-size: 1rem; }
+.reading-body {
+    flex: 1;
+    min-width: 0;
+}
+.reading-area {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--accent-coral);
+    background: rgba(224, 122, 95, 0.1);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+.reading-area i { font-size: 0.7rem; }
+.reading-thesis {
+    font-size: 1.04rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 10px 0 8px;
+    line-height: 1.45;
+    font-family: var(--font-sans);
+    word-break: keep-all;
+}
+.reading-book-line {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+.reading-book-line i { color: var(--accent-coral); margin-right: 4px; }
+.reading-block { margin-top: 10px; }
+.reading-block-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-sage);
+    margin-bottom: 4px;
+}
+.reading-block ul {
+    margin: 2px 0 0;
+    padding-left: 18px;
+}
+.reading-block li {
+    font-size: 0.86rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 3px;
+    word-break: keep-all;
+}
+.reading-block p {
+    font-size: 0.86rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 2px 0 0;
+    word-break: keep-all;
+}
+@media (max-width: 560px) {
+    .reading-grid { grid-template-columns: 1fr; }
+    .reading-card { flex-direction: column; }
+    .reading-cover { width: 100px; margin: 0 auto; }
+}
+
