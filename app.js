@@ -3007,6 +3007,10 @@ const worksheets = [
 
 // --- FUNCTIONS DATA ---
 document.addEventListener("DOMContentLoaded", () => {
+    // 그림책 서재 가나다 순 정렬 (서재·학습지 드롭다운·모달이 같은 배열을 참조하므로 인덱스 일관 유지)
+    if (typeof books !== 'undefined' && Array.isArray(books)) {
+        books.sort((a, b) => a.title.localeCompare(b.title, 'ko'));
+    }
     initTabNavigation();
     initThemeToggle();
     renderTechniques();
