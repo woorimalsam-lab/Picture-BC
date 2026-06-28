@@ -11,7 +11,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.3.6">
+    <link rel="stylesheet" href="style.css?v=1.3.8">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -24,7 +24,7 @@
                     <span>부천 토론교육연구회 수업탐구공동체</span>
                 </div>
             </a>
-            <nav class="nav-links">
+            <nav class="nav-links" id="primary-nav">
                 <a href="#search-section"><i class="fa-solid fa-magnifying-glass"></i> 검색/추천</a>
                 <a href="#books-section"><i class="fa-solid fa-book"></i> 그림책 서재</a>
                 <a href="#theory-section"><i class="fa-solid fa-graduation-cap"></i> 토론 이론</a>
@@ -37,9 +37,14 @@
                 <button id="theme-toggle" class="btn-icon" aria-label="테마 전환">
                     <i class="fa-solid fa-moon"></i>
                 </button>
+                <button id="nav-toggle" class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" aria-controls="primary-nav">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
             </div>
         </div>
     </header>
+    <!-- 모바일 메뉴 배경(클릭 시 닫힘) -->
+    <div id="nav-backdrop" class="nav-backdrop no-print"></div>
 
     <main id="main-content" class="main-container">
 <!-- Hero Section -->
@@ -317,6 +322,17 @@
         </div>
     </section>
     </main>
+
+    <!-- 오늘의 방문자 카운터 (왼쪽 플로팅) -->
+    <div id="visitor-counter" class="visitor-counter no-print" title="오늘 이 페이지를 찾아준 친구들의 수예요!">
+        <div class="vc-icon"><i class="fa-solid fa-seedling"></i></div>
+        <div class="vc-label">오늘의 방문자</div>
+        <div class="vc-count">
+            <span class="vc-num" id="vc-num">·</span><span class="vc-unit">명</span>
+        </div>
+        <div class="vc-footer"><i class="fa-solid fa-heart"></i> 함께 읽어요</div>
+    </div>
+
     <!-- Footer -->
     <footer class="no-print">
         <div class="footer-container">
@@ -338,6 +354,6 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=1.3.6"></script>
+    <script src="app.js?v=1.3.8"></script>
 </body>
 </html>

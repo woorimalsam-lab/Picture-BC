@@ -1375,9 +1375,6 @@ footer {
 }
 
 @media (max-width: 768px) {
-    .nav-links {
-        display: none; /* 모바일 네비게이션 생략 */
-    }
     .hero-content h1 {
         font-size: 2.3rem;
     }
@@ -2205,5 +2202,236 @@ footer {
 .dark-mode .student-bubble::after {
     background: #1e293b;
     border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== 오늘의 방문자 카운터 (왼쪽 플로팅 위젯) ===== */
+.visitor-counter {
+    position: fixed;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 900;
+    width: 116px;
+    padding: 16px 12px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    text-align: center;
+    background: var(--bg-card);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1.5px solid var(--border-color);
+    border-radius: 22px;
+    box-shadow: var(--shadow-soft);
+    font-family: var(--font-sans);
+    cursor: default;
+    animation: vc-pop-in 0.7s cubic-bezier(0.18, 1.25, 0.4, 1) both;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.visitor-counter:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-50%) scale(1.04);
+}
+
+.vc-icon {
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-gold));
+    color: #fff;
+    font-size: 1.25rem;
+    box-shadow: 0 6px 14px rgba(224, 122, 95, 0.35);
+    animation: vc-bob 2.8s ease-in-out infinite;
+}
+
+.vc-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: -0.2px;
+}
+
+.vc-count {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 2px;
+    line-height: 1;
+}
+.vc-num {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: var(--accent-coral);
+    font-family: var(--font-sans);
+    letter-spacing: -1px;
+}
+.vc-num.vc-updated {
+    animation: vc-bounce 0.6s ease;
+}
+.vc-unit {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.vc-footer {
+    margin-top: 2px;
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    opacity: 0.85;
+}
+.vc-footer i {
+    color: var(--accent-coral);
+    animation: vc-heart 1.6s ease-in-out infinite;
+}
+
+@keyframes vc-pop-in {
+    0%   { opacity: 0; transform: translateY(-50%) scale(0.5) translateX(-30px); }
+    100% { opacity: 1; transform: translateY(-50%) scale(1) translateX(0); }
+}
+@keyframes vc-bob {
+    0%, 100% { transform: translateY(0) rotate(-4deg); }
+    50%      { transform: translateY(-5px) rotate(4deg); }
+}
+@keyframes vc-bounce {
+    0%   { transform: scale(1); }
+    40%  { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+@keyframes vc-heart {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.3); }
+}
+
+/* 화면이 좁으면 작은 알약 형태로 하단 왼쪽 이동 */
+@media (max-width: 1100px) {
+    .visitor-counter {
+        top: auto;
+        bottom: 16px;
+        left: 14px;
+        transform: none;
+        flex-direction: row;
+        width: auto;
+        gap: 8px;
+        padding: 8px 14px 8px 8px;
+        border-radius: 40px;
+    }
+    .visitor-counter:hover { transform: scale(1.04); }
+    .vc-icon { width: 36px; height: 36px; font-size: 1rem; }
+    .vc-label { font-size: 0.68rem; }
+    .vc-count { gap: 1px; }
+    .vc-num { font-size: 1.25rem; }
+    .vc-footer { display: none; }
+    @keyframes vc-pop-in {
+        0%   { opacity: 0; transform: scale(0.5) translateX(-30px); }
+        100% { opacity: 1; transform: scale(1) translateX(0); }
+    }
+}
+@media (max-width: 520px) {
+    .visitor-counter .vc-label { display: none; }
+}
+
+/* ===== 반응형 네비게이션 (폰/태블릿 햄버거 메뉴) ===== */
+.nav-toggle {
+    display: none;            /* 데스크톱에서는 숨김 */
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    font-size: 1.15rem;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+.nav-toggle:hover {
+    color: var(--accent-coral);
+    border-color: var(--accent-coral);
+}
+
+.nav-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(44, 62, 41, 0.45);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+    z-index: 1050;
+}
+.nav-backdrop.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width: 1024px) {
+    /* 햄버거 버튼 노출 */
+    .nav-toggle { display: inline-flex; }
+    .header-container { padding: 14px 18px; }
+    .actions { gap: 8px; }
+
+    /* 메뉴를 오른쪽에서 슬라이드되는 패널로 전환 */
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 4px;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        height: 100dvh;
+        width: min(80vw, 320px);
+        padding: 88px 20px 28px;
+        background: var(--header-bg);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        border-left: 1px solid var(--border-color);
+        box-shadow: -14px 0 44px rgba(44, 62, 41, 0.18);
+        transform: translateX(105%);
+        transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+        overflow-y: auto;
+        z-index: 1100;
+    }
+    .nav-links.open { transform: translateX(0); }
+
+    .nav-links a {
+        font-size: 1.02rem;
+        font-weight: 600;
+        padding: 14px 14px;
+        border-radius: 14px;
+        gap: 12px;
+    }
+    .nav-links a i { width: 22px; text-align: center; color: var(--accent-coral); }
+    .nav-links a:hover,
+    .nav-links a.active {
+        background: rgba(224, 122, 95, 0.12);
+        transform: none;
+    }
+    .nav-links a.active { border-bottom: none; }
+    .highlight-link {
+        border-bottom: none !important;
+        background: rgba(224, 122, 95, 0.12);
+    }
+
+    /* 메뉴 열렸을 때 뒤 배경 스크롤 잠금 */
+    body.nav-open { overflow: hidden; }
+
+    /* 좁은 화면에서 로고 글자 축소 */
+    .logo { font-size: 1rem; }
+    .logo i { font-size: 1.1rem; }
+}
+
+@media (max-width: 600px) {
+    /* 아주 좁은 화면: 로고 위 작은 부제 숨겨 공간 확보 */
+    .logo > span { display: none; }
 }
 

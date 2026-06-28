@@ -2874,7 +2874,97 @@ document.addEventListener("DOMContentLoaded", () => {
     setupHelper();
     setupTechFilters();
     setupMainSearch();
+    initVisitorCounter();
+    initMobileNav();
 });
+
+// 모바일/태블릿 햄버거 메뉴 토글
+function initMobileNav() {
+    const toggle = document.getElementById("nav-toggle");
+    const nav = document.getElementById("primary-nav");
+    const backdrop = document.getElementById("nav-backdrop");
+    if (!toggle || !nav) return;
+
+    const setOpen = (open) => {
+        nav.classList.toggle("open", open);
+        if (backdrop) backdrop.classList.toggle("open", open);
+        document.body.classList.toggle("nav-open", open);
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+        toggle.setAttribute("aria-label", open ? "메뉴 닫기" : "메뉴 열기");
+        toggle.innerHTML = open
+            ? '<i class="fa-solid fa-xmark"></i>'
+            : '<i class="fa-solid fa-bars"></i>';
+    };
+
+    toggle.addEventListener("click", () => setOpen(!nav.classList.contains("open")));
+    if (backdrop) backdrop.addEventListener("click", () => setOpen(false));
+
+    // 메뉴 항목 클릭 시 닫기
+    nav.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setOpen(false)));
+
+    // ESC 로 닫기
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && nav.classList.contains("open")) setOpen(false);
+    });
+
+    // 데스크톱 크기로 돌아가면 강제로 닫기(스크롤 잠금 해제)
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 1024 && nav.classList.contains("open")) setOpen(false);
+    });
+}
+
+// 오늘의 방문자 카운터 (counterapi.dev 공유 집계, 날짜별 키로 매일 0부터 시작)
+function initVisitorCounter() {
+    const numEl = document.getElementById("vc-num");
+    if (!numEl) return;
+
+    const now = new Date();
+    const dayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
+    const NS = "picturebc-debate";
+    const visitedFlag = `pbc-visited-${dayKey}`;       // 이 브라우저가 오늘 이미 집계됐는지
+    const localCountKey = `pbc-localcount-${dayKey}`;   // 오프라인 폴백용 카운트
+    const alreadyVisited = localStorage.getItem(visitedFlag);
+
+    // 이미 방문했으면 읽기만, 처음이면 /up 으로 1 증가
+    const base = `https://api.counterapi.dev/v1/${NS}/visits-${dayKey}`;
+    const url = alreadyVisited ? base : `${base}/up`;
+
+    const animateTo = (target) => {
+        target = Math.max(1, parseInt(target, 10) || 1);
+        const duration = 900;
+        const start = performance.now();
+        const step = (t) => {
+            const p = Math.min(1, (t - start) / duration);
+            const eased = 1 - Math.pow(1 - p, 3);
+            numEl.textContent = Math.round(eased * target).toLocaleString();
+            if (p < 1) {
+                requestAnimationFrame(step);
+            } else {
+                numEl.textContent = target.toLocaleString();
+                numEl.classList.add("vc-updated");
+            }
+        };
+        requestAnimationFrame(step);
+    };
+
+    fetch(url)
+        .then((r) => r.json())
+        .then((data) => {
+            if (!data || typeof data.count !== "number") throw new Error("invalid response");
+            if (!alreadyVisited) localStorage.setItem(visitedFlag, "1");
+            animateTo(data.count);
+        })
+        .catch(() => {
+            // 네트워크 실패 시: 이 브라우저 기준 로컬 카운트로 대체
+            let c = parseInt(localStorage.getItem(localCountKey) || "0", 10);
+            if (!alreadyVisited) {
+                c += 1;
+                localStorage.setItem(localCountKey, String(c));
+                localStorage.setItem(visitedFlag, "1");
+            }
+            animateTo(c);
+        });
+}
 
 function initThemeToggle() {
     const themeToggle = document.getElementById("theme-toggle");
