@@ -11,7 +11,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.4.4">
+    <link rel="stylesheet" href="style.css?v=1.4.5">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -350,8 +350,10 @@
             <button class="reading-level-btn" data-level="middle"><i class="fa-solid fa-user-graduate"></i> 중학교</button>
             <button class="reading-level-btn" data-level="high"><i class="fa-solid fa-graduation-cap"></i> 고등학교</button>
         </div>
-        <p class="reading-source" id="reading-source"><!-- 출처 링크 주입 --></p>
+        <!-- 지학사 자료실 실제 최신 자료 패널 (학교급별 주입) -->
+        <div class="reading-board" id="reading-board"></div>
 
+        <h3 class="reading-subhead"><i class="fa-solid fa-comments"></i> 그림책 연계 토론 주제</h3>
         <div class="reading-grid" id="reading-grid">
             <!-- 학교급별 카드 주입 -->
         </div>
@@ -389,6 +391,6 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=1.4.4"></script>
+    <script src="app.js?v=1.4.5"></script>
 </body>
 </html>

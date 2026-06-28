@@ -2519,6 +2519,95 @@ footer {
 }
 .reading-source a:hover { text-decoration: underline; }
 
+/* 지학사 자료실 실제 자료 패널 */
+.reading-board {
+    max-width: 760px;
+    margin: 0 auto 36px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 18px;
+    padding: 20px 24px;
+    box-shadow: var(--shadow-soft);
+}
+.reading-board-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+.reading-board-head h3 {
+    font-size: 1.02rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin: 0;
+}
+.reading-board-head h3 i { color: var(--accent-coral); margin-right: 6px; }
+.reading-board-head a {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent-coral);
+    text-decoration: none;
+    white-space: nowrap;
+}
+.reading-board-head a:hover { text-decoration: underline; }
+.reading-board-cats {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin: 12px 0 14px;
+}
+.rb-cat {
+    font-size: 0.74rem;
+    font-weight: 700;
+    color: var(--accent-sage);
+    background: rgba(112, 138, 111, 0.12);
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+.reading-board-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px dashed var(--border-color);
+}
+.reading-board-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 9px 2px;
+    border-bottom: 1px dashed var(--border-color);
+}
+.rb-issue {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    white-space: nowrap;
+}
+.rb-note {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-align: right;
+    word-break: keep-all;
+}
+.reading-board-total {
+    margin: 12px 0 0;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+}
+.reading-board-total i { color: var(--accent-coral); margin-right: 4px; }
+
+.reading-subhead {
+    max-width: 1120px;
+    margin: 0 auto 18px;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-align: center;
+}
+.reading-subhead i { color: var(--accent-coral); margin-right: 7px; }
+
 .reading-grid {
     max-width: 1120px;
     margin: 0 auto;

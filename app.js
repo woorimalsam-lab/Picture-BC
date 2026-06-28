@@ -3501,6 +3501,15 @@ const readingReview = {
         label: "초등학교",
         source: "https://www.jihak.co.kr/reading-review/data-board/elementary",
         sourceName: "초등독서평설 자료실",
+        total: 559,
+        categories: ["초등독평 더하기+", "프리미엄 독서활동지"],
+        recent: [
+            { issue: "2026년 7월호", note: "문제 · 예시 답안" },
+            { issue: "2026년 6월호", note: "문제 · 예시 답안" },
+            { issue: "2026년 5월호", note: "문제 · 예시 답안" },
+            { issue: "2026년 4월호", note: "문제 · 예시 답안" },
+            { issue: "2026년 3월호", note: "문제 · 예시 답안" }
+        ],
         items: [
             {
                 area: "사회·공동체", icon: "fa-people-roof", book: "돼지책",
@@ -3544,6 +3553,15 @@ const readingReview = {
         label: "중학교",
         source: "https://www.jihak.co.kr/reading-review/data-board/middle",
         sourceName: "중학독서평설 자료실",
+        total: 357,
+        categories: ["정면독파", "프리미엄 독서활동지"],
+        recent: [
+            { issue: "2026년 6월호", note: "정면독파 활동지" },
+            { issue: "2026년 5월호", note: "정면독파 활동지" },
+            { issue: "2026년 4월호", note: "정면독파 활동지" },
+            { issue: "2026년 3월호", note: "정면독파 활동지" },
+            { issue: "2026년 2월호", note: "정면독파 활동지" }
+        ],
         items: [
             {
                 area: "사회·정의", icon: "fa-person-walking-arrow-right", book: "빨간 벽",
@@ -3587,6 +3605,15 @@ const readingReview = {
         label: "고등학교",
         source: "https://www.jihak.co.kr/reading-review/data-board/high",
         sourceName: "고교독서평설 자료실",
+        total: 334,
+        categories: ["비문학 워크시트"],
+        recent: [
+            { issue: "2025년 11월호", note: "심층 이슈 〈넬슨 만델라 규칙〉" },
+            { issue: "2024년 8월호", note: "개념을 확 잡는 비문학 워크시트" },
+            { issue: "2024년 7월호", note: "개념을 확 잡는 비문학 워크시트" },
+            { issue: "2024년 6월호", note: "개념을 확 잡는 비문학 워크시트" },
+            { issue: "2024년 2월호", note: "수능 만점을 향한 비문학 워크시트" }
+        ],
         items: [
             {
                 area: "윤리·인간 존엄", icon: "fa-scale-balanced", book: "완벽한 아이 팔아요",
@@ -3637,12 +3664,23 @@ const READING_GRADIENTS = [
 
 function renderReadingLevel(level) {
     const grid = document.getElementById("reading-grid");
-    const sourceEl = document.getElementById("reading-source");
+    const boardEl = document.getElementById("reading-board");
     if (!grid) return;
     const data = readingReview[level];
     if (!data) return;
-    if (sourceEl) {
-        sourceEl.innerHTML = `자료 출처 · <a href="${data.source}" target="_blank" rel="noopener">지학사 ${data.sourceName} <i class="fa-solid fa-up-right-from-square"></i></a>`;
+    if (boardEl) {
+        boardEl.innerHTML = `
+            <div class="reading-board-head">
+                <h3><i class="fa-solid fa-folder-open"></i> 지학사 ${data.sourceName}</h3>
+                <a href="${data.source}" target="_blank" rel="noopener">자료실 전체 보기 <i class="fa-solid fa-up-right-from-square"></i></a>
+            </div>
+            <div class="reading-board-cats">
+                ${(data.categories || []).map(c => `<span class="rb-cat">${c}</span>`).join("")}
+            </div>
+            <ul class="reading-board-list">
+                ${(data.recent || []).map(r => `<li><span class="rb-issue">${r.issue}</span><span class="rb-note">${r.note}</span></li>`).join("")}
+            </ul>
+            <p class="reading-board-total"><i class="fa-solid fa-circle-info"></i> 전체 ${data.total}개 자료 · 매월 새 호 업데이트 (PDF는 지학사 사이트에서 내려받을 수 있어요)</p>`;
     }
     grid.innerHTML = data.items.map((it, i) => `
         <div class="reading-card">
