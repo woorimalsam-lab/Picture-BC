@@ -1345,6 +1345,10 @@ footer {
     font-size: 0.9rem;
     margin-bottom: 20px;
 }
+.footer-email {
+    font-size: 0.85rem;
+    margin-top: 10px;
+}
 .footer-email i { color: var(--accent-coral); margin-right: 6px; }
 .footer-email a {
     color: var(--text-secondary);
