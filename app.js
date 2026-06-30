@@ -3964,15 +3964,8 @@ function renderReadingLevel(level) {
         boardEl.innerHTML = `
             <div class="reading-board-head">
                 <h3><i class="fa-solid fa-folder-open"></i> 지학사 ${data.sourceName}</h3>
-                <a href="${data.source}" target="_blank" rel="noopener">자료실 전체 보기 <i class="fa-solid fa-up-right-from-square"></i></a>
-            </div>
-            <div class="reading-board-cats">
-                ${(data.categories || []).map(c => `<span class="rb-cat">${c}</span>`).join("")}
-            </div>
-            <ul class="reading-board-list">
-                ${(data.recent || []).map(r => `<li><span class="rb-issue">${r.issue}</span><span class="rb-note">${r.note}</span></li>`).join("")}
-            </ul>
-            <p class="reading-board-total"><i class="fa-solid fa-circle-info"></i> 전체 ${data.total}개 자료 · 매월 새 호 업데이트 (PDF는 지학사 사이트에서 내려받을 수 있어요)</p>`;
+                <a href="${data.source}" target="_blank" rel="noopener">독서평설 자료실 바로가기 <i class="fa-solid fa-up-right-from-square"></i></a>
+            </div>`;
     }
     grid.innerHTML = data.items.map((it, i) => {
         const bookIdx = (typeof books !== 'undefined') ? books.findIndex(b => b.title === it.book) : -1;
