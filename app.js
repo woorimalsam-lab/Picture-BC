@@ -3351,57 +3351,73 @@ function initMobileNav() {
     });
 }
 
-// 오늘의 방문자 카운터 (counterapi.dev 공유 집계, 날짜별 키로 매일 0부터 시작)
+// 방문자 카운터 (counterapi.dev 공유 집계)
+//  - 오늘의 방문자: 날짜별 키(visits-YYYY-MM-DD)로 매일 0부터 시작
+//  - 누적 방문자: 고정 키(visits-total)로 계속 누적
+//  - 같은 브라우저는 하루 1회만 두 카운터를 함께 +1
 function initVisitorCounter() {
     const numEl = document.getElementById("vc-num");
-    if (!numEl) return;
+    const totalEl = document.getElementById("vc-total");
+    if (!numEl && !totalEl) return;
 
     const now = new Date();
     const dayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
     const NS = "picturebc-debate";
-    const visitedFlag = `pbc-visited-${dayKey}`;       // 이 브라우저가 오늘 이미 집계됐는지
-    const localCountKey = `pbc-localcount-${dayKey}`;   // 오프라인 폴백용 카운트
+    const visitedFlag = `pbc-visited-${dayKey}`;         // 이 브라우저가 오늘 이미 집계됐는지
+    const localDayKey = `pbc-localcount-${dayKey}`;       // 오프라인 폴백: 오늘
+    const localTotalKey = "pbc-localtotal";              // 오프라인 폴백: 누적
     const alreadyVisited = localStorage.getItem(visitedFlag);
 
-    // 이미 방문했으면 읽기만, 처음이면 /up 으로 1 증가
-    const base = `https://api.counterapi.dev/v1/${NS}/visits-${dayKey}`;
-    const url = alreadyVisited ? base : `${base}/up`;
+    // 처음 방문이면 /up 으로 1 증가, 아니면 읽기만
+    const dayBase = `https://api.counterapi.dev/v1/${NS}/visits-${dayKey}`;
+    const totalBase = `https://api.counterapi.dev/v1/${NS}/visits-total`;
+    const dayUrl = alreadyVisited ? dayBase : `${dayBase}/up`;
+    const totalUrl = alreadyVisited ? totalBase : `${totalBase}/up`;
 
-    const animateTo = (target) => {
+    const animateTo = (el, target) => {
+        if (!el) return;
         target = Math.max(1, parseInt(target, 10) || 1);
         const duration = 900;
         const start = performance.now();
         const step = (t) => {
             const p = Math.min(1, (t - start) / duration);
             const eased = 1 - Math.pow(1 - p, 3);
-            numEl.textContent = Math.round(eased * target).toLocaleString();
+            el.textContent = Math.round(eased * target).toLocaleString();
             if (p < 1) {
                 requestAnimationFrame(step);
             } else {
-                numEl.textContent = target.toLocaleString();
-                numEl.classList.add("vc-updated");
+                el.textContent = target.toLocaleString();
+                el.classList.add("vc-updated");
             }
         };
         requestAnimationFrame(step);
+        // 배경 탭 등 rAF가 멈춘 환경에서도 최종 값이 표시되도록 안전장치
+        setTimeout(() => { el.textContent = target.toLocaleString(); }, duration + 150);
     };
 
-    fetch(url)
-        .then((r) => r.json())
-        .then((data) => {
-            if (!data || typeof data.count !== "number") throw new Error("invalid response");
-            if (!alreadyVisited) localStorage.setItem(visitedFlag, "1");
-            animateTo(data.count);
-        })
-        .catch(() => {
-            // 네트워크 실패 시: 이 브라우저 기준 로컬 카운트로 대체
-            let c = parseInt(localStorage.getItem(localCountKey) || "0", 10);
-            if (!alreadyVisited) {
-                c += 1;
-                localStorage.setItem(localCountKey, String(c));
-                localStorage.setItem(visitedFlag, "1");
-            }
-            animateTo(c);
-        });
+    const loadCounter = (el, url, localKey) => {
+        fetch(url)
+            .then((r) => r.json())
+            .then((data) => {
+                if (!data || typeof data.count !== "number") throw new Error("invalid response");
+                animateTo(el, data.count);
+            })
+            .catch(() => {
+                // 네트워크 실패 시: 이 브라우저 기준 로컬 카운트로 대체
+                let c = parseInt(localStorage.getItem(localKey) || "0", 10);
+                if (!alreadyVisited) {
+                    c += 1;
+                    localStorage.setItem(localKey, String(c));
+                }
+                animateTo(el, c);
+            });
+    };
+
+    loadCounter(numEl, dayUrl, localDayKey);
+    loadCounter(totalEl, totalUrl, localTotalKey);
+
+    // 오늘 방문 집계 완료 표시 (두 /up 요청을 보낸 뒤 한 번만)
+    if (!alreadyVisited) localStorage.setItem(visitedFlag, "1");
 }
 
 function initThemeToggle() {

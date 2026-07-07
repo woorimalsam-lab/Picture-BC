@@ -2273,12 +2273,28 @@ footer {
     gap: 2px;
     line-height: 1;
 }
+.vc-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+}
+.vc-divider {
+    width: 66%;
+    height: 1px;
+    background: var(--border-color);
+    margin: 1px 0;
+}
 .vc-num {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: var(--accent-coral);
     font-family: var(--font-sans);
     letter-spacing: -1px;
+}
+.vc-num-total {
+    font-size: 1.35rem;
+    color: var(--accent-sage);
 }
 .vc-num.vc-updated {
     animation: vc-bounce 0.6s ease;
@@ -2337,6 +2353,9 @@ footer {
     .vc-label { font-size: 0.68rem; }
     .vc-count { gap: 1px; }
     .vc-num { font-size: 1.25rem; }
+    .vc-num-total { font-size: 1.1rem; }
+    .vc-stat { gap: 2px; }
+    .vc-divider { width: 1px; height: 26px; margin: 0 2px; }
     .vc-footer { display: none; }
     @keyframes vc-pop-in {
         0%   { opacity: 0; transform: scale(0.5) translateX(-30px); }
@@ -2344,7 +2363,10 @@ footer {
     }
 }
 @media (max-width: 520px) {
-    .visitor-counter .vc-label { display: none; }
+    .visitor-counter .vc-label { font-size: 0.58rem; }
+    .visitor-counter .vc-num { font-size: 1.05rem; }
+    .visitor-counter .vc-num-total { font-size: 0.95rem; }
+    .visitor-counter .vc-divider { height: 22px; }
 }
 
 /* ===== 반응형 네비게이션 (폰/태블릿 햄버거 메뉴) ===== */

@@ -11,7 +11,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.5.3">
+    <link rel="stylesheet" href="style.css?v=1.5.4">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -361,11 +361,20 @@
     </main>
 
     <!-- 오늘의 방문자 카운터 (왼쪽 플로팅) -->
-    <div id="visitor-counter" class="visitor-counter no-print" title="오늘 이 페이지를 찾아준 친구들의 수예요!">
+    <div id="visitor-counter" class="visitor-counter no-print" title="오늘 이 페이지를 찾아준 친구들의 수와 지금까지 누적 방문자 수예요!">
         <div class="vc-icon"><i class="fa-solid fa-seedling"></i></div>
-        <div class="vc-label">오늘의 방문자</div>
-        <div class="vc-count">
-            <span class="vc-num" id="vc-num">·</span><span class="vc-unit">명</span>
+        <div class="vc-stat">
+            <div class="vc-label">오늘의 방문자</div>
+            <div class="vc-count">
+                <span class="vc-num" id="vc-num">·</span><span class="vc-unit">명</span>
+            </div>
+        </div>
+        <div class="vc-divider"></div>
+        <div class="vc-stat">
+            <div class="vc-label">누적 방문자</div>
+            <div class="vc-count">
+                <span class="vc-num vc-num-total" id="vc-total">·</span><span class="vc-unit">명</span>
+            </div>
         </div>
         <div class="vc-footer"><i class="fa-solid fa-heart"></i> 함께 읽어요</div>
     </div>
@@ -392,6 +401,6 @@
     </div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=1.5.3"></script>
+    <script src="app.js?v=1.5.4"></script>
 </body>
 </html>
