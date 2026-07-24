@@ -1401,7 +1401,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FFCAD4, #B5E2FA)",
         "icon": "fa-baby",
-        "youtube": "https://www.youtube.com/results?search_query=완벽한+아이+팔아요+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=완벽한+아이+팔아요+그림책+읽어주기",
         "isBestseller": true,
         "debateTopics": [
             "부모가 아이를 '구매'하고 조건부로 완벽함을 요구하는 마트 시스템은 아동의 권리와 생명 윤리 측면에서 금지되어야 하는가?",
@@ -1425,7 +1425,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E29578, #83C5BE)",
         "icon": "fa-guitar",
-        "youtube": "https://www.youtube.com/results?search_query=밴드+브레멘+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=밴드+브레멘+그림책+읽어주기",
         "debateTopics": [
             "늙고 병들어 생산성이 떨어진 동물을 쫓아낸 농장 주인들의 조치는 현실적인 경제적 결정으로서 정당화될 수 있는가?",
             "내가 밴드 브레멘의 동물들과 길에서 만난다면, 이들의 연대와 음악에 동참하겠습니까?"
@@ -1448,7 +1448,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #4A5759, #DEDBD2)",
         "icon": "fa-cat",
-        "youtube": "https://www.youtube.com/results?search_query=100만+번+산+고양이+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=100만+번+산+고양이+그림책+읽어주기",
         "isSteadyseller": true,
         "debateTopics": [
             "100만 번의 부유하고 안전하지만 수동적인 삶보다, 단 한 번 스스로 사랑하고 슬퍼하며 죽는 능동적 삶이 더 가치 있는가?",
@@ -1472,7 +1472,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%)",
         "icon": "fa-snowflake",
-        "youtube": "https://www.youtube.com/results?search_query=30번+곰+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=30번+곰+그림책+읽어주기",
         "debateTopics": [
             "인간의 위기로 거처를 잃은 야생동물(북극곰)을 도시의 반려동물로 사육하는 정책은 정당한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1495,7 +1495,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #84FAB0 0%, #8FD3F4 100%)",
         "icon": "fa-fish-fins",
-        "youtube": "https://www.youtube.com/results?search_query=감기+걸린+물고기+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=감기+걸린+물고기+그림책+읽어주기",
         "debateTopics": [
             "공동체의 안전을 위협한다는 소문이 있을 때, 의심되는 동료를 무리에서 추방하는 것은 정당한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1518,7 +1518,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E0C3FC 0%, #8EC5FC 100%)",
         "icon": "fa-seedling",
-        "youtube": "https://www.youtube.com/results?search_query=강아지똥+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=강아지똥+그림책+읽어주기",
         "debateTopics": [
             "민들레 꽃을 피우기 위해 자신을 거름으로 온전히 희생하는 강아지똥의 선택은 바람직한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1541,7 +1541,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #100007, #300015)",
         "icon": "fa-asterisk",
-        "youtube": "https://www.youtube.com/results?search_query=고슴도치+X+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=고슴도치+X+그림책+읽어주기",
         "debateTopics": [
             "가시가 날카로워 타인에게 상처를 주는 고슴도치가 가시를 다듬어 사회에 적응하는 것이 바람직한가, 가시를 그대로 유지해야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1564,7 +1564,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FDE2E4, #FFCAD4)",
         "icon": "fa-cat",
-        "youtube": "https://www.youtube.com/results?search_query=고양이는+나만+따라+해+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=고양이는+나만+따라+해+그림책+읽어주기",
         "debateTopics": [
             "자신만의 뚜렷한 주관 없이 친한 친구나 롤모델의 스타일을 무조건 모방하는 것은 우정의 표현인가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1587,7 +1587,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E9C46A, #F4A261)",
         "icon": "fa-paw",
-        "youtube": "https://www.youtube.com/results?search_query=곰아+놀자+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=곰아+놀자+그림책+읽어주기",
         "debateTopics": [
             "친구가 함께 놀자고 제안한 활동을 내가 하기 싫더라도 참고 함께해 주어야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1610,7 +1610,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #3D5A80, #98C1D9)",
         "icon": "fa-chalkboard-user",
-        "youtube": "https://www.youtube.com/results?search_query=까마귀+소년+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=까마귀+소년+그림책+읽어주기",
         "debateTopics": [
             "다른 아이들과 어울리지 못하고 독특한 행동을 하는 아이를 학교 시스템이 포용하고 인정하는 올바른 방법은 무엇인가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1633,7 +1633,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E63946, #F1FAEE)",
         "icon": "fa-bugs",
-        "youtube": "https://www.youtube.com/results?search_query=꽃을+선물할게+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=꽃을+선물할게+그림책+읽어주기",
         "debateTopics": [
             "거미줄에 걸린 애벌레를 살려주는 자비로운 행동이 거미의 생존권(먹이 섭취)을 침해하는 불공정 행위가 될 수 있는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1656,7 +1656,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FFF1EB 0%, #ACE0F9 100%)",
         "icon": "fa-water",
-        "youtube": "https://www.youtube.com/results?search_query=나는+강물처럼+말해요+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=나는+강물처럼+말해요+그림책+읽어주기",
         "debateTopics": [
             "수업 시간에 모든 학생들이 발표를 의무적으로 똑같이 많이 하도록 규칙을 정하는 것은 공정한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1679,7 +1679,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E63946, #457B9D)",
         "icon": "fa-clock",
-        "youtube": "https://www.youtube.com/results?search_query=나는+기다립니다+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=나는+기다립니다+그림책+읽어주기",
         "debateTopics": [
             "반려동물을 끝까지 돌볼 수 있는지 사전 검증하고 법적으로 제한하는 '반려인 자격증제'를 도입해야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1702,7 +1702,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #DDA15E, #BC6C25)",
         "icon": "fa-comment-slash",
-        "youtube": "https://www.youtube.com/results?search_query=나는+사실대로+말했을+뿐이야+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=나는+사실대로+말했을+뿐이야+그림책+읽어주기",
         "debateTopics": [
             "진실을 말하는 것이 타인의 감정을 상하게 하고 관계를 깨뜨린다면, 우리는 언제나 예외 없이 사실만을 말해야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1725,7 +1725,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #6B705C, #A5A58D)",
         "icon": "fa-egg",
-        "youtube": "https://www.youtube.com/results?search_query=난+황금알을+낳을+거야+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=난+황금알을+낳을+거야+그림책+읽어주기",
         "debateTopics": [
             "알을 낳지 못해 퇴출될 위기에 처한 닭 로라가 거짓말(황금알을 낳는다는 소문)로 지위를 보존한 행동은 정당한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1748,7 +1748,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #D62828, #003049)",
         "icon": "fa-paragraph",
-        "youtube": "https://www.youtube.com/results?search_query=낱말공장+나라+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=낱말공장+나라+그림책+읽어주기",
         "debateTopics": [
             "언어와 표현의 기회가 부의 소유 정도에 따라 불평등하게 주어지는 자본주의적 현상은 규제되어야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1771,7 +1771,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E63946, #A8DADC)",
         "icon": "fa-people-group",
-        "youtube": "https://www.youtube.com/results?search_query=내+탓이+아니야+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=내+탓이+아니야+그림책+읽어주기",
         "debateTopics": [
             "폭력이나 따돌림의 현장을 목격하고도 직접 가담하지 않고 묵인한 방관자도 가해자와 동등한 처벌을 받아야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1794,7 +1794,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F77F00, #FCBF49)",
         "icon": "fa-globe",
-        "youtube": "https://www.youtube.com/results?search_query=내가+라면을+먹을+때+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=내가+라면을+먹을+때+그림책+읽어주기",
         "debateTopics": [
             "세계시민으로서 우리가 누리는 일상이 반대편 타인의 희생과 불평등에 빚진 결과라는 주장에 동의하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1840,7 +1840,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #2D6A4F, #52B788)",
         "icon": "fa-droplet",
-        "youtube": "https://www.youtube.com/results?search_query=단물고개+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=단물고개+그림책+읽어주기",
         "debateTopics": [
             "아무리 가난하더라도 약속된 금기(과도한 욕심 부리지 않기)를 지켜야 하는가, 아니면 생존을 위해 어길 수 있는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -1886,7 +1886,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FCA311, #E5E5E5)",
         "icon": "fa-piggy-bank",
-        "youtube": "https://www.youtube.com/results?search_query=돼지책+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=돼지책+그림책+읽어주기",
         "isSteadyseller": true,
         "debateTopics": [
             "가족 구성원 중 한 명에게만 가사 노동이 집중되는 상황에서, 엄마가 가출을 통해 경종을 울린 방법은 타당한가?",
@@ -1910,7 +1910,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #A8DADC, #457B9D)",
         "icon": "fa-fish",
-        "youtube": "https://www.youtube.com/results?search_query=무지개+물고기+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=무지개+물고기+그림책+읽어주기",
         "isSteadySeller": true,
         "debateTopics": [
             "무리와 어울려 살아가기 위해 개인의 고유한 개성이나 소유물(반짝이 비늘)을 다른 이들에게 억지로 나누어 주어야 하는가?",
@@ -1934,7 +1934,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F28482, #F7CAD0)",
         "icon": "fa-ribbon",
-        "youtube": "https://www.youtube.com/results?search_query=미어캣의+스카프+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=미어캣의+스카프+그림책+읽어주기",
         "debateTopics": [
             "유행을 따르거나 과시하기 위해 소비하는 행위가 개인의 자아표현 수단으로서 정당한가?",
             "미어캣 공동체에 날아온 스카프처럼, 나에게 다른 사람들의 이목을 끄는 유혹의 물건이 생긴다면 어떻게 행동하겠습니까?"
@@ -1957,7 +1957,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #2b2e4a, #e84545)",
         "icon": "fa-cat",
-        "youtube": "https://www.youtube.com/results?search_query=백만+번+산+고양이+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=백만+번+산+고양이+그림책+읽어주기",
         "isSteadyseller": true,
         "debateTopics": [
             "고양이가 백만 번의 삶을 산 끝에 다시 태어나지 않은 결말은 그의 삶의 완성(해피 엔딩)인가, 아니면 죽음으로 인한 비극(새드 엔딩)인가?",
@@ -2004,7 +2004,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E63946, #1D3557)",
         "icon": "fa-ban",
-        "youtube": "https://www.youtube.com/results?search_query=부리+동물+출입+금지+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=부리+동물+출입+금지+그림책+읽어주기",
         "debateTopics": [
             "특정 집단(부리 동물)의 출입을 전면 차단하는 규제가 공동체의 질서 유지를 위해 불가피한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2027,7 +2027,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #3A3A3A, #8E9AAF)",
         "icon": "fa-dog",
-        "youtube": "https://www.youtube.com/results?search_query=블랙+독+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=블랙+독+그림책+읽어주기",
         "debateTopics": [
             "미지의 두려운 대상(검둥개)의 실체를 확인하기 위해 스스로 위험 속으로 나아가는 모험은 정당한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2050,7 +2050,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #2D3142, #EF8354)",
         "icon": "fa-tree",
-        "youtube": "https://www.youtube.com/results?search_query=빨간+나무+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=빨간+나무+그림책+읽어주기",
         "debateTopics": [
             "입시 스트레스와 미래의 불안을 해소하기 위해 자신의 부정적 감정을 타인에게 적극적으로 드러내는 것은 바람직한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2073,7 +2073,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #9E2A2B, #FFF3B0)",
         "icon": "fa-border-all",
-        "youtube": "https://www.youtube.com/results?search_query=빨간+벽+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=빨간+벽+그림책+읽어주기",
         "isSteadyseller": true,
         "debateTopics": [
             "오랫동안 유지되어 온 집단의 금기나 벽(안전을 위한 경계선)을 허물고 밖으로 나아가는 모험은 장려되어야 하는가?",
@@ -2097,7 +2097,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #B5838D, #FFB5A7)",
         "icon": "fa-bread-slice",
-        "youtube": "https://www.youtube.com/results?search_query=샌지와+빵집+주인+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=샌지와+빵집+주인+그림책+읽어주기",
         "debateTopics": [
             "빵의 고소한 '냄새'를 맡은 행위에 대해, 빵집 주인이 샌지에게 냄새 값을 요구하는 청구는 타당한가?",
             "내가 샌지라면 빵 냄새를 맡은 값으로 돈을 지불하라는 주인을 마주했을 때 법정에서 어떤 해명으로 변론하겠습니까?"
@@ -2120,7 +2120,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #1D2D44, #3E5C76)",
         "icon": "fa-mask",
-        "youtube": "https://www.youtube.com/results?search_query=세+강도+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=세+강도+그림책+읽어주기",
         "isSteadyseller": true,
         "debateTopics": [
             "강도들이 약탈한 재물로 버려진 아이들을 위해 성을 짓고 보살핀 행위는 범죄 수익의 사회 환원으로서 용인될 수 있는가?",
@@ -2144,7 +2144,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #70A288, #DAB785)",
         "icon": "fa-shield-halved",
-        "youtube": "https://www.youtube.com/results?search_query=슈퍼+거북+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=슈퍼+거북+그림책+읽어주기",
         "isSteadyseller": true,
         "debateTopics": [
             "타인의 시선이나 사회적 평판에 맞추기 위해 자신의 본성을 억누르고 노력하는 삶은 의미가 있는가?",
@@ -2168,7 +2168,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FAD0C4, #FFD1FF)",
         "icon": "fa-rabbit",
-        "youtube": "https://www.youtube.com/results?search_query=슈퍼+토끼+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=슈퍼+토끼+그림책+읽어주기",
         "debateTopics": [
             "한 번의 뼈아픈 실패를 극복하기 위해 무작정 질주하며 계속 달리는 행동은 스스로를 극복하는 길인가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2191,7 +2191,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #264653, #2A9D8F)",
         "icon": "fa-mountain-sun",
-        "youtube": "https://www.youtube.com/results?search_query=스갱+아저씨의+염소+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=스갱+아저씨의+염소+그림책+읽어주기",
         "debateTopics": [
             "늑대의 위협이 도사리는 산속(위험하지만 자유로운 공간)으로 나아간 염소 블랑케트의 선택은 찬성할 만한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2214,7 +2214,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #4F772D, #90A955)",
         "icon": "fa-feather",
-        "youtube": "https://www.youtube.com/results?search_query=시애틀+추장+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=시애틀+추장+그림책+읽어주기",
         "debateTopics": [
             "대자연(땅, 공기, 물)은 소유권의 대상이 될 수 없다는 추장의 생태적 관점은 자본주의적 영토 거래 논리보다 우월한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2237,7 +2237,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #8A9A5B, #355E3B)",
         "icon": "fa-tree",
-        "youtube": "https://www.youtube.com/results?search_query=아낌없이+주는+나무+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=아낌없이+주는+나무+그림책+읽어주기",
         "debateTopics": [
             "나무의 조건 없는 일방적인 희생과 헌신은 소년의 자립과 진정한 행복을 위해 바람직한 사랑이었는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2260,7 +2260,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F4F1DE, #E07A5F)",
         "icon": "fa-paint-brush",
-        "youtube": "https://www.youtube.com/results?search_query=아름다운+실수+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=아름다운+실수+그림책+읽어주기",
         "debateTopics": [
             "실수나 실패를 완전히 통제하고 예방하려는 완벽주의 태도는 개인의 성장에 방해가 되는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2283,7 +2283,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FFCAD4, #B5E2FA)",
         "icon": "fa-candy-cane",
-        "youtube": "https://www.youtube.com/results?search_query=알사탕+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=알사탕+그림책+읽어주기",
         "isBestseller": true,
         "debateTopics": [
             "동화 속 주인공 동동이처럼 타인의 속마음을 전부 들을 수 있는 능력이 있다면 인간관계에서 정말로 더 행복해질까?",
@@ -2307,7 +2307,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #6B7A8F, #F78888)",
         "icon": "fa-home",
-        "youtube": "https://www.youtube.com/results?search_query=우리+집+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=우리+집+그림책+읽어주기",
         "debateTopics": [
             "인간의 관람 욕구와 종 보존을 명분으로 동물들을 좁은 동물원에 가두는 행위는 윤리적으로 정당한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2330,7 +2330,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #B5E2FA, #EDF2F4)",
         "icon": "fa-handshake",
-        "youtube": "https://www.youtube.com/results?search_query=우리는+친구+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=우리는+친구+그림책+읽어주기",
         "debateTopics": [
             "평소 친한 친구가 화가 나서 폭력적인 돌발 행동을 하더라도 친구 관계를 지속해야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2353,7 +2353,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #D81159, #8F2D56)",
         "icon": "fa-shoe-prints",
-        "youtube": "https://www.youtube.com/results?search_query=원숭이+꽃신+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=원숭이+꽃신+그림책+읽어주기",
         "debateTopics": [
             "원숭이가 오소리가 제공하는 공짜 꽃신(편리함)에 길들여져 발바닥의 굳은살을 잃고 노예가 된 결말은 전적으로 원숭이의 무지 때문인가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2376,7 +2376,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F4A261, #E76F51)",
         "icon": "fa-scissors",
-        "youtube": "https://www.youtube.com/results?search_query=으르렁+이발소+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=으르렁+이발소+그림책+읽어주기",
         "debateTopics": [
             "아이는 자신의 헤어스타일(외모)을 아빠의 결정에 전적으로 따라야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2399,7 +2399,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #E9D8A6, #94D2BD)",
         "icon": "fa-person-walking-dashed-line-arrow-right",
-        "youtube": "https://www.youtube.com/results?search_query=지각대장+존+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=지각대장+존+그림책+읽어주기",
         "isSteadySeller": true,
         "debateTopics": [
             "지각한 존의 해명(악어, 사자 등)을 믿지 않고 반성문을 쓰게 한 선생님의 징계 처사는 교사로서 타당한 처사인가?",
@@ -2423,7 +2423,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FDE2E4, #FFCAD4)",
         "icon": "fa-egg",
-        "youtube": "https://www.youtube.com/results?search_query=착한+달걀+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=착한+달걀+그림책+읽어주기",
         "debateTopics": [
             "공동체의 평화와 기대를 유지하기 위해 자신의 욕망과 피로를 숨기고 착한 행동을 강제하는 교육은 정당한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2446,7 +2446,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #7B4B2A, #F7C59F)",
         "icon": "fa-cookie",
-        "youtube": "https://www.youtube.com/results?search_query=초코곰과+젤리곰+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=초코곰과+젤리곰+그림책+읽어주기",
         "debateTopics": [
             "다름을 억압하는 다수/사회 규칙(초코는 초코끼리, 젤리는 젤리끼리)이 평화를 위해 불가피하다는 주장에 동의하는가?",
             "초코곰과 젤리곰처럼 불합리한 분리 규칙에 맞서기 위해 안정적인 일상을 버리고 모험을 택하겠습니까?"
@@ -2469,7 +2469,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F4F1DE, #E07A5F)",
         "icon": "fa-tooth",
-        "youtube": "https://www.youtube.com/results?search_query=치과의사+드소토+선생님+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=치과의사+드소토+선생님+그림책+읽어주기",
         "debateTopics": [
             "생쥐 치과의사 드소토 부부가 자신을 잡아먹을 위험이 있는 천적 여우를 끝까지 치료해야 하는 직업윤리가 우선인가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2492,7 +2492,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F9C74F, #90BE6D)",
         "icon": "fa-keyboard",
-        "youtube": "https://www.youtube.com/results?search_query=탁탁+톡톡+음매+젖소가+편지를+쓴대요+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=탁탁+톡톡+음매+젖소가+편지를+쓴대요+그림책+읽어주기",
         "debateTopics": [
             "노동 및 거주 환경 개선을 요구하며 농장주의 지시를 따르지 않는 젖소들의 파업 시위는 정당한가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2515,7 +2515,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #4A5759, #8C2F39)",
         "icon": "fa-road-tunnel",
-        "youtube": "https://www.youtube.com/results?search_query=터널+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=터널+그림책+읽어주기",
         "debateTopics": [
             "오빠 잭의 경고 무시와 위험한 터널 진입 행동은 동생을 배려하지 않은 부적절한 선택이었는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2538,7 +2538,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #1D3557, #457B9D)",
         "icon": "fa-flag-checkered",
-        "youtube": "https://www.youtube.com/results?search_query=토끼와+거북이+두+번째+경주+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=토끼와+거북이+두+번째+경주+그림책+읽어주기",
         "debateTopics": [
             "첫 경주에서 방심하여 진 토끼가 자존심 회복을 위해 다시 재경주를 요구하는 것은 정당한 경쟁 의지인가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2584,7 +2584,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)",
         "icon": "fa-face-laugh-wink",
-        "youtube": "https://www.youtube.com/results?search_query=틀려도+괜찮아+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=틀려도+괜찮아+그림책+읽어주기",
         "debateTopics": [
             "수업 시간에 발표는 가능한 한 자주 해야 하는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2607,7 +2607,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #CFD9DF 0%, #E2EBEF 100%)",
         "icon": "fa-palette",
-        "youtube": "https://www.youtube.com/results?search_query=프레드릭+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=프레드릭+그림책+읽어주기",
         "debateTopics": [
             "추운 겨울에 식량을 구하는 육체 노동을 하지 않고 햇살과 이야기를 모은 프레드릭은 모둠의 일원으로서 양식을 분배받을 자격이 있는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2630,7 +2630,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F6D365 0%, #FDA085 100%)",
         "icon": "fa-umbrella-beach",
-        "youtube": "https://www.youtube.com/results?search_query=할머니의+여름휴가+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=할머니의+여름휴가+그림책+읽어주기",
         "debateTopics": [
             "할머니나 부모님과 같은 가족의 여름휴가를 자녀가 챙겨드려야 할 의무가 있는가?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2653,7 +2653,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #A8DADC, #457B9D)",
         "icon": "fa-broom",
-        "youtube": "https://www.youtube.com/results?search_query=행복한+청소부+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=행복한+청소부+그림책+읽어주기",
         "debateTopics": [
             "대학 교수가 되어 명예와 풍요를 누리는 삶과, 거리 청소부로서 소박하고 자유롭게 사는 삶 중 무엇이 더 행복할까?",
             "만약 내가 주인공과 같은 처지에 직면한다면, 상황을 타개하기 위해 어떤 선택과 감정을 취하겠습니까?"
@@ -2676,7 +2676,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #48CAE4, #90E0EF)",
         "icon": "fa-recycle",
-        "youtube": "https://www.youtube.com/results?search_query=플라스틱+섬+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=플라스틱+섬+그림책+읽어주기",
         "debateTopics": [
             "편리한 일회용 플라스틱 사용은 개인의 자유에 맡겨야 하는가, 사회가 강하게 규제해야 하는가?",
             "만약 내가 이 섬의 바다거북이나 새라면, 인간에게 어떤 말을 전하고 싶을까?"
@@ -2699,7 +2699,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #A7C957, #6A994E)",
         "icon": "fa-dove",
-        "youtube": "https://www.youtube.com/results?search_query=비무장지대에+봄이+오면+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=비무장지대에+봄이+오면+그림책+읽어주기",
         "debateTopics": [
             "비무장지대는 통일 이후 개발해야 하는가, 생태·평화 지역으로 보존해야 하는가?",
             "만약 내가 철책 앞에 선 할아버지라면, 무엇을 가장 그리워했을까?"
@@ -2745,7 +2745,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #F15BB5, #FEE440)",
         "icon": "fa-shirt",
-        "youtube": "https://www.youtube.com/results?search_query=줄무늬가+생겼어요+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=줄무늬가+생겼어요+그림책+읽어주기",
         "debateTopics": [
             "친구들에게 맞추기 위해 내가 좋아하는 것을 숨기는 것은 현명한 선택일까?",
             "만약 내가 카밀라라면, 줄무늬가 사라지게 하려고 무엇을 했을까?"
@@ -2929,7 +2929,7 @@ const books = [
         ],
         "gradient": "linear-gradient(135deg, #FFB703, #FB8500)",
         "icon": "fa-moon",
-        "youtube": "https://www.youtube.com/results?search_query=해와+달이+된+오누이+그림책+구연",
+        "youtube": "https://www.youtube.com/results?search_query=해와+달이+된+오누이+그림책+읽어주기",
         "debateTopics": [
             "위기에서 살아남기 위해 상대를 속이는 오누이의 지혜는 정당한가?",
             "만약 내가 오누이라면, 호랑이가 문 앞에 왔을 때 어떻게 행동했을까?"
@@ -3085,211 +3085,211 @@ const worksheets = [
         "title": "[활동지] 가치수직선 토론_밴드 브레멘.pdf",
         "desc": "밴드 브레멘 그림책 속 네 소외 동물들의 가치적 연대와 생태 권리를 수직선 위에서 분석하는 양식입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/가치수직선 토론_밴드 브레멘.pdf"
+        "link": "가치수직선 토론_밴드 브레멘.pdf"
     },
     {
         "title": "[활동지] PMI 토론_나는 사실대로 말했을뿐이야_그림책.pdf",
         "desc": "나는 사실대로 말했을 뿐이야! 그림책의 정직 딜레마에 대해 긍정(P)-부정(M)-흥미(I) 관점으로 조명해보는 활동지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/PMI 토론_나는 사실대로 말했을뿐이야_그림책.pdf"
+        "link": "PMI 토론_나는 사실대로 말했을뿐이야_그림책.pdf"
     },
     {
         "title": "[자료] 토론의 요소.pdf",
         "desc": "교차조사 질문 설계, 입증 책임 및 배심원 판정 가이드 등 디베이트의 실전 기본 요소 해설서입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론의 요소.pdf"
+        "link": "토론의 요소.pdf"
     },
     {
         "title": "[자료] 토론의 기본 개념.pdf",
         "desc": "의사소통과 배움의 과정으로서 디베이트가 갖는 교육적 의미와 룰을 정리한 입문 매뉴얼입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론의 기본 개념.pdf"
+        "link": "토론의 기본 개념.pdf"
     },
     {
         "title": "[자료] 토론을 통한 성장, 미래를 향한 꿈.pdf",
         "desc": "교실 연계형 토론식 수업의 실제 모형과 이를 통한 학생들의 성장 과정을 수록한 연구 자료입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론을_통한_성장,_미래를_향한_꿈.pdf"
+        "link": "토론을_통한_성장,_미래를_향한_꿈.pdf"
     },
     {
         "title": "[자료] 토론 생각의 꽃을 피우다 (v2).pdf",
         "desc": "독서 말하기 학습을 융합하여 교실 의사소통 능력을 높이는 토론 교육 모형 연구서입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론_생각의_꽃을_피우다_v2.pdf"
+        "link": "토론_생각의_꽃을_피우다_v2.pdf"
     },
     {
         "title": "[자료] 토론 준비하기.pdf",
         "desc": "쟁점 분석, 입론 작성 요령, 정보 검색 전략 등 성공적인 찬반 토론을 설계하기 위한 지침서입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론 준비하기.pdf"
+        "link": "토론 준비하기.pdf"
     },
     {
         "title": "[수업자료] 토론 연구회 발표-입론.pdf",
         "desc": "내 주장의 논증 뼈대(A-R-E)를 설계하고 정합성 높은 입론서를 조직화하는 발표 교안 자료입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론 연구회 발표-입론.pdf"
+        "link": "토론 연구회 발표-입론.pdf"
     },
     {
         "title": "[대본] 토론 대본(퍼블릭 포럼, 사회자,계측자).pdf",
         "desc": "정식 퍼블릭 포럼 디베이트를 진행할 때 사회자와 계측자가 사용할 수 있는 공식 진행 스크립트 대본입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론 대본(퍼블릭 포럼, 사회자,계측자).pdf"
+        "link": "토론 대본(퍼블릭 포럼, 사회자,계측자).pdf"
     },
     {
         "title": "[대본] 찬반토론 실습(토론자 대본).pdf",
         "desc": "실습 디베이트 시 찬성과 반대 입론 및 반론 단계에서 토론자들이 참고하여 구조를 잡을 수 있는 대본 양식입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/찬반토론 실습(토론자 대본).pdf"
+        "link": "찬반토론 실습(토론자 대본).pdf"
     },
     {
         "title": "[자료] 찬반토론 실습(토론 모형, 퍼블릭 포럼).pdf",
         "desc": "퍼블릭 포럼 토론 모형의 규칙과 교실 수업 실습 가이드를 실어놓은 실무 매뉴얼 자료입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/찬반토론 실습(토론 모형, 퍼블릭 포럼).pdf"
+        "link": "찬반토론 실습(토론 모형, 퍼블릭 포럼).pdf"
     },
     {
         "title": "[활동지] 신호등토론 활동지.pdf",
         "desc": "가치 쟁점에 대해 삼색 신호등을 활용하여 개인 및 모둠 의견을 수집하고 주장하는 활동지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/신호등토론 활동지.pdf"
+        "link": "신호등토론 활동지.pdf"
     },
     {
         "title": "[활동지] 신호등 토론_세 강도.pdf",
         "desc": "세 강도 그림책 속 강도들의 선의 딜레마에 대해 지지 여부를 삼색 신호등 기법으로 판단하는 활동지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/신호등 토론_세 강도.pdf"
+        "link": "신호등 토론_세 강도.pdf"
     },
     {
         "title": "[활동지] 소크라틱세미나_백만 번 산 고양이.pdf",
         "desc": "100만 번 산 고양이의 삶과 죽음, 그리고 진정한 사랑의 가치를 성찰해보는 소크라틱 세미나 기록지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/소크라틱세미나_백만 번 산 고양이.pdf"
+        "link": "소크라틱세미나_백만 번 산 고양이.pdf"
     },
     {
         "title": "[자료] 소크라테틱 세미나.pdf",
         "desc": "교실 공동체가 정답 없는 텍스트를 두고 서로의 생각을 묻고 들으며 자아를 성찰하는 디렉토리형 매뉴얼입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/소크라테틱 세미나.pdf"
+        "link": "소크라테틱 세미나.pdf"
     },
     {
         "title": "[활동지] 브레인라이팅 활동지.pdf",
         "desc": "침묵 속에서 자신의 아이디어를 기록하고 모둠원들과 유기적으로 전개해 나가는 발상 연습용 양식지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/브레인라이팅 활동지.pdf"
+        "link": "브레인라이팅 활동지.pdf"
     },
     {
         "title": "[활동지] 브레인 라이팅_미어캣의 스카프.pdf",
         "desc": "미어캣의 스카프 그림책을 통해 본 모방 소비와 사재기 경쟁 현상의 대안을 찾아 기록해보는 브레인라이팅 활동지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/브레인 라이팅_미어캣의 스카프.pdf"
+        "link": "브레인 라이팅_미어캣의 스카프.pdf"
     },
     {
         "title": "[자료] 반론.pdf",
         "desc": "상대 주장에 대한 교차 조사를 설계하고 논리 구조의 모순점을 잡아내어 비판하는 실전 가이드입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/반론.pdf"
+        "link": "반론.pdf"
     },
     {
         "title": "[자료] 무드미터.pdf",
         "desc": "나의 현재 감정(에너지 수준과 유쾌함)의 위치를 확인하고 기록하여 정서 지능을 발달시키는 자가 진단지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/무드미터.pdf"
+        "link": "무드미터.pdf"
     },
     {
         "title": "[활동지] 둘가고 둘남기_꽃을 너에게 줄게.pdf",
         "desc": "꽃을 선물할게 그림책의 애벌레-거미 딜레마에 대해 모둠 지식을 타 모둠과 순환 교환하는 협동학습지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/둘가고 둘남기_꽃을 너에게 줄게.pdf"
+        "link": "둘가고 둘남기_꽃을 너에게 줄게.pdf"
     },
     {
         "title": "[활동지] 둘가고 둘남기 활동지.pdf",
         "desc": "두 명은 모둠에 남고 두 명은 다른 모둠을 방문하여 지식을 상호 공유하고 순환해나가는 범용 활동지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/둘가고 둘남기 활동지.pdf"
+        "link": "둘가고 둘남기 활동지.pdf"
     },
     {
         "title": "[활동지] 다중관점 렌즈로 세상 읽기 파노라마 토론 실습(학습지).pdf",
         "desc": "관점을 주변부 인물이나 무생물 렌즈로 전환하여 대립각을 넓히고 갈등의 입체적 해결책을 도출하는 양식입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/다중관점 렌즈로 세상 읽기 파노라마 토론 실습(학습지).pdf"
+        "link": "다중관점 렌즈로 세상 읽기 파노라마 토론 실습(학습지).pdf"
     },
     {
         "title": "[활동지] 논증게임 학습지.pdf",
         "desc": "그림책을 분석하며 내 주장-이유-근거(A-R-E)의 삼각대 논거를 튼튼하게 직조해보는 수업 학습지입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/논증게임 학습지.pdf"
+        "link": "논증게임 학습지.pdf"
     },
     {
         "title": "[자료] 논제를 알면 토론이 보인다.pdf",
         "desc": "명확한 쟁점을 구축하고 디베이트 대상을 확립하는 토론 논제 정하기 공식 매뉴얼입니다.",
         "icon": "fa-file-pdf",
-        "link": "file:///C:/Users/admin/Desktop/토론/논제를 알면 토론이 보인다.pdf"
+        "link": "논제를 알면 토론이 보인다.pdf"
     },
     {
         "title": "[수업자료] 논제를 알면 토론이 보인다.pptx",
         "desc": "토론의 첫 단추인 논제를 정의하고 쟁점이 명확한 토론 논제를 정하고 구별하는 교육용 교안입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/논제를 알면 토론이 보인다.pptx"
+        "link": "논제를 알면 토론이 보인다.pptx"
     },
     {
         "title": "[활동지] 그림책 '빨간 벽' 토론 활동지 만들기.docx",
         "desc": "빨간 벽 그림책을 바탕으로 찬반 생각의 선을 넘고 나만의 논거를 세우는 워드용 모둠 학습지 양식입니다.",
         "icon": "fa-file-word",
-        "link": "file:///C:/Users/admin/Desktop/토론/그림책 '빨간 벽' 토론 활동지 만들기.docx"
+        "link": "그림책 '빨간 벽' 토론 활동지 만들기.docx"
     },
     {
         "title": "[수업자료] 파노라마 토론.pptx",
         "desc": "다각적인 시선 렌즈를 투사하여 사건을 입체적으로 바라보는 파노라마 기법 해설 피피티입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/파노라마 토론.pptx"
+        "link": "파노라마 토론.pptx"
     },
     {
         "title": "[수업자료] 파노라마 토론 (꽃을 선물할게).pptx",
         "desc": "꽃을 선물할게 그림책을 활용하여 다각적인 주체 렌즈로 딜레마를 해부해보는 수업 자료입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/파노라마 토론(꽃을 너에게 줄게).pptx"
+        "link": "파노라마 토론(꽃을 너에게 줄게).pptx"
     },
     {
         "title": "[수업자료] 토론을 알면 수업이 바뀐다.pptx",
         "desc": "일방적 지식 전달을 극복하고 교실 속 학생 중심 소통과 배움의 질을 높이는 교사용 발표 교안입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론을 알면 수업이 바뀐다.pptx"
+        "link": "토론을 알면 수업이 바뀐다.pptx"
     },
     {
         "title": "[수업자료] 토론 연구회 발표-입론.pptx",
         "desc": "탄탄한 논거 직조와 신뢰도 높은 증거 자료 매핑을 다루는 입론서 설계 및 작성 발표 교재입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론 연구회 발표-입론.pptx"
+        "link": "토론 연구회 발표-입론.pptx"
     },
     {
         "title": "[수업자료] 토론 생각의 꽃을 피우다.pptx",
         "desc": "독서와 말하기, 협업 경청 역량을 높여 참된 교실 공동체를 가꾸는 토론 연구회 성과 발표 교안입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/토론 생각의 꽃을 피우다.pptx"
+        "link": "토론 생각의 꽃을 피우다.pptx"
     },
     {
         "title": "[수업자료] 찬반토론 실습.pptx",
         "desc": "논리적 입론 구조를 익히고 교차 질문을 연습해보는 1단계 디베이트 실전 PPT 자료입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/찬반토론 실습.pptx"
+        "link": "찬반토론 실습.pptx"
     },
     {
         "title": "[수업자료] 이유찾기 토론_빨간벽.pptx",
         "desc": "빨간 벽 그림책의 꼬마 쥐의 선택을 두고 그 이면에 숨어있는 인과관계를 추론해보는 실습 PPT입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/이유찾기 토론_빨간벽.pptx"
+        "link": "이유찾기 토론_빨간벽.pptx"
     },
     {
         "title": "[수업자료] 소크라테틱 세미나.pptx",
         "desc": "정답 없는 의문에 대해 깊게 탐색하고 서로의 생각을 성찰하는 소크라틱 토론 기법 교육 교재입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/소크라테틱 세미나.pptx"
+        "link": "소크라테틱 세미나.pptx"
     },
     {
         "title": "[수업자료] 반론.pptx",
         "desc": "상대 논거의 논리적 모순점과 오류를 날카롭게 분석해 반박을 조직화하는 반론 기법 교육 자료입니다.",
         "icon": "fa-file-powerpoint",
-        "link": "file:///C:/Users/admin/Desktop/토론/반론.pptx"
+        "link": "반론.pptx"
     }
 ];
 
@@ -3314,6 +3314,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupMainSearch();
     initVisitorCounter();
     initMobileNav();
+    handleDeepLink();
 });
 
 // 모바일/태블릿 햄버거 메뉴 토글
@@ -3734,15 +3735,6 @@ function renderBooks() {
 // 이 사이트가 바탕으로 삼은 참고 도서 (그림책 서재와 동일한 카드 디자인)
 const referenceBooks = [
     {
-        "title": "그림책 토론 100",
-        "meta": "그림책사랑교사모임 · 학교도서관저널(2025)",
-        "desc": "그림책 1권당 1가지 토론 활동을 도입부터 마무리까지 단계별로 안내하는 '활동 백과사전'. 본 사이트의 단계별 접근법(기초·기본·심화)과 다양한 토론 기법의 토대가 되었습니다.",
-        "tags": ["활동 백과", "단계별 학습"],
-        "cover": "images/ref_book_1.jpg",
-        "gradient": "linear-gradient(135deg, #E07A5F, #F2CC8F)",
-        "link": "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=358347471"
-    },
-    {
         "title": "열두 달 그림책 토론",
         "meta": "이영근 외(초등토론교육연구회) · 창비교육(2023)",
         "desc": "학사 일정과 월별 학습 내용에 맞춰 36권의 그림책과 논제를 제안하는 수업 안내서. '추천가이드'의 열두 달(월별) 커리큘럼이 이 책의 구성을 따릅니다.",
@@ -4064,7 +4056,7 @@ function renderArchive() {
                 </div>
                 <h4 style="margin-bottom: 10px; font-size: 1.1rem; color: var(--text-primary);">${ws.title}</h4>
                 <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">${ws.desc}</p>
-                <a href="${ws.link}" class="btn ${btnClass}" style="width: 100%; text-align: center;"><i class="fa-solid fa-download"></i> 다운로드</a>
+                <a href="${encodeURI(ws.link)}" class="btn ${btnClass}" style="width: 100%; text-align: center;" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> 다운로드</a>
             </div>
         `;
     });
@@ -4292,7 +4284,12 @@ window.openModal = function(type, key) {
                 <div class="modal-section" style="margin-bottom:20px;">
                     <h4><i class="fa-solid fa-book-open"></i> 그림책 줄거리</h4>
                     <p style="font-size:0.95rem; line-height:1.6;">${book.summary}</p>
-                    <a href="${encodeURI(book.youtube || '#')}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="margin-top: 16px; display: inline-flex; align-items: center; gap: 8px;"><i class="fa-brands fa-youtube"></i> 유튜브로 그림책 읽기</a>
+                    <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+                        <a href="${encodeURI(book.youtube || '#')}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="display:inline-flex; align-items:center; gap:8px;"><i class="fa-brands fa-youtube"></i> 유튜브로 그림책 읽기</a>
+                        <a href="https://www.aladin.co.kr/search/wsearchresult.aspx?SearchWord=${encodeURIComponent(book.title)}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="display:inline-flex; align-items:center; gap:8px;"><i class="fa-solid fa-book"></i> 책 정보 보기</a>
+                        <button class="btn btn-secondary" onclick="startClassMode(${key})" style="display:inline-flex; align-items:center; gap:8px; border-color:var(--accent-sage); color:var(--accent-sage);"><i class="fa-solid fa-chalkboard-user"></i> 수업 진행 모드</button>
+                        <button class="btn btn-secondary" onclick="copyShareLink('book', books[${key}].title)" style="display:inline-flex; align-items:center; gap:8px;"><i class="fa-solid fa-link"></i> 링크 복사</button>
+                    </div>
                 </div>
                 
                 <div class="modal-section" style="margin-bottom:20px;">
@@ -4328,6 +4325,163 @@ window.openModal = function(type, key) {
     
     modal.classList.add("active");
 };
+
+// ── 수업 진행 모드 (프로젝터용 큰 화면 + 단계별 타이머) ──────────────────────
+let classModeState = { slides: [], idx: 0, seconds: 0, timerId: null, running: false };
+
+window.startClassMode = function (bookIdx) {
+    const book = books[bookIdx];
+    if (!book) return;
+
+    // 책에 연계된 토론 기법 찾기 (책 상세와 동일한 규칙)
+    const tech = book.technique ? (
+        techniques.find(t => t.name.trim() === book.technique.trim()) ||
+        techniques.find(t => book.technique.includes(t.name)) ||
+        techniques.find(t => t.name.includes(book.technique)) ||
+        techniques.find(t => book.technique.includes(t.name.split(" ")[0])) ||
+        techniques[0]
+    ) : techniques[0];
+
+    const proposition =
+        (book.debatePropositions && book.debatePropositions[0]) ||
+        (book.debateTopics && book.debateTopics[0]) ||
+        "오늘의 논제를 함께 정해 봅시다.";
+
+    const slides = [
+        { kind: "intro", label: "함께 읽기", title: book.title, sub: book.author, body: book.summary, youtube: book.youtube, minutes: 10 },
+        { kind: "topic", label: "오늘의 논제", title: proposition, sub: `토론 기법 · ${tech.name}`, body: tech.easy || tech.concept, minutes: 5 }
+    ];
+    (tech.steps || []).forEach((s, i) => {
+        slides.push({ kind: "step", label: `${i + 1}단계`, title: s.title, body: s.desc, minutes: 10 });
+    });
+    slides.push({ kind: "wrap", label: "생각 나누기", title: "오늘 토론, 이렇게 정리해 볼까요?", questions: book.debateTopics || [], minutes: 5 });
+
+    classModeState = { slides, idx: 0, seconds: 0, timerId: null, running: false };
+    const el = document.getElementById("class-mode");
+    if (!el) return;
+    const modal = document.getElementById("detail-modal");
+    if (modal) modal.classList.remove("active");   // 상세 모달은 닫고 전체 화면으로
+    el.classList.add("active");
+    document.body.classList.add("class-mode-open");
+    renderClassSlide();
+};
+
+function renderClassSlide() {
+    const el = document.getElementById("class-mode");
+    const st = classModeState;
+    const s = st.slides[st.idx];
+    if (!el || !s) return;
+
+    stopClassTimer();
+    st.seconds = (s.minutes || 5) * 60;
+
+    let bodyHTML = "";
+    if (s.kind === "intro") {
+        bodyHTML = `<p class="cm-body">${s.body || ""}</p>` +
+            (s.youtube ? `<a class="cm-btn-yt" href="${encodeURI(s.youtube)}" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> 그림책 읽어주기 영상 열기</a>` : "");
+    } else if (s.kind === "wrap") {
+        bodyHTML = `<ul class="cm-list">${(s.questions || []).map(q => `<li>${q}</li>`).join("")}</ul>`;
+    } else {
+        bodyHTML = `<p class="cm-body">${s.body || ""}</p>`;
+    }
+
+    el.innerHTML = `
+        <div class="cm-top">
+            <span class="cm-label">${s.label}</span>
+            <span class="cm-progress">${st.idx + 1} / ${st.slides.length}</span>
+            <button class="cm-close" onclick="exitClassMode()" aria-label="수업 모드 종료"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="cm-main">
+            <h2 class="cm-title ${s.kind === "topic" ? "cm-title-topic" : ""}">${s.title}</h2>
+            ${s.sub ? `<p class="cm-sub">${s.sub}</p>` : ""}
+            ${bodyHTML}
+        </div>
+        <div class="cm-bar">
+            <button class="cm-nav" onclick="classSlide(-1)" ${st.idx === 0 ? "disabled" : ""}><i class="fa-solid fa-chevron-left"></i> 이전</button>
+            <div class="cm-timer">
+                <button class="cm-t-btn" id="cm-play" onclick="toggleClassTimer()" aria-label="타이머 시작/멈춤"><i class="fa-solid fa-play"></i></button>
+                <span class="cm-time" id="cm-time">00:00</span>
+                <button class="cm-t-btn" onclick="addClassMinutes(1)">+1분</button>
+                <button class="cm-t-btn" onclick="resetClassTimer()" aria-label="타이머 초기화"><i class="fa-solid fa-rotate-left"></i></button>
+            </div>
+            <button class="cm-nav" onclick="classSlide(1)" ${st.idx === st.slides.length - 1 ? "disabled" : ""}>다음 <i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    `;
+    updateClassTime();
+}
+
+function updateClassTime() {
+    const t = document.getElementById("cm-time");
+    if (!t) return;
+    const s = Math.max(0, classModeState.seconds);
+    t.textContent = `${String(Math.floor(s / 60)).padStart(2, "0")}:${String(s % 60).padStart(2, "0")}`;
+    t.classList.toggle("cm-time-end", s === 0);
+}
+
+function stopClassTimer() {
+    if (classModeState.timerId) clearInterval(classModeState.timerId);
+    classModeState.timerId = null;
+    classModeState.running = false;
+}
+
+window.toggleClassTimer = function () {
+    const btn = document.getElementById("cm-play");
+    if (classModeState.running) {
+        stopClassTimer();
+        if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+        return;
+    }
+    classModeState.running = true;
+    classModeState.timerId = setInterval(() => {
+        classModeState.seconds = Math.max(0, classModeState.seconds - 1);
+        updateClassTime();
+        if (classModeState.seconds === 0) {
+            stopClassTimer();
+            const b = document.getElementById("cm-play");
+            if (b) b.innerHTML = '<i class="fa-solid fa-play"></i>';
+        }
+    }, 1000);
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+};
+
+window.addClassMinutes = function (m) {
+    classModeState.seconds += m * 60;
+    updateClassTime();
+};
+
+window.resetClassTimer = function () {
+    const s = classModeState.slides[classModeState.idx];
+    stopClassTimer();
+    classModeState.seconds = ((s && s.minutes) || 5) * 60;
+    const btn = document.getElementById("cm-play");
+    if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i>';
+    updateClassTime();
+};
+
+window.classSlide = function (d) {
+    const st = classModeState;
+    const n = st.idx + d;
+    if (n < 0 || n >= st.slides.length) return;
+    st.idx = n;
+    renderClassSlide();
+};
+
+window.exitClassMode = function () {
+    stopClassTimer();
+    const el = document.getElementById("class-mode");
+    if (el) { el.classList.remove("active"); el.innerHTML = ""; }
+    document.body.classList.remove("class-mode-open");
+};
+
+// 키보드: ← → 이동, Space 타이머, ESC 종료
+document.addEventListener("keydown", (e) => {
+    const el = document.getElementById("class-mode");
+    if (!el || !el.classList.contains("active")) return;
+    if (e.key === "ArrowRight") classSlide(1);
+    else if (e.key === "ArrowLeft") classSlide(-1);
+    else if (e.key === "Escape") exitClassMode();
+    else if (e.key === " ") { e.preventDefault(); toggleClassTimer(); }
+});
 
 function setupArchiveSearch() {
     const archiveSearchInput = document.getElementById("archive-search-input");
@@ -5268,7 +5422,7 @@ function setupMainSearch() {
                         </div>
                         <h4 style="margin-bottom: 10px; font-size: 1.1rem; color: var(--text-primary);">${ws.title}</h4>
                         <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px; line-height: 1.5;">${ws.desc}</p>
-                        <a href="${ws.link}" class="btn ${btnClass}" style="width: 100%; text-align: center;"><i class="fa-solid fa-download"></i> 다운로드</a>
+                        <a href="${encodeURI(ws.link)}" class="btn ${btnClass}" style="width: 100%; text-align: center;" target="_blank" rel="noopener"><i class="fa-solid fa-download"></i> 다운로드</a>
                     </div>
                 `;
             });
@@ -6258,9 +6412,87 @@ function setupWorksheetGenerator() {
 
             output.innerHTML = worksheetHTML;
             output.classList.remove("hidden");
+            setupWorksheetAutosave(book.title, type);
         });
     }
 }
+
+// 학습지 작성 내용 자동 저장 (같은 그림책·유형으로 다시 열면 복원)
+function setupWorksheetAutosave(bookTitle, type) {
+    const output = document.getElementById("worksheet-paper");
+    if (!output) return;
+    const key = `pbc-ws:${bookTitle}:${type}`;
+    const fields = Array.from(output.querySelectorAll("input, textarea, [contenteditable='true']"));
+    if (!fields.length) return;
+
+    // 저장된 내용 복원
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(key) || "{}"); } catch (e) { saved = {}; }
+    fields.forEach((f, i) => {
+        const v = saved[i];
+        if (v === undefined) return;
+        if (f.hasAttribute("contenteditable")) f.innerHTML = v;
+        else if (f.type === "checkbox" || f.type === "radio") f.checked = !!v;
+        else f.value = v;
+    });
+
+    const save = () => {
+        const data = {};
+        fields.forEach((f, i) => {
+            if (f.hasAttribute("contenteditable")) data[i] = f.innerHTML;
+            else if (f.type === "checkbox" || f.type === "radio") data[i] = f.checked;
+            else data[i] = f.value;
+        });
+        try { localStorage.setItem(key, JSON.stringify(data)); showWorksheetSaved(); } catch (e) { /* 용량 초과 등은 무시 */ }
+    };
+
+    let t = null;
+    const onChange = () => { clearTimeout(t); t = setTimeout(save, 500); };
+    output.addEventListener("input", onChange);
+    output.addEventListener("change", onChange);
+}
+
+function showToast(message) {
+    let el = document.getElementById("ws-saved-toast");
+    if (!el) {
+        el = document.createElement("div");
+        el.id = "ws-saved-toast";
+        el.className = "ws-saved-toast no-print";
+        document.body.appendChild(el);
+    }
+    el.innerHTML = `<i class="fa-solid fa-check"></i> ${message}`;
+    el.classList.add("show");
+    clearTimeout(el._hideTimer);
+    el._hideTimer = setTimeout(() => el.classList.remove("show"), 1600);
+}
+
+function showWorksheetSaved() { showToast("자동 저장됨"); }
+
+// 공유용 딥링크: ?book=제목 / ?tech=기법id 로 열면 해당 상세가 바로 열림
+function handleDeepLink() {
+    const params = new URLSearchParams(location.search);
+    const bookTitle = params.get("book");
+    const techId = params.get("tech");
+    if (bookTitle && typeof books !== "undefined") {
+        const idx = books.findIndex(b => b.title === bookTitle);
+        if (idx >= 0) setTimeout(() => openModal("book", idx), 350);
+    } else if (techId && typeof techniques !== "undefined") {
+        if (techniques.some(t => t.id === techId)) setTimeout(() => openModal("tech", techId), 350);
+    }
+}
+
+window.copyShareLink = function (type, value) {
+    const base = `${location.origin}${location.pathname}`;
+    const url = `${base}?${type}=${encodeURIComponent(value)}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(
+            () => showToast("링크가 복사되었어요"),
+            () => window.prompt("아래 주소를 복사하세요", url)
+        );
+    } else {
+        window.prompt("아래 주소를 복사하세요", url);
+    }
+};
 
 // Seat layout rendering function based on techId
 function renderSeatingLayout(techId) {

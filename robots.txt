@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://woorimalsam-lab.github.io/Picture-BC/sitemap.xml
