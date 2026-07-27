@@ -5511,13 +5511,72 @@ function setupWorksheetGenerator() {
         });
     }
 
+    // ── 그림책 내용 분석 블록: 책 데이터(줄거리·질문·논제·주제)를 기법별 관점으로 풀어 학습지 상단에 노출 ──
+    const wsShortSummary = (book) => {
+        const s = (book.summary || "").trim();
+        // 문장 단위로 잘라 2~3문장(약 180자)까지만
+        const parts = s.split(/(?<=다\.)\s+/);
+        let out = "";
+        for (const p of parts) { if ((out + p).length > 200 && out) break; out += (out ? " " : "") + p; if (out.length > 140) break; }
+        return out || s.slice(0, 180);
+    };
+
+    // 기법(학습지 유형)별로 '이 책을 어떤 렌즈로 읽는가'를 책 내용과 엮어 생성
+    const wsTechLens = (book, type) => {
+        const q  = (book.debateTopics && book.debateTopics[0]) || "";
+        const q2 = (book.debateTopics && book.debateTopics[1]) || "";
+        const pr = (book.debatePropositions && book.debatePropositions[0]) || "";
+        const t  = book.title;
+        const theme = (book.tags && book.tags.length) ? book.tags.map(x => x.replace(/^#/, "")).join(", ") : "";
+        const map = {
+            basic:        { focus: `《${t}》를 읽기 전-중-후로 나누어 천천히 만나며, 이야기가 던지는 질문을 내 것으로 만듭니다.`, point: q },
+            brainwriting: { focus: `《${t}》 속 인물이 마주한 문제 상황을 해결할 아이디어를 친구들과 릴레이로 쌓아 올립니다.`, point: q },
+            procon:       { focus: `《${t}》의 논제를 두고 찬성과 반대 역할을 번갈아 맡아, 인물의 선택을 양쪽에서 검증합니다.`, point: pr },
+            hotseating:   { focus: `《${t}》의 인물이 되어 뜨거운 의자에 앉습니다. 이야기 속 행동의 속마음을 인터뷰로 파고듭니다.`, point: q },
+            carousel:     { focus: `《${t}》의 질문을 모둠별로 돌아가며 살펴, 한 사람의 생각이 모두의 생각으로 넓어지게 합니다.`, point: q },
+            socratic:     { focus: `《${t}》의 문장과 장면을 근거로 삼아, 정답 없는 질문을 깊이 파고드는 대화를 나눕니다.`, point: q },
+            worldcafe:    { focus: `《${t}》가 담고 있는 주제(${theme})를 카페 테이블처럼 옮겨 다니며 자유롭게 브레인스토밍합니다.`, point: q2 || q },
+            argument:     { focus: `《${t}》의 논제에 대해 주장-이유-근거를 짝 맞추며 탄탄한 논증을 만듭니다.`, point: pr },
+            doublepyramid:{ focus: `《${t}》에 대한 여러 생각을 피라미드처럼 좁혀 가며 모둠의 최선의 결론으로 수렴합니다.`, point: pr },
+            angeldevil:   { focus: `《${t}》 인물의 선택 앞에서 천사와 악마가 되어 두 마음의 목소리를 대변합니다.`, point: q },
+            hexadebate:   { focus: `《${t}》의 인물·사건·배경·주제(${theme})를 육각형 카드로 잇고, 관계 속에서 갈등의 뿌리를 찾습니다.`, point: q },
+            traffic:      { focus: `《${t}》의 논제에 빨강(반대)·노랑(중립)·초록(찬성) 신호등을 들어 내 입장을 밝히고 까닭을 나눕니다.`, point: pr },
+            pmi:          { focus: `《${t}》 인물의 선택을 좋은 점(P)-아쉬운 점(M)-흥미로운 점(I)으로 골고루 뜯어봅니다.`, point: q },
+            twostray:     { focus: `《${t}》에 대한 모둠 생각을 둘은 남아 설명하고 둘은 떠나 배워 오며 지식을 순환시킵니다.`, point: q2 || q },
+            panorama:     { focus: `《${t}》의 사건을 주인공만이 아니라 곁의 인물·동물·사물의 렌즈로 번갈아 보며 입체적으로 읽습니다.`, point: q },
+            fan:          { focus: `《${t}》에 대한 앞사람 의견을 정확히 요약해야 내 의견을 얹을 수 있는 규칙으로, 경청을 연습합니다.`, point: q },
+            reason:       { focus: `《${t}》 속 인물은 '왜' 그렇게 행동했을까? 장면 속 단서를 증거 삼아 이유를 추리합니다.`, point: q },
+            valueline:    { focus: `《${t}》의 논제에 대해 0~10 가치수직선 위에 내 위치를 정하고, 친구의 이야기를 들으며 움직여 봅니다.`, point: pr }
+        };
+        return map[type] || { focus: `《${t}》를 토론의 눈으로 다시 읽어 봅니다.`, point: q };
+    };
+
+    const wsAnalysisBlock = (book, type) => {
+        const lens = wsTechLens(book, type);
+        const theme = (book.tags && book.tags.length) ? book.tags.map(x => `<span style="display:inline-block; background:#f4efe8; border:1px solid #e5dccf; border-radius:20px; padding:2px 10px; margin:2px 4px 2px 0; font-size:0.78rem; color:#6b5d4f;">${x.replace(/^#/, "")}</span>`).join("") : "";
+        return `
+            <div class="ws-analysis" style="margin-bottom:24px; border:1.5px solid #e8e0d4; border-radius:12px; overflow:hidden;">
+                <div style="background:#faf6ef; padding:10px 16px; border-bottom:1px solid #e8e0d4;">
+                    <strong style="font-size:0.95rem; color:#8a5a44;">📖 《${book.title}》 들여다보기</strong>
+                    <span style="font-size:0.78rem; color:#999; margin-left:8px;">${book.author || ""}</span>
+                </div>
+                <div style="padding:14px 16px; font-size:0.87rem; line-height:1.65; color:#333;">
+                    <p style="margin:0 0 10px;">${wsShortSummary(book)}</p>
+                    ${theme ? `<p style="margin:0 0 10px;">${theme}</p>` : ""}
+                    <p style="margin:0 0 6px; padding:10px 12px; background:#fdf3ee; border-left:4px solid #E07A5F; border-radius:6px;"><strong style="color:#c05b40;">🎯 이 활동에서 우리는</strong><br>${lens.focus}</p>
+                    ${lens.point ? `<p style="margin:0; padding:10px 12px; background:#f1f5ee; border-left:4px solid #708A6F; border-radius:6px;"><strong style="color:#54704f;">❓ 함께 붙잡을 질문</strong><br>${lens.point}</p>` : ""}
+                </div>
+            </div>
+        `;
+    };
+
     if(btn && bookSelect && typeSelect && output) {
         btn.addEventListener("click", () => {
             const bookIdx = bookSelect.value;
             const type = typeSelect.value;
             const book = books[bookIdx];
             let worksheetHTML = "";
-            
+
             // --- INJECT NEW_WORKSHEETS.JS LOGIC HERE ---
             worksheetHTML += `
                 <div class="worksheet-print-header no-print" style="text-align: right; margin-bottom: 20px;">
@@ -5528,8 +5587,9 @@ function setupWorksheetGenerator() {
                         <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">${book.title} - 토론 학습지</h3>
                         <p style="font-size: 1rem; color: #555;">학년: ______ 반: ______ 이름: ____________</p>
                     </div>
+                    ${wsAnalysisBlock(book, type)}
             `;
-            
+
             // We will concatenate the raw new_worksheets.js code later using PowerShell.
     if (type === "basic") {
         worksheetHTML += `
@@ -5558,7 +5618,7 @@ function setupWorksheetGenerator() {
     } else if (type === "brainwriting") {
         worksheetHTML += `
             <div class="ws-section">
-                <h4>💡 릴레이 과제: 주인공의 문제를 해결할 수 있는 창의적 조언 아이디어</h4>
+                <h4>💡 릴레이 과제: 《${book.title}》 속 문제를 해결할 창의적 조언 아이디어</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">(연계 토론 기법: 브레인라이팅)</p>
                 <div style="background-color: #fcf8f2; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--accent-coral);">
                     <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-coral);">📚 권장 토론 논제:</p>
@@ -5656,7 +5716,7 @@ function setupWorksheetGenerator() {
                 </table>
             </div>
             <div class="ws-section">
-                <h4>✉️ 주인공에게 마음의 안정을 주는 위로와 격려의 조언 편지</h4>
+                <h4>✉️ 《${book.title}》 주인공에게 마음의 안정을 주는 위로와 격려의 조언 편지</h4>
                 <textarea class="ws-textarea-box" placeholder="역지사지로 주인공의 외로움과 갈등을 온전히 공감한 후, 인물이 더 건강한 결단을 내릴 수 있도록 돕는 따뜻한 메시지를 적어주세요..."></textarea>
             </div>
         `;
@@ -5947,7 +6007,7 @@ function setupWorksheetGenerator() {
     } else if (type === "pmi") {
         worksheetHTML += `
             <div class="ws-section">
-                <h4>💡 토론 의제: 책 속 주인공의 제안이나 결정 분석하기</h4>
+                <h4>💡 토론 의제: 《${book.title}》 속 주인공의 제안이나 결정 분석하기</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">(연계 토론 기법: PMI 분석 토론)</p>
                 <div style="background-color: #fcf8f2; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--accent-coral);">
                     <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-coral);">📚 권장 토론 논제:</p>
@@ -6085,7 +6145,7 @@ function setupWorksheetGenerator() {
     } else if (type === "reason") {
         worksheetHTML += `
             <div class="ws-section">
-                <h4>💡 이유찾기 탐구: 왜 인물은 이러한 갈등 행동을 결정했을까?</h4>
+                <h4>💡 이유찾기 탐구: 《${book.title}》의 인물은 왜 이러한 행동을 결정했을까?</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">(연계 토론 기법: 이유찾기 토론)</p>
                 <div style="background-color: #f2f6fc; padding: 12px; border-radius: 8px; margin-bottom: 16px; border-left: 4px solid var(--accent-sage);">
                     <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-sage);">📚 권장 토론 논제:</p>
