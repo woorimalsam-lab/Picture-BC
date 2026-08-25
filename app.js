@@ -3352,7 +3352,7 @@ function initMobileNav() {
     });
 }
 
-// 방문자 카운터 (counterapi.dev 공유 집계)
+// 방문자 카운터 (abacus 공유 집계 API, 가입·키 불필요)
 //  - 오늘의 방문자: 날짜별 키(visits-YYYY-MM-DD)로 매일 0부터 시작
 //  - 누적 방문자: 고정 키(visits-total)로 계속 누적
 //  - 같은 브라우저는 하루 1회만 두 카운터를 함께 +1
@@ -3364,16 +3364,14 @@ function initVisitorCounter() {
     const now = new Date();
     const dayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
     const NS = "picturebc-debate";
+    const API = "https://abacus.jasoncameron.dev";
     const visitedFlag = `pbc-visited-${dayKey}`;         // 이 브라우저가 오늘 이미 집계됐는지
-    const localDayKey = `pbc-localcount-${dayKey}`;       // 오프라인 폴백: 오늘
-    const localTotalKey = "pbc-localtotal";              // 오프라인 폴백: 누적
     const alreadyVisited = localStorage.getItem(visitedFlag);
 
-    // 처음 방문이면 /up 으로 1 증가, 아니면 읽기만
-    const dayBase = `https://api.counterapi.dev/v1/${NS}/visits-${dayKey}`;
-    const totalBase = `https://api.counterapi.dev/v1/${NS}/visits-total`;
-    const dayUrl = alreadyVisited ? dayBase : `${dayBase}/up`;
-    const totalUrl = alreadyVisited ? totalBase : `${totalBase}/up`;
+    // 처음 방문이면 hit(1 증가), 이미 방문했으면 get(증가 없이 읽기)
+    const action = alreadyVisited ? "get" : "hit";
+    const dayUrl = `${API}/${action}/${NS}/visits-${dayKey}`;
+    const totalUrl = `${API}/${action}/${NS}/visits-total`;
 
     const animateTo = (el, target) => {
         if (!el) return;
@@ -3396,28 +3394,34 @@ function initVisitorCounter() {
         setTimeout(() => { el.textContent = target.toLocaleString(); }, duration + 150);
     };
 
-    const loadCounter = (el, url, localKey) => {
+    // 마지막으로 확인된 서버 값을 저장해 두었다가, 통신이 실패하면 그 값을 보여준다.
+    // (예전에는 실패 시 브라우저별 로컬 카운트를 써서 숫자가 1로 떨어져 '초기화'처럼 보였음)
+    const lastKey = (name) => `pbc-last:${name}`;
+
+    const loadCounter = (el, url, name) => {
+        if (!el) return;
+        const cached = parseInt(localStorage.getItem(lastKey(name)) || "0", 10);
+        if (cached > 0) el.textContent = cached.toLocaleString();   // 응답 전까지 마지막 값 표시
+
         fetch(url)
-            .then((r) => r.json())
+            .then((r) => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))))
             .then((data) => {
-                if (!data || typeof data.count !== "number") throw new Error("invalid response");
-                animateTo(el, data.count);
+                const v = Number(data && data.value);
+                if (!Number.isFinite(v)) throw new Error("invalid response");
+                localStorage.setItem(lastKey(name), String(v));
+                animateTo(el, Math.max(v, cached));   // 카운터는 줄지 않으므로 뒤로 가지 않게
             })
             .catch(() => {
-                // 네트워크 실패 시: 이 브라우저 기준 로컬 카운트로 대체
-                let c = parseInt(localStorage.getItem(localKey) || "0", 10);
-                if (!alreadyVisited) {
-                    c += 1;
-                    localStorage.setItem(localKey, String(c));
-                }
-                animateTo(el, c);
+                // 서버가 잠시 불안정해도 마지막으로 확인된 값을 유지 (초기화처럼 보이지 않게)
+                if (cached > 0) animateTo(el, cached);
+                else el.textContent = "–";
             });
     };
 
-    loadCounter(numEl, dayUrl, localDayKey);
-    loadCounter(totalEl, totalUrl, localTotalKey);
+    loadCounter(numEl, dayUrl, `visits-${dayKey}`);
+    loadCounter(totalEl, totalUrl, "visits-total");
 
-    // 오늘 방문 집계 완료 표시 (두 /up 요청을 보낸 뒤 한 번만)
+    // 오늘 방문 집계 완료 표시 (두 요청을 보낸 뒤 한 번만)
     if (!alreadyVisited) localStorage.setItem(visitedFlag, "1");
 }
 
