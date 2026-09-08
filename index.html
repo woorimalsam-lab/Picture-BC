@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=2.1.0">
+    <link rel="stylesheet" href="style.css?v=2.2.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -366,7 +366,7 @@
         <div class="section-title-wrapper">
             <span class="sub-title">Debate Propositions</span>
             <h2>토론 논제</h2>
-            <p>사실·가치·정책 세 갈래의 논제와 갈래별 읽기 주제를 한곳에 모았습니다. 배경 지식과 쟁점을 살펴보고, 그림책에서 논제를 끌어내는 방법도 익혀 보세요.</p>
+            <p>사실·가치·정책 세 갈래의 논제와 갈래별 읽기 주제를 한곳에 모았습니다. 국가데이터처(옛 통계청)의 공식 통계로 논거를 세우는 방법도 함께 담았습니다.</p>
         </div>
 
         <div class="topic-tabs">
@@ -375,6 +375,7 @@
             <button class="topic-tab-btn" data-topic-tab="value"><i class="fa-solid fa-scale-balanced"></i> 가치 논제</button>
             <button class="topic-tab-btn" data-topic-tab="derive"><i class="fa-solid fa-wand-magic-sparkles"></i> 그림책에서 논제 뽑기</button>
             <button class="topic-tab-btn" data-topic-tab="reading"><i class="fa-solid fa-book-open"></i> 갈래별 읽기 주제</button>
+            <button class="topic-tab-btn" data-topic-tab="data"><i class="fa-solid fa-chart-column"></i> 통계로 논거 만들기</button>
         </div>
 
         <!-- 논제 목록 패널 -->
@@ -421,6 +422,9 @@
             <div class="reading-board" id="reading-board"></div>
             <div class="reading-grid" id="reading-grid"></div>
         </div>
+
+        <!-- 통계로 논거 만들기 -->
+        <div id="topic-panel-data" style="display:none;"></div>
     </section>
 
     </main>
@@ -470,6 +474,6 @@
     <div id="class-mode" class="class-mode no-print"></div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=2.1.0"></script>
+    <script src="app.js?v=2.2.0"></script>
 </body>
 </html>

@@ -4406,6 +4406,103 @@ window.openModal = function(type, key) {
 };
 
 // ── 토론 논제 (정책 논제 / 가치 논제) ─────────────────────────────────────────
+// ───────── 통계 자료 출처 ─────────
+// 2025년 10월 정부조직 개편으로 '통계청'이 '국가데이터처'로 바뀌었습니다.
+// (다만 경인·동북·호남·동남·충청 지방통계청은 '통계청' 이름을 그대로 씁니다.)
+const STAT_SOURCES = {
+    kosis: {
+        name: "KOSIS 국가통계포털", org: "국가데이터처(옛 통계청)", cycle: "수시 갱신",
+        url: "https://kosis.kr", icon: "fa-database", group: "기본",
+        search: "https://kosis.kr/search/search.do?query=",
+        desc: "우리나라 공식 통계가 모두 모이는 곳입니다. 논거를 찾을 때 가장 먼저 들러 보세요."
+    },
+    index: {
+        name: "e-나라지표", org: "국가데이터처", cycle: "수시 갱신",
+        url: "https://www.index.go.kr", icon: "fa-chart-line", group: "기본",
+        desc: "핵심 지표를 그래프와 해설로 정리해 둡니다. 수치의 '뜻'까지 읽고 싶을 때 좋습니다."
+    },
+    mods: {
+        name: "국가데이터처 보도자료", org: "국가데이터처", cycle: "수시",
+        url: "https://mods.go.kr", icon: "fa-newspaper", group: "기본",
+        desc: "새 통계가 나오면 가장 먼저 올라옵니다. 최신 수치를 확인할 때 씁니다."
+    },
+    sgis: {
+        name: "SGIS 통계지리정보서비스", org: "국가데이터처", cycle: "수시 갱신",
+        url: "https://sgis.mods.go.kr/view/index", icon: "fa-map-location-dot", group: "기본",
+        desc: "지도 위에 통계를 얹어 보여 줍니다. '우리 동네는 어떨까'를 확인하기에 좋습니다."
+    },
+
+    edu: {
+        name: "KOSIS 통계놀이터", org: "국가데이터처", cycle: "상시",
+        url: "https://kosis.kr/edu/index/index.do", icon: "fa-child-reaching", group: "수업용",
+        desc: "어린이 눈높이로 통계를 보여 주는 공간입니다. 초등 수업에서 바로 띄워 쓸 수 있습니다."
+    },
+    tong: {
+        name: "통그라미", org: "국가데이터인재개발원", cycle: "상시",
+        url: "https://tong.mods.go.kr", icon: "fa-square-poll-vertical", group: "수업용",
+        desc: "학생이 직접 설문을 만들고 돌려 자기 자료를 모을 수 있습니다. 공식 통계가 없는 논제에 씁니다."
+    },
+    kess: {
+        name: "교육통계서비스(KESS)", org: "한국교육개발원", cycle: "매년",
+        url: "https://kess.kedi.re.kr", icon: "fa-graduation-cap", group: "수업용",
+        desc: "학생 수, 학급 규모, 사교육 등 학교와 관련된 통계를 다룹니다."
+    },
+
+    kdca: {
+        name: "청소년건강행태조사", org: "질병관리청", cycle: "매년",
+        url: "https://www.kdca.go.kr", icon: "fa-heart-pulse", group: "청소년·생활",
+        desc: "식습관, 수면, 신체활동, 정신건강 등 청소년 생활을 매년 조사합니다."
+    },
+    iapc: {
+        name: "스마트폰 과의존 실태조사", org: "과학기술정보통신부·한국지능정보사회진흥원", cycle: "매년",
+        url: "https://www.iapc.or.kr", icon: "fa-mobile-screen", group: "청소년·생활",
+        desc: "연령대별 스마트폰 과의존 위험군 비율을 해마다 발표합니다."
+    },
+    mogef: {
+        name: "청소년 매체이용 및 유해환경 실태조사", org: "여성가족부", cycle: "격년",
+        url: "https://www.mogef.go.kr", icon: "fa-tv", group: "청소년·생활",
+        desc: "청소년이 어떤 매체를 얼마나 이용하는지 조사합니다."
+    },
+    kpf: {
+        name: "언론수용자 조사 · 10대 청소년 미디어 이용 조사", org: "한국언론진흥재단", cycle: "매년·격년",
+        url: "https://www.kpf.or.kr", icon: "fa-satellite-dish", group: "청소년·생활",
+        desc: "뉴스 이용과 신뢰도, 허위정보 경험을 다룹니다. 미디어 논제의 기본 자료입니다."
+    },
+    mcst: {
+        name: "국민 독서실태조사", org: "문화체육관광부", cycle: "격년",
+        url: "https://www.mcst.go.kr", icon: "fa-book-open-reader", group: "청소년·생활",
+        desc: "연간 독서량과 독서 시간, 읽지 않는 이유를 조사합니다."
+    },
+    climate: {
+        name: "기후정보포털", org: "기상청", cycle: "수시 갱신",
+        url: "https://www.climate.go.kr", icon: "fa-temperature-half", group: "청소년·생활",
+        desc: "기온 변화와 기후 전망 자료를 제공합니다. 환경 논제의 근거로 씁니다."
+    }
+};
+
+// KOSIS 검색 주소 만들기
+function statUrl(s) {
+    const src = STAT_SOURCES[s.src];
+    if (!src) return "#";
+    return (src.search && s.q) ? src.search + encodeURIComponent(s.q) : src.url;
+}
+
+// 통계 자료를 읽을 때 확인할 것들
+const STAT_CHECKS = [
+    { label: "누가 조사했나", desc: "국가 기관인가, 관련 이익이 있는 곳인가? 출처를 먼저 밝힙니다.", icon: "fa-building-columns" },
+    { label: "언제 조사했나", desc: "10년 전 수치로 오늘을 말하고 있지는 않은지 확인합니다.", icon: "fa-calendar-day" },
+    { label: "무엇을 셌나", desc: "'청소년'이 몇 살까지인지처럼, 정의가 다르면 숫자도 달라집니다.", icon: "fa-ruler" },
+    { label: "누구와 견주나", desc: "비교 대상이 바뀌면 같은 수치도 크게도, 작게도 보입니다.", icon: "fa-scale-unbalanced" },
+    { label: "몇 명에게 물었나", desc: "표본이 적거나 한쪽으로 쏠렸다면 전체를 대표하기 어렵습니다.", icon: "fa-users" }
+];
+
+// 통계로 논거 만드는 3단계
+const STAT_STEPS = [
+    { no: "1", label: "주장", desc: "내가 말하려는 바를 한 문장으로 적습니다.", sample: "청소년의 스마트폰 의존이 심각하다." },
+    { no: "2", label: "자료", desc: "그 주장과 맞닿는 수치를 출처·연도와 함께 옮겨 적습니다.", sample: "○○ 실태조사(과기정통부, ○○년)에 따르면 청소년 과의존 위험군은 ○○%다." },
+    { no: "3", label: "해석", desc: "그 수치가 왜 내 주장을 뒷받침하는지 내 말로 잇습니다.", sample: "열 명 중 ○명이 위험군이라면, 개인의 의지 문제로만 보기 어렵다." }
+];
+
 const TOPIC_TYPE_INFO = {
     fact: {
         label: "사실 논제",
@@ -5289,6 +5386,221 @@ const debateTopicsDB = [
       books: ["이파라파냐무냐무", "감기 걸린 물고기"] },
 ];
 
+// ───────── 논제별 근거 통계 연결 ─────────
+// q 값은 KOSIS 검색어입니다. 수치는 해마다 바뀌므로 반드시 최신 자료를 확인하세요.
+const TOPIC_STATS = {
+    "게임을 많이 하면 공격적으로 변한다.": [
+        { src: "iapc", label: "청소년 스마트폰·게임 과의존 위험군 비율" },
+        { src: "mogef", label: "청소년 매체이용 실태조사 – 게임 이용 시간" },
+        { src: "kosis", label: "소년 범죄 발생 추이", q: "소년범죄" }
+    ],
+    "아침을 먹으면 공부가 더 잘된다.": [
+        { src: "kdca", label: "청소년건강행태조사 – 아침식사 결식률" },
+        { src: "kosis", label: "청소년 아침 결식률 통계", q: "아침식사 결식률" },
+        { src: "tong", label: "우리 반 아침 식사 습관 직접 조사하기" }
+    ],
+    "반려동물을 기르면 아이의 정서에 도움이 된다.": [
+        { src: "kosis", label: "반려동물 양육 가구 현황", q: "반려동물" },
+        { src: "tong", label: "공식 통계가 적은 주제 – 직접 설문으로 자료 만들기" }
+    ],
+    "손으로 쓰면 더 잘 기억된다.": [
+        { src: "tong", label: "학급에서 손글씨·자판 기억 실험 후 자료 만들기" },
+        { src: "mcst", label: "국민 독서실태조사 – 종이책과 전자책 이용" }
+    ],
+    "칭찬은 사람을 더 노력하게 만든다.": [
+        { src: "tong", label: "칭찬 경험과 도전 의향 – 직접 설문 만들기" },
+        { src: "kosis", label: "사회조사 – 청소년 자아존중감·만족도", q: "청소년 자아존중감" }
+    ],
+    "우리 사회는 예전보다 살기 좋아졌다.": [
+        { src: "index", label: "e-나라지표 – 기대수명·소득·교육 수준 추이" },
+        { src: "kosis", label: "삶의 질 지표와 생활 만족도", q: "삶의 질 지표" },
+        { src: "kosis", label: "소득 불평등 지표(지니계수)", q: "지니계수" }
+    ],
+    "스마트폰 사용은 청소년의 집중력을 떨어뜨린다.": [
+        { src: "iapc", label: "스마트폰 과의존 실태조사 – 청소년 위험군 비율" },
+        { src: "mogef", label: "청소년 매체이용 실태조사 – 하루 이용 시간" },
+        { src: "kdca", label: "청소년건강행태조사 – 수면 시간과 스트레스" }
+    ],
+    "SNS를 오래 쓸수록 우울감이 커진다.": [
+        { src: "kdca", label: "청소년건강행태조사 – 우울감 경험률" },
+        { src: "kpf", label: "10대 청소년 미디어 이용 조사 – SNS 이용 시간" },
+        { src: "kosis", label: "청소년 정신건강 지표", q: "청소년 우울감 경험률" }
+    ],
+    "인공지능은 사람의 일자리를 줄이고 있다.": [
+        { src: "kosis", label: "경제활동인구조사 – 산업·직업별 취업자 수", q: "산업별 취업자" },
+        { src: "index", label: "e-나라지표 – 고용률과 실업률 추이" },
+        { src: "kosis", label: "사업체 종사자 통계", q: "사업체 종사자" }
+    ],
+    "채식은 육식보다 건강에 이롭다.": [
+        { src: "kosis", label: "국민건강영양조사 – 식품 섭취와 만성질환", q: "국민건강영양조사" },
+        { src: "kdca", label: "청소년건강행태조사 – 채소·과일 섭취율" }
+    ],
+    "책을 많이 읽을수록 문해력이 높다.": [
+        { src: "mcst", label: "국민 독서실태조사 – 연간 독서량과 독서 시간" },
+        { src: "kess", label: "교육통계 – 학업성취 및 학교도서관 현황" },
+        { src: "kosis", label: "독서 인구와 독서 시간", q: "독서인구" }
+    ],
+    "재택근무는 생산성을 높인다.": [
+        { src: "kosis", label: "경제활동인구조사 – 유연근무제 활용 현황", q: "유연근무" },
+        { src: "index", label: "e-나라지표 – 근로시간과 노동생산성" }
+    ],
+    "세대 갈등은 예전보다 심해졌다.": [
+        { src: "kosis", label: "사회조사 – 사회 갈등 인식", q: "사회갈등 인식" },
+        { src: "index", label: "e-나라지표 – 연령별 고용률과 소득" },
+        { src: "kosis", label: "연령별 인구 구조 변화", q: "장래인구추계" }
+    ],
+    "현재의 기후변화는 인간 활동이 주된 원인이다.": [
+        { src: "climate", label: "기후정보포털 – 우리나라 기온 변화 추이" },
+        { src: "index", label: "e-나라지표 – 온실가스 배출량" },
+        { src: "kosis", label: "기후변화 관련 통계", q: "온실가스 배출량" }
+    ],
+    "사형제는 범죄를 억제하는 효과가 있다.": [
+        { src: "kosis", label: "범죄 발생 및 검거 현황", q: "범죄발생" },
+        { src: "index", label: "e-나라지표 – 강력범죄 발생 추이" }
+    ],
+    "최저임금 인상은 고용을 줄인다.": [
+        { src: "index", label: "e-나라지표 – 최저임금 추이" },
+        { src: "kosis", label: "경제활동인구조사 – 고용률·취업자 수", q: "고용률" },
+        { src: "kosis", label: "임금 수준별 근로자 분포", q: "임금근로자" }
+    ],
+    "저출생의 가장 큰 원인은 경제적 부담이다.": [
+        { src: "kosis", label: "인구동향조사 – 출생아 수와 합계출산율", q: "합계출산율" },
+        { src: "kosis", label: "사회조사 – 결혼·출산에 대한 인식", q: "결혼에 대한 견해" },
+        { src: "index", label: "e-나라지표 – 주거비와 사교육비" }
+    ],
+    "가짜뉴스는 사실보다 빠르고 넓게 퍼진다.": [
+        { src: "kpf", label: "언론수용자 조사 – 허위·조작 정보 경험과 뉴스 신뢰도" },
+        { src: "kosis", label: "사회조사 – 정보 이용과 신뢰", q: "인터넷 이용" }
+    ],
+    "일회용 플라스틱의 생산과 판매를 법으로 금지해야 한다.": [
+        { src: "kosis", label: "생활폐기물 발생량과 재활용률", q: "폐기물 발생량" },
+        { src: "index", label: "e-나라지표 – 폐기물 처리 현황" }
+    ],
+    "일회용 컵 보증금제를 전국으로 확대해야 한다.": [
+        { src: "kosis", label: "폐기물 발생 및 재활용 통계", q: "재활용" }
+    ],
+    "탄소세를 도입해야 한다.": [
+        { src: "index", label: "e-나라지표 – 온실가스 배출량과 에너지 소비" },
+        { src: "kosis", label: "에너지 수급 및 온실가스 통계", q: "온실가스" }
+    ],
+    "원자력 발전 비중을 늘려야 한다.": [
+        { src: "index", label: "e-나라지표 – 발전원별 전력 생산 비중" },
+        { src: "kosis", label: "전력 수급과 발전 설비 현황", q: "발전전력량" }
+    ],
+    "기본소득을 도입해야 한다.": [
+        { src: "kosis", label: "가계금융복지조사 – 소득 분배와 빈곤율", q: "상대적 빈곤율" },
+        { src: "index", label: "e-나라지표 – 사회복지 지출 규모" }
+    ],
+    "국민연금 의무가입을 폐지해야 한다.": [
+        { src: "index", label: "e-나라지표 – 국민연금 가입자와 수급자 현황" },
+        { src: "kosis", label: "고령자 소득과 빈곤율", q: "노인 빈곤율" }
+    ],
+    "정년을 65세로 연장해야 한다.": [
+        { src: "kosis", label: "고령층 경제활동 참가율", q: "고령층 부가조사" },
+        { src: "index", label: "e-나라지표 – 고령화 추이와 부양비" }
+    ],
+    "주 4일제를 도입해야 한다.": [
+        { src: "index", label: "e-나라지표 – 연간 근로시간 국제 비교" },
+        { src: "kosis", label: "취업자 주당 평균 취업시간", q: "주당 취업시간" }
+    ],
+    "청소년에게도 성인과 똑같은 최저임금을 적용해야 한다.": [
+        { src: "index", label: "e-나라지표 – 최저임금 추이" },
+        { src: "mogef", label: "청소년 근로·아르바이트 실태" }
+    ],
+    "청소년의 아르바이트 가능 시간을 더 엄격히 제한해야 한다.": [
+        { src: "mogef", label: "청소년 근로 및 아르바이트 실태조사" },
+        { src: "kdca", label: "청소년건강행태조사 – 수면 시간" }
+    ],
+    "청소년의 SNS 이용 시간을 법으로 제한해야 한다.": [
+        { src: "iapc", label: "스마트폰 과의존 실태조사 – 청소년 위험군" },
+        { src: "kpf", label: "10대 청소년 미디어 이용 조사" },
+        { src: "mogef", label: "청소년 매체이용 실태조사" }
+    ],
+    "어린이용 스마트폰에는 사용 시간 제한 기능을 의무로 넣어야 한다.": [
+        { src: "iapc", label: "유아·아동 스마트폰 과의존 위험군 비율" },
+        { src: "mogef", label: "아동·청소년 매체 이용 시간" }
+    ],
+    "어린이가 쓰는 앱에는 광고를 금지해야 한다.": [
+        { src: "kpf", label: "어린이 미디어 이용 및 광고 노출 조사" },
+        { src: "mogef", label: "청소년 유해환경 실태조사" }
+    ],
+    "어린이 보호구역의 속도 제한을 더 낮춰야 한다.": [
+        { src: "kosis", label: "어린이 교통사고 발생 및 사상자 현황", q: "어린이 교통사고" },
+        { src: "index", label: "e-나라지표 – 교통사고 추이" },
+        { src: "sgis", label: "우리 동네 어린이 보호구역 지도로 보기" }
+    ],
+    "감염병 백신 접종을 의무화해야 한다.": [
+        { src: "kdca", label: "예방접종률 및 감염병 발생 현황" },
+        { src: "index", label: "e-나라지표 – 감염병 관리 지표" }
+    ],
+    "설탕과 정크푸드에 세금을 매겨야 한다.": [
+        { src: "kdca", label: "청소년건강행태조사 – 단맛 음료 섭취율과 비만율" },
+        { src: "kosis", label: "비만 유병률 통계", q: "비만 유병률" }
+    ],
+    "어린이에게 고카페인 음료를 팔지 못하게 해야 한다.": [
+        { src: "kdca", label: "청소년건강행태조사 – 고카페인 음료 섭취율, 수면 시간" }
+    ],
+    "청소년의 미용 목적 성형수술을 법으로 제한해야 한다.": [
+        { src: "kdca", label: "청소년건강행태조사 – 체형 인식과 체중 조절 시도" },
+        { src: "tong", label: "외모 인식 – 직접 설문으로 자료 만들기" }
+    ],
+    "공공장소의 흡연 구역을 완전히 없애야 한다.": [
+        { src: "index", label: "e-나라지표 – 흡연율 추이" },
+        { src: "kdca", label: "청소년건강행태조사 – 흡연 경험률" }
+    ],
+    "청소년의 대중교통 요금을 무료로 해야 한다.": [
+        { src: "kosis", label: "가계동향조사 – 가구 교통비 지출", q: "가계동향조사" },
+        { src: "sgis", label: "지역별 대중교통 접근성 지도" }
+    ],
+    "1인 가구를 위한 공공 주택을 대폭 늘려야 한다.": [
+        { src: "kosis", label: "인구주택총조사 – 1인 가구 비율", q: "1인가구" },
+        { src: "index", label: "e-나라지표 – 주택 보급률과 주거비 부담" }
+    ],
+    "인구가 줄어드는 지역에 이민을 적극 확대해야 한다.": [
+        { src: "kosis", label: "장래인구추계와 지역별 인구 변화", q: "장래인구추계" },
+        { src: "sgis", label: "지도로 보는 인구 감소 지역" },
+        { src: "index", label: "e-나라지표 – 체류 외국인 현황" }
+    ],
+    "선거권 연령을 만 16세로 낮춰야 한다.": [
+        { src: "index", label: "e-나라지표 – 연령대별 투표율" },
+        { src: "kosis", label: "선거 투표율 통계", q: "투표율" }
+    ],
+    "투표를 의무화해야 한다.": [
+        { src: "index", label: "e-나라지표 – 역대 선거 투표율" },
+        { src: "kosis", label: "연령대별 투표율", q: "투표율" }
+    ],
+    "유기 동물 보호소 운영을 국가가 책임져야 한다.": [
+        { src: "kosis", label: "유기동물 발생 및 처리 현황", q: "유기동물" }
+    ],
+    "동물원을 단계적으로 폐지해야 한다.": [
+        { src: "kosis", label: "동물원 등록 현황과 이용객 수", q: "동물원" }
+    ],
+    "가정의 집안일은 가족이 나누어 맡도록 규칙을 정해야 한다.": [
+        { src: "kosis", label: "생활시간조사 – 성별 가사노동 시간", q: "생활시간조사" },
+        { src: "kosis", label: "사회조사 – 가사 분담에 대한 견해", q: "가사분담" }
+    ],
+    "대중교통의 노약자·임산부 배려석을 더 늘려야 한다.": [
+        { src: "index", label: "e-나라지표 – 고령 인구 비율" },
+        { src: "kosis", label: "고령자 통계", q: "고령자통계" }
+    ],
+    "확인되지 않은 소문을 퍼뜨린 사람에게 책임을 물어야 한다.": [
+        { src: "kpf", label: "언론수용자 조사 – 허위·조작 정보 경험률" }
+    ],
+    "뉴스 기사를 AI 학습에 이용할 때 언론사에 대가를 지급해야 한다.": [
+        { src: "kpf", label: "언론산업 실태조사 – 언론사 매출 구조" }
+    ],
+    "공원과 도서관에는 무료 와이파이를 반드시 제공해야 한다.": [
+        { src: "index", label: "e-나라지표 – 인터넷 이용률과 정보격차" },
+        { src: "sgis", label: "우리 동네 공공시설 분포 지도" }
+    ]
+};
+
+// 논제에 근거 통계 붙이기
+debateTopicsDB.forEach(t => {
+    const s = TOPIC_STATS[t.claim];
+    if (s) t.stats = s;
+});
+
 // 대주제(큰 갈래) — 세부 분야를 6개 묶음으로 정리
 const TOPIC_THEMES = [
     { key: "self",     label: "나와 마음",         icon: "fa-face-smile",   fields: ["자아", "감정", "성장", "용기", "진로", "인식"] },
@@ -5378,6 +5690,11 @@ function renderTopicList(type) {
                 ? `<button type="button" class="topic-book" onclick="openModal('book', ${idx})"><i class="fa-solid fa-book"></i> ${title}</button>`
                 : `<span class="topic-book topic-book-plain"><i class="fa-solid fa-book"></i> ${title}</span>`;
         }).join("");
+        const statBtns = (t.stats || []).map(st => {
+            const src = STAT_SOURCES[st.src];
+            if (!src) return "";
+            return `<a class="topic-stat" href="${statUrl(st)}" target="_blank" rel="noopener noreferrer" title="${src.name} · ${src.org}"><i class="fa-solid ${src.icon}"></i> ${st.label} <em>${src.org}</em></a>`;
+        }).join("");
         return `
         <article class="topic-card">
             <div class="topic-card-top">
@@ -5399,6 +5716,7 @@ function renderTopicList(type) {
                 </div>
             </details>
             ${bookBtns ? `<div class="topic-books"><span class="topic-books-label">연계 그림책</span>${bookBtns}</div>` : ""}
+            ${statBtns ? `<div class="topic-stats"><span class="topic-stats-label"><i class="fa-solid fa-chart-column"></i> 근거로 쓸 통계</span><div class="topic-stat-list">${statBtns}</div></div>` : ""}
         </article>`;
     };
 
@@ -5471,6 +5789,111 @@ function renderTopicFromBook(bookIdx) {
         </div>`;
 }
 
+// ───────── 통계로 논거 만들기 패널 ─────────
+function renderStatPanel() {
+    const box = document.getElementById("topic-panel-data");
+    if (!box || box.dataset.done === "1") return;
+
+    const groups = {};
+    Object.keys(STAT_SOURCES).forEach(k => {
+        const s = STAT_SOURCES[k];
+        (groups[s.group] = groups[s.group] || []).push(s);
+    });
+
+    box.innerHTML = `
+        <p class="topic-panel-intro">주장만으로는 토론이 겉돕니다. 국가가 만든 공식 통계를 근거로 삼으면, 아이들의 말이 훨씬 단단해집니다. 자료를 찾고, 읽고, 논거로 바꾸는 방법을 한자리에 모았습니다.</p>
+
+        <div class="stat-block">
+            <h4 class="stat-h"><i class="fa-solid fa-list-ol"></i> 통계로 논거 만드는 세 단계</h4>
+            <div class="stat-steps">
+                ${STAT_STEPS.map(s => `
+                    <div class="stat-step">
+                        <span class="stat-step-no">${s.no}</span>
+                        <strong>${s.label}</strong>
+                        <p>${s.desc}</p>
+                        <p class="stat-step-sample">예 · ${s.sample}</p>
+                    </div>`).join("")}
+            </div>
+            <p class="stat-tip"><i class="fa-solid fa-lightbulb"></i> <strong>자료는 스스로 말하지 않습니다.</strong> 3단계 '해석'을 빠뜨리면 숫자를 읽어 준 것일 뿐, 논거가 되지 못합니다.</p>
+        </div>
+
+        <div class="stat-block">
+            <h4 class="stat-h"><i class="fa-solid fa-magnifying-glass"></i> 통계 바로 찾아보기</h4>
+            <p class="stat-sub">찾고 싶은 낱말을 넣으면 KOSIS 국가통계포털에서 바로 검색합니다.</p>
+            <form class="stat-search" id="stat-search-form">
+                <input type="text" id="stat-search-q" placeholder="예 · 합계출산율, 폐기물 발생량, 청소년 수면시간" aria-label="통계 검색어">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i> 검색</button>
+            </form>
+            <div class="stat-quick">
+                ${["합계출산율", "1인가구", "생활시간조사", "폐기물 발생량", "고용률", "독서인구", "온실가스 배출량", "어린이 교통사고"]
+                    .map(q => `<button type="button" class="stat-quick-btn" data-q="${q}">${q}</button>`).join("")}
+            </div>
+        </div>
+
+        <div class="stat-block">
+            <h4 class="stat-h"><i class="fa-solid fa-circle-check"></i> 자료를 쓰기 전, 다섯 가지 확인</h4>
+            <div class="stat-checks">
+                ${STAT_CHECKS.map(c => `
+                    <div class="stat-check">
+                        <i class="fa-solid ${c.icon}"></i>
+                        <strong>${c.label}</strong>
+                        <span>${c.desc}</span>
+                    </div>`).join("")}
+            </div>
+        </div>
+
+        <div class="stat-warn">
+            <h4><i class="fa-solid fa-triangle-exclamation"></i> 함께 나타난다고 원인은 아닙니다</h4>
+            <p>아이스크림이 많이 팔리는 날에 물놀이 사고도 늘어납니다. 그렇다고 아이스크림이 사고의 원인은 아닙니다. 둘 다 <strong>더운 날씨</strong> 때문이지요.</p>
+            <p>통계를 근거로 쓸 때는 <strong>“정말 이것이 원인일까, 아니면 다른 무엇이 둘 다를 만들었을까?”</strong>를 반드시 되물어야 합니다. 사실 논제 토론에서 가장 자주 갈리는 지점입니다.</p>
+        </div>
+
+        <div class="stat-block">
+            <h4 class="stat-h"><i class="fa-solid fa-database"></i> 어디서 찾을까 · 믿을 만한 자료실</h4>
+            <p class="stat-sub">2025년 10월부터 <strong>통계청</strong>은 <strong>국가데이터처</strong>로 이름이 바뀌었습니다.</p>
+            ${Object.keys(groups).map(g => `
+                <div class="stat-group">
+                    <h5 class="stat-group-title">${g}</h5>
+                    <div class="stat-sources">
+                        ${groups[g].map(s => `
+                            <a class="stat-source" href="${s.url}" target="_blank" rel="noopener noreferrer">
+                                <span class="stat-source-ico"><i class="fa-solid ${s.icon}"></i></span>
+                                <span class="stat-source-body">
+                                    <strong>${s.name}</strong>
+                                    <em>${s.org} · ${s.cycle}</em>
+                                    <span>${s.desc}</span>
+                                </span>
+                                <i class="fa-solid fa-arrow-up-right-from-square stat-source-go"></i>
+                            </a>`).join("")}
+                    </div>
+                </div>`).join("")}
+        </div>
+
+        <div class="stat-block stat-classroom">
+            <h4 class="stat-h"><i class="fa-solid fa-chalkboard-user"></i> 수업에서 이렇게 써 보세요</h4>
+            <ol class="stat-howto">
+                <li><strong>논제 카드에서 출발합니다.</strong> 사실 논제와 정책 논제 카드 아래에 <em>‘근거로 쓸 통계’</em>가 붙어 있습니다. 눌러서 자료를 함께 살펴보세요.</li>
+                <li><strong>모둠마다 자료 하나씩 맡깁니다.</strong> 같은 논제라도 어떤 자료를 골랐느냐에 따라 주장이 달라지는 것을 겪게 합니다.</li>
+                <li><strong>세 단계 틀에 채워 넣게 합니다.</strong> 주장 → 자료(출처·연도 포함) → 해석 순으로 한 문장씩 쓰면 그대로 입론이 됩니다.</li>
+                <li><strong>공식 통계가 없으면 직접 만듭니다.</strong> 통그라미에서 학급 설문을 만들어 돌리면, 우리 반의 자료로 토론할 수 있습니다.</li>
+                <li><strong>더 나아가려면</strong> 전국학생통계활용대회의 통계 포스터 형식으로 정리해 봅니다.</li>
+            </ol>
+        </div>`;
+
+    const go = (q) => {
+        const t = (q || "").trim();
+        if (t) window.open(STAT_SOURCES.kosis.search + encodeURIComponent(t), "_blank", "noopener");
+    };
+    const form = document.getElementById("stat-search-form");
+    if (form) form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        go(document.getElementById("stat-search-q").value);
+    });
+    box.querySelectorAll(".stat-quick-btn").forEach(b => b.addEventListener("click", () => go(b.dataset.q)));
+
+    box.dataset.done = "1";
+}
+
 function initTopicSection() {
     const tabs = document.querySelectorAll(".topic-tab-btn");
     if (!tabs.length) return;
@@ -5480,12 +5903,17 @@ function initTopicSection() {
     let current = "fact";
 
     const panelReading = document.getElementById("topic-panel-reading");
+    const panelData = document.getElementById("topic-panel-data");
     const show = (key) => {
         tabs.forEach(b => b.classList.toggle("active", b.dataset.topicTab === key));
         const isList = key === "fact" || key === "policy" || key === "value";
         if (panelList) panelList.style.display = isList ? "block" : "none";
         if (panelDerive) panelDerive.style.display = key === "derive" ? "block" : "none";
         if (panelReading) panelReading.style.display = key === "reading" ? "block" : "none";
+        if (panelData) {
+            panelData.style.display = key === "data" ? "block" : "none";
+            if (key === "data") renderStatPanel();
+        }
         if (isList) { current = key; topicState = { theme: "all", level: "all" }; renderTopicList(key); }
     };
 
