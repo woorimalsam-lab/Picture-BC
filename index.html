@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.7.0">
+    <link rel="stylesheet" href="style.css?v=1.7.1">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -387,6 +387,11 @@
                     <option value="중학·고등">중학·고등</option>
                     <option value="고등">고등</option>
                 </select>
+                <select id="topic-source" aria-label="출처 선택">
+                    <option value="all">출처 전체</option>
+                    <option value="contest">실제 대회 논제만</option>
+                    <option value="own">수업용 논제만</option>
+                </select>
                 <span class="topic-count" id="topic-count"></span>
             </div>
             <div class="topic-grid" id="topic-grid"></div>
@@ -470,6 +475,6 @@
     <div id="class-mode" class="class-mode no-print"></div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=1.7.0"></script>
+    <script src="app.js?v=1.7.1"></script>
 </body>
 </html>

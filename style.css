@@ -2491,6 +2491,12 @@ footer {
 .topic-chip-value { background: rgba(112,138,111,0.16); color: var(--accent-sage); }
 .topic-chip-field { background: var(--bg-secondary); color: var(--text-secondary); }
 .topic-chip-level { background: var(--bg-secondary); color: var(--text-secondary); }
+.topic-chip-src { background: rgba(212,163,115,0.22); color: #8a5a2b; }
+.topic-source {
+    font-size: 0.78rem; color: var(--accent-gold); font-weight: 700;
+    margin: -6px 0 10px; word-break: keep-all;
+}
+.topic-source i { margin-right: 5px; }
 .topic-claim {
     font-size: 1.05rem; font-weight: 800; line-height: 1.5;
     color: var(--text-primary); margin-bottom: 12px; word-break: keep-all;
