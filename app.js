@@ -3387,6 +3387,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initVisitorCounter();
     initMobileNav();
     handleDeepLink();
+    initTopicSection();
 });
 
 // 모바일/태블릿 햄버거 메뉴 토글
@@ -4401,6 +4402,393 @@ window.openModal = function(type, key) {
     
     modal.classList.add("active");
 };
+
+// ── 토론 논제 (정책 논제 / 가치 논제) ─────────────────────────────────────────
+const TOPIC_TYPE_INFO = {
+    policy: {
+        label: "정책 논제",
+        icon: "fa-gavel",
+        tagline: "무엇을 할 것인가",
+        desc: "지금 상태를 바꾸기 위해 '어떤 행동이나 제도를 도입하자'고 제안하는 논제입니다. 문장은 보통 <strong>'~해야 한다'</strong> 꼴로 씁니다.",
+        frame: "(주체)는 (무엇)을 해야 한다",
+        criteria: [
+            { label: "문제의 심각성", desc: "지금 이대로 두면 안 될 만큼 문제가 큰가?" },
+            { label: "방안의 효과성", desc: "제안한 방법이 그 문제를 실제로 해결하는가?" },
+            { label: "실현 가능성", desc: "비용·인력·법으로 볼 때 실행할 수 있는가?" },
+            { label: "부작용", desc: "그 방법이 새로 만들어 내는 문제는 없는가?" }
+        ],
+        burden: "바꾸자고 주장하는 <strong>찬성 측</strong>이 '왜 지금 바꿔야 하는지'를 먼저 증명해야 합니다."
+    },
+    value: {
+        label: "가치 논제",
+        icon: "fa-scale-balanced",
+        tagline: "무엇이 옳은가",
+        desc: "어떤 것이 더 옳은지, 바람직한지를 따지는 논제입니다. 문장은 보통 <strong>'~은 옳다 / ~이 더 가치 있다'</strong> 꼴로 씁니다.",
+        frame: "(무엇)은 (옳다 / 바람직하다 / 더 가치 있다)",
+        criteria: [
+            { label: "판단 기준 세우기", desc: "무엇을 '옳다'고 볼 것인지 기준부터 정한다." },
+            { label: "기준의 정당성", desc: "그 기준을 왜 받아들여야 하는가?" },
+            { label: "사례 적용", desc: "그 기준에 비추어 보면 실제 사례는 어떠한가?" },
+            { label: "충돌하는 가치", desc: "맞서는 가치(자유·안전·공정 등)와 견주면 어느 쪽이 무거운가?" }
+        ],
+        burden: "양측 모두 <strong>자기 판단 기준</strong>을 세우고, 그 기준이 더 타당함을 보여야 합니다."
+    }
+};
+
+const debateTopicsDB = [
+    { type: "policy", field: "환경", level: "초등·중학", claim: "일회용 플라스틱의 생산과 판매를 법으로 금지해야 한다.",
+      background: "바다로 흘러든 플라스틱은 잘게 부서져 미세 플라스틱이 되고, 바닷새와 거북의 몸속에 쌓입니다. 우리나라도 매장 내 일회용 컵 사용을 규제하고 있지만 배달·포장에는 예외가 많습니다.",
+      pro: ["개인의 실천만으로는 사용량이 줄지 않았다.", "생산 단계에서 막는 것이 가장 확실한 해결책이다."],
+      con: ["위생·의료 등 일회용품이 꼭 필요한 곳이 있다.", "소상공인의 부담과 대체품 비용이 크다."],
+      books: ["플라스틱 섬", "30번 곰"] },
+
+    { type: "policy", field: "인권", level: "중학·고등", claim: "식당과 가게는 안내견의 출입을 거절할 수 없도록 해야 한다.",
+      background: "장애인복지법은 안내견 출입 거부를 금지하고 있지만, 현장에서는 '개는 안 된다'며 거절당하는 일이 이어집니다. 안내견은 반려동물이 아니라 시각장애인의 이동을 돕는 파트너입니다.",
+      pro: ["출입 거절은 곧 그 사람의 이동할 권리를 막는 일이다.", "이미 법이 있으나 지켜지지 않아 실효성 있는 조치가 필요하다."],
+      con: ["동물 알레르기가 있는 손님의 권리도 있다.", "위생을 중시하는 업종에는 예외가 필요하다."],
+      books: ["나는 안내견이야", "부리 동물 출입 금지!"] },
+
+    { type: "policy", field: "생명", level: "중학·고등", claim: "반려동물을 기르려면 사전 교육을 이수하도록 해야 한다.",
+      background: "해마다 많은 반려동물이 버려지고 상당수가 보호소에서 생을 마감합니다. 독일 등 일부 국가는 반려견 보유세나 사전 교육 제도를 운영합니다.",
+      pro: ["충동적인 입양과 유기를 줄일 수 있다.", "동물을 기르는 일에는 생명에 대한 책임이 따른다."],
+      con: ["가정에서 동물을 기를 자유를 지나치게 제한한다.", "교육 이수가 곧 책임감으로 이어진다는 보장이 없다."],
+      books: ["나는 기다립니다", "우리, 집"] },
+
+    { type: "policy", field: "환경", level: "중학·고등", claim: "비무장지대는 개발을 제한하고 생태·평화 보호구역으로 지정해야 한다.",
+      background: "사람의 발길이 70년 넘게 끊긴 비무장지대에는 멸종위기종을 포함한 수천 종의 생물이 삽니다. 한편 통일 이후 개발 가치가 큰 땅이라는 주장도 함께 나옵니다.",
+      pro: ["한 번 훼손된 생태계는 되돌릴 수 없다.", "분단의 역사를 기억하는 평화 교육의 공간이 된다."],
+      con: ["접경 지역 주민의 재산권과 발전 기회를 제한한다.", "보존과 개발을 함께 추구하는 방법도 있다."],
+      books: ["비무장지대에 봄이 오면", "시애틀 추장"] },
+
+    { type: "policy", field: "교육", level: "초등·중학", claim: "학교는 모든 학생에게 똑같은 발표 방식을 요구하지 않아야 한다.",
+      background: "말더듬, 발표 불안 등 저마다의 이유로 '앞에 나와 말하기'가 유난히 힘든 학생이 있습니다. 글·그림·녹음 등 다른 방식으로 생각을 표현하게 하는 수업이 늘고 있습니다.",
+      pro: ["같은 방식을 강요하는 것이 오히려 불공정하다.", "표현 방법을 넓히면 더 많은 학생이 참여한다."],
+      con: ["말하기 능력도 학교에서 길러야 할 역량이다.", "평가의 기준을 세우기 어려워진다."],
+      books: ["나는 강물처럼 말해요", "틀려도 괜찮아"] },
+
+    { type: "policy", field: "생명", level: "중학·고등", claim: "동물원을 단계적으로 폐지해야 한다.",
+      background: "좁은 사육장에서 같은 행동을 반복하는 '정형행동'은 동물의 심한 스트레스를 보여 줍니다. 반면 동물원이 멸종위기종 보전과 연구를 맡고 있다는 반론도 있습니다.",
+      pro: ["구경거리를 위해 동물의 자유를 평생 빼앗는 일이다.", "영상·기술로 생태 교육을 대신할 수 있다."],
+      con: ["야생에서 사라진 종을 지키는 마지막 보루다.", "직접 보는 경험이 생명 존중 태도를 기른다."],
+      books: ["우리, 집", "30번 곰"] },
+
+    { type: "policy", field: "사회", level: "초등·중학", claim: "가정의 집안일은 가족이 나누어 맡도록 규칙을 정해야 한다.",
+      background: "가사·돌봄 시간은 여전히 한쪽에 크게 치우쳐 있습니다. '보이지 않는 노동'이라 불리는 까닭입니다.",
+      pro: ["한 사람에게 몰린 부담은 공정하지 않다.", "규칙으로 정해야 실제로 지켜진다."],
+      con: ["가정마다 사정이 달라 일률적 규칙은 맞지 않다.", "사랑으로 하는 일을 의무로 만들면 관계가 나빠진다."],
+      books: ["돼지책", "탁탁, 톡톡, 음매~ 젖소가 편지를 쓴대요"] },
+
+    { type: "policy", field: "미디어", level: "중학·고등", claim: "확인되지 않은 소문을 퍼뜨린 사람에게 책임을 물어야 한다.",
+      background: "온라인에서 잘못된 정보는 사실보다 빠르고 넓게 퍼집니다. 한 번 퍼진 소문은 바로잡는 글이 나와도 되돌리기 어렵습니다.",
+      pro: ["피해자의 삶이 회복하기 어려울 만큼 망가진다.", "책임이 없으면 확산을 막을 방법이 없다."],
+      con: ["표현의 자유가 위축될 수 있다.", "'확인되지 않음'의 경계를 정하기 어렵다."],
+      books: ["감기 걸린 물고기", "이파라파냐무냐무"] },
+
+    { type: "policy", field: "교육", level: "초등·중학", claim: "학교는 학생의 실수에 점수를 깎지 않아야 한다.",
+      background: "감점이 두려우면 학생은 새로운 시도를 피하게 됩니다. 과정 중심 평가는 결과보다 배움의 과정을 보자는 흐름입니다.",
+      pro: ["실수를 두려워하면 도전과 배움이 멈춘다.", "실수는 배움의 자연스러운 과정이다."],
+      con: ["정확성도 반드시 길러야 할 능력이다.", "책임감 없는 태도로 이어질 수 있다."],
+      books: ["아름다운 실수", "틀려도 괜찮아", "점"] },
+
+    { type: "policy", field: "사회", level: "고등", claim: "공공장소에서 특정 집단의 출입을 제한하는 규칙을 금지해야 한다.",
+      background: "특정 집단의 출입을 막는 공간이 늘면서 영업의 자유와 차별 금지가 부딪치고 있습니다. 국가인권위원회는 이를 차별로 판단한 바 있습니다.",
+      pro: ["집단을 통째로 배제하는 것은 명백한 차별이다.", "일부의 잘못을 집단 전체에 물을 수 없다."],
+      con: ["영업의 자유와 다른 이용자의 권리도 있다.", "실제 피해를 겪은 업주의 사정도 고려해야 한다."],
+      books: ["부리 동물 출입 금지!", "초코곰과 젤리곰"] },
+
+    { type: "policy", field: "환경", level: "중학·고등", claim: "도시에 생긴 빈 땅은 주차장보다 녹지로 만들어야 한다.",
+      background: "도시의 녹지는 열섬 현상을 줄이고 미세먼지를 걸러 냅니다. 동시에 도심 주차난도 주민들의 절실한 문제입니다.",
+      pro: ["녹지는 한 번 없어지면 되살리기 어렵다.", "아이들의 정서와 건강에 필요한 공간이다."],
+      con: ["주차난은 주민의 일상에 직접 영향을 준다.", "관리 인력과 예산이 계속 들어간다."],
+      books: ["만희네 꽃밭", "플라스틱 섬"] },
+
+    { type: "policy", field: "문화", level: "중학·고등", claim: "예술 활동도 노동으로 인정하고 지원해야 한다.",
+      background: "예술인 고용보험, 창작지원금 같은 제도가 생겼지만 여전히 많은 창작자가 불안정한 수입 속에서 일합니다.",
+      pro: ["사회의 정신적 풍요를 만드는 일도 노동이다.", "생계 불안이 창작을 가로막는다."],
+      con: ["지원 대상과 기준을 정하기 어렵다.", "다른 직군과의 형평성 문제가 생긴다."],
+      books: ["프레드릭", "행복한 청소부"] },
+
+    { type: "policy", field: "기술", level: "고등", claim: "편리한 서비스에 이용자가 종속되지 않도록 기업을 규제해야 한다.",
+      background: "한번 익숙해진 플랫폼에서 다른 서비스로 옮기기는 매우 어렵습니다. 이런 '잠김 효과'를 두고 여러 나라가 규제를 논의하고 있습니다.",
+      pro: ["선택권이 사라지면 이용자는 협상력을 잃는다.", "독점은 결국 가격과 품질을 나쁘게 만든다."],
+      con: ["규제가 혁신과 편의를 늦출 수 있다.", "이용자가 스스로 선택한 결과이기도 하다."],
+      books: ["원숭이 꽃신", "낱말공장 나라"] },
+
+    { type: "policy", field: "생명", level: "초등·중학", claim: "다친 야생동물을 발견하면 신고를 의무화해야 한다.",
+      background: "로드킬과 유리창 충돌 등으로 다치는 야생동물이 많지만, 발견해도 어디에 알려야 할지 모르는 경우가 대부분입니다.",
+      pro: ["신고만 빨라도 살릴 수 있는 생명이 많다.", "생명을 대하는 태도를 사회가 함께 배운다."],
+      con: ["자연의 일에 사람이 지나치게 개입하는 것일 수 있다.", "의무로 정하면 부담과 혼란이 생긴다."],
+      books: ["꽃을 선물할게", "나는 기다립니다"] },
+
+    { type: "policy", field: "교육", level: "중학·고등", claim: "학교는 또래 압력을 줄이기 위해 소지품 규정을 완화해야 한다.",
+      background: "유행하는 물건을 갖지 못해 소외감을 느끼는 학생이 있는가 하면, 규정이 개성을 억누른다는 목소리도 함께 나옵니다.",
+      pro: ["규제보다 다름을 존중하는 문화가 근본 해결책이다.", "지나친 규정은 자기표현의 권리를 침해한다."],
+      con: ["규정이 없으면 과시 경쟁이 더 심해진다.", "위화감을 줄이는 최소한의 장치가 필요하다."],
+      books: ["줄무늬가 생겼어요", "미어캣의 스카프"] },
+
+    { type: "value", field: "인성", level: "초등·중학", claim: "세상에 쓸모없는 존재는 없다.",
+      background: "'쓸모'는 누가 무엇을 기준으로 정하는가에 따라 달라집니다. 눈에 띄는 재능이 없어도 저마다의 자리가 있다는 관점과, 사회가 요구하는 역할을 해내야 가치가 있다는 관점이 부딪칩니다.",
+      pro: ["쓸모의 기준 자체가 사람이 임의로 만든 것이다.", "존재 자체로 존중받아야 할 이유가 있다."],
+      con: ["역할을 하지 못하면 공동체에 부담이 된다.", "쓸모를 부정하면 노력의 의미가 흐려진다."],
+      books: ["강아지똥", "치킨 마스크", "프레드릭"] },
+
+    { type: "value", field: "인성", level: "초등·중학", claim: "사실이라면 언제나 솔직하게 말하는 것이 옳다.",
+      background: "정직은 중요한 덕목이지만, 사실을 그대로 말해 누군가에게 깊은 상처를 주는 경우도 있습니다. 정직과 배려가 부딪치는 지점입니다.",
+      pro: ["거짓은 신뢰를 무너뜨린다.", "불편한 진실도 결국은 도움이 된다."],
+      con: ["말할 자유보다 상처 주지 않을 책임이 앞선다.", "같은 사실도 전하는 방식을 고를 수 있다."],
+      books: ["나는 사실대로 말했을 뿐이야!", "지각대장 존"] },
+
+    { type: "value", field: "실존", level: "중학·고등", claim: "오래 사는 것보다 의미 있게 사는 것이 더 가치 있다.",
+      background: "수명이 길어지면서 '얼마나 오래'와 '어떻게'라는 질문이 함께 커졌습니다.",
+      pro: ["살아 있는 시간의 길이가 삶의 질을 보장하지 않는다.", "사랑하고 몰입한 경험이 삶을 채운다."],
+      con: ["살아 있어야 의미도 만들 수 있다.", "'의미 있는 삶'의 기준은 사람마다 다르다."],
+      books: ["100만 번 산 고양이", "트리갭의 샘물", "행복한 청소부"] },
+
+    { type: "value", field: "자유", level: "고등", claim: "안전한 속박보다 위험한 자유가 더 가치 있다.",
+      background: "자유와 안전은 자주 부딪칩니다. 보호라는 이름으로 선택을 제한하는 일이 어디까지 정당한가의 문제입니다.",
+      pro: ["스스로 선택하지 못하는 삶은 온전한 삶이 아니다.", "위험을 감수한 선택에서 성장이 일어난다."],
+      con: ["안전이 보장되어야 자유도 의미가 있다.", "돌이킬 수 없는 위험은 막아야 한다."],
+      books: ["스갱 아저씨의 염소", "빨간 벽", "문 밖에 사자가 있다"] },
+
+    { type: "value", field: "관계", level: "중학·고등", claim: "아낌없이 주는 사랑은 아름다운 사랑이다.",
+      background: "헌신적인 사랑은 오래 미덕으로 여겨졌지만, 한쪽만 내어주는 관계가 건강한지에 대한 물음도 커지고 있습니다.",
+      pro: ["조건 없는 사랑은 가장 순수한 형태의 사랑이다.", "받은 사랑이 사람을 살아가게 한다."],
+      con: ["일방적인 희생은 관계를 병들게 한다.", "자기를 지키는 사랑이 오래간다."],
+      books: ["아낌없이 주는 나무", "엄마가 유령이 되었어!"] },
+
+    { type: "value", field: "정의", level: "중학·고등", claim: "좋은 목적을 위해서라면 잘못된 수단도 정당화될 수 있다.",
+      background: "의적 이야기처럼 '나쁜 방법으로 좋은 일을 한' 사례는 오래된 딜레마입니다. 목적과 수단의 관계를 묻습니다.",
+      pro: ["결과적으로 더 많은 사람이 구제된다면 의미가 있다.", "정당한 방법이 막혀 있을 때도 있다."],
+      con: ["수단이 잘못되면 목적의 정당성도 무너진다.", "누가 '좋은 목적'인지 판단할 수 있는가."],
+      books: ["세 강도", "오누이 이야기", "샌지와 빵집 주인"] },
+
+    { type: "value", field: "자아", level: "초등·중학", claim: "남과 다른 점은 고쳐야 할 약점이 아니라 개성이다.",
+      background: "다름을 강점으로 보는 시선과, 사회에 맞추어 고쳐야 한다는 시선이 함께 있습니다.",
+      pro: ["다름을 없애면 그 사람다움도 사라진다.", "다양성이 공동체를 튼튼하게 한다."],
+      con: ["함께 살려면 어느 정도 맞추는 노력이 필요하다.", "고쳐야 나아지는 부분도 분명히 있다."],
+      books: ["나는 강물처럼 말해요", "괜찮아", "줄무늬가 생겼어요"] },
+
+    { type: "value", field: "사회", level: "고등", claim: "사람을 능력과 조건으로 평가하는 것은 정당하다.",
+      background: "능력에 따른 보상은 공정해 보이지만, 출발선이 다르다는 점과 '능력'의 기준이 누구의 것인가라는 문제가 남습니다.",
+      pro: ["노력한 만큼 보상받는 것이 공정하다.", "객관적 기준이 없으면 다른 차별이 끼어든다."],
+      con: ["출발선이 다르면 결과의 공정성도 무너진다.", "사람의 가치를 성과로 환산할 수 없다."],
+      books: ["완벽한 아이 팔아요", "꽃들에게 희망을"] },
+
+    { type: "value", field: "공동체", level: "중학·고등", claim: "다수의 판단은 대체로 옳다.",
+      background: "다수결은 민주주의의 기본 원리지만, 집단이 함께 잘못된 확신에 빠지는 일도 반복돼 왔습니다.",
+      pro: ["여러 사람의 판단이 개인의 편향을 줄여 준다.", "합의된 결정이 공동체를 유지한다."],
+      con: ["소문과 분위기에 휩쓸린 다수는 위험하다.", "옳음은 숫자로 정해지지 않는다."],
+      books: ["감기 걸린 물고기", "내 탓이 아니야", "이파라파냐무냐무"] },
+
+    { type: "value", field: "용기", level: "초등·중학", claim: "두려움은 반드시 극복해야 할 대상이다.",
+      background: "두려움은 나를 위축시키기도 하지만, 위험을 알려 주는 신호이기도 합니다.",
+      pro: ["두려움에 갇히면 아무것도 시작할 수 없다.", "넘어선 경험이 다음 도전의 힘이 된다."],
+      con: ["두려움은 나를 지켜 주는 감정이기도 하다.", "억지로 없애려 하면 더 커지기도 한다."],
+      books: ["문 밖에 사자가 있다", "블랙 독", "빨간 벽"] },
+
+    { type: "value", field: "용기", level: "초등·중학", claim: "자기 속도로 천천히 나아가는 것도 용기다.",
+      background: "앞장서 돌파하는 모습만 용기로 여겨질 때, 자기 방식으로 조금씩 나아가는 사람은 뒤처진 것으로 보이기 쉽습니다.",
+      pro: ["사람마다 준비되는 시간이 다르다.", "끝내 자기 방식으로 해낸 것이 진짜 성취다."],
+      con: ["미루는 것과 자기 속도는 구분해야 한다.", "때를 놓치면 기회 자체가 사라진다."],
+      books: ["문 밖에 여전히 사자가 있다", "슈퍼 거북"] },
+
+    { type: "value", field: "성공", level: "중학·고등", claim: "경쟁에서 이기는 것이 곧 성공이다.",
+      background: "순위와 성과로 평가받는 환경에서, 성공을 어떻게 정의할지에 대한 물음이 커지고 있습니다.",
+      pro: ["경쟁은 성장을 이끄는 힘이다.", "객관적 결과로 노력을 확인할 수 있다."],
+      con: ["남을 밟고 오른 자리에는 남는 것이 없다.", "성공의 기준은 스스로 정해야 한다."],
+      books: ["꽃들에게 희망을", "슈퍼 거북", "토끼와 거북이, 두 번째 경주"] },
+
+    { type: "value", field: "환경", level: "중학·고등", claim: "인간은 자연을 소유하고 사고팔 수 있다.",
+      background: "땅과 물을 재산으로 보는 관점과, 함께 빌려 쓰는 것으로 보는 관점이 오래 부딪쳐 왔습니다.",
+      pro: ["소유권이 있어야 책임 있게 관리한다.", "경제 활동의 기본 전제다."],
+      con: ["자연은 누구의 것도 아닌 공동의 터전이다.", "소유는 훼손을 정당화하는 논리가 된다."],
+      books: ["시애틀 추장", "플라스틱 섬", "만희네 꽃밭"] },
+
+    { type: "value", field: "평화", level: "고등", claim: "어떤 명분으로도 전쟁은 정당화될 수 없다.",
+      background: "자위권과 인도적 개입 같은 명분이 제시되지만, 전쟁의 피해는 언제나 민간인에게 가장 크게 돌아갑니다.",
+      pro: ["전쟁은 사람을 '적'이라는 허상으로 만든다.", "피해는 되돌릴 수 없다."],
+      con: ["침략에 맞서 지켜야 할 것이 있다.", "방관이 더 큰 희생을 낳기도 한다."],
+      books: ["적", "내가 라면을 먹을 때", "비무장지대에 봄이 오면"] },
+
+    { type: "value", field: "행복", level: "중학·고등", claim: "행복은 가진 것의 양보다 바라보는 태도에 달려 있다.",
+      background: "일정 수준을 넘으면 소득이 늘어도 행복이 크게 늘지 않는다는 연구가 있는 한편, 결핍이 행복을 가로막는다는 현실도 있습니다.",
+      pro: ["같은 하루도 무엇에 주목하느냐에 따라 달라진다.", "비교를 멈출 때 만족이 생긴다."],
+      con: ["기본적인 조건이 갖춰져야 태도도 가능하다.", "태도만 강조하면 불평등을 개인 탓으로 돌린다."],
+      books: ["행복을 나르는 버스", "행복한 청소부", "나쁜 일이 있어도 나쁜 날은 아니야"] }
+];
+
+// 논제 목록 렌더링
+function renderTopicList(type) {
+    const grid = document.getElementById("topic-grid");
+    const info = document.getElementById("topic-typeinfo");
+    if (!grid) return;
+    const meta = TOPIC_TYPE_INFO[type];
+
+    if (info && meta) {
+        info.innerHTML = `
+            <div class="topic-info-head">
+                <span class="topic-info-badge"><i class="fa-solid ${meta.icon}"></i> ${meta.label}</span>
+                <span class="topic-info-tag">${meta.tagline}</span>
+            </div>
+            <p class="topic-info-desc">${meta.desc}</p>
+            <p class="topic-frame"><strong>문장 틀</strong> · ${meta.frame}</p>
+            <div class="topic-criteria">
+                ${meta.criteria.map(c => `<div class="topic-crit"><strong>${c.label}</strong><span>${c.desc}</span></div>`).join("")}
+            </div>
+            <p class="topic-burden"><i class="fa-solid fa-circle-info"></i> ${meta.burden}</p>`;
+    }
+
+    const fieldSel = document.getElementById("topic-field");
+    const levelSel = document.getElementById("topic-level");
+    const fv = fieldSel ? fieldSel.value : "all";
+    const lv = levelSel ? levelSel.value : "all";
+
+    const list = debateTopicsDB.filter(t => t.type === type
+        && (fv === "all" || t.field === fv)
+        && (lv === "all" || t.level === lv));
+
+    const countEl = document.getElementById("topic-count");
+    if (countEl) countEl.textContent = `${list.length}개 논제`;
+
+    if (!list.length) {
+        grid.innerHTML = `<p class="topic-empty">조건에 맞는 논제가 없습니다. 필터를 바꿔 보세요.</p>`;
+        return;
+    }
+
+    grid.innerHTML = list.map((t, i) => {
+        const bookBtns = (t.books || []).map(title => {
+            const idx = (typeof books !== "undefined") ? books.findIndex(b => b.title === title) : -1;
+            return idx >= 0
+                ? `<button type="button" class="topic-book" onclick="openModal('book', ${idx})"><i class="fa-solid fa-book"></i> ${title}</button>`
+                : `<span class="topic-book topic-book-plain"><i class="fa-solid fa-book"></i> ${title}</span>`;
+        }).join("");
+        return `
+        <article class="topic-card">
+            <div class="topic-card-top">
+                <span class="topic-chip topic-chip-${t.type}">${TOPIC_TYPE_INFO[t.type].label}</span>
+                <span class="topic-chip topic-chip-field">${t.field}</span>
+                <span class="topic-chip topic-chip-level">${t.level}</span>
+            </div>
+            <h4 class="topic-claim">${t.claim}</h4>
+            <details class="topic-more">
+                <summary><i class="fa-solid fa-circle-question"></i> 배경 지식과 쟁점 살펴보기</summary>
+                <div class="topic-body">
+                    <p class="topic-bg">${t.background}</p>
+                    <div class="topic-sides">
+                        <div class="topic-side topic-side-pro">
+                            <strong>찬성 쟁점</strong>
+                            <ul>${t.pro.map(p => `<li>${p}</li>`).join("")}</ul>
+                        </div>
+                        <div class="topic-side topic-side-con">
+                            <strong>반대 쟁점</strong>
+                            <ul>${t.con.map(c => `<li>${c}</li>`).join("")}</ul>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            ${bookBtns ? `<div class="topic-books"><span class="topic-books-label">연계 그림책</span>${bookBtns}</div>` : ""}
+        </article>`;
+    }).join("");
+}
+
+// 그림책에서 논제 끌어내기
+function renderTopicFromBook(bookIdx) {
+    const out = document.getElementById("topic-derive-out");
+    if (!out || typeof books === "undefined") return;
+    const book = books[bookIdx];
+    if (!book) return;
+
+    const linked = debateTopicsDB.filter(t => (t.books || []).includes(book.title));
+    const policy = linked.filter(t => t.type === "policy");
+    const value = linked.filter(t => t.type === "value");
+    const tags = (book.tags || []).map(x => x.replace(/^#/, ""));
+
+    const chipRow = (arr, cls) => arr.map(x => `<span class="${cls}">${x}</span>`).join("");
+    const propList = (arr) => arr.length
+        ? `<ul class="td-list">${arr.map(t => `<li>${t.claim}</li>`).join("")}</ul>`
+        : `<p class="td-none">이 그림책에 연결된 ${'논제'}가 아직 목록에 없습니다. 아래 문장 틀로 직접 만들어 보세요.</p>`;
+
+    out.innerHTML = `
+        <div class="td-step">
+            <span class="td-num">1</span>
+            <div>
+                <strong>이야기의 핵심 갈등 찾기</strong>
+                <p>${book.summary || ""}</p>
+                ${tags.length ? `<div class="td-tags">${chipRow(tags, "td-tag")}</div>` : ""}
+            </div>
+        </div>
+        <div class="td-step">
+            <span class="td-num">2</span>
+            <div>
+                <strong>열린 질문으로 바꾸기</strong>
+                <p class="td-hint">답이 하나로 정해지지 않는 질문을 먼저 만듭니다.</p>
+                <ul class="td-list">${(book.debateTopics || []).map(q => `<li>${q}</li>`).join("") || "<li>준비 중입니다.</li>"}</ul>
+            </div>
+        </div>
+        <div class="td-step">
+            <span class="td-num">3</span>
+            <div>
+                <strong><i class="fa-solid fa-scale-balanced"></i> 가치 논제로 다듬기</strong>
+                <p class="td-hint">문장 틀 · <em>(무엇)은 옳다 / 더 가치 있다</em></p>
+                ${propList(value)}
+            </div>
+        </div>
+        <div class="td-step">
+            <span class="td-num">4</span>
+            <div>
+                <strong><i class="fa-solid fa-gavel"></i> 정책 논제로 바꾸기</strong>
+                <p class="td-hint">문장 틀 · <em>(주체)는 (무엇)을 해야 한다</em> — "그래서 무엇을 하자는 것인가"를 덧붙이면 정책 논제가 됩니다.</p>
+                ${propList(policy)}
+            </div>
+        </div>
+        <div class="td-step td-step-last">
+            <span class="td-num"><i class="fa-solid fa-lightbulb"></i></span>
+            <div>
+                <strong>이 그림책의 추천 논제</strong>
+                <ul class="td-list">${(book.debatePropositions || []).map(p => `<li>${p}</li>`).join("") || "<li>준비 중입니다.</li>"}</ul>
+                <button type="button" class="btn btn-secondary td-book-btn" onclick="openModal('book', ${bookIdx})"><i class="fa-solid fa-circle-info"></i> 그림책 상세 보기</button>
+            </div>
+        </div>`;
+}
+
+function initTopicSection() {
+    const tabs = document.querySelectorAll(".topic-tab-btn");
+    if (!tabs.length) return;
+
+    const panelList = document.getElementById("topic-panel-list");
+    const panelDerive = document.getElementById("topic-panel-derive");
+    let current = "policy";
+
+    const show = (key) => {
+        tabs.forEach(b => b.classList.toggle("active", b.dataset.topicTab === key));
+        const isDerive = key === "derive";
+        if (panelList) panelList.style.display = isDerive ? "none" : "block";
+        if (panelDerive) panelDerive.style.display = isDerive ? "block" : "none";
+        if (!isDerive) { current = key; renderTopicList(key); }
+    };
+
+    tabs.forEach(b => b.addEventListener("click", () => show(b.dataset.topicTab)));
+
+    // 분야 필터 채우기
+    const fieldSel = document.getElementById("topic-field");
+    if (fieldSel) {
+        const fields = [...new Set(debateTopicsDB.map(t => t.field))].sort((a, b) => a.localeCompare(b, "ko"));
+        fieldSel.innerHTML = `<option value="all">분야 전체</option>` + fields.map(f => `<option value="${f}">${f}</option>`).join("");
+        fieldSel.addEventListener("change", () => renderTopicList(current));
+    }
+    const levelSel = document.getElementById("topic-level");
+    if (levelSel) levelSel.addEventListener("change", () => renderTopicList(current));
+
+    // 그림책 선택 채우기
+    const bookSel = document.getElementById("topic-book-select");
+    if (bookSel && typeof books !== "undefined") {
+        bookSel.innerHTML = books.map((b, i) => `<option value="${i}">${b.title}</option>`).join("");
+        bookSel.addEventListener("change", () => renderTopicFromBook(bookSel.value));
+        renderTopicFromBook(0);
+    }
+
+    show("policy");
+}
 
 // ── 수업 진행 모드 (프로젝터용 큰 화면 + 단계별 타이머) ──────────────────────
 let classModeState = { slides: [], idx: 0, seconds: 0, timerId: null, running: false };

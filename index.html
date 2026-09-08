@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.6.4">
+    <link rel="stylesheet" href="style.css?v=1.7.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -55,6 +55,7 @@
                 <a href="#worksheet-section" class="highlight-link"><i class="fa-solid fa-file-invoice"></i> 토론 학습지</a>
                 <a href="#archive-section"><i class="fa-solid fa-folder-open"></i> 수업 자료실</a>
                 <a href="#helper-section"><i class="fa-solid fa-wand-magic-sparkles"></i> 추천가이드</a>
+                <a href="#topic-section"><i class="fa-solid fa-scale-balanced"></i> 토론 논제</a>
                 <a href="#reading-section"><i class="fa-solid fa-newspaper"></i> 독서평설</a>
                 <a href="#reference-section"><i class="fa-solid fa-book-bookmark"></i> 참고 도서</a>
             </nav>
@@ -360,6 +361,47 @@
         </div>
     </section>
 
+
+    <!-- 9. 토론 논제 (정책/가치) Section -->
+    <section id="topic-section" class="topic-section no-print">
+        <div class="section-title-wrapper">
+            <span class="sub-title">Debate Propositions</span>
+            <h2>토론 논제</h2>
+            <p>정책 논제와 가치 논제를 나누어 정리했습니다. 배경 지식과 찬반 쟁점을 함께 살펴보고, 그림책에서 논제를 끌어내는 방법도 익혀 보세요.</p>
+        </div>
+
+        <div class="topic-tabs">
+            <button class="topic-tab-btn active" data-topic-tab="policy"><i class="fa-solid fa-gavel"></i> 정책 논제</button>
+            <button class="topic-tab-btn" data-topic-tab="value"><i class="fa-solid fa-scale-balanced"></i> 가치 논제</button>
+            <button class="topic-tab-btn" data-topic-tab="derive"><i class="fa-solid fa-wand-magic-sparkles"></i> 그림책에서 논제 뽑기</button>
+        </div>
+
+        <!-- 논제 목록 패널 -->
+        <div id="topic-panel-list">
+            <div class="topic-typeinfo" id="topic-typeinfo"></div>
+            <div class="topic-filters">
+                <select id="topic-field" aria-label="분야 선택"></select>
+                <select id="topic-level" aria-label="학교급 선택">
+                    <option value="all">학교급 전체</option>
+                    <option value="초등·중학">초등·중학</option>
+                    <option value="중학·고등">중학·고등</option>
+                    <option value="고등">고등</option>
+                </select>
+                <span class="topic-count" id="topic-count"></span>
+            </div>
+            <div class="topic-grid" id="topic-grid"></div>
+        </div>
+
+        <!-- 그림책에서 논제 뽑기 패널 -->
+        <div id="topic-panel-derive" style="display:none;">
+            <div class="topic-derive-pick">
+                <label for="topic-book-select"><i class="fa-solid fa-book"></i> 그림책 선택</label>
+                <select id="topic-book-select"></select>
+            </div>
+            <div class="topic-derive-out" id="topic-derive-out"></div>
+        </div>
+    </section>
+
     <!-- 8. Reading Review (독서평설) Section -->
     <section id="reading-section" class="reading-section no-print">
         <div class="section-title-wrapper">
@@ -428,6 +470,6 @@
     <div id="class-mode" class="class-mode no-print"></div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=1.6.4"></script>
+    <script src="app.js?v=1.7.0"></script>
 </body>
 </html>
