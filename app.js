@@ -4971,6 +4971,134 @@ const debateTopicsDB = [
       con: ["덮고 넘어간 잘못은 반드시 되풀이된다.", "피해자를 두 번 아프게 하는 일이다."],
       books: ["적", "비무장지대에 봄이 오면"] },
 
+    { type: "value", field: "행복", level: "중학·고등", claim: "행복은 가진 것의 양보다 바라보는 태도에 달려 있다.",
+      background: "일정 수준을 넘으면 소득이 늘어도 행복이 크게 늘지 않는다는 연구가 있는 한편, 결핍이 행복을 가로막는다는 현실도 있습니다.",
+      pro: ["같은 하루도 무엇에 주목하느냐에 따라 달라진다.", "비교를 멈출 때 만족이 생긴다."],
+      con: ["기본적인 조건이 갖춰져야 태도도 가능하다.", "태도만 강조하면 불평등을 개인 탓으로 돌린다."],
+      books: ["행복을 나르는 버스", "행복한 청소부", "나쁜 일이 있어도 나쁜 날은 아니야"] },
+
+    // ───────── 중등 눈높이 논제 (정책) ─────────
+    { type: "policy", field: "노동", level: "중학·고등", claim: "청소년에게도 성인과 똑같은 최저임금을 적용해야 한다.",
+      background: "우리나라는 나이에 따른 최저임금 차등을 두지 않지만, 수습 기간에는 감액이 가능합니다. 해외에는 연령별로 최저임금을 달리 정하는 나라도 있습니다.",
+      pro: ["같은 일을 하면 같은 임금을 받아야 한다.", "나이를 이유로 임금을 깎는 것은 차별이다."],
+      con: ["숙련도와 책임의 크기가 다르다.", "임금이 높아지면 청소년 채용 자체가 줄어든다."],
+      books: ["원숭이 꽃신"] },
+
+    { type: "policy", field: "노동", level: "중학·고등", claim: "청소년의 아르바이트 가능 시간을 더 엄격히 제한해야 한다.",
+      background: "현행법은 15세 이상 청소년의 근로 시간을 제한하고 야간 근로를 원칙적으로 금지합니다. 보호와 자기결정 사이의 문제입니다.",
+      pro: ["학업과 성장에 쓸 시간이 필요하다.", "야간·장시간 노동은 건강을 해친다."],
+      con: ["생계를 위해 일해야 하는 청소년이 있다.", "일하며 배우는 경험도 소중하다."],
+      books: ["행복한 청소부"] },
+
+    { type: "policy", field: "노동", level: "중학·고등", claim: "무인 매장의 확대를 제한해야 한다.",
+      background: "무인 계산대와 무인 점포가 빠르게 늘고 있습니다. 편의와 일자리, 그리고 디지털 약자의 접근성이 함께 걸린 문제입니다.",
+      pro: ["일자리가 줄고 노인·장애인은 이용이 어렵다.", "속도를 조절할 시간이 필요하다."],
+      con: ["기술 발전을 제도로 막을 수 없다.", "비용이 줄면 소비자에게 이롭다."],
+      books: ["낱말공장 나라", "나는 안내견이야"] },
+
+    { type: "policy", field: "미디어", level: "중학·고등", claim: "인플루언서의 광고 표시를 의무화하고 어기면 제재해야 한다.",
+      background: "협찬을 밝히지 않은 '뒷광고' 논란 이후 표시 지침이 만들어졌지만, 잘 지켜지지 않는다는 지적이 이어집니다.",
+      pro: ["광고인지 알고 봐야 판단할 수 있다.", "청소년은 영향을 더 크게 받는다."],
+      con: ["표현과 창작의 자유를 위축시킨다.", "이미 지침이 있으니 자율에 맡겨야 한다."],
+      books: ["미어캣의 스카프", "감기 걸린 물고기"] },
+
+    { type: "policy", field: "미디어", level: "중학·고등", claim: "청소년 대상 광고에서 외모 보정을 금지해야 한다.",
+      background: "프랑스 등은 보정한 광고 이미지에 표시를 의무화했습니다. 외모 기준이 만들어지는 과정에 미디어가 미치는 영향이 쟁점입니다.",
+      pro: ["현실에 없는 기준이 자존감을 무너뜨린다.", "성장기에 미치는 영향이 특히 크다."],
+      con: ["광고는 원래 이상적인 이미지를 쓴다.", "보정의 기준을 정하기 어렵다."],
+      books: ["줄무늬가 생겼어요", "괜찮아"] },
+
+    { type: "policy", field: "건강", level: "중학·고등", claim: "청소년의 미용 목적 성형수술을 법으로 제한해야 한다.",
+      background: "성형 연령이 낮아지면서 보호자 동의만으로 가능한 현행 제도를 두고 논의가 있습니다.",
+      pro: ["몸이 아직 자라는 시기라 위험이 크다.", "외모 압박에 떠밀린 선택일 수 있다."],
+      con: ["몸에 관한 결정은 본인과 보호자의 몫이다.", "심리적 고통을 겪는 경우도 있다."],
+      books: ["줄무늬가 생겼어요", "치킨 마스크"] },
+
+    { type: "policy", field: "건강", level: "중학·고등", claim: "공공장소의 흡연 구역을 완전히 없애야 한다.",
+      background: "간접흡연 피해를 줄이기 위해 금연 구역이 계속 늘고 있습니다. 흡연자의 권리와 비흡연자의 건강권이 부딪칩니다.",
+      pro: ["원치 않는 사람이 피해를 입는다.", "구역이 있어도 연기는 퍼진다."],
+      con: ["흡연자를 갈 곳 없게 만들면 오히려 무질서해진다.", "합법적 행위를 전면 금지할 수는 없다."],
+      books: [] },
+
+    { type: "policy", field: "생명", level: "중학·고등", claim: "유기 동물 보호소 운영을 국가가 책임져야 한다.",
+      background: "많은 보호소가 지자체 위탁이나 민간 후원으로 운영되며 재정난을 겪습니다. 안락사 문제도 함께 논의됩니다.",
+      pro: ["생명을 돌보는 일을 후원에만 맡길 수 없다.", "안정적 운영이 안락사를 줄인다."],
+      con: ["세금 사용의 우선순위를 따져야 한다.", "유기 자체를 줄이는 것이 먼저다."],
+      books: ["나는 기다립니다", "우리, 집"] },
+
+    { type: "policy", field: "사회", level: "중학·고등", claim: "대중교통의 노약자·임산부 배려석을 더 늘려야 한다.",
+      background: "배려석을 둘러싼 갈등이 반복되면서, 자리를 늘리자는 주장과 배려 문화로 풀자는 주장이 함께 나옵니다.",
+      pro: ["정말 필요한 사람이 앉지 못하는 일이 많다.", "고령 인구가 계속 늘고 있다."],
+      con: ["빈자리로 남아 오히려 비효율이 된다.", "제도보다 양보 문화가 중요하다."],
+      books: ["행복을 나르는 버스", "할머니의 여름휴가"] },
+
+    { type: "policy", field: "문화", level: "중학·고등", claim: "스포츠 경기의 모든 판정에 비디오 판독을 적용해야 한다.",
+      background: "비디오 판독이 도입되며 오심은 줄었지만, 경기 흐름이 끊긴다는 불만도 큽니다.",
+      pro: ["오심 하나가 승부를 바꾼다.", "기술이 있는데 쓰지 않을 이유가 없다."],
+      con: ["경기의 흐름과 재미가 깨진다.", "판단이 애매한 장면은 여전히 남는다."],
+      books: ["토끼와 거북이, 두 번째 경주"] },
+
+    // ───────── 중등 눈높이 논제 (가치) ─────────
+    { type: "value", field: "정의", level: "중학·고등", claim: "옳은 일을 위해서라면 규칙을 어겨도 된다.",
+      background: "시민 불복종처럼 부당한 규칙에 맞서는 행동을 어떻게 볼지 묻습니다.",
+      pro: ["규칙이 늘 옳은 것은 아니다.", "어기지 않으면 잘못된 규칙은 바뀌지 않는다."],
+      con: ["각자 판단하면 질서가 무너진다.", "절차를 통해 바꾸는 것이 원칙이다."],
+      books: ["빨간 벽", "세 강도"] },
+
+    { type: "value", field: "정의", level: "중학·고등", claim: "잘못을 저지른 사람에게도 다시 기회를 주어야 한다.",
+      background: "처벌과 회복, 어느 쪽에 무게를 둘지의 문제입니다. 회복적 정의라는 접근이 주목받고 있습니다.",
+      pro: ["사람은 달라질 수 있다.", "낙인은 또 다른 문제를 만든다."],
+      con: ["피해자의 회복이 먼저다.", "쉽게 용서하면 잘못이 되풀이된다."],
+      books: ["세 강도", "내 탓이 아니야"] },
+
+    { type: "value", field: "성장", level: "중학·고등", claim: "재능보다 노력이 더 중요하다.",
+      background: "타고난 재능과 꾸준한 노력 중 무엇이 결과를 만드는지에 대한 오래된 논쟁입니다.",
+      pro: ["재능이 있어도 노력하지 않으면 남지 않는다.", "노력은 누구나 선택할 수 있다."],
+      con: ["출발선의 차이는 분명히 존재한다.", "노력만 강조하면 실패를 개인 탓으로 돌린다."],
+      books: ["점", "슈퍼 거북", "꽃들에게 희망을"] },
+
+    { type: "value", field: "자아", level: "중학·고등", claim: "나를 먼저 챙기는 것은 이기적인 일이 아니다.",
+      background: "배려와 자기 돌봄 사이에서 균형을 어떻게 잡을지의 문제입니다.",
+      pro: ["내가 무너지면 누구도 도울 수 없다.", "거절할 수 있어야 건강한 관계다."],
+      con: ["모두가 자기만 챙기면 공동체가 흔들린다.", "때로는 손해를 감수해야 할 때가 있다."],
+      books: ["착한 달걀", "아낌없이 주는 나무"] },
+
+    { type: "value", field: "자아", level: "중학·고등", claim: "남의 기대에 부응하려는 마음은 나를 성장시킨다.",
+      background: "기대는 동기가 되기도 하고 부담이 되기도 합니다. 어디까지가 나의 목표인지 묻습니다.",
+      pro: ["누군가의 믿음이 한 걸음 더 나아가게 한다.", "혼자서는 세우지 못할 기준을 갖게 된다."],
+      con: ["남의 기준에 맞추다 나를 잃는다.", "기대가 사라지면 동력도 사라진다."],
+      books: ["슈퍼 거북", "착한 달걀", "줄무늬가 생겼어요"] },
+
+    { type: "value", field: "관계", level: "중학·고등", claim: "우정에도 주고받는 균형이 필요하다.",
+      background: "친구 사이의 계산을 어떻게 볼지의 문제입니다. 순수함과 건강함이 부딪칩니다.",
+      pro: ["한쪽만 주는 관계는 오래가지 못한다.", "균형이 있어야 서로 존중한다."],
+      con: ["따지기 시작하면 우정이 아니다.", "당장은 기울어도 시간이 지나면 돌아온다."],
+      books: ["무지개 물고기", "우리는 친구"] },
+
+    { type: "value", field: "관계", level: "중학·고등", claim: "나이가 많다고 더 지혜로운 것은 아니다.",
+      background: "경험에서 오는 지혜와, 세대에 따른 시야의 차이를 함께 생각하게 하는 물음입니다.",
+      pro: ["새로운 문제는 경험이 답을 주지 못한다.", "나이를 근거로 한 권위는 정당하지 않다."],
+      con: ["오래 살며 겪은 일이 판단을 깊게 한다.", "실패의 경험은 책으로 배울 수 없다."],
+      books: ["장수탕 선녀님", "할머니의 여름휴가"] },
+
+    { type: "value", field: "인성", level: "중학·고등", claim: "사과는 말보다 행동으로 해야 한다.",
+      background: "진심 어린 사과란 무엇인지, 말과 행동 중 무엇이 더 중요한지 묻습니다.",
+      pro: ["말뿐인 사과는 상황을 덮는 데 그친다.", "달라진 행동이 진심을 보여 준다."],
+      con: ["말로 인정하는 것이 회복의 출발이다.", "행동만으로는 마음이 전해지지 않는다."],
+      books: ["내 탓이 아니야", "우리는 친구"] },
+
+    { type: "value", field: "문화", level: "중학·고등", claim: "외모를 가꾸는 것은 자기표현이다.",
+      background: "꾸미는 일을 자기표현으로 볼지, 사회가 만든 기준을 따르는 일로 볼지의 문제입니다.",
+      pro: ["어떤 모습으로 살지는 스스로 정한다.", "표현의 한 방식이다."],
+      con: ["기준을 만든 것은 사회와 광고다.", "자유로운 선택처럼 보여도 압박이 있다."],
+      books: ["줄무늬가 생겼어요", "미어캣의 스카프"] },
+
+    { type: "value", field: "공동체", level: "중학·고등", claim: "어려운 이웃을 돕는 것은 의무가 아니라 선택이다.",
+      background: "연대의 책임을 어디까지로 볼지 묻습니다. 복지 제도의 근거와도 이어지는 물음입니다.",
+      pro: ["선의는 강요할 때 의미를 잃는다.", "각자의 사정과 여력이 다르다."],
+      con: ["함께 살아가는 사회에서는 책임도 함께다.", "선택에만 맡기면 아무도 돕지 않는다."],
+      books: ["돌멩이 국", "내가 라면을 먹을 때"] },
+
     { type: "value", field: "행복", level: "중학·고등", claim: "돈으로 행복을 살 수 있다.",
       background: "일정 수준까지는 소득과 만족이 함께 오르지만 그 뒤로는 관계가 약해진다는 연구가 있습니다.",
       pro: ["불안과 결핍을 줄여 주는 것은 분명하다.", "시간과 경험을 살 수 있다."],
@@ -5008,6 +5136,19 @@ const debateTopicsDB = [
       books: ["이파라파냐무냐무", "감기 걸린 물고기"] },
 ];
 
+// 대주제(큰 갈래) — 세부 분야를 6개 묶음으로 정리
+const TOPIC_THEMES = [
+    { key: "self",     label: "나와 마음",         icon: "fa-face-smile",   fields: ["자아", "감정", "성장", "용기", "진로", "인식"] },
+    { key: "relation", label: "관계와 인성",       icon: "fa-people-group", fields: ["관계", "인성", "공동체"] },
+    { key: "society",  label: "사회와 정의",       icon: "fa-landmark",     fields: ["사회", "정의", "인권", "정치", "복지", "노동", "자유"] },
+    { key: "tech",     label: "과학기술과 미디어", icon: "fa-microchip",    fields: ["기술", "미디어"] },
+    { key: "eco",      label: "환경과 생명",       icon: "fa-leaf",         fields: ["환경", "생명", "안전", "건강"] },
+    { key: "life",     label: "삶의 가치",         icon: "fa-compass",      fields: ["실존", "행복", "성공", "윤리", "문화", "역사", "평화"] }
+];
+const themeOf = (field) => (TOPIC_THEMES.find(t => t.fields.includes(field)) || { key: "etc", label: "기타" });
+
+let topicState = { theme: "all", level: "all" };
+
 // 논제 목록 렌더링
 function renderTopicList(type) {
     const grid = document.getElementById("topic-grid");
@@ -5029,27 +5170,55 @@ function renderTopicList(type) {
             <p class="topic-burden"><i class="fa-solid fa-circle-info"></i> ${meta.burden}</p>`;
     }
 
-    const fieldSel = document.getElementById("topic-field");
-    const levelSel = document.getElementById("topic-level");
-    const fv = fieldSel ? fieldSel.value : "all";
-    const lv = levelSel ? levelSel.value : "all";
-
     const srcSel = document.getElementById("topic-source");
     const sv = srcSel ? srcSel.value : "all";
-    const list = debateTopicsDB.filter(t => t.type === type
-        && (fv === "all" || t.field === fv)
-        && (lv === "all" || t.level === lv)
-        && (sv === "all" || (sv === "contest" ? !!t.source : !t.source)));
+    const bySource = (t) => sv === "all" || (sv === "contest" ? !!t.source : !t.source);
+    const ofType = debateTopicsDB.filter(t => t.type === type && bySource(t));
 
+    // 1단계 · 대주제 고르기
+    const themeBox = document.getElementById("topic-themes");
+    if (themeBox) {
+        themeBox.innerHTML =
+            `<button type="button" class="topic-step-chip ${topicState.theme === "all" ? "active" : ""}" data-theme="all">전체 <em>${ofType.length}</em></button>` +
+            TOPIC_THEMES.map(th => {
+                const n = ofType.filter(t => th.fields.includes(t.field)).length;
+                return n ? `<button type="button" class="topic-step-chip ${topicState.theme === th.key ? "active" : ""}" data-theme="${th.key}"><i class="fa-solid ${th.icon}"></i> ${th.label} <em>${n}</em></button>` : "";
+            }).join("");
+        themeBox.querySelectorAll("[data-theme]").forEach(b => b.addEventListener("click", () => {
+            topicState.theme = b.dataset.theme;
+            topicState.level = "all";
+            renderTopicList(type);
+        }));
+    }
+
+    const byTheme = topicState.theme === "all" ? ofType : ofType.filter(t => themeOf(t.field).key === topicState.theme);
+
+    // 2단계 · 학교급 고르기
+    const levelBox = document.getElementById("topic-levels");
+    if (levelBox) {
+        levelBox.innerHTML =
+            `<button type="button" class="topic-step-chip ${topicState.level === "all" ? "active" : ""}" data-level="all">전체 <em>${byTheme.length}</em></button>` +
+            ["초등·중학", "중학·고등", "고등"].map(lv => {
+                const n = byTheme.filter(t => t.level === lv).length;
+                return n ? `<button type="button" class="topic-step-chip ${topicState.level === lv ? "active" : ""}" data-level="${lv}">${lv} <em>${n}</em></button>` : "";
+            }).join("");
+        levelBox.querySelectorAll("[data-level]").forEach(b => b.addEventListener("click", () => {
+            topicState.level = b.dataset.level;
+            renderTopicList(type);
+        }));
+    }
+
+    const list = topicState.level === "all" ? byTheme : byTheme.filter(t => t.level === topicState.level);
     const countEl = document.getElementById("topic-count");
     if (countEl) countEl.textContent = `${list.length}개 논제`;
 
     if (!list.length) {
-        grid.innerHTML = `<p class="topic-empty">조건에 맞는 논제가 없습니다. 필터를 바꿔 보세요.</p>`;
+        grid.innerHTML = `<p class="topic-empty">조건에 맞는 논제가 없습니다. 위에서 다른 대주제나 학교급을 골라 보세요.</p>`;
         return;
     }
 
-    grid.innerHTML = list.map((t, i) => {
+    // 3단계 · 세부 분야별로 묶어 보여주기
+    const cardHTML = (t) => {
         const bookBtns = (t.books || []).map(title => {
             const idx = (typeof books !== "undefined") ? books.findIndex(b => b.title === title) : -1;
             return idx >= 0
@@ -5071,20 +5240,22 @@ function renderTopicList(type) {
                 <div class="topic-body">
                     <p class="topic-bg">${t.background}</p>
                     <div class="topic-sides">
-                        <div class="topic-side topic-side-pro">
-                            <strong>찬성 쟁점</strong>
-                            <ul>${t.pro.map(p => `<li>${p}</li>`).join("")}</ul>
-                        </div>
-                        <div class="topic-side topic-side-con">
-                            <strong>반대 쟁점</strong>
-                            <ul>${t.con.map(c => `<li>${c}</li>`).join("")}</ul>
-                        </div>
+                        <div class="topic-side topic-side-pro"><strong>찬성 쟁점</strong><ul>${t.pro.map(x => `<li>${x}</li>`).join("")}</ul></div>
+                        <div class="topic-side topic-side-con"><strong>반대 쟁점</strong><ul>${t.con.map(x => `<li>${x}</li>`).join("")}</ul></div>
                     </div>
                 </div>
             </details>
             ${bookBtns ? `<div class="topic-books"><span class="topic-books-label">연계 그림책</span>${bookBtns}</div>` : ""}
         </article>`;
-    }).join("");
+    };
+
+    const groups = {};
+    list.forEach(t => { (groups[t.field] = groups[t.field] || []).push(t); });
+    grid.innerHTML = Object.keys(groups).sort((a, b) => a.localeCompare(b, "ko")).map(f => `
+        <section class="topic-group">
+            <h4 class="topic-group-title"><i class="fa-solid fa-tag"></i> ${f} <span>${groups[f].length}</span></h4>
+            <div class="topic-group-grid">${groups[f].map(cardHTML).join("")}</div>
+        </section>`).join("");
 }
 
 // 그림책에서 논제 끌어내기
@@ -5160,20 +5331,11 @@ function initTopicSection() {
         const isDerive = key === "derive";
         if (panelList) panelList.style.display = isDerive ? "none" : "block";
         if (panelDerive) panelDerive.style.display = isDerive ? "block" : "none";
-        if (!isDerive) { current = key; renderTopicList(key); }
+        if (!isDerive) { current = key; topicState = { theme: "all", level: "all" }; renderTopicList(key); }
     };
 
     tabs.forEach(b => b.addEventListener("click", () => show(b.dataset.topicTab)));
 
-    // 분야 필터 채우기
-    const fieldSel = document.getElementById("topic-field");
-    if (fieldSel) {
-        const fields = [...new Set(debateTopicsDB.map(t => t.field))].sort((a, b) => a.localeCompare(b, "ko"));
-        fieldSel.innerHTML = `<option value="all">분야 전체</option>` + fields.map(f => `<option value="${f}">${f}</option>`).join("");
-        fieldSel.addEventListener("change", () => renderTopicList(current));
-    }
-    const levelSel = document.getElementById("topic-level");
-    if (levelSel) levelSel.addEventListener("change", () => renderTopicList(current));
     const srcSel = document.getElementById("topic-source");
     if (srcSel) srcSel.addEventListener("change", () => renderTopicList(current));
 
