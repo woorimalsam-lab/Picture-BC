@@ -3362,7 +3362,17 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileNav();
     handleDeepLink();
     initTopicSection();
+    initPolish();
 });
+
+// 스크롤에 따른 헤더 밀도 변화 (탭 전환과 충돌하지 않는 범위로 제한)
+function initPolish() {
+    const header = document.querySelector(".glass-header");
+    if (!header) return;
+    const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 12);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+}
 
 // 모바일/태블릿 햄버거 메뉴 토글
 function initMobileNav() {
