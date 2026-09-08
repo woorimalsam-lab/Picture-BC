@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=1.9.0">
+    <link rel="stylesheet" href="style.css?v=2.0.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -56,7 +56,6 @@
                 <a href="#archive-section"><i class="fa-solid fa-folder-open"></i> 수업 자료실</a>
                 <a href="#helper-section"><i class="fa-solid fa-wand-magic-sparkles"></i> 추천가이드</a>
                 <a href="#topic-section"><i class="fa-solid fa-scale-balanced"></i> 토론 논제</a>
-                <a href="#reading-section"><i class="fa-solid fa-newspaper"></i> 독서평설</a>
                 <a href="#reference-section"><i class="fa-solid fa-book-bookmark"></i> 참고 도서</a>
             </nav>
             <div class="actions">
@@ -367,13 +366,14 @@
         <div class="section-title-wrapper">
             <span class="sub-title">Debate Propositions</span>
             <h2>토론 논제</h2>
-            <p>정책 논제와 가치 논제를 나누어 정리했습니다. 배경 지식과 찬반 쟁점을 함께 살펴보고, 그림책에서 논제를 끌어내는 방법도 익혀 보세요.</p>
+            <p>정책 논제와 가치 논제, 갈래별 읽기 주제를 한곳에 모았습니다. 배경 지식과 찬반 쟁점을 살펴보고, 그림책에서 논제를 끌어내는 방법도 익혀 보세요.</p>
         </div>
 
         <div class="topic-tabs">
             <button class="topic-tab-btn active" data-topic-tab="policy"><i class="fa-solid fa-gavel"></i> 정책 논제</button>
             <button class="topic-tab-btn" data-topic-tab="value"><i class="fa-solid fa-scale-balanced"></i> 가치 논제</button>
             <button class="topic-tab-btn" data-topic-tab="derive"><i class="fa-solid fa-wand-magic-sparkles"></i> 그림책에서 논제 뽑기</button>
+            <button class="topic-tab-btn" data-topic-tab="reading"><i class="fa-solid fa-book-open"></i> 갈래별 읽기 주제</button>
         </div>
 
         <!-- 논제 목록 패널 -->
@@ -408,29 +408,20 @@
             </div>
             <div class="topic-derive-out" id="topic-derive-out"></div>
         </div>
-    </section>
 
-    <!-- 8. Reading Review (독서평설) Section -->
-    <section id="reading-section" class="reading-section no-print">
-        <div class="section-title-wrapper">
-            <span class="sub-title">Reading Review</span>
-            <h2>독서평설</h2>
-            <p>지학사 독서평설이 다루는 갈래별 읽기 주제를 그림책 토론으로 연결했습니다. 학교급을 선택해 보세요.</p>
-        </div>
-
-        <div class="reading-level-tabs">
-            <button class="reading-level-btn active" data-level="elementary"><i class="fa-solid fa-child-reaching"></i> 초등학교</button>
-            <button class="reading-level-btn" data-level="middle"><i class="fa-solid fa-user-graduate"></i> 중학교</button>
-            <button class="reading-level-btn" data-level="high"><i class="fa-solid fa-graduation-cap"></i> 고등학교</button>
-        </div>
-        <!-- 지학사 자료실 실제 최신 자료 패널 (학교급별 주입) -->
-        <div class="reading-board" id="reading-board"></div>
-
-        <h3 class="reading-subhead"><i class="fa-solid fa-comments"></i> 그림책 연계 토론 주제</h3>
-        <div class="reading-grid" id="reading-grid">
-            <!-- 학교급별 카드 주입 -->
+        <!-- 갈래별 읽기 주제 (구 독서평설) -->
+        <div id="topic-panel-reading" style="display:none;">
+            <p class="topic-panel-intro">인문·사회·과학·환경 등 갈래별 읽기 주제를 그림책 토론으로 연결했습니다. 학교급을 골라 보세요.</p>
+            <div class="reading-level-tabs">
+                <button class="reading-level-btn active" data-level="elementary"><i class="fa-solid fa-child-reaching"></i> 초등학교</button>
+                <button class="reading-level-btn" data-level="middle"><i class="fa-solid fa-user-graduate"></i> 중학교</button>
+                <button class="reading-level-btn" data-level="high"><i class="fa-solid fa-graduation-cap"></i> 고등학교</button>
+            </div>
+            <div class="reading-board" id="reading-board"></div>
+            <div class="reading-grid" id="reading-grid"></div>
         </div>
     </section>
+
     </main>
 
     <!-- 오늘의 방문자 카운터 (왼쪽 플로팅) -->
@@ -478,6 +469,6 @@
     <div id="class-mode" class="class-mode no-print"></div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=1.9.0"></script>
+    <script src="app.js?v=2.0.0"></script>
 </body>
 </html>

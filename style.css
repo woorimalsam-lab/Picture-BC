@@ -2943,9 +2943,14 @@ body.class-mode-open { overflow: hidden; }
 }
 
 /* ===== 독서평설(주제별 토론자료) 섹션 ===== */
-.reading-section {
-    padding: 100px 24px;
-    background-color: var(--bg-secondary);
+.topic-panel-intro {
+    max-width: 760px;
+    margin: 0 auto 22px;
+    text-align: center;
+    font-size: 0.93rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    word-break: keep-all;
 }
 .reading-level-tabs {
     display: flex;

@@ -3796,6 +3796,24 @@ function renderBooks() {
 // 이 사이트가 바탕으로 삼은 참고 도서 (그림책 서재와 동일한 카드 디자인)
 const referenceBooks = [
     {
+        "title": "그림책 토론",
+        "meta": "권현숙·김민경·김준호 외 · 교육과실천(2019)",
+        "desc": "'쉽고 재미있게 생각을 나누는'이라는 부제 그대로, 그림책으로 토론을 처음 시작하는 교사를 위한 안내서입니다. 비경쟁 토론부터 찬반 토론까지 교실에서 바로 쓸 수 있는 방법을 담았습니다. 이 사이트가 지향하는 '쉽고 재미있는 그림책 토론'의 출발점이 된 책입니다.",
+        "tags": ["토론 입문", "교실 실천"],
+        "cover": "images/ref_book_5.jpg",
+        "gradient": "linear-gradient(135deg, #E07A5F, #F4A261)",
+        "link": "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=213421750"
+    },
+    {
+        "title": "그림책 토론 100",
+        "meta": "그림책사랑교사모임 · 학교도서관저널(2025)",
+        "desc": "그림책 1권당 1가지 토론 활동을 도입부터 마무리까지 단계별로 안내하는 '활동 백과사전'. 본 사이트의 단계별 접근법(기초·기본·심화)과 다양한 토론 기법의 토대가 되었습니다.",
+        "tags": ["활동 백과", "단계별 학습"],
+        "cover": "images/ref_book_1.jpg",
+        "gradient": "linear-gradient(135deg, #E07A5F, #F2CC8F)",
+        "link": "https://www.aladin.co.kr/shop/wproduct.aspx?ItemId=358347471"
+    },
+    {
         "title": "열두 달 그림책 토론",
         "meta": "이영근 외(초등토론교육연구회) · 창비교육(2023)",
         "desc": "학사 일정과 월별 학습 내용에 맞춰 36권의 그림책과 논제를 제안하는 수업 안내서. '추천가이드'의 열두 달(월별) 커리큘럼이 이 책의 구성을 따릅니다.",
@@ -5336,12 +5354,14 @@ function initTopicSection() {
     const panelDerive = document.getElementById("topic-panel-derive");
     let current = "policy";
 
+    const panelReading = document.getElementById("topic-panel-reading");
     const show = (key) => {
         tabs.forEach(b => b.classList.toggle("active", b.dataset.topicTab === key));
-        const isDerive = key === "derive";
-        if (panelList) panelList.style.display = isDerive ? "none" : "block";
-        if (panelDerive) panelDerive.style.display = isDerive ? "block" : "none";
-        if (!isDerive) { current = key; topicState = { theme: "all", level: "all" }; renderTopicList(key); }
+        const isList = key === "policy" || key === "value";
+        if (panelList) panelList.style.display = isList ? "block" : "none";
+        if (panelDerive) panelDerive.style.display = key === "derive" ? "block" : "none";
+        if (panelReading) panelReading.style.display = key === "reading" ? "block" : "none";
+        if (isList) { current = key; topicState = { theme: "all", level: "all" }; renderTopicList(key); }
     };
 
     tabs.forEach(b => b.addEventListener("click", () => show(b.dataset.topicTab)));
