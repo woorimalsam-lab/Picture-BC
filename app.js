@@ -3355,6 +3355,7 @@ document.addEventListener("DOMContentLoaded", () => {
     renderArchive(); // For worksheets/archive
     setupModal();
     setupArchiveSearch(); setupWorksheetGenerator();
+    initTopicWorksheet();
     setupHelper();
     setupTechFilters();
     setupMainSearch();
@@ -5989,11 +5990,191 @@ const debateTopicsDB = [
       pro: ["녹지는 한번 사라지면 되돌릴 수 없다.", "모두가 누리는 공간을 일부의 집으로 바꾸는 셈이다."],
       con: ["집이 없어 고통받는 사람이 지금 있다.", "녹지는 다른 곳에 새로 만들 수도 있다."],
       books: ["만희네 꽃밭", "우리, 집"] },
+    // ═════════ 2026년 쟁점(3차) · 정책 논제 ═════════
+    { type: "policy", field: "정의", level: "중학·고등", claim: "중대한 범죄를 저지른 13세도 형사처벌을 받게 해야 한다.",
+      background: "지금은 만 14세 미만이면 형사처벌을 받지 않습니다(촉법소년). 2026년 정부가 중대범죄에 한해 기준을 13세로 낮추는 방안을 검토하고, 대통령이 여론 수렴을 지시했습니다.",
+      pro: ["나이를 믿고 저지르는 범죄를 막을 수 있다.", "피해자가 받은 고통에 맞는 책임이 있어야 한다."],
+      con: ["강력범죄를 주로 저지르는 나이는 촉법 연령대보다 높다는 지적이 있다.", "처벌보다 환경을 바꾸고 교화하는 체계를 먼저 갖춰야 한다."],
+      books: ["세 강도", "내 탓이 아니야"] },
+
+    { type: "policy", field: "안전", level: "중학·고등", claim: "일정 나이가 넘은 운전자에게는 조건부 면허만 주어야 한다.",
+      background: "야간 운전 제한 같은 조건을 두는 고령자 조건부 면허제 논의가 본격화됐습니다. 면허를 반납하면 교통카드를 주는 지역도 늘고, 지원 나이를 65세로 낮춘 곳도 생겼습니다.",
+      pro: ["면허를 아예 빼앗지 않으면서 위험한 상황만 줄일 수 있다.", "나이가 들면 시력과 반응 속도가 떨어진다."],
+      con: ["같은 나이라도 운전 능력은 사람마다 크게 다르다.", "대중교통이 부족한 지역에서는 생활이 막힌다."],
+      books: ["할머니의 여름휴가", "장수탕 선녀님"] },
+
+    { type: "policy", field: "인권", level: "초등·중학", claim: "어린이 손님을 받지 않는 가게(노키즈존)를 금지해야 한다.",
+      background: "국내 노키즈존은 500곳 안팎으로 알려져 있습니다. 국가인권위원회는 아동을 한꺼번에 막는 것을 차별로 보고 권고했지만, 법으로 막지는 않고 있습니다.",
+      pro: ["나이만으로 사람을 들이지 않는 것은 차별이다.", "어린이도 공공의 공간을 누릴 권리가 있다."],
+      con: ["가게 주인에게는 영업 방식을 정할 자유가 있다.", "소란을 막는 규칙을 두는 것으로 풀 수 있다."],
+      books: ["부리 동물 출입 금지!", "초코곰과 젤리곰"] },
+
+    { type: "policy", field: "환경", level: "고등", claim: "AI 데이터센터는 전력이 넉넉한 지방에 짓게 해야 한다.",
+      background: "국내 데이터센터 전력 수요는 2025년 4,461MW에서 2028년 6,175MW로 늘 것으로 전망됩니다. 전기는 지방에서 많이 만들고 수도권에서 많이 씁니다.",
+      pro: ["먼 곳까지 전기를 보내는 송전망 부담이 줄어든다.", "지방에 일자리와 투자가 생긴다."],
+      con: ["기업이 원하는 인력과 통신망은 수도권에 몰려 있다.", "지방에 부담만 떠넘기는 셈이 될 수 있다."],
+      books: ["아낌없이 주는 나무", "우리, 집"] },
+
+    { type: "policy", field: "복지", level: "고등", claim: "출산 지원은 현금보다 돌봄 서비스로 주어야 한다.",
+      background: "정부는 2027년 7월 출생아부터 첫째 1천만 원, 둘째 1천2백만 원, 셋째 이상 1천5백만 원을 한 해에 걸쳐 나누어 주는 방안을 내놨습니다.",
+      pro: ["돈을 받아도 맡길 곳이 없으면 아이를 키우기 어렵다.", "서비스는 모든 가정이 고르게 누린다."],
+      con: ["가정마다 필요한 것이 달라 현금이 더 쓸모 있다.", "서비스를 늘리는 데는 시간이 오래 걸린다."],
+      books: ["돼지책", "구름빵"] },
+
+    { type: "policy", field: "사회", level: "고등", claim: "배달앱 수수료에 법으로 상한을 두어야 한다.",
+      background: "수수료 상한제 법안이 여러 건 나왔지만 국회에 머물러 있습니다. 2026년 8월 공정거래위원장이 수수료를 낮출 수 있다는 뜻을 밝혔고, 풍선효과와 통상 마찰을 걱정하는 목소리도 나옵니다.",
+      pro: ["작은 가게는 수수료 때문에 팔수록 남는 게 없다.", "몇몇 플랫폼이 시장을 쥐고 있어 스스로 낮추지 않는다."],
+      con: ["줄어든 수수료만큼 배달비가 올라 소비자가 떠안을 수 있다.", "가격을 법으로 정하면 서비스가 나빠질 수 있다."],
+      books: ["샌지와 빵집 주인", "돌멩이 국"] },
+
+    { type: "policy", field: "건강", level: "중학·고등", claim: "도박을 스스로 신고한 청소년은 처벌 대신 치료로 이어 주어야 한다.",
+      background: "청소년 도박 입건은 2021년 50명에서 2025년 337명으로 늘었고, 도박을 시작한 평균 나이는 12.5세로 조사됐습니다. 경찰은 스스로 신고하면 가벼운 사안을 선처하는 제도를 운영합니다.",
+      pro: ["처벌이 무서우면 숨기고 더 깊이 빠진다.", "중독은 벌보다 치료가 필요한 문제다."],
+      con: ["잘못에 책임을 지지 않으면 다시 할 수 있다.", "신고만 하면 넘어간다는 인식이 생길 수 있다."],
+      books: ["단물고개", "틀려도 괜찮아"] },
+
+    { type: "policy", field: "기술", level: "고등", claim: "우주 개발 예산을 크게 늘려야 한다.",
+      background: "우주항공청 예산은 2024년 7,598억 원에서 2026년 1조 1,201억 원으로 늘었고, 2027년에는 1조 6천억 원대로 늘리는 계획이 나왔습니다. 달 착륙선 개발과 누리호 정례 발사를 추진합니다.",
+      pro: ["위성과 발사체 기술은 통신·안보·산업의 바탕이 된다.", "지금 뒤처지면 따라잡기 어렵다."],
+      con: ["당장 급한 복지와 안전에 쓸 돈이 줄어든다.", "투자한 만큼 성과가 날지 불확실하다."],
+      books: ["빨간 벽", "문 밖에 사자가 있다"] },
+
+    // ═════════ 2026년 쟁점(3차) · 사실 논제 ═════════
+    { type: "fact", field: "정의", level: "고등", claim: "처벌 연령을 낮추면 청소년 범죄가 줄어든다.",
+      background: "촉법소년 기준을 낮추자는 주장의 바탕에는 처벌이 범죄를 막는다는 믿음이 있습니다. 사법계에서는 효과가 불확실하다는 반론이 나옵니다.",
+      pro: ["처벌받을 수 있다는 것을 알면 조심하게 된다.", "나이를 믿고 저지르는 범죄가 있다는 보고가 있다."],
+      con: ["충동적으로 저지르는 범죄에는 처벌 위협이 잘 작동하지 않는다.", "강력범죄를 주로 저지르는 나이는 촉법 연령대보다 높다."],
+      books: ["세 강도", "내 탓이 아니야"] },
+
+    { type: "fact", field: "안전", level: "중학·고등", claim: "나이 든 운전자가 사고를 더 많이 낸다.",
+      background: "고령 운전자 사고는 늘고 있습니다. 다만 고령 운전자 수가 늘어난 효과와, 운전한 거리를 함께 따져야 한다는 지적이 있습니다.",
+      pro: ["나이가 들수록 시야와 반응 속도가 줄어든다.", "고령 운전자가 낸 사고 건수가 해마다 늘었다."],
+      con: ["운전자 수가 늘었으니 사고 건수가 느는 것은 당연하다.", "운전 거리당으로 따지면 젊은 운전자의 사고율이 높다는 분석도 있다."],
+      books: ["블랙 독", "할머니의 여름휴가"] },
+
+    { type: "fact", field: "환경", level: "중학·고등", claim: "AI를 많이 쓸수록 탄소 배출이 늘어난다.",
+      background: "AI 데이터센터는 기존 데이터센터보다 훨씬 많은 전력을 씁니다. 그 전기를 무엇으로 만드느냐에 따라 결과가 달라집니다.",
+      pro: ["AI를 돌리는 데이터센터의 전력 수요가 빠르게 늘고 있다.", "늘어난 전력을 화석연료로 채우는 경우가 많다."],
+      con: ["재생에너지와 원전으로 전기를 만들면 배출이 크게 늘지 않는다.", "AI로 에너지를 아끼는 효과가 더 클 수도 있다."],
+      books: ["낱말공장 나라", "플라스틱 섬"] },
+
+    { type: "fact", field: "사회", level: "고등", claim: "출산 지원금을 늘리면 아이를 더 낳는다.",
+      background: "현금 지원이 출생아 수를 늘리는지는 나라마다, 연구마다 결과가 다릅니다. 2027년 대규모 현금 지원을 앞두고 다시 쟁점이 됐습니다.",
+      pro: ["지원금을 늘린 지역에서 출생아가 늘어난 사례가 있다.", "경제적 부담이 출산을 망설이는 가장 큰 이유로 꼽힌다."],
+      con: ["이웃 지역에서 옮겨 온 효과일 뿐이라는 분석이 있다.", "낳을 계획이던 사람이 시기만 앞당겼을 수 있다."],
+      books: ["돼지책", "구름빵"] },
+
+    { type: "fact", field: "사회", level: "고등", claim: "배달앱 수수료를 낮추면 그 부담이 소비자에게 넘어간다.",
+      background: "수수료 상한제를 두고 가장 크게 부딪치는 쟁점입니다. 플랫폼이 줄어든 수입을 배달비나 무료배달 축소로 메울 수 있다는 걱정이 나옵니다.",
+      pro: ["플랫폼은 줄어든 수입을 다른 곳에서 메우려 한다.", "무료배달이 줄면 소비자가 내는 돈이 는다."],
+      con: ["여러 플랫폼이 경쟁하면 쉽게 값을 올리지 못한다.", "가게가 음식값에 얹던 수수료가 줄어 오히려 싸질 수 있다."],
+      books: ["샌지와 빵집 주인"] },
+
+    { type: "fact", field: "건강", level: "중학·고등", claim: "청소년 도박이 늘어난 것은 적발이 늘었기 때문이다.",
+      background: "청소년 도박 입건이 크게 늘었습니다. 같은 기간 경찰이 사이버도박 특별단속을 벌여, 실제로 늘어난 것인지 더 많이 잡아낸 것인지 가려 볼 필요가 있습니다.",
+      pro: ["단속을 강화하면 같은 수준이라도 잡히는 수는 늘어난다.", "자진신고제가 생겨 드러나는 사례가 많아졌다."],
+      con: ["도박을 시작하는 나이가 낮아졌다는 조사가 따로 있다.", "도박 치료를 받는 청소년 수도 함께 늘었다."],
+      books: ["단물고개", "감기 걸린 물고기"] },
+
+    // ═════════ 2026년 쟁점(3차) · 가치 논제 ═════════
+    { type: "value", field: "인권", level: "중학·고등", claim: "나이를 기준으로 할 수 있는 일을 제한하는 것은 차별이다.",
+      background: "노키즈존, 고령자 조건부 면허, 촉법소년 연령처럼 나이로 선을 긋는 제도가 잇따라 쟁점이 되고 있습니다.",
+      pro: ["같은 나이라도 사람마다 능력과 행동이 다르다.", "나이만 보고 판단하면 개인을 보지 않는 셈이다."],
+      con: ["사람을 하나하나 따질 수 없으니 나이는 쓸모 있는 기준이다.", "투표·음주처럼 나이 기준은 사회를 지키는 약속이다."],
+      books: ["초코곰과 젤리곰", "할머니의 여름휴가"] },
+
+    { type: "value", field: "자유", level: "초등·중학", claim: "가게 주인은 어떤 손님을 받을지 스스로 정할 수 있다.",
+      background: "노키즈존을 두고 가게 주인의 영업의 자유와 손님의 평등한 이용이 부딪칩니다. 국가인권위원회도 영업의 자유 자체는 인정했습니다.",
+      pro: ["가게를 꾸리고 책임지는 사람은 주인이다.", "조용한 곳을 원하는 손님도 있다."],
+      con: ["어떤 이유든 사람을 통째로 막는 것은 차별이 된다.", "모두에게 열린 가게라면 모두를 똑같이 대해야 한다."],
+      books: ["부리 동물 출입 금지!", "샌지와 빵집 주인"] },
+
+    { type: "value", field: "정의", level: "중학·고등", claim: "하루 차이로 혜택이 크게 달라지는 제도는 공정하지 않다.",
+      background: "2027년 7월 1일부터 출산 지원을 크게 늘리기로 하면서, 하루 차이로 태어난 아이의 지원이 크게 달라진다는 지적이 나왔습니다. 대통령이 소급 적용 검토를 언급했습니다.",
+      pro: ["태어난 날은 아이가 고를 수 없다.", "비슷한 처지의 사람은 비슷하게 대해야 한다."],
+      con: ["새 제도는 어딘가에서 시작할 수밖에 없다.", "모두 거슬러 올라가 주면 끝이 없고 재정이 버티지 못한다."],
+      books: ["토끼와 거북이, 두 번째 경주", "초코곰과 젤리곰"] },
+
+    { type: "value", field: "기술", level: "고등", claim: "AI 발전을 위해 에너지를 더 쓰는 것은 정당하다.",
+      background: "AI 데이터센터가 늘면서 전력 수요가 크게 늘고 있습니다. 기술 발전과 에너지 절약 가운데 무엇을 앞세울지 묻습니다.",
+      pro: ["AI가 가져올 이익이 쓰는 에너지보다 크다.", "뒤처지면 나중에 더 큰 대가를 치른다."],
+      con: ["기후위기 앞에서 에너지를 더 쓰는 것은 미래 세대에 짐을 넘기는 일이다.", "꼭 필요한 곳에만 쓰도록 먼저 따져야 한다."],
+      books: ["원숭이 꽃신", "아낌없이 주는 나무"] },
+
+    { type: "value", field: "기술", level: "중학·고등", claim: "지구의 문제가 쌓여 있어도 우주를 탐사하는 것은 바람직하다.",
+      background: "우주 예산이 해마다 크게 늘면서, 지구의 문제부터 풀어야 한다는 목소리와 먼 곳을 보아야 한다는 목소리가 부딪칩니다.",
+      pro: ["모르는 곳을 알아 가려는 도전이 인류를 키워 왔다.", "우주 기술이 지구의 문제를 푸는 데 쓰이기도 한다."],
+      con: ["굶주림과 기후위기가 먼저다.", "그 돈이면 지금 도울 수 있는 사람이 많다."],
+      books: ["빨간 벽", "30번 곰"] },
+
+    { type: "value", field: "공동체", level: "초등·중학", claim: "공공장소에서 아이가 조용히 하도록 하는 책임은 부모에게 있다.",
+      background: "노키즈존이 생긴 까닭으로 소란스러운 아이와 이를 두고 보는 어른이 꼽힙니다. 책임을 누구에게 둘지 묻습니다.",
+      pro: ["어린아이는 스스로 조절하기 어려우니 보호자가 살펴야 한다.", "부모가 책임지면 가게가 아이를 막을 까닭이 사라진다."],
+      con: ["아이도 스스로 지킬 수 있도록 배워야 한다.", "아이가 조금 소란스러운 것은 함께 사는 사회가 받아들여야 한다."],
+      books: ["으르렁 이발소", "벌집이 너무 좁아"] },
 ];
 
 // ───────── 논제별 근거 통계 연결 ─────────
 // q 값은 KOSIS 검색어입니다. 수치는 해마다 바뀌므로 반드시 최신 자료를 확인하세요.
 const TOPIC_STATS = {
+    "중대한 범죄를 저지른 13세도 형사처벌을 받게 해야 한다.": [
+        { src: "kosis", label: "연령별 소년범죄 현황", q: "소년범죄" },
+        { src: "index", label: "e-나라지표 – 소년범죄 추이" }
+    ],
+    "일정 나이가 넘은 운전자에게는 조건부 면허만 주어야 한다.": [
+        { src: "kosis", label: "고령운전자 교통사고 현황", q: "고령운전자 교통사고" },
+        { src: "sgis", label: "지역별 대중교통 접근성 지도" }
+    ],
+    "어린이 손님을 받지 않는 가게(노키즈존)를 금지해야 한다.": [
+        { src: "tong", label: "노키즈존에 대한 우리 반 생각 – 설문 만들기" }
+    ],
+    "AI 데이터센터는 전력이 넉넉한 지방에 짓게 해야 한다.": [
+        { src: "index", label: "e-나라지표 – 지역별 발전량과 전력 소비" },
+        { src: "kosis", label: "시도별 전력 판매량", q: "시도별 전력" },
+        { src: "sgis", label: "지도로 보는 지역별 산업 분포" }
+    ],
+    "출산 지원은 현금보다 돌봄 서비스로 주어야 한다.": [
+        { src: "kosis", label: "인구동향조사 – 합계출산율", q: "합계출산율" },
+        { src: "kosis", label: "어린이집 현황과 이용 아동", q: "어린이집 현황" }
+    ],
+    "배달앱 수수료에 법으로 상한을 두어야 한다.": [
+        { src: "kosis", label: "온라인쇼핑동향 – 음식서비스 거래액", q: "온라인쇼핑동향" },
+        { src: "kosis", label: "소상공인 실태조사 – 영업이익", q: "소상공인실태조사" }
+    ],
+    "도박을 스스로 신고한 청소년은 처벌 대신 치료로 이어 주어야 한다.": [
+        { src: "mogef", label: "청소년 매체이용 및 유해환경 실태조사 – 도박 경험" },
+        { src: "kosis", label: "소년범죄 유형별 현황", q: "소년범죄" }
+    ],
+    "우주 개발 예산을 크게 늘려야 한다.": [
+        { src: "index", label: "e-나라지표 – 정부 연구개발 예산" },
+        { src: "kosis", label: "연구개발활동조사 – 분야별 연구개발비", q: "연구개발활동조사" }
+    ],
+    "처벌 연령을 낮추면 청소년 범죄가 줄어든다.": [
+        { src: "kosis", label: "연령별 소년범죄 현황", q: "소년범죄" },
+        { src: "index", label: "e-나라지표 – 소년범죄 추이" }
+    ],
+    "나이 든 운전자가 사고를 더 많이 낸다.": [
+        { src: "kosis", label: "연령별 운전자 교통사고", q: "고령운전자 교통사고" },
+        { src: "kosis", label: "연령별 운전면허 소지자 수", q: "운전면허 소지자" },
+        { src: "index", label: "e-나라지표 – 교통사고 사망자 추이" }
+    ],
+    "AI를 많이 쓸수록 탄소 배출이 늘어난다.": [
+        { src: "index", label: "e-나라지표 – 전력 소비량과 온실가스 배출량" },
+        { src: "kosis", label: "발전원별 발전량", q: "발전원별 발전량" }
+    ],
+    "출산 지원금을 늘리면 아이를 더 낳는다.": [
+        { src: "kosis", label: "시군구별 합계출산율", q: "합계출산율" },
+        { src: "kosis", label: "사회조사 – 출산 계획과 이유", q: "결혼에 대한 견해" },
+        { src: "sgis", label: "지도로 보는 지역별 출생아 수" }
+    ],
+    "배달앱 수수료를 낮추면 그 부담이 소비자에게 넘어간다.": [
+        { src: "kosis", label: "소비자물가지수 – 외식", q: "외식 물가" },
+        { src: "kosis", label: "온라인쇼핑동향 – 음식서비스", q: "온라인쇼핑동향" }
+    ],
+    "청소년 도박이 늘어난 것은 적발이 늘었기 때문이다.": [
+        { src: "kosis", label: "소년범죄 유형별 현황", q: "소년범죄" },
+        { src: "mogef", label: "청소년 유해환경 실태조사 – 도박 경험률" }
+    ],
     "최저임금을 업종과 지역에 따라 다르게 정해야 한다.": [
         { src: "index", label: "e-나라지표 – 최저임금 추이와 영향률" },
         { src: "kosis", label: "산업별·지역별 임금 수준", q: "산업별 임금" }
@@ -6602,6 +6783,7 @@ function renderTopicList(type) {
             </details>
             ${bookBtns ? `<div class="topic-books"><span class="topic-books-label">연계 그림책</span>${bookBtns}</div>` : ""}
             ${statBtns ? `<div class="topic-stats"><span class="topic-stats-label"><i class="fa-solid fa-chart-column"></i> 근거로 쓸 통계</span><div class="topic-stat-list">${statBtns}</div></div>` : ""}
+            <div class="topic-actions"><button type="button" class="topic-ws-btn" onclick="openTopicWorksheet(${debateTopicsDB.indexOf(t)})"><i class="fa-solid fa-file-pen"></i> 이 논제로 학습지 만들기</button></div>
         </article>`;
     };
 
@@ -8067,6 +8249,7 @@ function setupWorksheetGenerator() {
 
     if(btn && bookSelect && typeSelect && output) {
         btn.addEventListener("click", () => {
+            if (wsMode === "topic") { generateTopicWorksheet(); return; }
             const bookIdx = bookSelect.value;
             const type = typeSelect.value;
             const book = books[bookIdx];
@@ -8972,10 +9155,292 @@ function setupWorksheetGenerator() {
     }
 }
 
+// ───────── 토론 논제 학습지 (학습지 메이커 · '토론 논제로 만들기') ─────────
+let wsMode = "book";
+
+const TOPIC_WS_FORMS = {
+    analysis: "논제 분석지",
+    case: "입론서",
+    flow: "토론 흐름표",
+    judge: "판정·성찰지",
+    full: "전 과정 묶음"
+};
+
+const TOPIC_WS_SCALE = {
+    fact: ["확실히 그렇다", "그런 편이다", "잘 모르겠다", "아닌 편이다", "전혀 아니다"],
+    other: ["매우 찬성", "찬성하는 편", "잘 모르겠다", "반대하는 편", "매우 반대"]
+};
+
+const topicSides = (t) => t.type === "fact" ? ["그렇다 쪽", "아니다 쪽"] : ["찬성 측", "반대 측"];
+
+const topicWsScale = (t, name) => {
+    const labels = t.type === "fact" ? TOPIC_WS_SCALE.fact : TOPIC_WS_SCALE.other;
+    return `<div class="ws-scale">${labels.map((l, i) => `<label class="ws-scale-item"><input type="radio" name="${name}" value="${i}"><span>${l}</span></label>`).join("")}</div>`;
+};
+
+const topicWsHeader = (t, formLabel) => {
+    const meta = TOPIC_TYPE_INFO[t.type];
+    return `
+        <div style="text-align:center; margin-bottom:22px;">
+            <p style="font-size:0.82rem; color:#8a5a44; letter-spacing:0.06em; margin:0 0 8px;">${meta.label} · ${t.level} · ${formLabel}</p>
+            <h3 style="font-size:1.5rem; color:#111; margin:0 0 12px; line-height:1.45; word-break:keep-all;">${t.claim}</h3>
+            <p style="font-size:0.95rem; color:#555;">학년: ______ 반: ______ 모둠: ______ 이름: ____________</p>
+        </div>`;
+};
+
+const topicWsStatsNote = (t) => {
+    if (!t.stats || !t.stats.length) return `<p class="ws-prompt">책, 신문 기사, 직접 조사한 자료 가운데서 근거를 찾아 보세요.</p>`;
+    return `<p class="ws-prompt">이 논제와 이어지는 공식 통계 · ${t.stats.map(st => `${st.label}(${(STAT_SOURCES[st.src] || {}).org || ""})`).join(" / ")}</p>`;
+};
+
+const topicWsBookBlock = (t, prompt) => {
+    if (!t.books || !t.books.length) return "";
+    return `
+        <div class="ws-section">
+            <h4>🌱 그림책으로 생각 열기 · ${t.books.map(b => `《${b}》`).join(" ")}</h4>
+            <p class="ws-prompt">${prompt}</p>
+            <textarea class="ws-topic-box" style="height:90px;"></textarea>
+        </div>`;
+};
+
+const TOPIC_WS_BUILDERS = {
+    analysis: (t, hints) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        const hintList = (arr) => `<ul class="ws-hint">${arr.map(x => `<li>${x}</li>`).join("")}</ul>`;
+        return `
+            <div class="ws-book-info-box">
+                <h4>📌 논제 살펴보기</h4>
+                ${hints ? `<p style="margin-bottom:8px;">${t.background}</p>` : ""}
+                <p style="margin-bottom:4px;"><strong>${meta.label}</strong>는 '${meta.tagline}'를 따지는 논제입니다. 문장 틀 · ${meta.frame}</p>
+                <p>${meta.burden}</p>
+            </div>
+            <div class="ws-section">
+                <h4>1. 논제 속 낱말 뜻 정하기</h4>
+                <p class="ws-prompt">뜻이 여러 가지로 풀릴 수 있는 낱말을 골라, 이번 토론에서 쓸 뜻을 함께 정해 보세요.</p>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:28%;">낱말</th><th>이번 토론에서 쓸 뜻</th></tr>
+                    ${[0, 1, 2].map(() => `<tr><td><input class="ws-line" type="text"></td><td><textarea style="height:44px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>2. 토론 전, 나의 첫 생각</h4>
+                ${topicWsScale(t, "ana-pre")}
+                <textarea class="ws-topic-box" style="height:70px;" placeholder="그렇게 생각한 까닭"></textarea>
+            </div>
+            <div class="ws-section">
+                <h4>3. 쟁점 나누기</h4>
+                <table class="ws-table">
+                    <tr><th>${A}</th><th>${B}</th></tr>
+                    ${hints ? `<tr><td>${hintList(t.pro)}</td><td>${hintList(t.con)}</td></tr>` : ""}
+                    <tr><td><textarea style="height:100px;" placeholder="내가 더 찾은 근거"></textarea></td><td><textarea style="height:100px;" placeholder="내가 더 찾은 근거"></textarea></td></tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>4. 근거 자료 찾기</h4>
+                ${topicWsStatsNote(t)}
+                ${t.type === "fact" ? `<p class="ws-prompt">⚠ 함께 나타난다고 원인은 아닙니다. 자료가 '원인'까지 보여 주는지 따져 보세요.</p>` : ""}
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:26%;">주장</th><th style="width:37%;">자료 (출처·연도)</th><th>해석 (그래서 무엇을 뜻하나)</th></tr>
+                    ${[0, 1].map(() => `<tr><td><textarea style="height:64px;"></textarea></td><td><textarea style="height:64px;"></textarea></td><td><textarea style="height:64px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+            ${topicWsBookBlock(t, "이 그림책의 어떤 장면이나 인물이 논제와 닿아 있나요? 그 장면은 어느 쪽 주장에 힘을 실어 주나요?")}`;
+    },
+
+    case: (t, hints) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        const summary = t.type === "fact"
+            ? "우리는 ~ 때문에 이 논제가 (사실이다 / 사실이 아니다)라고 봅니다."
+            : "우리는 ~ 때문에 이 논제에 (찬성 / 반대)합니다.";
+        return `
+            <div class="ws-section">
+                <h4>우리 모둠의 입장</h4>
+                <div class="ws-side-pick">
+                    <label><input type="radio" name="case-side" value="A"> ${A}</label>
+                    <label><input type="radio" name="case-side" value="B"> ${B}</label>
+                </div>
+                <p class="ws-prompt" style="margin-top:8px;">${meta.burden}</p>
+            </div>
+            ${hints ? `<div class="ws-book-info-box"><h4>참고 · 쟁점 예시</h4><p style="margin-bottom:4px;"><strong>${A}</strong> ${t.pro.join(" / ")}</p><p><strong>${B}</strong> ${t.con.join(" / ")}</p></div>` : ""}
+            ${meta.criteria.map((c, i) => `
+            <div class="ws-section">
+                <h4>${i + 1}. ${c.label}</h4>
+                <p class="ws-prompt">${c.desc}</p>
+                <textarea class="ws-topic-box" style="height:88px;"></textarea>
+            </div>`).join("")}
+            <div class="ws-section">
+                <h4>5. 예상 반론과 재반론</h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th>상대가 할 반론</th><th>우리의 재반론</th></tr>
+                    ${[0, 1].map(() => `<tr><td><textarea style="height:70px;"></textarea></td><td><textarea style="height:70px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>6. 입론 한 문장으로 정리하기</h4>
+                <textarea class="ws-topic-box" style="height:56px;" placeholder="${summary}"></textarea>
+            </div>`;
+    },
+
+    flow: (t) => {
+        const [A, B] = topicSides(t);
+        const order = [
+            ["입론", A, "2분"], ["입론", B, "2분"], ["작전 시간", "양쪽 모두", "1분"],
+            ["교차 질의", `${B}가 묻고 ${A}가 답하기`, "2분"], ["교차 질의", `${A}가 묻고 ${B}가 답하기`, "2분"],
+            ["반론", `${B} → ${A} 순서로`, "각 2분"], ["최종 발언", `${B} → ${A} 순서로`, "각 1분"]
+        ];
+        return `
+            <div class="ws-section">
+                <h4>진행 순서</h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:12%;">순서</th><th>단계</th><th>누가</th><th style="width:16%;">시간</th></tr>
+                    ${order.map((r, i) => `<tr><td style="text-align:center;">${i + 1}</td><td>${r[0]}</td><td>${r[1]}</td><td style="text-align:center;">${r[2]}</td></tr>`).join("")}
+                </table>
+                <p class="ws-prompt">시간은 학급 사정에 맞게 바꾸어 쓰세요. 교차 질의에서는 묻는 쪽도 답하는 쪽도 짧게 말합니다.</p>
+            </div>
+            <div class="ws-section">
+                <h4>토론 흐름 기록</h4>
+                <p class="ws-prompt">상대의 말은 요점만 적고, 우리가 대답해야 할 곳에 화살표(→)로 표시해 두세요.</p>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:16%;">단계</th><th>${A}</th><th>${B}</th></tr>
+                    ${["입론", "교차 질의", "반론", "최종 발언"].map(s => `<tr><td style="text-align:center; font-weight:700;">${s}</td><td><textarea style="height:92px;"></textarea></td><td><textarea style="height:92px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>가장 크게 부딪친 쟁점</h4>
+                <textarea class="ws-topic-box" style="height:66px;"></textarea>
+            </div>`;
+    },
+
+    judge: (t) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        const score = `<input class="ws-score" type="text" maxlength="2" inputmode="numeric">`;
+        const rows = [...meta.criteria.map(c => c.label), "상대 주장에 대한 응답", "말하기 태도 (시간·예의)"];
+        return `
+            <div class="ws-section">
+                <h4>1. 평가표 <span style="font-weight:400; font-size:0.85rem; color:#666;">(기준마다 1~5점)</span></h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th>평가 기준</th><th style="width:20%;">${A}</th><th style="width:20%;">${B}</th></tr>
+                    ${rows.map(r => `<tr><td>${r}</td><td style="text-align:center;">${score}</td><td style="text-align:center;">${score}</td></tr>`).join("")}
+                    <tr><th>합계</th><td style="text-align:center;">${score}</td><td style="text-align:center;">${score}</td></tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>2. 더 설득력 있었던 쪽</h4>
+                <div class="ws-side-pick">
+                    <label><input type="radio" name="judge-win" value="A"> ${A}</label>
+                    <label><input type="radio" name="judge-win" value="B"> ${B}</label>
+                </div>
+                <textarea class="ws-topic-box" style="height:70px; margin-top:8px;" placeholder="판정을 가른 결정적인 논거"></textarea>
+            </div>
+            <div class="ws-section">
+                <h4>3. 내 생각은 어떻게 달라졌나요?</h4>
+                <p class="ws-prompt"><strong>토론 전</strong></p>
+                ${topicWsScale(t, "judge-pre")}
+                <p class="ws-prompt"><strong>토론 후</strong></p>
+                ${topicWsScale(t, "judge-post")}
+                <textarea class="ws-topic-box" style="height:70px;" placeholder="생각이 바뀌었거나 더 굳어진 까닭"></textarea>
+            </div>
+            <div class="ws-section">
+                <h4>4. 상대에게서 배운 점</h4>
+                <textarea class="ws-topic-box" style="height:60px;"></textarea>
+            </div>
+            ${topicWsBookBlock(t, "토론을 마치고 그림책을 다시 떠올리면, 처음과 다르게 보이는 장면이 있나요?")}`;
+    }
+};
+
+function buildTopicWorksheet(t, form, hints) {
+    const pages = form === "full" ? ["analysis", "case", "flow", "judge"] : [form];
+    const top = `
+        <div class="worksheet-print-header no-print" style="text-align: right; margin-bottom: 20px;">
+            <button onclick="window.print()" class="btn btn-secondary"><i class="fa-solid fa-print"></i> 활동지 인쇄하기</button>
+        </div>`;
+    return top + pages.map((p, i) => `
+        <div class="worksheet-paper ws-topic-page${i ? " ws-topic-break" : ""}">
+            ${topicWsHeader(t, TOPIC_WS_FORMS[p])}
+            ${TOPIC_WS_BUILDERS[p](t, hints)}
+        </div>`).join("");
+}
+
+function generateTopicWorksheet() {
+    const output = document.getElementById("worksheet-paper");
+    const topicSel = document.getElementById("topic-ws-topic");
+    const formSel = document.getElementById("topic-ws-form");
+    const hintBox = document.getElementById("topic-ws-hints");
+    if (!output || !topicSel || !formSel) return;
+    const t = debateTopicsDB[Number(topicSel.value)];
+    const form = formSel.value;
+    if (!t || !(form === "full" || TOPIC_WS_BUILDERS[form])) return;
+    output.innerHTML = buildTopicWorksheet(t, form, hintBox ? hintBox.checked : true);
+    output.classList.remove("hidden");
+    setupWorksheetAutosave("논제:" + t.claim, "topic-" + form);
+}
+
+function refreshTopicWsOptions() {
+    const typeSel = document.getElementById("topic-ws-type");
+    const lvSel = document.getElementById("topic-ws-level");
+    const topicSel = document.getElementById("topic-ws-topic");
+    if (!typeSel || !lvSel || !topicSel) return;
+    const ty = typeSel.value, lv = lvSel.value, cur = topicSel.value;
+    const TO = { fact: 0, policy: 1, value: 2 };
+    const LO = { "초등·중학": 0, "중학·고등": 1, "고등": 2 };
+    const list = debateTopicsDB.map((t, i) => ({ t, i }))
+        .filter(({ t }) => (ty === "all" || t.type === ty) && (lv === "all" || t.level === lv))
+        .sort((a, b) => (TO[a.t.type] - TO[b.t.type]) || (LO[a.t.level] - LO[b.t.level]) || a.t.claim.localeCompare(b.t.claim, "ko"));
+    topicSel.innerHTML = list.map(({ t, i }) => `<option value="${i}">[${TOPIC_TYPE_INFO[t.type].label.replace(" 논제", "")}·${t.level}] ${t.claim}</option>`).join("");
+    if (list.some(x => String(x.i) === cur)) topicSel.value = cur;
+    const cnt = document.getElementById("topic-ws-count");
+    if (cnt) cnt.textContent = `${list.length}개`;
+}
+
+function setWsMode(mode) {
+    wsMode = mode;
+    document.querySelectorAll(".ws-mode-btn").forEach(b => b.classList.toggle("active", b.dataset.wsMode === mode));
+    const bookRow = document.getElementById("ws-book-row");
+    const topicRow = document.getElementById("ws-topic-row");
+    if (bookRow) bookRow.style.display = mode === "book" ? "" : "none";
+    if (topicRow) topicRow.style.display = mode === "topic" ? "" : "none";
+}
+
+function initTopicWorksheet() {
+    const modeBtns = document.querySelectorAll(".ws-mode-btn");
+    if (!modeBtns.length || typeof debateTopicsDB === "undefined") return;
+    modeBtns.forEach(b => b.addEventListener("click", () => setWsMode(b.dataset.wsMode)));
+    ["topic-ws-type", "topic-ws-level"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener("change", refreshTopicWsOptions);
+    });
+    refreshTopicWsOptions();
+}
+
+// 논제 카드의 「학습지 만들기」 → 학습지 메이커로 이동해 바로 생성
+window.openTopicWorksheet = function (idx) {
+    const t = debateTopicsDB[idx];
+    if (!t) return;
+    setWsMode("topic");
+    const typeSel = document.getElementById("topic-ws-type");
+    const lvSel = document.getElementById("topic-ws-level");
+    if (typeSel) typeSel.value = t.type;
+    if (lvSel) lvSel.value = t.level;
+    refreshTopicWsOptions();
+    const topicSel = document.getElementById("topic-ws-topic");
+    if (topicSel) topicSel.value = String(idx);
+    const link = document.querySelector(`.nav-links a[href="#worksheet-section"]`);
+    if (link) link.click();
+    generateTopicWorksheet();
+};
+
 // 학습지 작성 내용 자동 저장 (같은 그림책·유형으로 다시 열면 복원)
 function setupWorksheetAutosave(bookTitle, type) {
     const output = document.getElementById("worksheet-paper");
     if (!output) return;
+    if (output._wsAutosave) {
+        output.removeEventListener("input", output._wsAutosave);
+        output.removeEventListener("change", output._wsAutosave);
+        output._wsAutosave = null;
+    }
     const key = `pbc-ws:${bookTitle}:${type}`;
     const fields = Array.from(output.querySelectorAll("input, textarea, [contenteditable='true']"));
     if (!fields.length) return;
@@ -9005,6 +9470,7 @@ function setupWorksheetAutosave(bookTitle, type) {
     const onChange = () => { clearTimeout(t); t = setTimeout(save, 500); };
     output.addEventListener("input", onChange);
     output.addEventListener("change", onChange);
+    output._wsAutosave = onChange;
 }
 
 function showToast(message) {

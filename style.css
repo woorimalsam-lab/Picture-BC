@@ -3570,3 +3570,84 @@ footer { padding: 56px 24px 44px; }
     .topic-stat { flex-wrap: wrap; }
     .topic-stat em { margin-left: 0; padding-left: 0; width: 100%; }
 }
+
+/* ============================================
+   토론 논제 학습지
+   ============================================ */
+.ws-mode-tabs {
+    display: flex; gap: 6px; margin-bottom: 18px; padding: 5px;
+    background: var(--bg-secondary); border-radius: 14px;
+}
+.ws-mode-btn {
+    flex: 1; padding: 11px 14px; border: none; border-radius: 10px;
+    background: transparent; color: var(--text-secondary);
+    font-family: inherit; font-size: 0.92rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s ease;
+}
+.ws-mode-btn i { margin-right: 6px; }
+.ws-mode-btn.active { background: var(--bg-primary); color: var(--accent-coral); box-shadow: var(--shadow-soft); }
+.ws-mode-btn:hover:not(.active) { color: var(--text-primary); }
+#ws-topic-row select { width: 100%; }
+.ws-topic-pick { margin-top: 14px; }
+.ws-topic-count { font-weight: 500; color: var(--text-secondary); font-size: 0.8rem; margin-left: 4px; }
+.ws-hint-toggle {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 12px;
+    font-size: 0.88rem; color: var(--text-primary); cursor: pointer;
+}
+.ws-hint-toggle small { color: var(--text-secondary); }
+.ws-hint-toggle input { width: 16px; height: 16px; accent-color: var(--accent-sage); }
+
+/* 학습지 안쪽 요소 (흰 종이 위) */
+.ws-prompt { font-size: 0.84rem; color: #555; margin: 0 0 8px; line-height: 1.55; }
+.ws-hint { margin: 0; padding-left: 18px; font-size: 0.82rem; color: #666; line-height: 1.6; }
+.ws-topic-box {
+    display: block; width: 100%; border: 1px solid #333; padding: 10px 12px;
+    font-size: 0.9rem; line-height: 1.6; outline: none; resize: none;
+    background: transparent; font-family: inherit; color: #111;
+}
+.ws-topic-box:focus { background: #f9fbf9; }
+.ws-line {
+    width: 100%; border: none; border-bottom: 1px solid #999; outline: none;
+    background: transparent; font-family: inherit; font-size: 0.9rem; padding: 4px 2px; color: #111;
+}
+.ws-score {
+    width: 44px; text-align: center; border: 1px solid #999; border-radius: 4px;
+    padding: 4px; font-family: inherit; font-size: 0.95rem; background: transparent; color: #111;
+}
+.ws-scale { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 10px; }
+.ws-scale-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    padding: 8px 4px; border: 1px solid #ccc; border-radius: 8px;
+    font-size: 0.78rem; color: #333; text-align: center; cursor: pointer; word-break: keep-all;
+}
+.ws-scale-item input { accent-color: #E07A5F; }
+.ws-side-pick { display: flex; gap: 24px; flex-wrap: wrap; font-size: 0.95rem; font-weight: 700; color: #222; }
+.ws-side-pick label { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.ws-table-compact th, .ws-table-compact td { padding: 7px 10px; }
+.ws-topic-break {
+    margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);
+    page-break-before: always; break-before: page;
+}
+
+/* 논제 카드의 학습지 버튼 */
+.topic-actions { margin-top: 12px; display: flex; justify-content: flex-end; }
+.topic-ws-btn {
+    display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px;
+    border-radius: 20px; border: 1.5px solid var(--accent-coral); background: none;
+    color: var(--accent-coral); font-family: inherit; font-size: 0.8rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s ease;
+}
+.topic-ws-btn:hover { background: var(--accent-coral); color: #fff; }
+
+@media print {
+    .ws-topic-break { margin-top: 0 !important; padding-top: 0 !important; border-top: none !important; }
+    .ws-topic-box, .ws-score { border-color: #111 !important; }
+    .ws-scale-item { border-color: #555 !important; }
+}
+@media (max-width: 768px) {
+    .ws-mode-btn { font-size: 0.84rem; padding: 10px 6px; }
+    .ws-scale { gap: 3px; }
+    .ws-scale-item { font-size: 0.68rem; padding: 6px 2px; }
+    .topic-actions { justify-content: stretch; }
+    .topic-ws-btn { width: 100%; justify-content: center; }
+}

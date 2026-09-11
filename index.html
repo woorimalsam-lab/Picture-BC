@@ -6,7 +6,7 @@
     <title>생각의 꽃이 피는 그림책 토론 가이드 | 그림책 토론 수업 자료</title>
 
     <!-- 검색 노출용 -->
-    <meta name="description" content="그림책 75권과 토론 기법 21가지, 토론 논제 251개, 바로 인쇄하는 토론 학습지 18종을 한곳에. 초·중·고 수업에서 그림책 토론을 쉽게 시작하도록 돕는 교사용 무료 가이드입니다.">
+    <meta name="description" content="그림책 75권과 토론 기법 21가지, 토론 논제 271개, 바로 인쇄하는 그림책 학습지 18종과 논제 학습지 5종을 한곳에. 초·중·고 수업에서 그림책 토론을 쉽게 시작하도록 돕는 교사용 무료 가이드입니다.">
     <meta name="keywords" content="그림책 토론, 그림책 수업, 토론 수업, 토론 기법, 토론 학습지, 독서토론, 초등 토론, 그림책 논제, 토론 논제">
     <meta name="author" content="부천 토론교육연구회 수업탐구공동체">
     <link rel="canonical" href="https://woorimalsam-lab.github.io/Picture-BC/">
@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=2.5.0">
+    <link rel="stylesheet" href="style.css?v=2.6.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -207,13 +207,17 @@
     <section id="worksheet-section" class="worksheet-section">
         <div class="section-title-wrapper no-print">
             <span class="sub-title">Printable Worksheet Generator</span>
-            <h2>그림책 토론 학습지 메이커</h2>
-            <p style="white-space: nowrap;">그림책과 토론 양식을 선택한 후 직접 작성하거나 인쇄하여 학생들에게 나누어 주실 수 있습니다.</p>
+            <h2>토론 학습지 메이커</h2>
+            <p>그림책이나 토론 논제를 고르고 양식을 선택하면, 바로 쓰거나 A4로 인쇄할 수 있는 학습지가 만들어집니다.</p>
         </div>
 
         <div class="worksheet-container no-print">
             <div class="worksheet-selector-card">
-                <div class="form-row">
+                <div class="ws-mode-tabs">
+                    <button type="button" class="ws-mode-btn active" data-ws-mode="book"><i class="fa-solid fa-book"></i> 그림책으로 만들기</button>
+                    <button type="button" class="ws-mode-btn" data-ws-mode="topic"><i class="fa-solid fa-comments"></i> 토론 논제로 만들기</button>
+                </div>
+                <div class="form-row" id="ws-book-row">
                     <div class="form-group">
                         <label for="worksheet-book-select"><i class="fa-solid fa-book"></i> 그림책 선택</label>
                         <select id="worksheet-book-select">
@@ -243,6 +247,43 @@
                             <option value="valueline">가치수직선 토론</option>
                         </select>
                     </div>
+                </div>
+                <div id="ws-topic-row" style="display:none;">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="topic-ws-type"><i class="fa-solid fa-layer-group"></i> 논제 유형</label>
+                            <select id="topic-ws-type">
+                                <option value="all">전체</option>
+                                <option value="fact">사실 논제</option>
+                                <option value="policy">정책 논제</option>
+                                <option value="value">가치 논제</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="topic-ws-level"><i class="fa-solid fa-school"></i> 학교급</label>
+                            <select id="topic-ws-level">
+                                <option value="all">전체</option>
+                                <option value="초등·중학">초등·중학</option>
+                                <option value="중학·고등">중학·고등</option>
+                                <option value="고등">고등</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="topic-ws-form"><i class="fa-solid fa-file-invoice"></i> 학습지 양식</label>
+                            <select id="topic-ws-form">
+                                <option value="analysis">① 논제 분석지 — 낱말·쟁점·근거</option>
+                                <option value="case">② 입론서 — 유형별 주장 세우기</option>
+                                <option value="flow">③ 토론 흐름표 — 진행 순서·기록</option>
+                                <option value="judge">④ 판정·성찰지 — 평가·생각 변화</option>
+                                <option value="full">①~④ 전 과정 묶음 (4쪽)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group ws-topic-pick">
+                        <label for="topic-ws-topic"><i class="fa-solid fa-comments"></i> 논제 선택 <span id="topic-ws-count" class="ws-topic-count"></span></label>
+                        <select id="topic-ws-topic"></select>
+                    </div>
+                    <label class="ws-hint-toggle"><input type="checkbox" id="topic-ws-hints" checked> 배경 지식과 쟁점 예시를 함께 싣기 <small>(끄면 학생이 스스로 찾는 빈칸형)</small></label>
                 </div>
                 <div class="form-row-buttons" style="margin-top: 16px;">
                     <button id="btn-generate-worksheet" class="btn btn-primary"><i class="fa-solid fa-wand-magic-sparkles"></i> 학습지 생성하기</button>
@@ -474,6 +515,6 @@
     <div id="class-mode" class="class-mode no-print"></div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=2.5.0"></script>
+    <script src="app.js?v=2.6.0"></script>
 </body>
 </html>
