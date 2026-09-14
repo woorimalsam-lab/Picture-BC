@@ -6793,6 +6793,241 @@ debateTopicsDB.forEach(t => {
     if (s) t.stats = s;
 });
 
+// ───────── 문학 작품에서 논제 뽑기 ─────────
+// 원문은 싣지 않고, 줄거리와 갈등을 우리말로 풀어 논제로 잇습니다.
+const literatureWorks = [
+    { genre: "시", title: "진달래꽃", author: "김소월", year: "1925", level: "중학·고등",
+      summary: "떠나는 임에게 꽃을 뿌려 보내 드리겠다고 말합니다. 곱게 보내겠다는 말 뒤에 붙잡고 싶은 마음이 함께 놓여 있습니다.",
+      conflict: "보내 주려는 마음과 붙잡고 싶은 마음",
+      question: "사랑하기 때문에 놓아 준다는 말은 참일까, 마음을 감추는 말일까?",
+      derived: [
+        { type: "value", claim: "사랑한다면 붙잡기보다 놓아 주어야 한다." },
+        { type: "fact", claim: "참는 마음은 말이나 행동으로 드러나기 마련이다." }
+      ],
+      topics: ["아낌없이 주는 사랑은 아름다운 사랑이다.", "오래 알고 지낸 사이일수록 더 소중하다."],
+      books: ["아낌없이 주는 나무", "100만 번 산 고양이"] },
+
+    { genre: "시", title: "서시", author: "윤동주", year: "1941", level: "중학·고등",
+      summary: "하늘을 우러러 한 점 부끄럼이 없기를 바라는 마음과, 작은 일에도 괴로워했던 자신을 돌아보는 마음이 함께 놓입니다.",
+      conflict: "부끄럽지 않으려는 다짐과 부끄러움을 느끼는 자신",
+      question: "부끄러움을 아는 것은 약한 것일까, 바른 것일까?",
+      derived: [
+        { type: "value", claim: "부끄러움을 느끼는 사람이 더 바르게 산다." },
+        { type: "value", claim: "마음속 다짐만으로도 도덕적이라 할 수 있다." }
+      ],
+      topics: ["아무도 보지 않아도 잘못은 잘못이다.", "좋은 사람이 되는 것과 좋은 일을 하는 것은 다르다."],
+      books: ["강아지똥", "나는 사실대로 말했을 뿐이야!"] },
+
+    { genre: "시", title: "광야", author: "이육사", year: "1945", level: "고등",
+      summary: "아무도 없던 넓은 벌판의 처음을 떠올리고, 지금은 눈이 내리지만 언젠가 올 사람을 기다리겠다는 뜻을 밝힙니다.",
+      conflict: "지금의 어둠과 오지 않은 미래",
+      question: "내가 보지 못할 미래를 위해 지금을 견디는 일은 뜻이 있는가?",
+      derived: [
+        { type: "value", claim: "내가 누리지 못할 미래를 위해 희생하는 것은 가치 있다." },
+        { type: "policy", claim: "먼 미래를 위한 계획은 지금의 어려움보다 앞세워야 한다." }
+      ],
+      topics: ["지금 세대는 다음 세대의 몫까지 정할 권리가 없다.", "잘못한 역사는 잊기보다 기억해야 한다."],
+      books: ["시애틀 추장", "비무장지대에 봄이 오면"] },
+
+    { genre: "시", title: "님의 침묵", author: "한용운", year: "1926", level: "고등",
+      summary: "님이 떠났다고 말하면서도 보내지 않았다고 다시 말합니다. 이별을 인정하는 말과 부정하는 말이 한자리에 놓입니다.",
+      conflict: "떠났다는 사실과 보내지 않았다는 마음",
+      question: "관계는 상대가 떠나면 끝나는가, 내 마음이 놓아야 끝나는가?",
+      derived: [
+        { type: "value", claim: "관계는 상대가 떠나도 이어질 수 있다." },
+        { type: "fact", claim: "이별의 아픔은 시간이 지나면 옅어진다." }
+      ],
+      topics: ["끝이 있기 때문에 삶은 소중하다.", "기억되지 않는 삶도 가치 있다."],
+      books: ["100만 번 산 고양이", "우리는 언제나 다시 만나"] },
+
+    { genre: "시", title: "향수", author: "정지용", year: "1927", level: "중학·고등",
+      summary: "실개천과 얼룩배기 황소가 있던 고향의 장면들을 하나하나 불러내며, 그곳을 잊을 수 없다고 되풀이해 말합니다.",
+      conflict: "떠나온 자리와 잊지 못하는 마음",
+      question: "고향은 돌아갈 곳인가, 기억 속에만 있는 곳인가?",
+      derived: [
+        { type: "value", claim: "떠나온 곳을 그리워하는 마음은 삶에 도움이 된다." },
+        { type: "policy", claim: "사람이 줄어드는 고향 마을을 국가가 지켜야 한다." }
+      ],
+      topics: ["어디에 살든 같은 수준의 서비스를 누려야 한다.", "지방 소멸은 이미 되돌리기 어려운 단계에 이르렀다."],
+      books: ["만희네 꽃밭", "할머니의 여름휴가"] },
+
+    { genre: "시", title: "풀", author: "김수영", year: "1968", level: "고등",
+      summary: "바람보다 먼저 눕고 먼저 일어나는 풀의 모습을 되풀이해 그립니다. 약해 보이는 것이 먼저 움직인다는 점이 거듭 강조됩니다.",
+      conflict: "누르는 힘과 다시 일어서는 힘",
+      question: "약한 쪽이 먼저 굽히는 것은 굴복인가, 살아남는 힘인가?",
+      derived: [
+        { type: "value", claim: "굽히는 것도 저항의 한 방법이다." },
+        { type: "fact", claim: "억누를수록 저항은 커진다." }
+      ],
+      topics: ["잘못된 제도를 바꾸기 위해서라면 법을 어겨도 된다.", "사회 문제에 침묵하는 것도 하나의 선택이다."],
+      books: ["돌멩이 국", "세 강도"] },
+
+    { genre: "시", title: "껍데기는 가라", author: "신동엽", year: "1967", level: "고등",
+      summary: "껍데기는 가고 알맹이만 남으라고 거듭 외칩니다. 무엇이 본질이고 무엇이 겉치레인지 가르는 목소리가 이어집니다.",
+      conflict: "본질과 껍데기",
+      question: "무엇이 알맹이인지는 누가 정하는가?",
+      derived: [
+        { type: "value", claim: "본질만 남기려는 태도는 위험할 수 있다." },
+        { type: "fact", claim: "많이 알려진 주장일수록 본질에 가깝다." }
+      ],
+      topics: ["많은 사람이 믿는다면 그것은 참에 가깝다.", "어떤 명분으로도 전쟁은 정당화될 수 없다."],
+      books: ["적", "이파라파냐무냐무"] },
+
+    { genre: "시", title: "엄마 걱정", author: "기형도", year: "1989", level: "중학·고등",
+      summary: "시장에 간 엄마를 빈방에서 혼자 기다리던 어린 날을 떠올립니다. 그 시절의 추위와 외로움이 어른이 된 지금까지 남아 있습니다.",
+      conflict: "돌봄이 필요한 아이와 일하러 나가야 하는 부모",
+      question: "가난했던 기억은 사람을 단단하게 하는가, 오래 아프게 하는가?",
+      derived: [
+        { type: "fact", claim: "어린 시절의 가난은 어른이 된 뒤에도 영향을 남긴다." },
+        { type: "policy", claim: "일하는 부모의 아이를 국가가 더 많이 돌봐야 한다." }
+      ],
+      topics: ["출산 지원은 현금보다 돌봄 서비스로 주어야 한다.", "돈이 많을수록 더 행복하다."],
+      books: ["엄마가 유령이 되었어!", "행복을 나르는 버스"] },
+
+    { genre: "시", title: "성북동 비둘기", author: "김광섭", year: "1968", level: "중학·고등",
+      summary: "산을 깎아 집을 짓는 동안 살 곳을 잃은 비둘기가 그려집니다. 사람의 개발과 쫓겨난 생명이 나란히 놓입니다.",
+      conflict: "사람의 터전과 동물의 터전",
+      question: "사람이 살 곳을 넓히는 일과 생명의 자리를 지키는 일 중 무엇이 먼저인가?",
+      derived: [
+        { type: "policy", claim: "개발로 서식지를 잃는 동물을 위해 공간을 남겨야 한다." },
+        { type: "value", claim: "사람의 필요가 다른 생명의 자리보다 앞선다." }
+      ],
+      topics: ["살 집을 짓는 일보다 녹지를 지키는 일이 더 중요하다.", "도심에 남은 큰 녹지에는 집을 짓지 말아야 한다."],
+      books: ["30번 곰", "만희네 꽃밭"] },
+
+    { genre: "시", title: "가난한 사랑 노래", author: "신경림", year: "1988", level: "고등",
+      summary: "가난하다고 해서 그리움과 사랑을 모르겠느냐고 되묻습니다. 가난이 감정까지 빼앗는지를 거듭 묻는 목소리입니다.",
+      conflict: "가난한 형편과 사람다운 감정",
+      question: "가난은 사람에게서 무엇까지 빼앗는가?",
+      derived: [
+        { type: "value", claim: "형편이 어려워도 사랑은 미룰 일이 아니다." },
+        { type: "fact", claim: "경제적 어려움은 사람의 감정과 관계에도 영향을 준다." }
+      ],
+      topics: ["돈으로 행복을 살 수 있다.", "노력하면 누구나 성공할 수 있다."],
+      books: ["행복을 나르는 버스", "구름빵"] },
+
+    { genre: "소설", title: "운수 좋은 날", author: "현진건", year: "1924", level: "중학·고등",
+      summary: "인력거꾼 김 첨지가 모처럼 돈을 많이 번 날, 집에 돌아와 보니 아픈 아내가 숨져 있습니다. 운이 좋았다는 말이 가장 나쁜 결말과 맞물립니다.",
+      conflict: "하루의 행운과 그날의 비극",
+      question: "가난한 이의 불행은 운의 문제인가, 사회의 문제인가?",
+      derived: [
+        { type: "fact", claim: "가난은 개인의 노력만으로 벗어나기 어렵다." },
+        { type: "policy", claim: "아파도 일을 쉬지 못하는 사람에게 국가가 생계를 보장해야 한다." }
+      ],
+      topics: ["노력하면 누구나 성공할 수 있다.", "기본소득을 도입해야 한다."],
+      books: ["내가 라면을 먹을 때", "행복을 나르는 버스"] },
+
+    { genre: "소설", title: "봄봄", author: "김유정", year: "1935", level: "중학·고등",
+      summary: "혼인을 시켜 주겠다는 약속만 믿고 여러 해째 일하는 데릴사위와, 딸의 키가 덜 자랐다며 미루는 장인이 부딪칩니다.",
+      conflict: "지켜지지 않는 약속과 계속되는 노동",
+      question: "말로 한 약속은 어디까지 지켜야 하는가?",
+      derived: [
+        { type: "value", claim: "말로 한 약속도 문서로 쓴 약속만큼 무겁다." },
+        { type: "policy", claim: "일한 만큼의 대가는 반드시 문서로 정해야 한다." }
+      ],
+      topics: ["약속은 어떤 경우에도 지켜야 한다.", "집안일을 하면 용돈을 주어야 한다."],
+      books: ["샌지와 빵집 주인", "돼지책"] },
+
+    { genre: "소설", title: "메밀꽃 필 무렵", author: "이효석", year: "1936", level: "고등",
+      summary: "장을 돌며 살아온 허 생원이 달밤 길 위에서 옛 인연을 떠올리고, 동행하던 젊은이와의 관계를 짐작하게 됩니다.",
+      conflict: "스쳐 간 인연과 이어진 핏줄",
+      question: "우연처럼 보이는 만남에 뜻을 붙이는 것은 옳은가?",
+      derived: [
+        { type: "value", claim: "우연한 만남에도 의미를 두는 삶이 더 풍요롭다." },
+        { type: "fact", claim: "사람은 우연한 일에서 필요 이상으로 의미를 찾는다." }
+      ],
+      topics: ["오래 알고 지낸 사이일수록 더 소중하다.", "사람은 자기가 믿고 싶은 정보만 받아들인다."],
+      books: ["우리는 친구", "나는 기다립니다"] },
+
+    { genre: "소설", title: "소나기", author: "황순원", year: "1953", level: "중학·고등",
+      summary: "시골 소년과 서울에서 온 소녀가 짧게 가까워지지만, 소나기를 맞은 뒤 소녀가 앓다 세상을 떠납니다.",
+      conflict: "막 피어난 마음과 갑작스러운 이별",
+      question: "짧게 끝난 만남도 오래된 관계만큼 소중한가?",
+      derived: [
+        { type: "value", claim: "짧은 만남도 오랜 관계만큼 소중하다." },
+        { type: "value", claim: "이별을 미리 알 수 있다면 만나지 않는 편이 낫다." }
+      ],
+      topics: ["끝이 있기 때문에 삶은 소중하다.", "오래 알고 지낸 사이일수록 더 소중하다."],
+      books: ["우리는 언제나 다시 만나", "100만 번 산 고양이"] },
+
+    { genre: "소설", title: "감자", author: "김동인", year: "1925", level: "고등",
+      summary: "가난한 환경으로 밀려 들어간 복녀가 점점 달라지고, 끝내 비참한 결말을 맞습니다. 환경이 사람을 바꾸는 과정을 냉정하게 그립니다.",
+      conflict: "타고난 성품과 밀어붙이는 환경",
+      question: "사람을 바꾸는 것은 성품인가 환경인가?",
+      derived: [
+        { type: "fact", claim: "사람의 행동은 성품보다 환경에 더 좌우된다." },
+        { type: "value", claim: "환경 탓이라면 잘못에 대한 책임도 가벼워진다." }
+      ],
+      topics: ["사람의 성격은 잘 바뀌지 않는다.", "잘못을 저지른 사람에게도 다시 기회를 주어야 한다."],
+      books: ["스갱 아저씨의 염소", "치킨 마스크"] },
+
+    { genre: "소설", title: "치숙", author: "채만식", year: "1938", level: "고등",
+      summary: "조카가 아저씨를 한심하다고 흉보지만, 읽다 보면 조카의 생각이 더 어긋나 있음이 드러납니다. 말하는 이를 그대로 믿기 어려운 구조입니다.",
+      conflict: "말하는 이의 판단과 독자가 읽어 내는 진실",
+      question: "우리는 전하는 사람의 말을 어디까지 믿어야 하는가?",
+      derived: [
+        { type: "fact", claim: "사람은 자기에게 유리하게 상황을 전한다." },
+        { type: "value", claim: "말하는 이를 의심하며 듣는 태도가 바람직하다." }
+      ],
+      topics: ["사람은 자기가 믿고 싶은 정보만 받아들인다.", "많은 사람이 믿는다면 그것은 참에 가깝다."],
+      books: ["감기 걸린 물고기", "이파라파냐무냐무"] },
+
+    { genre: "소설", title: "광장", author: "최인훈", year: "1960", level: "고등",
+      summary: "남과 북 어느 쪽에서도 살 자리를 찾지 못한 이명준이 제3국행 배 위에서 마지막 선택을 합니다. 개인이 이념 사이에 놓인 자리를 묻습니다.",
+      conflict: "개인의 삶과 이념이 요구하는 선택",
+      question: "어느 쪽도 택하지 않는 것도 하나의 선택인가?",
+      derived: [
+        { type: "value", claim: "어느 편도 들지 않는 것은 무책임한 태도다." },
+        { type: "value", claim: "개인의 행복보다 공동체의 이념이 앞설 수 있다." }
+      ],
+      topics: ["사회 문제에 침묵하는 것도 하나의 선택이다.", "안전을 위해서라면 자유를 얼마간 내주어도 좋다."],
+      books: ["빨간 벽", "적"] },
+
+    { genre: "소설", title: "난장이가 쏘아 올린 작은 공", author: "조세희", year: "1976", level: "고등",
+      summary: "재개발로 집을 잃게 된 가족의 이야기입니다. 도시가 새로워지는 동안 밀려나는 사람들의 자리를 비춥니다.",
+      conflict: "도시의 개발과 밀려나는 삶",
+      question: "더 많은 사람의 이익을 위해 소수가 자리를 내주는 것은 정당한가?",
+      derived: [
+        { type: "value", claim: "다수를 위한 개발이라면 소수의 손해는 감수해야 한다." },
+        { type: "policy", claim: "재개발로 집을 잃는 사람에게 살 곳을 먼저 마련해 주어야 한다." }
+      ],
+      topics: ["다수의 이익을 위해 소수가 희생하는 것은 정당하다.", "1인 가구를 위한 공공 주택을 대폭 늘려야 한다."],
+      books: ["우리, 집", "샌지와 빵집 주인"] },
+
+    { genre: "소설", title: "자전거 도둑", author: "박완서", year: "1979", level: "중학·고등",
+      summary: "도시의 가게에서 일하던 소년이 어른들의 셈법을 겪으며 흔들리다, 자신이 지켜야 할 것이 무엇인지 깨닫고 돌아섭니다.",
+      conflict: "어른들의 계산과 아이가 지키려는 양심",
+      question: "손해를 보더라도 양심을 지키는 선택은 늘 옳은가?",
+      derived: [
+        { type: "value", claim: "손해를 보더라도 양심을 지켜야 한다." },
+        { type: "fact", claim: "주변 어른의 행동은 아이의 도덕 판단에 영향을 준다." }
+      ],
+      topics: ["아무도 보지 않아도 잘못은 잘못이다.", "결과가 좋으면 방법은 문제 삼지 않아도 된다."],
+      books: ["내 탓이 아니야", "나는 사실대로 말했을 뿐이야!"] },
+
+    { genre: "소설", title: "눈길", author: "이청준", year: "1977", level: "고등",
+      summary: "집을 팔고도 아들에게 하룻밤 잠자리를 마련해 준 어머니가, 새벽 눈길을 혼자 걸어 돌아온 일이 뒤늦게 드러납니다.",
+      conflict: "갚지 않았다고 여기는 아들과 말하지 않은 어머니",
+      question: "말하지 않은 사랑도 빚이 되는가?",
+      derived: [
+        { type: "value", claim: "부모의 희생에 자식은 갚을 책임이 있다." },
+        { type: "value", claim: "말하지 않은 마음은 전해지지 않은 것과 같다." }
+      ],
+      topics: ["아낌없이 주는 사랑은 아름다운 사랑이다.", "사과는 말보다 행동으로 해야 한다."],
+      books: ["나는 기다립니다", "아낌없이 주는 나무"] },
+
+    { genre: "소설", title: "수난 이대", author: "하근찬", year: "1957", level: "중학·고등",
+      summary: "일제강점기에 팔을 잃은 아버지와 전쟁에서 다리를 잃은 아들이 만나, 외나무다리를 함께 건넙니다.",
+      conflict: "두 세대에 걸쳐 이어진 상처",
+      question: "전쟁의 상처는 누가 어떻게 감당해야 하는가?",
+      derived: [
+        { type: "policy", claim: "전쟁으로 다친 사람과 그 가족을 국가가 끝까지 책임져야 한다." },
+        { type: "value", claim: "고통은 함께 나눌 때 견딜 만해진다." }
+      ],
+      topics: ["어떤 명분으로도 전쟁은 정당화될 수 없다.", "징병제를 모병제로 바꿔야 한다."],
+      books: ["비무장지대에 봄이 오면", "적"] }
+];
+
 // 대주제(큰 갈래) — 세부 분야를 6개 묶음으로 정리
 const TOPIC_THEMES = [
     { key: "self",     label: "나와 마음",         icon: "fa-face-smile",   fields: ["자아", "감정", "성장", "용기", "진로", "인식"] },
@@ -7087,6 +7322,101 @@ function renderStatPanel() {
     box.dataset.done = "1";
 }
 
+let litState = { genre: "all", level: "all" };
+
+function renderLiteraturePanel() {
+    const box = document.getElementById("topic-panel-lit");
+    if (!box || typeof literatureWorks === "undefined") return;
+    if (!box.dataset.built) {
+        box.innerHTML = `
+            <p class="topic-panel-intro">교과서에서 자주 만나는 현대시와 현대소설을 토론 논제로 잇습니다. 작품의 갈등을 짚고, 열린 질문을 거쳐, 토론할 수 있는 논제로 옮겨 가는 과정을 그대로 보여 줍니다.</p>
+            <div class="topic-steps">
+                <div class="topic-step">
+                    <span class="topic-step-label"><em>1</em> 갈래 고르기</span>
+                    <div class="topic-step-chips" id="lit-genres"></div>
+                </div>
+                <div class="topic-step">
+                    <span class="topic-step-label"><em>2</em> 학교급 고르기</span>
+                    <div class="topic-step-chips" id="lit-levels"></div>
+                </div>
+                <div class="topic-step topic-step-inline"><span class="topic-count" id="lit-count"></span></div>
+            </div>
+            <div class="lit-grid" id="lit-grid"></div>`;
+        box.dataset.built = "1";
+    }
+
+    const genreBox = document.getElementById("lit-genres");
+    const levelBox = document.getElementById("lit-levels");
+    const grid = document.getElementById("lit-grid");
+    const countEl = document.getElementById("lit-count");
+
+    const genres = ["시", "소설"];
+    genreBox.innerHTML =
+        `<button type="button" class="topic-step-chip ${litState.genre === "all" ? "active" : ""}" data-lit-genre="all">전체 <em>${literatureWorks.length}</em></button>` +
+        genres.map(g => {
+            const n = literatureWorks.filter(w => w.genre === g).length;
+            return `<button type="button" class="topic-step-chip ${litState.genre === g ? "active" : ""}" data-lit-genre="${g}"><i class="fa-solid ${g === "시" ? "fa-feather" : "fa-book-open"}"></i> 현대${g} <em>${n}</em></button>`;
+        }).join("");
+    genreBox.querySelectorAll("[data-lit-genre]").forEach(b => b.addEventListener("click", () => {
+        litState.genre = b.dataset.litGenre; litState.level = "all"; renderLiteraturePanel();
+    }));
+
+    const byGenre = litState.genre === "all" ? literatureWorks : literatureWorks.filter(w => w.genre === litState.genre);
+    levelBox.innerHTML =
+        `<button type="button" class="topic-step-chip ${litState.level === "all" ? "active" : ""}" data-lit-level="all">전체 <em>${byGenre.length}</em></button>` +
+        ["중학·고등", "고등"].map(lv => {
+            const n = byGenre.filter(w => w.level === lv).length;
+            return n ? `<button type="button" class="topic-step-chip ${litState.level === lv ? "active" : ""}" data-lit-level="${lv}">${lv} <em>${n}</em></button>` : "";
+        }).join("");
+    levelBox.querySelectorAll("[data-lit-level]").forEach(b => b.addEventListener("click", () => {
+        litState.level = b.dataset.litLevel; renderLiteraturePanel();
+    }));
+
+    const list = litState.level === "all" ? byGenre : byGenre.filter(w => w.level === litState.level);
+    if (countEl) countEl.textContent = `${list.length}편`;
+
+    grid.innerHTML = list.map(w => {
+        const derived = (w.derived || []).map(d => {
+            const meta = (typeof TOPIC_TYPE_INFO !== "undefined" && TOPIC_TYPE_INFO[d.type]) || {};
+            return `<li><span class="topic-chip topic-chip-${d.type}">${meta.label || ""}</span> ${d.claim}</li>`;
+        }).join("");
+        const linked = (w.topics || []).map(claim => {
+            const idx = debateTopicsDB.findIndex(t => t.claim === claim);
+            if (idx < 0) return "";
+            const t = debateTopicsDB[idx];
+            const meta = (typeof TOPIC_TYPE_INFO !== "undefined" && TOPIC_TYPE_INFO[t.type]) || {};
+            return `<button type="button" class="lit-topic-btn" onclick="openTopicWorksheet(${idx})" title="이 논제로 학습지 만들기">
+                        <span class="topic-chip topic-chip-${t.type}">${meta.label || ""}</span>
+                        <span class="lit-topic-claim">${t.claim}</span>
+                        <i class="fa-solid fa-file-pen"></i>
+                    </button>`;
+        }).join("");
+        const bookBtns = (w.books || []).map(title => {
+            const bi = books.findIndex(b => b.title === title);
+            return bi >= 0
+                ? `<button type="button" class="topic-book" onclick="openModal('book', ${bi})"><i class="fa-solid fa-book"></i> ${title}</button>`
+                : `<span class="topic-book topic-book-plain"><i class="fa-solid fa-book"></i> ${title}</span>`;
+        }).join("");
+        return `
+            <article class="lit-card">
+                <div class="lit-head">
+                    <span class="lit-genre lit-genre-${w.genre}">${w.genre}</span>
+                    <h4 class="lit-title">${w.title}</h4>
+                    <span class="lit-author">${w.author} · ${w.year}</span>
+                    <span class="topic-chip topic-chip-level">${w.level}</span>
+                </div>
+                <p class="lit-summary">${w.summary}</p>
+                <div class="lit-flow">
+                    <div class="lit-step"><span class="lit-step-no">1</span><div><strong>핵심 갈등</strong><p>${w.conflict}</p></div></div>
+                    <div class="lit-step"><span class="lit-step-no">2</span><div><strong>열린 질문</strong><p>${w.question}</p></div></div>
+                    <div class="lit-step"><span class="lit-step-no">3</span><div><strong>여기서 뽑은 논제</strong><ul class="lit-derived">${derived}</ul></div></div>
+                </div>
+                ${linked ? `<div class="lit-linked"><span class="lit-linked-label"><i class="fa-solid fa-link"></i> 이어지는 토론 논제 <small>(누르면 학습지가 만들어집니다)</small></span>${linked}</div>` : ""}
+                ${bookBtns ? `<div class="topic-books"><span class="topic-books-label">함께 읽을 그림책</span>${bookBtns}</div>` : ""}
+            </article>`;
+    }).join("");
+}
+
 function initTopicSection() {
     const tabs = document.querySelectorAll(".topic-tab-btn");
     if (!tabs.length) return;
@@ -7097,6 +7427,7 @@ function initTopicSection() {
 
     const panelReading = document.getElementById("topic-panel-reading");
     const panelData = document.getElementById("topic-panel-data");
+    const panelLit = document.getElementById("topic-panel-lit");
     const show = (key) => {
         tabs.forEach(b => b.classList.toggle("active", b.dataset.topicTab === key));
         const isList = key === "fact" || key === "policy" || key === "value";
@@ -7106,6 +7437,10 @@ function initTopicSection() {
         if (panelData) {
             panelData.style.display = key === "data" ? "block" : "none";
             if (key === "data") renderStatPanel();
+        }
+        if (panelLit) {
+            panelLit.style.display = key === "lit" ? "block" : "none";
+            if (key === "lit") renderLiteraturePanel();
         }
         if (isList) { current = key; topicState = { theme: "all", level: "all" }; renderTopicList(key); }
     };

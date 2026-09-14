@@ -3667,3 +3667,56 @@ footer { padding: 56px 24px 44px; }
 @media (max-width: 768px) {
     .search-topic-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================
+   문학에서 논제 뽑기
+   ============================================ */
+.lit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 22px; }
+.lit-card {
+    background: var(--bg-card); border: 1px solid var(--border-color);
+    border-radius: 18px; padding: 24px 26px; box-shadow: var(--shadow-soft);
+    transition: all 0.25s ease;
+}
+.lit-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-3px); }
+.lit-head { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.lit-genre {
+    display: inline-flex; align-items: center; padding: 3px 11px; border-radius: 20px;
+    font-size: 0.75rem; font-weight: 700; color: #fff;
+}
+.lit-genre-시 { background: var(--accent-coral); }
+.lit-genre-소설 { background: var(--accent-sage); }
+.lit-title { font-family: var(--font-serif); font-size: 1.2rem; color: var(--text-primary); margin: 0; }
+.lit-author { font-size: 0.82rem; color: var(--text-secondary); }
+.lit-summary { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.7; margin: 0 0 16px; }
+.lit-flow { display: flex; flex-direction: column; gap: 12px; margin-bottom: 16px; }
+.lit-step { display: flex; gap: 11px; align-items: flex-start; }
+.lit-step-no {
+    flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%;
+    background: var(--accent-sage); color: #fff; font-size: 0.75rem; font-weight: 700;
+    display: flex; align-items: center; justify-content: center; margin-top: 2px;
+}
+.lit-step strong { display: block; font-size: 0.86rem; color: var(--text-primary); margin-bottom: 3px; }
+.lit-step p { font-size: 0.87rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+.lit-derived { margin: 6px 0 0; padding-left: 0; list-style: none; }
+.lit-derived li {
+    font-size: 0.87rem; color: var(--text-primary); line-height: 1.6;
+    padding: 7px 0; border-bottom: 1px dashed var(--border-color);
+}
+.lit-derived li:last-child { border-bottom: none; }
+.lit-linked { margin-top: 14px; padding-top: 13px; border-top: 1px dashed var(--border-color); }
+.lit-linked-label { display: block; font-size: 0.78rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px; }
+.lit-linked-label i { color: var(--accent-gold); margin-right: 4px; }
+.lit-linked-label small { font-weight: 500; }
+.lit-topic-btn {
+    display: flex; align-items: center; gap: 8px; width: 100%; text-align: left;
+    padding: 9px 12px; margin-bottom: 6px; border-radius: 10px;
+    border: 1px solid var(--border-color); background: var(--bg-secondary);
+    font-family: inherit; cursor: pointer; transition: all 0.2s ease;
+}
+.lit-topic-btn:hover { border-color: var(--accent-coral); transform: translateX(2px); }
+.lit-topic-claim { flex: 1; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); line-height: 1.5; }
+.lit-topic-btn > i { color: var(--accent-coral); font-size: 0.85rem; flex-shrink: 0; }
+@media (max-width: 768px) {
+    .lit-grid { grid-template-columns: 1fr; }
+    .lit-card { padding: 20px 18px; }
+}
