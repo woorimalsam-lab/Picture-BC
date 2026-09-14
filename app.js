@@ -10308,6 +10308,7 @@ let wsMode = "book";
 
 const TOPIC_WS_FORMS = {
     analysis: "논제 분석지",
+    clash: "쟁점 분석표",
     case: "입론서",
     flow: "토론 흐름표",
     judge: "판정·성찰지",
@@ -10394,6 +10395,89 @@ const TOPIC_WS_BUILDERS = {
                 </table>
             </div>
             ${topicWsBookBlock(t, "이 그림책의 어떤 장면이나 인물이 논제와 닿아 있나요? 그 장면은 어느 쪽 주장에 힘을 실어 주나요?")}`;
+    },
+
+    clash: (t, hints) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        const battleground = {
+            fact: "무엇을 근거로 삼을지, 그 근거를 믿을 수 있는지가 가장 크게 부딪치는 자리가 됩니다.",
+            value: "무엇을 좋다고 볼 것인지, 그 판단 기준을 세우는 일이 가장 크게 부딪치는 자리가 됩니다.",
+            policy: "지금 이대로 두면 안 되는지, 그 방법이 실제로 통하는지가 가장 크게 부딪치는 자리가 됩니다."
+        }[t.type] || "";
+        const steps = [
+            ["논제 유형 판별", "사실·가치·정책 가운데 어디에 속하는지 가린다."],
+            ["용어 정의", "핵심 낱말의 뜻을 정하고, 양측이 넓히거나 좁힐 지점을 살핀다."],
+            ["필수 쟁점 도출", "논제가 성립하려면 무엇이 입증되어야 하는지를 질문으로 쪼갠다."],
+            ["논거 구축", "쟁점마다 주장 → 이유 → 근거의 사슬을 만든다."],
+            ["반대신문 설계", "상대 논거의 약한 고리를 겨눈 질문을 미리 만든다."]
+        ];
+        return `
+            <div class="ws-flow5">
+                ${steps.map((s, i) => `<div class="ws-flow5-item"><span>${i + 1}</span><strong>${s[0]}</strong><em>${s[1]}</em></div>`).join("")}
+            </div>
+
+            <div class="ws-section">
+                <h4>1단계 · 논제 유형 판별</h4>
+                <p class="ws-prompt">이 논제는 무엇을 다투고 있나요? 하나를 골라 표시해 보세요.</p>
+                <div class="ws-side-pick">
+                    <label><input type="radio" name="clash-type" value="fact"> 사실 논제 <small>(참인가 거짓인가)</small></label>
+                    <label><input type="radio" name="clash-type" value="value"> 가치 논제 <small>(옳은가 바람직한가)</small></label>
+                    <label><input type="radio" name="clash-type" value="policy"> 정책 논제 <small>(해야 하는가)</small></label>
+                </div>
+                ${hints ? `<p class="ws-prompt" style="margin-top:10px;"><strong>${meta.label}</strong> · ${battleground}<br>이 유형의 판단 기준 — ${meta.criteria.map(c => c.label).join(" · ")}</p>` : ""}
+                <textarea class="ws-topic-box" style="height:52px; margin-top:8px;" placeholder="그렇게 고른 까닭"></textarea>
+            </div>
+
+            <div class="ws-section">
+                <h4>2단계 · 용어 정의와 정의 경쟁</h4>
+                <p class="ws-prompt">뜻이 갈릴 수 있는 낱말을 고르고, 우리 측이 그 뜻을 넓힐지 좁힐지 정해 두세요. 반대신문의 첫 표적은 대개 상대의 정의입니다.</p>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:22%;">핵심 낱말</th><th style="width:39%;">함께 쓸 뜻 (출발점)</th><th>우리가 넓히거나 좁힐 지점</th></tr>
+                    ${[0, 1, 2].map(() => `<tr><td><input class="ws-line" type="text"></td><td><textarea style="height:52px;"></textarea></td><td><textarea style="height:52px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+
+            <div class="ws-section">
+                <h4>3단계 · 필수 쟁점 도출</h4>
+                <p class="ws-prompt">"이 논제가 성립하려면 무엇이 입증되어야 하는가?"를 <strong>질문 형태</strong>로 쪼갭니다. 양쪽 모두 할 말이 있는 대등한 질문이어야 하고, 2~4개가 알맞습니다.</p>
+                ${hints ? `<p class="ws-prompt">참고 · ${A}은(는) "${(t.pro || [])[0] || ""}"를, ${B}은(는) "${(t.con || [])[0] || ""}"를 내세웁니다. 이 둘이 부딪치는 지점을 질문으로 바꿔 보세요.</p>` : ""}
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:12%;">쟁점</th><th>질문 형태로 쓴 쟁점</th></tr>
+                    ${["1", "2", "3"].map(n => `<tr><td style="text-align:center; font-weight:700;">${n}</td><td><textarea style="height:50px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+
+            <div class="ws-section">
+                <h4>4단계 · 논거 구축</h4>
+                <p class="ws-prompt">쟁점마다 <strong>주장 → 이유 → 근거</strong>를 이어 붙입니다. 작품으로 토론한다면 작품 속 장면과 인물을 첫 번째 근거로 삼고, 통계와 연구는 그다음에 놓습니다.</p>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:10%;">쟁점</th><th style="width:26%;">우리 주장</th><th style="width:28%;">그렇게 보는 이유</th><th>근거 (장면·자료·출처)</th></tr>
+                    ${["1", "2", "3"].map(n => `<tr><td style="text-align:center; font-weight:700;">${n}</td><td><textarea style="height:66px;"></textarea></td><td><textarea style="height:66px;"></textarea></td><td><textarea style="height:66px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+
+            <div class="ws-section">
+                <h4>5단계 · 반대신문 설계</h4>
+                <p class="ws-prompt">상대 논거에서 약한 고리(앞세운 전제 · 원인과 결과의 연결 · 사례 해석)를 찾아, 짧게 답할 수밖에 없는 질문을 만듭니다. 예상 답변과 후속 질문까지 준비하세요.</p>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:26%;">상대 논거의 약한 고리</th><th style="width:26%;">우리가 물을 질문</th><th style="width:24%;">예상 답변</th><th>후속 질문</th></tr>
+                    ${[0, 1].map(() => `<tr><td><textarea style="height:62px;"></textarea></td><td><textarea style="height:62px;"></textarea></td><td><textarea style="height:62px;"></textarea></td><td><textarea style="height:62px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+
+            <div class="ws-section">
+                <h4>마무리 점검</h4>
+                <ul class="ws-check5">
+                    <li><input type="checkbox"> 논제를 한 문장으로 적고 유형을 가렸다.</li>
+                    <li><input type="checkbox"> 핵심 낱말의 뜻을 정하고, 양측의 정의 경쟁 지점을 살폈다.</li>
+                    <li><input type="checkbox"> 쟁점을 질문 형태로 2~4개 쪼갰고, 양쪽 모두 할 말이 있다.</li>
+                    <li><input type="checkbox"> 쟁점마다 주장·이유·근거를 이어 붙였다.</li>
+                    <li><input type="checkbox"> 근거마다 출처(작품 쪽수, 기관·연도)를 적었다.</li>
+                    <li><input type="checkbox"> 상대가 우리 자료를 거꾸로 인용할 가능성을 따져 보았다.</li>
+                    <li><input type="checkbox"> 우리가 받을 예상 질문에 대한 답도 준비했다.</li>
+                </ul>
+            </div>`;
     },
 
     case: (t, hints) => {

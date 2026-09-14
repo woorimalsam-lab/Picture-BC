@@ -3760,3 +3760,40 @@ footer { padding: 56px 24px 44px; }
     .lit-tab-btn { padding: 9px 14px; font-size: 0.84rem; }
 }
 .lit-genre-외국소설 { background: #b07d4f; }
+
+/* 쟁점 분석표 — 5단계 흐름 */
+.ws-flow5 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.ws-flow5-item {
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 10px 8px;
+    text-align: center;
+}
+.ws-flow5-item span {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: #333; color: #fff; font-size: 0.72rem; font-weight: 700;
+    margin-bottom: 5px;
+}
+.ws-flow5-item strong { display: block; font-size: 0.82rem; color: #111; margin-bottom: 3px; word-break: keep-all; }
+.ws-flow5-item em { font-style: normal; font-size: 0.72rem; color: #555; line-height: 1.45; word-break: keep-all; }
+.ws-check5 { margin: 0; padding-left: 0; list-style: none; }
+.ws-check5 li {
+    font-size: 0.87rem; color: #111; line-height: 1.7;
+    padding: 5px 0; border-bottom: 1px dashed #bbb;
+    display: flex; align-items: flex-start; gap: 8px;
+}
+.ws-check5 li:last-child { border-bottom: none; }
+.ws-check5 input { margin-top: 4px; width: 15px; height: 15px; flex-shrink: 0; }
+.ws-side-pick small { font-weight: 500; color: #555; }
+@media (max-width: 768px) {
+    .ws-flow5 { grid-template-columns: 1fr 1fr; }
+}
+@media print {
+    .ws-flow5-item, .ws-check5 input { border-color: #111 !important; }
+}
