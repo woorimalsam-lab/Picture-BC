@@ -3759,7 +3759,6 @@ footer { padding: 56px 24px 44px; }
     .lit-tabs { gap: 6px; }
     .lit-tab-btn { padding: 9px 14px; font-size: 0.84rem; }
 }
-.lit-genre[data-genre="외국소설"] { background: #b07d4f; }
 
 /* 쟁점 분석표 — 5단계 흐름 */
 .ws-flow5 {
