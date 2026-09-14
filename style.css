@@ -3651,3 +3651,19 @@ footer { padding: 56px 24px 44px; }
     .topic-actions { justify-content: stretch; }
     .topic-ws-btn { width: 100%; justify-content: center; }
 }
+
+/* 검색 결과 안의 논제 카드 */
+.search-topic-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+.search-topic-bg {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 10px 0 12px;
+}
+@media (max-width: 768px) {
+    .search-topic-grid { grid-template-columns: 1fr; }
+}

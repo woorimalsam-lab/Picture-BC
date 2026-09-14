@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=2.7.1">
+    <link rel="stylesheet" href="style.css?v=2.8.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -104,12 +104,14 @@
                 <button class="search-tab-btn active" data-type="all"><i class="fa-solid fa-asterisk"></i> 통합 검색</button>
                 <button class="search-tab-btn" data-type="book"><i class="fa-solid fa-book"></i> 그림책 이름/작가로 찾기</button>
                 <button class="search-tab-btn" data-type="tech"><i class="fa-solid fa-comments"></i> 토론 기법명으로 찾기</button>
+                <button class="search-tab-btn" data-type="topic"><i class="fa-solid fa-scale-balanced"></i> 토론 논제로 찾기</button>
+                <button class="search-tab-btn" data-type="theory"><i class="fa-solid fa-graduation-cap"></i> 개념으로 찾기</button>
             </div>
 
             <!-- Search bar -->
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                <input type="text" id="search-input" placeholder="그림책 이름, 작가명, 줄거리 키워드 혹은 토론 기법을 입력하세요...">
+                <input type="text" id="search-input" placeholder="그림책·작가·토론 기법·논제·개념을 검색하세요 (예: 환경, 인공지능, 입증 책임)">
                 <button id="clear-search" class="clear-btn"><i class="fa-solid fa-xmark"></i></button>
             </div>
 
@@ -515,6 +517,6 @@
     <div id="class-mode" class="class-mode no-print"></div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=2.7.1"></script>
+    <script src="app.js?v=2.8.0"></script>
 </body>
 </html>

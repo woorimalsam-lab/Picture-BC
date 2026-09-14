@@ -7872,7 +7872,7 @@ function setupMainSearch() {
         }
 
         // If no query and no tag filter is selected, show empty state
-        if (query === "" && currentTag === "all") {
+        if (query === "" && currentTag === "all" && currentType !== "topic" && currentType !== "theory") {
             resultsPanel.innerHTML = `
                 <div class="empty-state">
                     <i class="fa-solid fa-lightbulb"></i>
@@ -8030,9 +8030,10 @@ function setupMainSearch() {
 
         // 3. Search Theories (Only if type is 'all' and tag is 'all')
         let matchingTheories = [];
-        if (currentType === "all" && currentTag === "all" && typeof debateTheory !== 'undefined') {
+        const conceptsOn = currentType === "theory" || (currentType === "all" && currentTag === "all");
+        if (conceptsOn && typeof debateTheory !== 'undefined') {
             matchingTheories = debateTheory.sections.filter(sec => {
-                if (query === "") return false; // Don't show theories when there is no query (only show on matches)
+                if (query === "") return currentType === "theory";   // '개념' 탭에서는 전체 목록을 보여 준다
                 
                 const titleMatch = sec.title && sec.title.toLowerCase().includes(query);
                 const contentMatch = sec.content && sec.content.toLowerCase().includes(query);
@@ -8058,7 +8059,34 @@ function setupMainSearch() {
             });
         }
 
-        totalCount = matchingBooks.length + matchingTechs.length + matchingTheories.length + matchingArchive.length;
+        // 5. Search Debate Topics (논제) — 논제 문장·배경·쟁점·분야·연계 그림책까지 훑는다
+        let matchingTopics = [];
+        let matchingTopicsTotal = 0;
+        const topicsOn = currentType === "topic" || (currentType === "all" && currentTag === "all");
+        if (topicsOn && typeof debateTopicsDB !== "undefined") {
+            const scored = debateTopicsDB.map((t) => {
+                if (query === "") return { t, score: currentType === "topic" ? 1 : 0 };
+                let score = 0;
+                const meta = (typeof TOPIC_TYPE_INFO !== "undefined" && TOPIC_TYPE_INFO[t.type]) || {};
+                if (t.claim && t.claim.toLowerCase().includes(query)) score += 100;
+                if ((t.books || []).some(b => b.toLowerCase().includes(query))) score += 40;
+                if (t.field && t.field.toLowerCase().includes(query)) score += 35;
+                if (meta.label && meta.label.toLowerCase().includes(query)) score += 30;
+                if (t.level && t.level.toLowerCase().includes(query)) score += 20;
+                if (t.background && t.background.toLowerCase().includes(query)) score += 15;
+                if ((t.pro || []).some(x => x.toLowerCase().includes(query)) ||
+                    (t.con || []).some(x => x.toLowerCase().includes(query))) score += 10;
+                if ((t.stats || []).some(st => (st.label || "").toLowerCase().includes(query))) score += 8;
+                return { t, score };
+            }).filter(x => x.score > 0);
+
+            scored.sort((a, b) => (b.score - a.score) || (debateTopicsDB.indexOf(a.t) - debateTopicsDB.indexOf(b.t)));
+            matchingTopicsTotal = scored.length;
+            const limit = currentType === "topic" ? 60 : 12;
+            matchingTopics = scored.slice(0, limit).map(x => x.t);
+        }
+
+        totalCount = matchingBooks.length + matchingTechs.length + matchingTopics.length + matchingTheories.length + matchingArchive.length;
 
         if (totalCount === 0) {
             resultsPanel.innerHTML = `
@@ -8166,6 +8194,50 @@ function setupMainSearch() {
                     </h3>
                     <div class="techniques-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
                         ${techsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Topics (토론 논제)
+        if (matchingTopics.length > 0) {
+            let topicsHTML = "";
+            matchingTopics.forEach(t => {
+                const idx = debateTopicsDB.indexOf(t);
+                const meta = (typeof TOPIC_TYPE_INFO !== "undefined" && TOPIC_TYPE_INFO[t.type]) || {};
+                const bookBtns = (t.books || []).slice(0, 2).map(title => {
+                    const bi = books.findIndex(b => b.title === title);
+                    return bi >= 0
+                        ? `<button type="button" class="topic-book" onclick="openModal('book', ${bi})"><i class="fa-solid fa-book"></i> ${title}</button>`
+                        : `<span class="topic-book topic-book-plain"><i class="fa-solid fa-book"></i> ${title}</span>`;
+                }).join("");
+                topicsHTML += `
+                    <article class="topic-card">
+                        <div class="topic-card-top">
+                            <span class="topic-chip topic-chip-${t.type}">${meta.label || ""}</span>
+                            <span class="topic-chip topic-chip-field">${t.field}</span>
+                            <span class="topic-chip topic-chip-level">${t.level}</span>
+                        </div>
+                        <h4 class="topic-claim">${t.claim}</h4>
+                        <p class="search-topic-bg">${t.background}</p>
+                        ${bookBtns ? `<div class="topic-books"><span class="topic-books-label">연계 그림책</span>${bookBtns}</div>` : ""}
+                        <div class="topic-actions">
+                            <button type="button" class="topic-ws-btn" onclick="openTopicWorksheet(${idx})"><i class="fa-solid fa-file-pen"></i> 이 논제로 학습지 만들기</button>
+                        </div>
+                    </article>
+                `;
+            });
+
+            const moreNote = matchingTopicsTotal > matchingTopics.length
+                ? ` <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);">(전체 ${matchingTopicsTotal}건 중 관련도 높은 ${matchingTopics.length}건)</span>`
+                : "";
+            containerHTML += `
+                <div class="search-result-group">
+                    <h3 style="font-size:1.3rem; margin-bottom:20px; border-bottom:2px solid var(--accent-gold); padding-bottom:8px; color:var(--text-primary);">
+                        <i class="fa-solid fa-scale-balanced" style="margin-right:8px; color:var(--accent-gold);"></i>토론 논제 결과 (${matchingTopics.length}건)${moreNote}
+                    </h3>
+                    <div class="search-topic-grid">
+                        ${topicsHTML}
                     </div>
                 </div>
             `;
