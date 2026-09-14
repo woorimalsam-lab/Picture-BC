@@ -3346,7 +3346,7 @@ const worksheets = [
 // 파일까지 보호하려면 저장소에서 파일을 내리고 비공개 저장소나 드라이브로 옮겨야 합니다.
 
 // ▼ 구글 클라우드 콘솔에서 발급한 OAuth 클라이언트 ID를 따옴표 안에 넣으세요.
-const GOOGLE_CLIENT_ID = "";
+const GOOGLE_CLIENT_ID = "488196268358-jfu1jrku5tp0ik9nv739nf8p8ptbk2kq.apps.googleusercontent.com";
 const ARCHIVE_OWNER_EMAIL = "woorimalsam@gmail.com";
 const OWNER_KEY = "pbc-owner-email";
 
