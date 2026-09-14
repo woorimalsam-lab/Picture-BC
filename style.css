@@ -3720,3 +3720,7 @@ footer { padding: 56px 24px 44px; }
     .lit-grid { grid-template-columns: 1fr; }
     .lit-card { padding: 20px 18px; }
 }
+
+/* 문학 갈래 — 수필·극 */
+.lit-genre-수필 { background: var(--accent-gold); }
+.lit-genre-극 { background: #8a6fa8; }
