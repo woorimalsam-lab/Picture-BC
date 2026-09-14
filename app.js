@@ -7465,7 +7465,161 @@ const literatureWorks = [
         { type: "policy", claim: "도시를 새로 지을 때 오래된 집과 가게를 보호해야 한다." }
       ],
       topics: ["도심에 남은 큰 녹지에는 집을 짓지 말아야 한다.", "옛것을 지키는 일이 새것을 만드는 일보다 중요하다."],
-      books: ["만희네 꽃밭", "우리, 집"] }
+      books: ["만희네 꽃밭", "우리, 집"] },
+
+    { genre: "고전소설", title: "홍길동전", author: "허균", year: "17세기 초", level: "중학·고등",
+      summary: "홍 판서의 서자로 태어난 길동은 뛰어난 재주를 지녔으나 아버지를 아버지라, 형을 형이라 부르지 못합니다. 자객의 습격을 받고 집을 떠나 도적 무리를 이끌며 활빈당이라 이름 짓고, 탐관오리의 재물을 빼앗아 백성에게 나누어 줍니다. 조정이 잡으려 하나 번번이 벗어나고, 병조 판서를 제수받은 뒤 조선을 떠납니다. 끝내 율도국을 세워 이상적인 나라를 다스립니다.",
+      conflict: "능력과 신분이 어긋난 자리, 그리고 법과 정의",
+      question: "잘못된 제도 아래에서 법을 어기는 일은 정당한가?",
+      derived: [
+        { type: "value", claim: "잘못된 제도 아래에서는 법을 어겨도 된다." },
+        { type: "policy", claim: "집안 배경을 묻지 못하게 하고 능력만으로 뽑도록 해야 한다." }
+      ],
+      topics: ["잘못된 제도를 바꾸기 위해서라면 법을 어겨도 된다.", "모두를 똑같이 대하는 것이 공정한 것이다."],
+      books: ["세 강도", "부리 동물 출입 금지!"] },
+
+    { genre: "고전소설", title: "허생전", author: "박지원", year: "18세기", level: "고등",
+      summary: "묵적골 허생은 십 년을 기약하고 글만 읽다가 아내의 핀잔에 집을 나섭니다. 한양 제일 부자 변씨에게 만 냥을 빌려 과일과 말총을 모조리 사들였다가 되팔아 큰돈을 법니다. 그 돈으로 변산의 도적들을 무인도로 데려가 살 곳을 마련해 주고 남은 돈은 바다에 버립니다. 돌아와 이완 대장에게 세 가지 계책을 내놓지만 모두 거절당하자 크게 꾸짖고, 이튿날 자취를 감춥니다.",
+      conflict: "한 사람이 시장을 쥘 수 있는 구조와 그 피해",
+      question: "생활에 꼭 필요한 물건의 값을 개인에게 맡겨도 되는가?",
+      derived: [
+        { type: "fact", claim: "한 사람이 물건을 모두 사들이면 값은 오른다." },
+        { type: "policy", claim: "생활에 꼭 필요한 물건은 국가가 값의 상한을 정해야 한다." }
+      ],
+      topics: ["배달앱 수수료에 법으로 상한을 두어야 한다.", "최저임금을 업종과 지역에 따라 다르게 정해야 한다."],
+      books: ["샌지와 빵집 주인", "돌멩이 국"] },
+
+    { genre: "고전소설", title: "양반전", author: "박지원", year: "18세기", level: "고등",
+      summary: "정선의 한 양반이 가난해 관곡을 빌려 먹다가 갚지 못해 곤경에 처합니다. 마을 부자가 대신 갚아 주고 양반 신분을 사기로 합니다. 군수가 만들어 준 첫 증서에는 양반이 지켜야 할 까다로운 격식이 빼곡합니다. 부자가 그런 것이라면 무슨 이익이냐고 하자, 두 번째 증서에는 이웃의 소를 끌어다 쓰고 상민을 부리는 특권이 적힙니다. 부자는 이것은 도둑질이 아니냐며 달아나 다시는 양반 말을 입에 올리지 않습니다.",
+      conflict: "돈으로 산 지위와 거기 딸린 특권",
+      question: "지위는 돈으로 사고팔 수 있는가?",
+      derived: [
+        { type: "value", claim: "돈으로 살 수 없는 것이 있어야 한다." },
+        { type: "fact", claim: "특권은 제도가 사라져도 오래 남는다." }
+      ],
+      topics: ["돈으로 행복을 살 수 있다.", "직업에 귀천은 없다."],
+      books: ["완벽한 아이 팔아요", "샌지와 빵집 주인"] },
+
+    { genre: "고전소설", title: "호질", author: "박지원", year: "18세기", level: "고등",
+      summary: "학식 높기로 이름난 북곽 선생과 열녀로 정표까지 받은 동리자가 밤에 몰래 만납니다. 동리자의 다섯 아들이 들이닥치자 북곽 선생은 달아나다 똥구덩이에 빠집니다. 기어 나오니 범이 앞에 있고, 범은 인간의 위선과 잔인함을 조목조목 꾸짖습니다. 북곽 선생이 머리를 조아리는 사이 범은 사라지고, 아침에 농부가 지나가며 묻자 그는 다시 점잖은 말투로 둘러댑니다.",
+      conflict: "이름난 선비의 겉모습과 실제 행동",
+      question: "말과 행동이 다른 사람을 어떻게 보아야 하는가?",
+      derived: [
+        { type: "value", claim: "말보다 행동으로 사람을 판단해야 한다." },
+        { type: "fact", claim: "사람은 남이 볼 때 더 바르게 행동한다." }
+      ],
+      topics: ["사람은 보는 눈이 있을 때 더 정직해진다.", "좋은 사람이 되는 것과 좋은 일을 하는 것은 다르다."],
+      books: ["나는 사실대로 말했을 뿐이야!", "내 탓이 아니야"] },
+
+    { genre: "고전소설", title: "예덕선생전", author: "박지원", year: "18세기", level: "고등",
+      summary: "선비 선귤자에게 엄 행수라는 벗이 있는데, 그는 똥을 져 나르는 사람입니다. 제자 자목이 스승이 그런 자와 벗한다며 부끄러워합니다. 선귤자는 엄 행수야말로 제 힘으로 먹고살며 분수를 지키는 사람이라고 답합니다. 이름과 이익만 좇는 사대부보다 그가 낫다며, 그를 예덕 선생이라 부르는 까닭을 밝힙니다.",
+      conflict: "천하다고 여겨지는 일과 그 일을 하는 사람의 값",
+      question: "직업이 사람의 값을 정하는가?",
+      derived: [
+        { type: "value", claim: "직업으로 사람을 평가해서는 안 된다." },
+        { type: "fact", claim: "사람들은 여전히 직업으로 사람을 판단한다." }
+      ],
+      topics: ["직업에 귀천은 없다.", "좋아하는 일을 직업으로 삼는 것이 바람직하다."],
+      books: ["행복한 청소부", "강아지똥"] },
+
+    { genre: "고전소설", title: "광문자전", author: "박지원", year: "18세기", level: "고등",
+      summary: "거지 광문은 못생기고 가진 것이 없으나 남을 속이지 않고 욕심을 부리지 않습니다. 동무의 죽음을 두고 누명을 썼다가 벗겨지고, 약방 주인의 돈이 없어졌을 때도 의심을 받았다가 결백이 드러나 오히려 신임을 얻습니다. 사람들이 그에게 보증을 서 달라 청하고, 기생조차 그가 인정해야 이름이 납니다. 그러나 광문은 벼슬도 재물도 바라지 않고 그대로 살아갑니다.",
+      conflict: "초라한 겉모습과 차곡차곡 쌓인 믿음",
+      question: "사람에 대한 믿음은 무엇으로 만들어지는가?",
+      derived: [
+        { type: "value", claim: "사람의 값은 겉모습과 상관없다." },
+        { type: "fact", claim: "한번 잃은 신뢰는 되찾기 어렵다." }
+      ],
+      topics: ["외모를 가꾸는 것은 자기표현이다.", "사람은 결국 자기 이익에 따라 움직인다."],
+      books: ["초코곰과 젤리곰", "부리 동물 출입 금지!"] },
+
+    { genre: "고전소설", title: "춘향전", author: "작자 미상", year: "조선 후기", level: "중학·고등",
+      summary: "남원 부사의 아들 이몽룡이 광한루에서 그네 뛰는 춘향을 보고 백년가약을 맺습니다. 아버지의 벼슬이 옮겨 몽룡이 서울로 떠나고, 새로 부임한 변학도가 춘향에게 수청을 강요합니다. 춘향이 끝내 거절하자 매를 맞고 옥에 갇힙니다. 과거에 급제해 암행어사가 된 몽룡이 걸인 행색으로 나타나 변학도의 생일잔치에서 시 한 수를 지어 보이고, 마침내 어사출두를 외쳐 변학도를 파직하고 춘향을 구합니다.",
+      conflict: "지켜야 할 마음과 권력이 요구하는 복종",
+      question: "힘을 가진 사람의 부당한 요구를 거절할 수 있으려면 무엇이 필요한가?",
+      derived: [
+        { type: "policy", claim: "지위를 이용해 부당한 요구를 한 사람은 더 무겁게 처벌해야 한다." },
+        { type: "value", claim: "약속을 지키는 것이 자기 안전보다 중요하다." }
+      ],
+      topics: ["잘못된 제도를 바꾸기 위해서라면 법을 어겨도 된다.", "국회의원에게도 국민소환제를 도입해야 한다."],
+      books: ["세 강도", "샌지와 빵집 주인"] },
+
+    { genre: "고전소설", title: "심청전", author: "작자 미상", year: "조선 후기", level: "중학·고등",
+      summary: "눈먼 심 봉사의 딸 심청은 어려서 어머니를 잃고 동냥으로 아버지를 봉양합니다. 아버지가 공양미 삼백 석을 시주하면 눈을 뜬다는 말을 믿고 덜컥 약속하자, 심청은 남경 상인에게 몸을 팔아 인당수에 몸을 던집니다. 용궁을 거쳐 연꽃에 담겨 다시 세상에 나와 황후가 됩니다. 맹인 잔치를 열어 아버지를 찾고, 심 봉사는 딸을 만난 기쁨에 눈을 뜹니다.",
+      conflict: "아버지를 위한 마음과 자기 목숨",
+      question: "효를 위해 자기 삶을 내놓는 일은 옳은가?",
+      derived: [
+        { type: "value", claim: "부모를 위해 자기 삶을 희생하는 것은 바람직하다." },
+        { type: "policy", claim: "부모를 돌보는 책임을 국가가 더 많이 져야 한다." }
+      ],
+      topics: ["아낌없이 주는 사랑은 아름다운 사랑이다.", "가정에서 하는 돌봄 노동에도 국가가 임금을 지급해야 한다."],
+      books: ["아낌없이 주는 나무", "나는 기다립니다"] },
+
+    { genre: "고전소설", title: "흥부전", author: "작자 미상", year: "조선 후기", level: "중학·고등",
+      summary: "형 놀부는 부모의 재산을 독차지하고 동생 흥부를 내쫓습니다. 흥부는 가난에 시달리다 형에게 쌀을 빌리러 갔다가 매만 맞고 돌아옵니다. 어느 날 다리 부러진 제비를 고쳐 주자 제비가 박씨를 물어다 주고, 그 박에서 금은보화가 나와 부자가 됩니다. 이를 안 놀부가 일부러 제비 다리를 부러뜨렸다 고쳐 주고 박씨를 얻지만, 그 박에서는 도깨비가 나와 재산을 모두 잃습니다. 끝내 흥부가 형을 용서하고 함께 삽니다.",
+      conflict: "착하게 사는 삶과 그것이 돌아오는 방식",
+      question: "착하게 살면 정말 복이 오는가?",
+      derived: [
+        { type: "fact", claim: "착하게 사는 사람이 결국 더 잘된다." },
+        { type: "policy", claim: "부모의 재산은 자녀에게 똑같이 나누도록 법으로 정해야 한다." }
+      ],
+      topics: ["노력하면 누구나 성공할 수 있다.", "모두를 똑같이 대하는 것이 공정한 것이다."],
+      books: ["돌멩이 국", "무지개 물고기"] },
+
+    { genre: "고전소설", title: "박씨전", author: "작자 미상", year: "조선 후기", level: "중학·고등",
+      summary: "이시백은 박 처사의 딸과 혼인하나 그 얼굴이 몹시 추해 가까이하지 않습니다. 박씨는 후원에 피화당을 짓고 홀로 지내며 비범한 능력을 드러냅니다. 때가 되어 허물을 벗고 절세미인이 되자 이시백이 뉘우치고 화목해집니다. 병자호란이 일어나자 박씨는 도술로 청나라 장수를 물리치고 나라를 구합니다.",
+      conflict: "겉모습으로 내치는 눈과 드러나지 않은 능력",
+      question: "사람을 알아보지 못한 것은 누구의 잘못인가?",
+      derived: [
+        { type: "value", claim: "겉모습으로 사람을 판단하는 것은 어쩔 수 없는 일이다." },
+        { type: "fact", claim: "첫인상은 능력을 평가할 때에도 영향을 준다." }
+      ],
+      topics: ["외모를 가꾸는 것은 자기표현이다.", "청소년의 미용 목적 성형수술을 법으로 제한해야 한다."],
+      books: ["치킨 마스크", "초코곰과 젤리곰"] },
+
+    { genre: "고전소설", title: "운영전", author: "작자 미상", year: "17세기 초", level: "고등",
+      summary: "선비 유영이 수성궁 옛터에서 술을 마시다 잠들었다가 운영과 김 진사를 만나 사연을 듣습니다. 안평대군의 궁녀 운영은 김 진사와 사랑에 빠지지만 궁의 법도가 이를 허락하지 않습니다. 시로 마음을 주고받고 도망을 꾀하나 발각되고, 운영은 스스로 목숨을 끊고 김 진사도 뒤를 따릅니다. 이야기가 끝나자 두 사람은 사라지고 유영은 꿈에서 깹니다.",
+      conflict: "사람의 마음과 그것을 금하는 규칙",
+      question: "개인의 감정을 제도가 막을 수 있는가?",
+      derived: [
+        { type: "value", claim: "공동체의 규칙이 개인의 사랑보다 앞선다." },
+        { type: "policy", claim: "사생활을 제한하는 조직의 규칙은 없애야 한다." }
+      ],
+      topics: ["안전을 위해서라면 자유를 얼마간 내주어도 좋다.", "선택지가 많을수록 더 자유롭다."],
+      books: ["빨간 벽", "스갱 아저씨의 염소"] },
+
+    { genre: "고전소설", title: "토끼전", author: "작자 미상", year: "조선 후기", level: "중학·고등",
+      summary: "용왕이 병들자 토끼의 간이 약이라 하여 자라가 뭍으로 나갑니다. 자라는 토끼를 꾀어 용궁으로 데려가지만, 토끼는 간을 육지에 두고 왔다고 둘러대어 살아 돌아옵니다. 뭍에 오른 토끼는 자라를 조롱하고 달아납니다. 힘없는 쪽이 꾀로 살아남는 이야기입니다.",
+      conflict: "남의 목숨을 요구하는 권력과 살아남으려는 꾀",
+      question: "살아남기 위한 거짓말은 정당한가?",
+      derived: [
+        { type: "value", claim: "살아남기 위해서라면 거짓말을 해도 된다." },
+        { type: "value", claim: "윗사람을 위해 아랫사람이 희생하는 것은 정당하다." }
+      ],
+      topics: ["남을 위한 거짓말은 해도 괜찮다.", "다수의 이익을 위해 소수가 희생하는 것은 정당하다."],
+      books: ["샌지와 빵집 주인", "감기 걸린 물고기"] },
+
+    { genre: "고전소설", title: "장끼전", author: "작자 미상", year: "조선 후기", level: "고등",
+      summary: "장끼가 눈 덮인 들에서 콩 하나를 발견합니다. 까투리가 불길한 꿈을 꾸었다며 거듭 말리지만 장끼는 아내의 말을 무시하고 콩을 먹다 덫에 걸려 죽습니다. 죽어 가면서도 개가하지 말라고 이르지만, 까투리는 장례를 치른 뒤 여러 구혼자 가운데 하나를 골라 재혼합니다.",
+      conflict: "말을 듣지 않는 남편과 스스로 길을 정하는 아내",
+      question: "충고를 듣지 않아 생긴 일은 누구의 책임인가?",
+      derived: [
+        { type: "value", claim: "집안의 중요한 일은 가장이 정해야 한다." },
+        { type: "fact", claim: "여러 사람의 의견을 들으면 판단이 나아진다." }
+      ],
+      topics: ["가정의 집안일은 가족이 나누어 맡도록 규칙을 정해야 한다.", "함께 일하면 혼자 할 때보다 더 잘 해낸다."],
+      books: ["돼지책", "돌멩이 국"] },
+
+    { genre: "고전소설", title: "공방전", author: "임춘", year: "12세기", level: "고등",
+      summary: "엽전을 사람처럼 그려 낸 이야기입니다. 둥글고 모난 생김새로 세상에 나온 공방은 재물을 다루는 벼슬을 맡습니다. 사람들이 그를 좇아 이익만 꾀하게 되면서 풍속이 각박해집니다. 결국 폐해가 드러나 쫓겨나지만, 후손이 다시 세상에 나와 그 폐단이 이어집니다.",
+      conflict: "돈이 주는 편리와 그것이 바꾼 인심",
+      question: "돈은 사람을 어떻게 바꾸는가?",
+      derived: [
+        { type: "value", claim: "돈을 좇는 마음이 사회를 각박하게 만든다." },
+        { type: "fact", claim: "가진 것이 많을수록 남을 덜 배려하게 된다." }
+      ],
+      topics: ["돈으로 행복을 살 수 있다.", "사람은 결국 자기 이익에 따라 움직인다."],
+      books: ["단물고개", "난 황금알을 낳을 거야!"] }
 ];
 
 // 대주제(큰 갈래) — 세부 분야를 6개 묶음으로 정리
@@ -7770,13 +7924,10 @@ function renderLiteraturePanel() {
     if (!box.dataset.built) {
         box.innerHTML = `
             <p class="topic-panel-intro">교과서에서 자주 만나는 현대시와 현대소설을 토론 논제로 잇습니다. 작품의 갈등을 짚고, 열린 질문을 거쳐, 토론할 수 있는 논제로 옮겨 가는 과정을 그대로 보여 줍니다.</p>
+            <div class="lit-tabs" id="lit-genres"></div>
             <div class="topic-steps">
                 <div class="topic-step">
-                    <span class="topic-step-label"><em>1</em> 갈래 고르기</span>
-                    <div class="topic-step-chips" id="lit-genres"></div>
-                </div>
-                <div class="topic-step">
-                    <span class="topic-step-label"><em>2</em> 학교급 고르기</span>
+                    <span class="topic-step-label">학교급 고르기</span>
                     <div class="topic-step-chips" id="lit-levels"></div>
                 </div>
                 <div class="topic-step topic-step-inline"><span class="topic-count" id="lit-count"></span></div>
@@ -7790,14 +7941,14 @@ function renderLiteraturePanel() {
     const grid = document.getElementById("lit-grid");
     const countEl = document.getElementById("lit-count");
 
-    const GENRE_ICON = { "시": "fa-feather", "소설": "fa-book-open", "수필": "fa-pen-nib", "극": "fa-masks" };
+    const GENRE_ICON = { "시": "fa-feather", "소설": "fa-book-open", "수필": "fa-pen-nib", "극": "fa-masks", "고전소설": "fa-scroll" };
     const GENRE_LABEL = { "시": "현대시", "소설": "현대소설" };
     const genres = [...new Set(literatureWorks.map(w => w.genre))];
     genreBox.innerHTML =
-        `<button type="button" class="topic-step-chip ${litState.genre === "all" ? "active" : ""}" data-lit-genre="all">전체 <em>${literatureWorks.length}</em></button>` +
+        `<button type="button" class="lit-tab-btn ${litState.genre === "all" ? "active" : ""}" data-lit-genre="all"><i class="fa-solid fa-layer-group"></i> 전체 <em>${literatureWorks.length}</em></button>` +
         genres.map(g => {
             const n = literatureWorks.filter(w => w.genre === g).length;
-            return `<button type="button" class="topic-step-chip ${litState.genre === g ? "active" : ""}" data-lit-genre="${g}"><i class="fa-solid ${GENRE_ICON[g] || "fa-book"}"></i> ${GENRE_LABEL[g] || g} <em>${n}</em></button>`;
+            return `<button type="button" class="lit-tab-btn ${litState.genre === g ? "active" : ""}" data-lit-genre="${g}"><i class="fa-solid ${GENRE_ICON[g] || "fa-book"}"></i> ${GENRE_LABEL[g] || g} <em>${n}</em></button>`;
         }).join("");
     genreBox.querySelectorAll("[data-lit-genre]").forEach(b => b.addEventListener("click", () => {
         litState.genre = b.dataset.litGenre; litState.level = "all"; renderLiteraturePanel();
