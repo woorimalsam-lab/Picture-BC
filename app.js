@@ -3461,26 +3461,31 @@ function initVisitorCounter() {
         const cached = parseInt(localStorage.getItem(lastKey(name)) || "0", 10);
         if (cached > 0) el.textContent = cached.toLocaleString();   // 응답 전까지 마지막 값 표시
 
-        fetch(url)
+        // get으로 읽었는데 서버에 키가 없으면(그날 첫 집계가 통신 오류로 실패한 경우 등)
+        // hit으로 한 번 더 시도해 키를 만들고 집계한다. 그대로 두면 하루 종일 "–"로 남는다.
+        const request = (u, isRetry) => fetch(u)
             .then((r) => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))))
             .then((data) => {
                 const v = Number(data && data.value);
                 if (!Number.isFinite(v)) throw new Error("invalid response");
                 localStorage.setItem(lastKey(name), String(v));
+                localStorage.setItem(visitedFlag, "1");   // 집계에 실제로 성공했을 때만 기록
                 animateTo(el, Math.max(v, cached));   // 카운터는 줄지 않으므로 뒤로 가지 않게
             })
             .catch(() => {
+                if (!isRetry && u.indexOf("/get/") !== -1) return request(u.replace("/get/", "/hit/"), true);
                 // 서버가 잠시 불안정해도 마지막으로 확인된 값을 유지 (초기화처럼 보이지 않게)
                 if (cached > 0) animateTo(el, cached);
                 else el.textContent = "–";
             });
+        request(url, false);
     };
 
     loadCounter(numEl, dayUrl, `visits-${dayKey}`);
     loadCounter(totalEl, totalUrl, "visits-total");
 
-    // 오늘 방문 집계 완료 표시 (두 요청을 보낸 뒤 한 번만)
-    if (!alreadyVisited) localStorage.setItem(visitedFlag, "1");
+    // '오늘 집계됨' 표시는 loadCounter에서 요청이 성공했을 때만 남긴다.
+    // (예전에는 요청을 보내자마자 표시해, 통신이 실패하면 그날 내내 "–"로 남았음)
 }
 
 function initThemeToggle() {
