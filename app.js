@@ -3340,12 +3340,117 @@ const worksheets = [
 ];
 
 // --- FUNCTIONS DATA ---
+// ───────── 수업 자료실 비공개 (구글 로그인) ─────────
+// 주의: 이 사이트는 서버가 없는 정적 사이트입니다. 아래 확인은 '메뉴와 화면을 감추는'
+// 수준이며, 자료 파일 자체는 주소를 알면 누구나 내려받을 수 있습니다(저장소가 공개).
+// 파일까지 보호하려면 저장소에서 파일을 내리고 비공개 저장소나 드라이브로 옮겨야 합니다.
+
+// ▼ 구글 클라우드 콘솔에서 발급한 OAuth 클라이언트 ID를 따옴표 안에 넣으세요.
+const GOOGLE_CLIENT_ID = "";
+const ARCHIVE_OWNER_EMAIL = "woorimalsam@gmail.com";
+const OWNER_KEY = "pbc-owner-email";
+
+function isArchiveOwner() {
+    try {
+        return (localStorage.getItem(OWNER_KEY) || "").toLowerCase() === ARCHIVE_OWNER_EMAIL;
+    } catch (e) {
+        return false;
+    }
+}
+
+// 감추기만 하면 주소로 열리므로, 메뉴와 화면을 문서에서 아예 들어낸다.
+function applyArchiveVisibility() {
+    const owner = isArchiveOwner();
+    if (!owner) {
+        const link = document.querySelector('.nav-links a[href="#archive-section"]');
+        const section = document.getElementById("archive-section");
+        if (link) link.remove();
+        if (section) section.remove();
+        if (location.hash === "#archive-section") location.hash = "#search-section";
+    }
+    const btn = document.getElementById("owner-toggle");
+    if (btn) {
+        btn.classList.toggle("owner-on", owner);
+        btn.setAttribute("aria-label", owner ? "수업 자료실 감추기" : "수업 자료실 열기");
+        btn.setAttribute("title", owner ? "수업 자료실 감추기" : "수업 자료실 열기 (관리자)");
+        btn.innerHTML = `<i class="fa-solid ${owner ? "fa-lock-open" : "fa-lock"}"></i>`;
+    }
+}
+
+function decodeJwtPayload(token) {
+    try {
+        const part = String(token).split(".")[1].replace(/-/g, "+").replace(/_/g, "/");
+        const bin = atob(part);
+        const bytes = Uint8Array.from(bin, (c) => c.charCodeAt(0));
+        return JSON.parse(new TextDecoder().decode(bytes));
+    } catch (e) {
+        return null;
+    }
+}
+
+function handleGoogleCredential(res) {
+    const data = decodeJwtPayload(res && res.credential);
+    const email = data && data.email ? String(data.email).toLowerCase() : "";
+    const box = document.getElementById("owner-signin");
+    if (box) box.hidden = true;
+    if (email === ARCHIVE_OWNER_EMAIL && data.email_verified !== false) {
+        try { localStorage.setItem(OWNER_KEY, email); } catch (e) { /* 저장 불가 시 무시 */ }
+        showToast("수업 자료실을 열었습니다");
+        setTimeout(() => location.reload(), 700);
+    } else {
+        showToast("이 계정으로는 열 수 없습니다");
+    }
+}
+
+function initOwnerGate() {
+    const btn = document.getElementById("owner-toggle");
+    const box = document.getElementById("owner-signin");
+    if (!btn) return;
+
+    btn.addEventListener("click", () => {
+        if (isArchiveOwner()) {
+            try { localStorage.removeItem(OWNER_KEY); } catch (e) { /* 무시 */ }
+            showToast("수업 자료실을 감췄습니다");
+            setTimeout(() => location.reload(), 700);
+            return;
+        }
+        if (!GOOGLE_CLIENT_ID) {
+            showToast("구글 로그인 설정이 필요합니다 — app.js의 GOOGLE_CLIENT_ID");
+            return;
+        }
+        if (!(window.google && window.google.accounts && window.google.accounts.id)) {
+            showToast("구글 로그인을 불러오지 못했습니다");
+            return;
+        }
+        if (box && box.hidden === false) { box.hidden = true; return; }
+        google.accounts.id.initialize({
+            client_id: GOOGLE_CLIENT_ID,
+            callback: handleGoogleCredential,
+            auto_select: false,
+            cancel_on_tap_outside: true
+        });
+        if (box) {
+            box.hidden = false;
+            box.innerHTML = "";
+            google.accounts.id.renderButton(box, { theme: "outline", size: "large", text: "signin_with", shape: "pill" });
+        }
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!box || box.hidden) return;
+        if (box.contains(e.target) || btn.contains(e.target)) return;
+        box.hidden = true;
+    });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // 그림책 서재 가나다 순 정렬 (서재·학습지 드롭다운·모달이 같은 배열을 참조하므로 인덱스 일관 유지)
     if (typeof books !== 'undefined' && Array.isArray(books)) {
         books.sort((a, b) => a.title.localeCompare(b.title, 'ko'));
     }
+    applyArchiveVisibility();   // 메뉴 구성 전에 자료실을 들어낸다
     initTabNavigation();
+    initOwnerGate();
     initThemeToggle();
     renderTechniques();
     renderTheory();
@@ -9220,7 +9325,7 @@ function setupMainSearch() {
 
         // 4. Search Archive (Only if type is 'all' and tag is 'all')
         let matchingArchive = [];
-        if (currentType === "all" && currentTag === "all" && typeof worksheets !== 'undefined') {
+        if (currentType === "all" && currentTag === "all" && isArchiveOwner() && typeof worksheets !== 'undefined') {
             matchingArchive = worksheets.filter(ws => {
                 if (query === "") return false; // Don't show archive when there is no query
 

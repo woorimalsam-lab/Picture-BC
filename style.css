@@ -3796,3 +3796,27 @@ footer { padding: 56px 24px 44px; }
 @media print {
     .ws-flow5-item, .ws-check5 input { border-color: #111 !important; }
 }
+
+/* 수업 자료실 잠금 (관리자용) */
+#owner-toggle { opacity: 0.45; transition: opacity 0.2s ease, color 0.2s ease; }
+#owner-toggle:hover { opacity: 1; }
+#owner-toggle.owner-on { opacity: 1; color: var(--accent-coral); }
+.owner-signin {
+    position: absolute;
+    top: 64px;
+    right: 18px;
+    z-index: 1200;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: var(--shadow-hover);
+}
+.owner-signin::before {
+    content: "수업 자료실은 관리자만 볼 수 있습니다";
+    display: block;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    white-space: nowrap;
+}

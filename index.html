@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=3.7.0">
+    <link rel="stylesheet" href="style.css?v=3.8.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -59,6 +59,9 @@
                 <a href="#reference-section"><i class="fa-solid fa-book-bookmark"></i> 참고 도서</a>
             </nav>
             <div class="actions">
+                <button id="owner-toggle" class="btn-icon" aria-label="수업 자료실 열기" title="수업 자료실 열기 (관리자)">
+                    <i class="fa-solid fa-lock"></i>
+                </button>
                 <button id="theme-toggle" class="btn-icon" aria-label="테마 전환">
                     <i class="fa-solid fa-moon"></i>
                 </button>
@@ -68,6 +71,9 @@
             </div>
         </div>
     </header>
+    <!-- 관리자 로그인 (수업 자료실) -->
+    <div id="owner-signin" class="owner-signin no-print" hidden></div>
+
     <!-- 모바일 메뉴 배경(클릭 시 닫힘) -->
     <div id="nav-backdrop" class="nav-backdrop no-print"></div>
 
@@ -522,6 +528,7 @@
     <div id="class-mode" class="class-mode no-print"></div>
 
     <!-- Custom JS -->
-    <script src="app.js?v=3.7.0"></script>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="app.js?v=3.8.0"></script>
 </body>
 </html>
