@@ -3443,6 +3443,24 @@ function initOwnerGate() {
     });
 }
 
+/* ── 메인 배너: 정지 이미지를 먼저 띄우고, 움직이는 그림은 뒤에서 받아 교체 ──
+   첫 화면이 1.2MB를 기다리지 않게 하고, 데이터 절약 모드·느린 회선·
+   어지럼 방지 설정에서는 정지 이미지 그대로 둔다. */
+function initHeroMotion() {
+    const img = document.getElementById("hero-still");
+    if (!img) return;
+    try {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    } catch (e) { /* matchMedia 미지원이면 그냥 진행 */ }
+    const conn = navigator.connection || navigator.webkitConnection || {};
+    if (conn.saveData) return;
+    if (/(^|-)(2g|slow-2g|3g)$/.test(conn.effectiveType || "")) return;
+
+    const pre = new Image();
+    pre.onload = () => { img.src = pre.src; };   // 다 받은 뒤에만 교체 → 깜빡임 없음
+    pre.src = "images/hero_scene.webp?v=4.0.0"; // 실패하면 정지 이미지가 그대로 남는다
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     // 그림책 서재 가나다 순 정렬 (서재·학습지 드롭다운·모달이 같은 배열을 참조하므로 인덱스 일관 유지)
     if (typeof books !== 'undefined' && Array.isArray(books)) {
@@ -3451,6 +3469,7 @@ document.addEventListener("DOMContentLoaded", () => {
     applyArchiveVisibility();   // 메뉴 구성 전에 자료실을 들어낸다
     initTabNavigation();
     initOwnerGate();
+    initHeroMotion();
     initThemeToggle();
     renderTechniques();
     renderTheory();
@@ -4574,9 +4593,14 @@ const STAT_SOURCES = {
         url: "https://www.mogef.go.kr", icon: "fa-tv", group: "청소년·생활",
         desc: "청소년이 어떤 매체를 얼마나 이용하는지 조사합니다."
     },
+    bigkinds: {
+        name: "빅카인즈(BIG KINDS)", org: "한국언론진흥재단", cycle: "매일 갱신",
+        url: "https://www.bigkinds.or.kr", icon: "fa-newspaper", group: "뉴스·여론",
+        desc: "1990년부터 오늘까지 국내 언론사 기사를 모아 둔 뉴스 빅데이터 서비스입니다. 보도량 추이와 연관어까지 분석해 줍니다."
+    },
     kpf: {
         name: "언론수용자 조사 · 10대 청소년 미디어 이용 조사", org: "한국언론진흥재단", cycle: "매년·격년",
-        url: "https://www.kpf.or.kr", icon: "fa-satellite-dish", group: "청소년·생활",
+        url: "https://www.kpf.or.kr", icon: "fa-satellite-dish", group: "뉴스·여론",
         desc: "뉴스 이용과 신뢰도, 허위정보 경험을 다룹니다. 미디어 논제의 기본 자료입니다."
     },
     mcst: {
@@ -4612,6 +4636,50 @@ const STAT_STEPS = [
     { no: "1", label: "주장", desc: "내가 말하려는 바를 한 문장으로 적습니다.", sample: "청소년의 스마트폰 의존이 심각하다." },
     { no: "2", label: "자료", desc: "그 주장과 맞닿는 수치를 출처·연도와 함께 옮겨 적습니다.", sample: "○○ 실태조사(과기정통부, ○○년)에 따르면 청소년 과의존 위험군은 ○○%다." },
     { no: "3", label: "해석", desc: "그 수치가 왜 내 주장을 뒷받침하는지 내 말로 잇습니다.", sample: "열 명 중 ○명이 위험군이라면, 개인의 의지 문제로만 보기 어렵다." }
+];
+
+// 빅카인즈의 세 가지 기능과 토론에서의 쓰임
+const NEWS_TOOLS = [
+    {
+        name: "뉴스 검색·분석", icon: "fa-magnifying-glass",
+        url: "https://www.bigkinds.or.kr/v2/news/index.do",
+        use: "논제와 맞닿은 실제 사례를 찾습니다.",
+        tip: "검색 기간이 기본 3개월입니다. 그대로 두면 오래된 흐름을 놓칩니다."
+    },
+    {
+        name: "키워드 트렌드", icon: "fa-chart-line",
+        url: "https://www.bigkinds.or.kr/v2/visuals/keywordStatistics.do",
+        use: "이 문제가 언제부터 쟁점이 되었는지 보도량 그래프로 봅니다.",
+        tip: "그래프가 솟은 시점을 짚고 '그때 무슨 일이 있었나'를 찾으면 배경 설명이 됩니다."
+    },
+    {
+        name: "연관어 분석", icon: "fa-diagram-project",
+        url: "https://www.bigkinds.or.kr/v2/analysis/featureExtraction.do",
+        use: "논제와 함께 등장하는 말들을 뽑아 줍니다. 쟁점 찾기에 바로 씁니다.",
+        tip: "연관어 목록이 곧 쟁점 후보입니다. 다섯 단계 중 '쟁점 뽑기'를 기계가 거들어 주는 셈입니다."
+    },
+    {
+        name: "옛 뉴스 아카이브", icon: "fa-clock-rotate-left",
+        url: "https://www.bigkinds.or.kr/v2/news/oldNews.do",
+        use: "예전 기사까지 거슬러 봅니다.",
+        tip: "'그때는 이것을 어떻게 생각했나'를 보여 주면 가치 논제가 깊어집니다."
+    }
+];
+
+// 뉴스로 논거 만드는 네 단계
+const NEWS_STEPS = [
+    { no: "1", label: "핵심어 고르기", desc: "논제 문장에서 검색할 낱말을 두세 개 뽑습니다.", sample: "논제 '교복을 없애야 한다' → 교복, 복장 자율화, 학생 인권" },
+    { no: "2", label: "흐름 보기", desc: "키워드 트렌드로 보도량 그래프를 봅니다. 언제 쟁점이 되었는지 확인합니다.", sample: "○○년에 보도가 크게 늘었다 → 그해에 무슨 일이 있었을까?" },
+    { no: "3", label: "쟁점 뽑기", desc: "연관어 분석으로 함께 나오는 말을 봅니다. 그 목록이 쟁점 후보입니다.", sample: "'교복'과 함께 비용·두발·표현의 자유가 붙어 나온다." },
+    { no: "4", label: "사례 옮기기", desc: "기사 하나를 골라 언론사와 날짜를 함께 한 문장으로 적습니다.", sample: "○○일보(○○년 ○월 ○일)는 ○○ 학교의 사례를 전했다." }
+];
+
+// 뉴스를 근거로 쓸 때 확인할 것들
+const NEWS_CHECKS = [
+    { label: "보도량은 심각성이 아닙니다", desc: "기사가 많다고 더 많이 일어난 것은 아닙니다. 관심이 쏠렸을 뿐일 수 있습니다.", icon: "fa-chart-simple" },
+    { label: "언론사마다 다르게 씁니다", desc: "같은 사건도 어디서 썼느냐에 따라 제목과 강조점이 달라집니다. 두세 곳을 견줘 보세요.", icon: "fa-scale-balanced" },
+    { label: "사례 하나는 약합니다", desc: "눈에 띄는 사건 하나로 전체를 말하면 성급한 일반화가 됩니다. 통계와 짝지어 쓰세요.", icon: "fa-person-circle-question" },
+    { label: "의견인지 사실인지", desc: "기사에는 취재한 사실과 기자의 해석이 섞여 있습니다. 옮길 때 갈라 적습니다.", icon: "fa-pen-fancy" }
 ];
 
 const TOPIC_TYPE_INFO = {
@@ -8158,7 +8226,7 @@ function renderTopicFromBook(bookIdx) {
         </div>`;
 }
 
-// ───────── 통계로 논거 만들기 패널 ─────────
+// ───────── 통계·뉴스로 논거 만들기 패널 ─────────
 function renderStatPanel() {
     const box = document.getElementById("topic-panel-data");
     if (!box || box.dataset.done === "1") return;
@@ -8170,7 +8238,7 @@ function renderStatPanel() {
     });
 
     box.innerHTML = `
-        <p class="topic-panel-intro">주장만으로는 토론이 겉돕니다. 국가가 만든 공식 통계를 근거로 삼으면, 아이들의 말이 훨씬 단단해집니다. 자료를 찾고, 읽고, 논거로 바꾸는 방법을 한자리에 모았습니다.</p>
+        <p class="topic-panel-intro">주장만으로는 토론이 겉돕니다. 국가가 만든 공식 <strong>통계</strong>와 언론이 쌓아 온 <strong>뉴스</strong>를 근거로 삼으면, 아이들의 말이 훨씬 단단해집니다. 자료를 찾고, 읽고, 논거로 바꾸는 방법을 한자리에 모았습니다.</p>
 
         <div class="stat-block">
             <h4 class="stat-h"><i class="fa-solid fa-list-ol"></i> 통계로 논거 만드는 세 단계</h4>
@@ -8217,6 +8285,47 @@ function renderStatPanel() {
             <p>통계를 근거로 쓸 때는 <strong>“정말 이것이 원인일까, 아니면 다른 무엇이 둘 다를 만들었을까?”</strong>를 반드시 되물어야 합니다. 사실 논제 토론에서 가장 자주 갈리는 지점입니다.</p>
         </div>
 
+        <div class="stat-block stat-news">
+            <h4 class="stat-h"><i class="fa-solid fa-newspaper"></i> 뉴스로 논거 만들기 · 빅카인즈</h4>
+            <p class="stat-sub"><strong>빅카인즈</strong>는 한국언론진흥재단이 운영하는 뉴스 빅데이터 서비스입니다. 1990년부터 오늘까지 국내 언론사 기사를 모아 두고, 검색은 물론 <strong>보도량 추이</strong>와 <strong>연관어</strong>까지 분석해 줍니다. 회원가입 없이도 쓸 수 있습니다.</p>
+            <p class="stat-tip"><i class="fa-solid fa-lightbulb"></i> 통계가 <strong>‘얼마나’</strong>를 알려 준다면, 뉴스는 <strong>‘언제부터, 누가, 어떻게 말해 왔나’</strong>를 알려 줍니다. 둘을 함께 써야 논거가 입체적이 됩니다.</p>
+
+            <div class="stat-steps">
+                ${NEWS_STEPS.map(s => `
+                    <div class="stat-step">
+                        <span class="stat-step-no">${s.no}</span>
+                        <strong>${s.label}</strong>
+                        <p>${s.desc}</p>
+                        <p class="stat-step-sample">예 · ${s.sample}</p>
+                    </div>`).join("")}
+            </div>
+
+            <form class="stat-search" id="news-key-form">
+                <input type="text" id="news-key-q" placeholder="예 · 학교폭력, 교복, 인공지능 교육" aria-label="빅카인즈에서 찾을 핵심어">
+                <button type="submit"><i class="fa-solid fa-copy"></i> 복사하고 열기</button>
+            </form>
+            <p class="stat-sub">빅카인즈는 주소로 검색어를 넘길 수 없어, 핵심어를 <strong>복사해 두고</strong> 창을 엽니다. 검색창에 붙여넣기(Ctrl+V)만 하면 됩니다.</p>
+
+            <div class="news-tools">
+                ${NEWS_TOOLS.map(t => `
+                    <a class="news-tool" href="${t.url}" target="_blank" rel="noopener noreferrer">
+                        <span class="news-tool-head"><i class="fa-solid ${t.icon}"></i> ${t.name}<i class="fa-solid fa-arrow-up-right-from-square news-tool-go"></i></span>
+                        <span class="news-tool-use">${t.use}</span>
+                        <span class="news-tool-tip">${t.tip}</span>
+                    </a>`).join("")}
+            </div>
+
+            <h5 class="news-sub-h"><i class="fa-solid fa-circle-check"></i> 뉴스를 근거로 쓸 때, 네 가지 확인</h5>
+            <div class="stat-checks">
+                ${NEWS_CHECKS.map(c => `
+                    <div class="stat-check">
+                        <i class="fa-solid ${c.icon}"></i>
+                        <strong>${c.label}</strong>
+                        <span>${c.desc}</span>
+                    </div>`).join("")}
+            </div>
+        </div>
+
         <div class="stat-block">
             <h4 class="stat-h"><i class="fa-solid fa-database"></i> 어디서 찾을까 · 믿을 만한 자료실</h4>
             <p class="stat-sub">2025년 10월부터 <strong>통계청</strong>은 <strong>국가데이터처</strong>로 이름이 바뀌었습니다.</p>
@@ -8259,6 +8368,21 @@ function renderStatPanel() {
         go(document.getElementById("stat-search-q").value);
     });
     box.querySelectorAll(".stat-quick-btn").forEach(b => b.addEventListener("click", () => go(b.dataset.q)));
+
+    const newsForm = document.getElementById("news-key-form");
+    if (newsForm) newsForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const q = (document.getElementById("news-key-q").value || "").trim();
+        const open = () => window.open(NEWS_TOOLS[0].url, "_blank", "noopener");
+        if (!q) { open(); return; }
+        // 복사가 막힌 환경(구형 브라우저·권한 거부)에서도 창은 열리도록 한다
+        const done = () => { showToast("‘" + q + "’을(를) 복사했습니다. 검색창에 붙여넣으세요."); open(); };
+        try {
+            navigator.clipboard.writeText(q).then(done, () => { showToast("검색창에 ‘" + q + "’을(를) 입력하세요."); open(); });
+        } catch (err) {
+            showToast("검색창에 ‘" + q + "’을(를) 입력하세요."); open();
+        }
+    });
 
     box.dataset.done = "1";
 }

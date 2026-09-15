@@ -16,3 +16,6 @@ techs.txt
 # OS
 Thumbs.db
 .DS_Store
+
+# 배너 원본 (27MB, 서비스에 쓰이지 않음)
+images/storybook_animated_movie.gif

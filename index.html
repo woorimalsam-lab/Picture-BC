@@ -17,13 +17,13 @@
     <meta property="og:site_name" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta property="og:title" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta property="og:description" content="그림책 75권 × 토론 기법 21가지 × 토론 논제 290개. 그림책 학습지 18종과 논제 학습지 5종을 무료로 제공합니다.">
-    <meta property="og:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg">
+    <meta property="og:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=4.0.0">
     <meta property="og:url" content="https://woorimalsam-lab.github.io/Picture-BC/">
     <meta property="og:locale" content="ko_KR">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta name="twitter:description" content="그림책 75권 × 토론 기법 21가지 × 토론 논제 290개. 수업에서 바로 쓰는 그림책 토론 자료.">
-    <meta name="twitter:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg">
+    <meta name="twitter:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=4.0.0">
 
     <!-- 파비콘 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
@@ -34,7 +34,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=3.9.0">
+    <link rel="stylesheet" href="style.css?v=4.0.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -92,11 +92,8 @@
             </div>
             <div class="hero-image-container">
                 <div class="hero-art">
-                    <div class="hero-art-inner">
-                        <img src="images/hero_base.jpg?v=3.9.0" alt="책장 앞에서 그림책을 고르는 아이 일러스트" class="hero-art-base">
-                        <img src="images/hero_book.png?v=3.9.0" alt="" aria-hidden="true" class="hero-art-book">
-                        <img src="images/hero_eye.png?v=3.9.0" alt="" aria-hidden="true" class="hero-art-eye">
-                    </div>
+                    <img id="hero-still" src="images/hero_poster.jpg?v=4.0.0"
+                         alt="책장에서 그림책을 골라 펼쳐 읽는 아이 일러스트" class="hero-art-base">
                 </div>
             </div>
         </div>
@@ -432,7 +429,7 @@
             <button class="topic-tab-btn" data-topic-tab="derive"><i class="fa-solid fa-wand-magic-sparkles"></i> 그림책에서 논제 뽑기</button>
             <button class="topic-tab-btn" data-topic-tab="lit"><i class="fa-solid fa-feather"></i> 문학에서 논제 뽑기</button>
             <button class="topic-tab-btn" data-topic-tab="reading"><i class="fa-solid fa-book-open"></i> 갈래별 읽기 주제</button>
-            <button class="topic-tab-btn" data-topic-tab="data"><i class="fa-solid fa-chart-column"></i> 통계로 논거 만들기</button>
+            <button class="topic-tab-btn" data-topic-tab="data"><i class="fa-solid fa-chart-column"></i> 통계·뉴스로 논거 만들기</button>
         </div>
 
         <!-- 논제 목록 패널 -->
@@ -483,7 +480,7 @@
         <!-- 문학에서 논제 뽑기 -->
         <div id="topic-panel-lit" style="display:none;"></div>
 
-        <!-- 통계로 논거 만들기 -->
+        <!-- 통계·뉴스로 논거 만들기 -->
         <div id="topic-panel-data" style="display:none;"></div>
     </section>
 
@@ -535,6 +532,6 @@
 
     <!-- Custom JS -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="app.js?v=3.9.0"></script>
+    <script src="app.js?v=4.0.0"></script>
 </body>
 </html>

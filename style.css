@@ -3822,7 +3822,7 @@ footer { padding: 56px 24px 44px; }
 }
 
 /* ============================================
-   메인 배너 — 레이어 애니메이션
+   메인 배너
    ============================================ */
 .hero-art {
     position: relative;
@@ -3835,52 +3835,69 @@ footer { padding: 56px 24px 44px; }
     box-shadow: var(--shadow-hover);
     animation: floatAnimation 6s ease-in-out infinite;
 }
-.hero-art-inner { position: relative; width: 100%; }
 .hero-art img { display: block; width: 100%; height: auto; }
-.hero-art-base { position: relative; z-index: 1; }
-.hero-art img.hero-art-book,
-.hero-art img.hero-art-eye { position: absolute; z-index: 2; }
-
-/* 책을 골라 빼는 움직임 */
-.hero-art img.hero-art-book {
-    left: 58.594%;
-    top: 46.875%;
-    width: 9.766%;
-    height: 18.75%;
-    transform-origin: 45% 94%;
-    animation: heroBookPull 9s ease-in-out infinite;
-}
-@keyframes heroBookPull {
-    0%, 38%   { transform: none; }
-    47%, 63%  { transform: translateY(-5.6%) rotate(-2.6deg); }
-    74%, 100% { transform: none; }
-}
-
-/* 눈 깜빡임 */
-.hero-art img.hero-art-eye {
-    left: 42.676%;
-    top: 37.012%;
-    width: 4.492%;
-    height: 3.613%;
-    opacity: 0;
-    animation: heroBlink 6.4s ease-in-out infinite;
-}
-@keyframes heroBlink {
-    0%, 91.5%   { opacity: 0; }
-    93%, 95%    { opacity: 1; }
-    96.5%, 100% { opacity: 0; }
-}
 
 /* 폰에서는 가로형으로 잘라 버튼이 첫 화면에 들어오게 */
 @media (max-width: 992px) {
     .hero-art { aspect-ratio: 4 / 3; max-width: 560px; }
-    .hero-art-inner { position: absolute; top: -9%; left: 0; }
+    .hero-art img { position: absolute; top: -9%; left: 0; }
 }
 
 /* 어지럼·멀미 방지 설정 존중 */
 @media (prefers-reduced-motion: reduce) {
-    .hero-art,
-    .hero-art-book,
-    .hero-art-eye { animation: none !important; }
-    .hero-art img.hero-art-eye { opacity: 0; }
+    .hero-art { animation: none !important; }
+}
+
+/* ============================================
+   뉴스로 논거 만들기 (빅카인즈)
+   ============================================ */
+.stat-news { border-left: 4px solid var(--accent-sage); }
+.news-sub-h {
+    margin: 26px 0 12px;
+    font-size: 1rem;
+    color: var(--text-primary);
+    display: flex; align-items: center; gap: 8px;
+}
+.news-sub-h i { color: var(--accent-sage); }
+
+.news-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 12px;
+    margin-top: 18px;
+}
+.news-tool {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 16px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md, 14px);
+    background: var(--bg-card);
+    text-decoration: none;
+    transition: transform 0.18s, border-color 0.18s, box-shadow 0.18s;
+}
+.news-tool:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent-sage);
+    box-shadow: var(--shadow-soft, 0 6px 18px rgba(0, 0, 0, 0.07));
+}
+.news-tool-head {
+    display: flex; align-items: center; gap: 8px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+.news-tool-head > i:first-child { color: var(--accent-sage); }
+.news-tool-go {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+}
+.news-tool-use { font-size: 0.92rem; color: var(--text-primary); }
+.news-tool-tip {
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+    padding-top: 6px;
+    border-top: 1px dashed var(--border-color);
 }
