@@ -3145,6 +3145,8 @@ const books = [
             "힘든 감정은 빨리 없애려 하기보다 안고 지내는 편이 낫다.",
             "슬픔이나 불안을 남에게 드러내는 것은 약한 모습이 아니다."
         ]
+    ,
+        "coverId": 78
     },
     {
         "title": "벽 속에 사는 아이",
@@ -3167,6 +3169,8 @@ const books = [
             "어울리기를 어려워하는 친구에게는 다가가 말을 거는 편이 기다려 주는 것보다 낫다.",
             "학교는 소리와 빛에 예민한 학생을 위해 따로 쉴 수 있는 공간을 마련해야 한다."
         ]
+    ,
+        "coverId": 79
     },
     {
         "title": "더 이상 아이를 먹을 수는 없어!",
@@ -3189,6 +3193,8 @@ const books = [
             "고통을 느끼는 동물은 먹지 않아야 한다.",
             "학교 급식에는 채식을 고를 수 있는 선택권이 반드시 있어야 한다."
         ]
+    ,
+        "coverId": 80
     }
 ];
 
@@ -3509,22 +3515,39 @@ function initOwnerGate() {
     });
 }
 
-/* ── 메인 배너: 정지 이미지를 먼저 띄우고, 움직이는 그림은 뒤에서 받아 교체 ──
-   첫 화면이 1.2MB를 기다리지 않게 하고, 데이터 절약 모드·느린 회선·
+/* ── 메인 배너: 정지 이미지를 먼저 띄우고, 영상은 뒤에서 받아 겹쳐 재생 ──
+   첫 화면이 영상을 기다리지 않게 하고, 데이터 절약 모드·느린 회선·
    어지럼 방지 설정에서는 정지 이미지 그대로 둔다. */
 function initHeroMotion() {
-    const img = document.getElementById("hero-still");
-    if (!img) return;
+    const still = document.getElementById("hero-still");
+    const video = document.getElementById("hero-video");
+    if (!still || !video) return;
     try {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     } catch (e) { /* matchMedia 미지원이면 그냥 진행 */ }
     const conn = navigator.connection || navigator.webkitConnection || {};
     if (conn.saveData) return;
-    if (/(^|-)(2g|slow-2g|3g)$/.test(conn.effectiveType || "")) return;
+    if (/(^|-)?(slow-)?2g$/.test(conn.effectiveType || "")) return;   // 영상 450KB이므로 2G에서만 건너뛴다
 
-    const pre = new Image();
-    pre.onload = () => { img.src = pre.src; };   // 다 받은 뒤에만 교체 → 깜빡임 없음
-    pre.src = "images/hero_scene.webp?v=4.1.0"; // 실패하면 정지 이미지가 그대로 남는다
+    const V = "4.2.0";
+    [["images/hero_scene.webm", "video/webm"], ["images/hero_scene.mp4", "video/mp4"]]
+        .forEach(([src, type]) => {
+            const s = document.createElement("source");
+            s.src = src + "?v=" + V;
+            s.type = type;
+            video.appendChild(s);
+        });
+
+    // 다 받은 뒤에만 겹쳐 보여 준다 → 끊기거나 깜빡이지 않는다
+    video.addEventListener("canplaythrough", () => {
+        const p = video.play();
+        if (p && p.catch) p.catch(() => { /* 자동재생이 막히면 정지 이미지 유지 */ });
+        video.classList.add("is-on");
+    }, { once: true });
+    video.addEventListener("error", () => { video.classList.remove("is-on"); }, { once: true });
+
+    video.preload = "auto";
+    video.load();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

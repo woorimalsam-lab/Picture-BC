@@ -3835,12 +3835,21 @@ footer { padding: 56px 24px 44px; }
     box-shadow: var(--shadow-hover);
     animation: floatAnimation 6s ease-in-out infinite;
 }
-.hero-art img { display: block; width: 100%; height: auto; }
+.hero-art img,
+.hero-art video { display: block; width: 100%; height: auto; }
+.hero-art-video {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+.hero-art-video.is-on { opacity: 1; }
 
 /* 폰에서는 가로형으로 잘라 버튼이 첫 화면에 들어오게 */
 @media (max-width: 992px) {
     .hero-art { aspect-ratio: 4 / 3; max-width: 560px; }
-    .hero-art img { position: absolute; top: -9%; left: 0; }
+    .hero-art img,
+    .hero-art video { position: absolute; top: -9%; left: 0; }
 }
 
 /* 어지럼·멀미 방지 설정 존중 */
