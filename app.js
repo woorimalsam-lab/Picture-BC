@@ -3710,7 +3710,7 @@ function initHeroMotion() {
     if (conn.saveData) return;
     if (/(^|-)?(slow-)?2g$/.test(conn.effectiveType || "")) return;   // 영상 450KB이므로 2G에서만 건너뛴다
 
-    const V = "4.5.0";
+    const V = "4.5.1";
     [["images/hero_scene.webm", "video/webm"], ["images/hero_scene.mp4", "video/mp4"]]
         .forEach(([src, type]) => {
             const s = document.createElement("source");
@@ -11478,9 +11478,54 @@ const topicWsHeader = (t, formLabel) => {
         </div>`;
 };
 
+// 논제에 직접 연결된 통계가 없을 때, 분야에 맞는 공식 통계로 대신 안내한다
+const FIELD_STAT_FALLBACK = {
+    "감정": { src: "kdca", label: "청소년건강행태조사 – 스트레스 인지율과 우울감 경험률" },
+    "건강": { src: "kdca", label: "청소년건강행태조사 – 식습관·신체활동·수면" },
+    "공동체": { src: "kosis", label: "사회조사 – 사회적 관계망과 자원봉사·기부 참여", q: "사회조사 자원봉사 기부" },
+    "관계": { src: "kosis", label: "사회조사 – 사회적 관계망과 외로움", q: "사회적 관계망 외로움" },
+    "기술": { src: "iapc", label: "스마트폰 과의존 실태조사 · 인터넷 이용 실태" },
+    "노동": { src: "kosis", label: "경제활동인구조사 – 고용률과 근로시간", q: "고용률 근로시간" },
+    "문화": { src: "mcst", label: "국민 독서실태조사 · 문화 향유 실태" },
+    "미디어": { src: "kpf", label: "언론수용자 조사 · 10대 미디어 이용 조사" },
+    "복지": { src: "index", label: "e-나라지표 – 사회보장 지출과 복지 수급 현황" },
+    "사회": { src: "kosis", label: "사회조사 – 생활 여건과 사회 인식", q: "사회조사 사회 인식" },
+    "생명": { src: "kosis", label: "반려동물 양육 가구와 유기동물 현황", q: "반려동물 유기동물" },
+    "성공": { src: "kosis", label: "사회조사 – 계층 이동 가능성에 대한 인식", q: "계층이동 가능성" },
+    "성장": { src: "kosis", label: "아동종합실태조사 – 아동의 발달과 생활", q: "아동종합실태조사" },
+    "실존": { src: "kosis", label: "사회조사 – 삶의 만족도와 삶의 의미", q: "삶의 만족도" },
+    "안전": { src: "index", label: "e-나라지표 – 교통사고와 안전사고 발생 현황" },
+    "역사": { src: "kosis", label: "국가보훈 · 역사 인식 관련 조사", q: "역사 인식 조사" },
+    "용기": { src: "kdca", label: "청소년건강행태조사 – 스트레스와 도움 요청 경험" },
+    "윤리": { src: "kosis", label: "사회조사 – 사회의 공정성과 신뢰에 대한 인식", q: "공정성 인식 신뢰" },
+    "인권": { src: "kosis", label: "인권 의식 실태조사 – 차별 경험과 인식", q: "인권 차별 경험" },
+    "인성": { src: "kosis", label: "청소년 종합실태조사 – 가치관과 대인 관계", q: "청소년 종합실태조사 가치관" },
+    "인식": { src: "kpf", label: "언론수용자 조사 – 허위정보 경험과 뉴스 신뢰도" },
+    "자아": { src: "kosis", label: "아동·청소년 삶의 만족도와 자아존중감", q: "청소년 자아존중감" },
+    "자유": { src: "kosis", label: "사회조사 – 사회 안전에 대한 인식", q: "사회 안전 인식" },
+    "정의": { src: "kosis", label: "사회조사 – 법 집행과 사회 공정성 인식", q: "사회 공정성 인식" },
+    "정치": { src: "kosis", label: "선거 투표율과 정치 참여", q: "투표율" },
+    "진로": { src: "kess", label: "진로교육 현황조사 – 학생 희망 직업과 진로 준비" },
+    "평화": { src: "kosis", label: "국방비와 통일·평화 의식", q: "국방비 통일의식" },
+    "행복": { src: "kosis", label: "삶의 만족도와 행복감", q: "삶의 만족도 행복" },
+    "환경": { src: "climate", label: "기후정보포털 – 기온 변화와 기후 전망" }
+};
+
+// 논제의 근거 자료 목록: 연결된 통계(없으면 분야별 통계) + 신문 기사
+const topicWsSources = (t) => {
+    const list = (t.stats && t.stats.length) ? t.stats.slice() : (FIELD_STAT_FALLBACK[t.field] ? [FIELD_STAT_FALLBACK[t.field]] : []);
+    if (!list.some(s => s.src === "bigkinds")) list.push({ src: "bigkinds", label: "논제와 이어지는 신문 기사" });
+    return list;
+};
+
 const topicWsStatsNote = (t) => {
-    if (!t.stats || !t.stats.length) return `<p class="ws-prompt">책, 신문 기사, 직접 조사한 자료 가운데서 근거를 찾아 보세요.</p>`;
-    return `<p class="ws-prompt">이 논제와 이어지는 공식 통계 · ${t.stats.map(st => `${st.label}(${(STAT_SOURCES[st.src] || {}).org || ""})`).join(" / ")}</p>`;
+    const src = topicWsSources(t);
+    const stats = src.filter(s => s.src !== "bigkinds");
+    const news = src.filter(s => s.src === "bigkinds");
+    const org = (s) => ((STAT_SOURCES[s.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
+    return `<p class="ws-prompt">찾아볼 자료 ·
+        ${stats.length ? `<strong>통계</strong> ${stats.map(s => `${s.label}(${org(s)})`).join(" / ")} — 기관과 조사 연도를 적으세요.<br>` : ""}
+        <strong>기사</strong> ${news.map(s => s.label).join(" / ")} (빅카인즈 등에서 검색) — 언론사와 보도 날짜를 적으세요.</p>`;
 };
 
 const topicWsBookBlock = (t, prompt) => {
@@ -11745,17 +11790,17 @@ const TWS = {
     sideStance: (t, side) => t.type === "fact"
         ? (side === 0 ? "이 논제는 사실이다" : "이 논제는 사실이 아니다")
         : (side === 0 ? "이 논제에 찬성한다" : "이 논제에 반대한다"),
-    evidence: (t, i) => {
-        const st = (t.stats || [])[i];
-        if (st) {
-            const org = ((STAT_SOURCES[st.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
-            const how = st.src === "bigkinds" ? "관련 기사를 찾아 언론사와 날짜를 적습니다."
-                : st.src === "tong" ? "학급 설문으로 직접 조사해 응답 수와 결과를 적습니다."
-                : "가장 최근 연도 수치를 찾아 적습니다.";
-            return `${st.label}${org ? ` (${org})` : ""} — ${how}`;
-        }
-        const b = (t.books || [])[i] || (t.books || [])[0];
-        return b ? `그림책 《${b}》 속 인물의 선택과 그 결과` : "직접 조사한 사례 · 신문 기사 (출처와 날짜를 적습니다)";
+    // 자료 칸은 통계 또는 기사로만 채운다 (그림책은 '그림책으로 생각 열기'에서 다룸)
+    // slots: 표의 자료 칸 수. 마지막 칸은 언제나 기사로 채워 통계와 기사를 함께 보여 준다.
+    evidence: (t, i, slots = 1) => {
+        const list = topicWsSources(t);
+        const news = list.find(s => s.src === "bigkinds");
+        const stats = list.filter(s => s.src !== "bigkinds");
+        const st = (slots > 1 && i === slots - 1) ? news : (stats[i] || news);
+        const org = ((STAT_SOURCES[st.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
+        if (st.src === "bigkinds") return `[기사] ${st.label} — 빅카인즈에서 찾아 언론사와 보도 날짜를 적는다. (예: ○○일보, 2026. ○. ○.)`;
+        if (st.src === "tong") return `[설문] ${st.label} — 학급 설문으로 조사해 응답 수와 조사 날짜를 적는다.`;
+        return `[통계] ${st.label}${org ? ` (${org})` : ""} — 가장 최근 조사 연도의 수치를 찾아 기관과 연도를 함께 적는다.`;
     },
     // "…한다." → "…한다는 우려/반론" 처럼 뒤에 명사를 붙인다
     noun: (x, n) => {
@@ -11812,7 +11857,7 @@ const TOPIC_WS_ANSWERS = {
                 ${t.type === "fact" ? TWS.note("자료가 <strong>함께 나타남</strong>만 보여 주는데 <strong>원인</strong>이라고 해석하지 않았는지 꼭 살핍니다.") : ""}
                 <table class="ws-table ws-table-compact">
                     <tr><th style="width:26%;">주장</th><th style="width:37%;">자료 (출처·연도)</th><th>해석</th></tr>
-                    ${[0, 1].map(i => `<tr><td>${TWS.ans(t.pro[i])}</td><td>${TWS.ans(TWS.evidence(t, i))}</td><td>${TWS.ans(`이 자료가 뒷받침한다면 ${TWS.because(t.pro[i])}에 힘이 실린다. 반대로 ${TWS.plain(t.con[i])}는 반론에 어떻게 답할지도 적는다.`)}</td></tr>`).join("")}
+                    ${[0, 1].map(i => `<tr><td>${TWS.ans(t.pro[i])}</td><td>${TWS.ans(TWS.evidence(t, i, 2))}</td><td>${TWS.ans(`이 자료가 뒷받침한다면 ${TWS.because(t.pro[i])}에 힘이 실린다. 반대로 ${TWS.plain(t.con[i])}는 반론에 어떻게 답할지도 적는다.`)}</td></tr>`).join("")}
                 </table>
             </div>
             ${(t.books || []).length ? `
@@ -11852,7 +11897,7 @@ const TOPIC_WS_ANSWERS = {
                 <h4>4단계 · 논거 구축 <span style="font-weight:400; font-size:0.85rem;">(${A} 예시)</span></h4>
                 <table class="ws-table ws-table-compact">
                     <tr><th style="width:10%;">쟁점</th><th style="width:26%;">우리 주장</th><th style="width:28%;">이유</th><th>근거</th></tr>
-                    ${[0, 1, 2].map(i => `<tr><td style="text-align:center; font-weight:700;">${i + 1}</td><td>${TWS.ans(i < 2 ? TWS.sideStance(t, 0) + "." : "반대 측 논거는 이 논제를 뒤집지 못한다.")}</td><td>${TWS.ans(i < 2 ? t.pro[i] : `${TWS.because(t.con[0])}은 일부 경우에 그칠 수 있다.`)}</td><td>${TWS.ans(TWS.evidence(t, i))}</td></tr>`).join("")}
+                    ${[0, 1, 2].map(i => `<tr><td style="text-align:center; font-weight:700;">${i + 1}</td><td>${TWS.ans(i < 2 ? TWS.sideStance(t, 0) + "." : "반대 측 논거는 이 논제를 뒤집지 못한다.")}</td><td>${TWS.ans(i < 2 ? t.pro[i] : `${TWS.because(t.con[0])}은 일부 경우에 그칠 수 있다.`)}</td><td>${TWS.ans(TWS.evidence(t, i, 3))}</td></tr>`).join("")}
                 </table>
             </div>
             <div class="ws-section">
