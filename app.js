@@ -3123,6 +3123,72 @@ const books = [
             "사람을 돕는 일에 동물을 훈련시켜 평생 함께하게 하는 것은 정당하다."
         ],
         "coverId": 77
+    },
+    {
+        "title": "내겐 너무 무거운",
+        "author": "노에미 볼라 글·그림, 홍한결 옮김",
+        "summary": "어느 날 갑자기, 아무런 예고도 없이 크고 고약한 곰 한 마리가 찾아옵니다. 쫓아내려 해도 사라지지 않고, 멀리 도망쳐도 어느새 뒤따라와 있습니다. 곰은 밥을 먹을 때도 잠을 잘 때도 어깨 위에 올라앉아 하루하루를 무겁게 짓누릅니다. 이 곰은 두려움과 슬픔, 걱정처럼 까닭도 없이 찾아와 좀처럼 떠나지 않는 감정의 모습입니다. 이야기는 곰을 없애는 방법을 알려 주는 대신, 우리 모두가 저마다 어깨 위에 곰 한 마리씩을 얹고 살아간다는 사실을 위트 있게 건넵니다.",
+        "technique": "핫시팅 (Hot-seating)",
+        "tags": [
+            "#감정다루기",
+            "#불안과슬픔",
+            "#자기이해"
+        ],
+        "gradient": "linear-gradient(135deg, #8E9AAF, #CBC0D3)",
+        "icon": "fa-weight-hanging",
+        "youtube": "https://www.youtube.com/results?search_query=내겐+너무+무거운+그림책+읽어주기",
+        "debateTopics": [
+            "어깨 위의 곰을 말끔히 없애 주겠다는 제안을 받는다면, 받아들이겠습니까?",
+            "내 곰은 어떤 모습이고 주로 언제 찾아오는지 이야기해 봅시다."
+        ],
+        "debatePropositions": [
+            "힘든 감정은 빨리 없애려 하기보다 안고 지내는 편이 낫다.",
+            "슬픔이나 불안을 남에게 드러내는 것은 약한 모습이 아니다."
+        ]
+    },
+    {
+        "title": "벽 속에 사는 아이",
+        "author": "아네스 드 레스트라드 글, 세바스티앙 슈브레 그림, 이정주 옮김",
+        "summary": "남들과 조금 다른 아이가 있습니다. 시끄러운 소리를 견디지 못하고, 엄마 아빠가 안으려 하면 몸을 피하고, 이름을 불러도 대답하지 않습니다. 어느 날 밤 아이는 벽 속으로 들어가 버립니다. 부모는 아이를 사랑하지만 어떻게 다가가야 할지 몰라 애를 태우다가, 벽에 아주 작은 구멍 하나를 냅니다. 억지로 끌어내는 대신 그 구멍으로 조금씩 손을 내밀고 기다립니다. 마침내 아이가 스스로 그 손을 잡고 벽 밖으로 걸어 나옵니다. 자폐 스펙트럼을 가진 아이와 그 가족의 이야기를, 보이지 않는 벽이라는 그림으로 풀어냅니다.",
+        "technique": "파노라마 토론",
+        "tags": [
+            "#장애이해",
+            "#다름과존중",
+            "#기다림"
+        ],
+        "gradient": "linear-gradient(135deg, #B0A8B9, #E8DFF5)",
+        "icon": "fa-door-open",
+        "youtube": "https://www.youtube.com/results?search_query=벽+속에+사는+아이+그림책+읽어주기",
+        "debateTopics": [
+            "벽 속으로 들어간 아이를 밖으로 끌어내는 것과 벽 앞에서 기다려 주는 것 중, 부모는 무엇을 해야 할까요?",
+            "아이의 눈, 엄마의 눈, 아빠의 눈, 그리고 벽의 눈으로 이 이야기를 각각 다시 말해 봅시다."
+        ],
+        "debatePropositions": [
+            "어울리기를 어려워하는 친구에게는 다가가 말을 거는 편이 기다려 주는 것보다 낫다.",
+            "학교는 소리와 빛에 예민한 학생을 위해 따로 쉴 수 있는 공간을 마련해야 한다."
+        ]
+    },
+    {
+        "title": "더 이상 아이를 먹을 수는 없어!",
+        "author": "콜린 피에레 글, 로이크 프루아사르 그림, 박새한 옮김",
+        "summary": "아이를 잡아먹고 살던 식인귀들이 어느 날 더 이상 아이를 먹지 않기로 합니다. 잡아먹히지 않은 아이들은 무사히 자라 어른이 되고, 식인귀들은 자기가 먹어 온 존재가 실은 자신과 몹시 닮았다는 사실을 깨닫습니다. 그 뒤로 식인귀들은 곡식과 채소를 상에 차려 놓고 천천히 음미하며, 우스갯소리를 좋아하고 먹고 마시고 요리하기를 즐기는 이웃으로 살아갑니다. 무엇을 먹지 않기로 하는가가 곧 내가 어떤 존재인가를 정한다는 이야기로, 오늘날의 채식과 먹거리 윤리를 겹쳐 읽게 합니다.",
+        "technique": "신호등 토론 (Traffic Light)",
+        "tags": [
+            "#생명윤리",
+            "#먹거리",
+            "#공감"
+        ],
+        "gradient": "linear-gradient(135deg, #F6BD60, #84A59D)",
+        "icon": "fa-utensils",
+        "youtube": "https://www.youtube.com/results?search_query=더+이상+아이를+먹을+수는+없어+그림책+읽어주기",
+        "debateTopics": [
+            "식인귀가 아이 먹기를 그만둔 까닭은 무엇이었을까요? 두려워서였을까요, 미안해서였을까요?",
+            "내가 먹지 않기로 정한 것이 있다면 무엇이고, 왜 그렇게 정했습니까?"
+        ],
+        "debatePropositions": [
+            "고통을 느끼는 동물은 먹지 않아야 한다.",
+            "학교 급식에는 채식을 고를 수 있는 선택권이 반드시 있어야 한다."
+        ]
     }
 ];
 
@@ -3458,7 +3524,7 @@ function initHeroMotion() {
 
     const pre = new Image();
     pre.onload = () => { img.src = pre.src; };   // 다 받은 뒤에만 교체 → 깜빡임 없음
-    pre.src = "images/hero_scene.webp?v=4.0.0"; // 실패하면 정지 이미지가 그대로 남는다
+    pre.src = "images/hero_scene.webp?v=4.1.0"; // 실패하면 정지 이미지가 그대로 남는다
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -3785,6 +3851,11 @@ function fetchRealCover(bookTitle, domElement) {
         };
         
         const coverId = book.coverId;
+        if (coverId === undefined || coverId === null) {   // 표지 이미지가 아직 없는 책
+            realImg.style.display = "none";
+            fallbackCont.style.display = "flex";
+            return;
+        }
         const ext = (coverId === 14 || coverId === 22 || coverId === 15 || coverId === 44 || coverId === 34) ? 'png' : 'jpg';
         if (coverId === 14 || coverId === 44 || coverId === 46 || coverId === 21) {
             realImg.style.objectFit = "contain";
