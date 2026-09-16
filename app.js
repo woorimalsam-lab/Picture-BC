@@ -3710,7 +3710,7 @@ function initHeroMotion() {
     if (conn.saveData) return;
     if (/(^|-)?(slow-)?2g$/.test(conn.effectiveType || "")) return;   // 영상 450KB이므로 2G에서만 건너뛴다
 
-    const V = "4.4.0";
+    const V = "4.5.0";
     [["images/hero_scene.webm", "video/webm"], ["images/hero_scene.mp4", "video/mp4"]]
         .forEach(([src, type]) => {
             const s = document.createElement("source");
@@ -4452,13 +4452,8 @@ function renderReadingLevel(level) {
     if (!grid) return;
     const data = readingReview[level];
     if (!data) return;
-    if (boardEl) {
-        boardEl.innerHTML = `
-            <div class="reading-board-head">
-                <h3><i class="fa-solid fa-folder-open"></i> 지학사 ${data.sourceName}</h3>
-                <a href="${data.source}" target="_blank" rel="noopener">독서평설 자료실 바로가기 <i class="fa-solid fa-up-right-from-square"></i></a>
-            </div>`;
-    }
+    // 지학사 자료실 안내 상자는 화면에 표시하지 않음 (자료 정보는 readingReview에 유지)
+    if (boardEl) { boardEl.innerHTML = ""; boardEl.hidden = true; }
     grid.innerHTML = data.items.map((it, i) => {
         const bookIdx = (typeof books !== 'undefined') ? books.findIndex(b => b.title === it.book) : -1;
         const openAttr = bookIdx >= 0 ? `onclick="openModal('book', ${bookIdx})"` : '';
@@ -9108,19 +9103,11 @@ function renderLiteraturePanel() {
         box.innerHTML = `
             <p class="topic-panel-intro">교과서에서 자주 만나는 현대시와 현대소설을 토론 논제로 잇습니다. 작품의 갈등을 짚고, 열린 질문을 거쳐, 토론할 수 있는 논제로 옮겨 가는 과정을 그대로 보여 줍니다.</p>
             <div class="lit-tabs" id="lit-genres"></div>
-            <div class="topic-steps">
-                <div class="topic-step">
-                    <span class="topic-step-label">학교급 고르기</span>
-                    <div class="topic-step-chips" id="lit-levels"></div>
-                </div>
-                <div class="topic-step topic-step-inline"><span class="topic-count" id="lit-count"></span></div>
-            </div>
             <div class="lit-grid" id="lit-grid"></div>`;
         box.dataset.built = "1";
     }
 
     const genreBox = document.getElementById("lit-genres");
-    const levelBox = document.getElementById("lit-levels");
     const grid = document.getElementById("lit-grid");
     const countEl = document.getElementById("lit-count");
 
@@ -9138,17 +9125,8 @@ function renderLiteraturePanel() {
     }));
 
     const byGenre = litState.genre === "all" ? literatureWorks : literatureWorks.filter(w => w.genre === litState.genre);
-    levelBox.innerHTML =
-        `<button type="button" class="topic-step-chip ${litState.level === "all" ? "active" : ""}" data-lit-level="all">전체 <em>${byGenre.length}</em></button>` +
-        ["중학·고등", "고등"].map(lv => {
-            const n = byGenre.filter(w => w.level === lv).length;
-            return n ? `<button type="button" class="topic-step-chip ${litState.level === lv ? "active" : ""}" data-lit-level="${lv}">${lv} <em>${n}</em></button>` : "";
-        }).join("");
-    levelBox.querySelectorAll("[data-lit-level]").forEach(b => b.addEventListener("click", () => {
-        litState.level = b.dataset.litLevel; renderLiteraturePanel();
-    }));
 
-    const picked = litState.level === "all" ? byGenre : byGenre.filter(w => w.level === litState.level);
+    const picked = byGenre;   // 학교급 거르지 않고 갈래의 작품을 모두 보여 준다
     // 국내 작품을 먼저, 외국 작품을 그 뒤에 (정렬이 안정적이라 나머지 차례는 그대로 유지된다)
     const list = [...picked].sort((a, b) => (a.kind === "외국소설" ? 1 : 0) - (b.kind === "외국소설" ? 1 : 0));
     if (countEl) countEl.textContent = `${list.length}편`;
@@ -11746,17 +11724,283 @@ const TOPIC_WS_BUILDERS = {
     }
 };
 
-function buildTopicWorksheet(t, form, hints) {
+// ───────── 교사용 학습지 (예시 답안) ─────────
+// 학생용과 같은 양식에 예시 답안을 채워 보여 준다. 입력 칸을 만들지 않으므로
+// 학생용 학습지의 자동저장(칸 순서 기준)에는 영향을 주지 않는다.
+const TWS = {
+    ans: (html) => `<div class="ws-ans">${html}</div>`,
+    note: (html) => `<p class="ws-teach-note">🧭 ${html}</p>`,
+    // "…한다." → "…한다는 점" / 그 밖의 문장은 따옴표로 감싼다
+    because: (x) => {
+        const s = String(x || "").replace(/\s*\([^)]*\)\s*\.?$/, "").replace(/[.。]\s*$/, "").trim();
+        return /다$/.test(s) ? `${s}는 점` : `'${s}'라는 점`;
+    },
+    plain: (x) => String(x || "").replace(/[.。]\s*$/, ""),
+    // 받침에 따라 조사 고르기: jo("군사력", "이", "가") → "군사력이"
+    jo: (w, withB, noB) => {
+        const c = String(w).trim().slice(-1).charCodeAt(0);
+        const has = c >= 0xAC00 && c <= 0xD7A3 ? (c - 0xAC00) % 28 !== 0 : /[0-9a-zA-Z]$/.test(w) ? false : true;
+        return w + (has ? withB : noB);
+    },
+    sideStance: (t, side) => t.type === "fact"
+        ? (side === 0 ? "이 논제는 사실이다" : "이 논제는 사실이 아니다")
+        : (side === 0 ? "이 논제에 찬성한다" : "이 논제에 반대한다"),
+    evidence: (t, i) => {
+        const st = (t.stats || [])[i];
+        if (st) {
+            const org = ((STAT_SOURCES[st.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
+            const how = st.src === "bigkinds" ? "관련 기사를 찾아 언론사와 날짜를 적습니다."
+                : st.src === "tong" ? "학급 설문으로 직접 조사해 응답 수와 결과를 적습니다."
+                : "가장 최근 연도 수치를 찾아 적습니다.";
+            return `${st.label}${org ? ` (${org})` : ""} — ${how}`;
+        }
+        const b = (t.books || [])[i] || (t.books || [])[0];
+        return b ? `그림책 《${b}》 속 인물의 선택과 그 결과` : "직접 조사한 사례 · 신문 기사 (출처와 날짜를 적습니다)";
+    },
+    // "…한다." → "…한다는 우려/반론" 처럼 뒤에 명사를 붙인다
+    noun: (x, n) => {
+        const s = String(x || "").replace(/\s*\([^)]*\)\s*\.?$/, "").replace(/[.。]\s*$/, "").trim();
+        return /다$/.test(s) ? `${s}는 ${n}` : `'${s}'라는 ${n}`;
+    },
+    bookGist: (title) => {
+        const b = (typeof books !== "undefined") ? books.find(x => x.title === title) : null;
+        if (!b || !b.summary) return "";
+        const first = b.summary.split(/(?<=다\.)\s+/)[0];
+        return first.length > 110 ? first.slice(0, 108) + "…" : first;
+    },
+    issues: (t) => ({
+        fact: ["논제의 핵심 낱말은 어디까지를 뜻하는가?", "그렇다고 볼 증거는 믿을 만하고 충분한가?", "함께 나타나는 것을 넘어 원인이라고까지 말할 수 있는가?"],
+        value: ["이 논제를 무엇을 기준으로 판단해야 하는가?", "그 기준에 비추어 보면 논제의 주장은 옳은가?", "맞서는 가치와 부딪치는 상황에서도 그렇게 말할 수 있는가?"],
+        policy: ["지금 상태를 그대로 두면 안 될 만큼 문제가 심각한가?", "제안한 방안이 그 문제를 실제로 해결할 수 있는가?", "방안의 이익이 새로 생길 부작용과 비용보다 큰가?"]
+    }[t.type] || [])
+};
+
+const TOPIC_WS_ANSWERS = {
+    analysis: (t) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        return `
+            <div class="ws-book-info-box">
+                <h4>📌 논제 살펴보기</h4>
+                <p style="margin-bottom:8px;">${t.background}</p>
+                <p style="margin-bottom:4px;"><strong>${meta.label}</strong> · ${meta.tagline} · 문장 틀 ${meta.frame}</p>
+                <p>${meta.burden}</p>
+            </div>
+            <div class="ws-section">
+                <h4>1. 논제 속 낱말 뜻 정하기</h4>
+                ${TWS.note("정답이 정해진 칸이 아닙니다. 뜻을 <strong>어디까지 포함할지</strong> 한 문장으로 정했는지를 봅니다.")}
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:28%;">낱말 고르기</th><th>뜻 정하기 (예시 틀)</th></tr>
+                    <tr><td>${TWS.ans("사람마다 다르게 받아들일 낱말 — 정도를 나타내는 말(더·많이·오래), 평가하는 말(좋은·옳은·정당한), 범위가 넓은 말")}</td>
+                        <td>${TWS.ans("'○○'은(는) 이번 토론에서 ______(으)로 한정한다. 넓게 잡을 때와 좁게 잡을 때 " + A + "과 " + B + "의 주장이 어떻게 달라지는지 함께 적는다.")}</td></tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>2. 토론 전, 나의 첫 생각</h4>
+                ${TWS.note("어느 칸을 골라도 됩니다. 까닭이 논제의 쟁점과 이어지는지만 확인합니다.")}
+                ${TWS.ans(`(예) '찬성하는 편' — ${TWS.because(t.pro[0])}에서 그렇게 생각한다. 다만 ${TWS.because(t.con[0])}도 마음에 걸린다.`)}
+            </div>
+            <div class="ws-section">
+                <h4>3. 쟁점 나누기</h4>
+                <table class="ws-table">
+                    <tr><th>${A}</th><th>${B}</th></tr>
+                    <tr><td>${TWS.ans(t.pro.map(x => `· ${x}`).join("<br>"))}</td><td>${TWS.ans(t.con.map(x => `· ${x}`).join("<br>"))}</td></tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>4. 근거 자료 찾기</h4>
+                ${t.type === "fact" ? TWS.note("자료가 <strong>함께 나타남</strong>만 보여 주는데 <strong>원인</strong>이라고 해석하지 않았는지 꼭 살핍니다.") : ""}
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:26%;">주장</th><th style="width:37%;">자료 (출처·연도)</th><th>해석</th></tr>
+                    ${[0, 1].map(i => `<tr><td>${TWS.ans(t.pro[i])}</td><td>${TWS.ans(TWS.evidence(t, i))}</td><td>${TWS.ans(`이 자료가 뒷받침한다면 ${TWS.because(t.pro[i])}에 힘이 실린다. 반대로 ${TWS.plain(t.con[i])}는 반론에 어떻게 답할지도 적는다.`)}</td></tr>`).join("")}
+                </table>
+            </div>
+            ${(t.books || []).length ? `
+            <div class="ws-section">
+                <h4>🌱 그림책으로 생각 열기 · ${t.books.map(b => `《${b}》`).join(" ")}</h4>
+                ${t.books.map(b => { const g = TWS.bookGist(b); return g ? TWS.ans(`《${b}》 · ${g}`) : ""; }).join("")}
+                ${TWS.note("같은 장면을 두고 양쪽이 서로 다른 근거로 읽을 수 있는지 이야기하게 합니다.")}
+            </div>` : ""}`;
+    },
+
+    clash: (t) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        const iss = TWS.issues(t);
+        return `
+            <div class="ws-section">
+                <h4>1단계 · 논제 유형 판별</h4>
+                ${TWS.ans(`정답 · <strong>${meta.label}</strong> — '${meta.tagline}'를 다투는 논제이다. 문장 틀 ${meta.frame}에 들어맞는다.`)}
+                ${TWS.note(`판단 기준 · ${meta.criteria.map(c => c.label).join(" · ")}`)}
+            </div>
+            <div class="ws-section">
+                <h4>2단계 · 용어 정의와 정의 경쟁</h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:22%;">핵심 낱말</th><th style="width:39%;">함께 쓸 뜻 (출발점)</th><th>넓히거나 좁힐 지점</th></tr>
+                    <tr><td>${TWS.ans("논제의 주어와 서술어에서 뜻이 갈리는 말")}</td><td>${TWS.ans("사전적 뜻에서 출발하되, 이번 토론의 범위를 한 문장으로 못 박는다.")}</td><td>${TWS.ans(A + "은 뜻을 논거가 닿는 범위로, " + B + "은 예외가 드러나는 범위로 잡으려 한다. 상대가 뜻을 슬쩍 넓히거나 좁히면 반대신문의 첫 표적으로 삼는다.")}</td></tr>
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>3단계 · 필수 쟁점 도출</h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:12%;">쟁점</th><th>질문 형태로 쓴 쟁점 (예시)</th></tr>
+                    ${iss.map((q, i) => `<tr><td style="text-align:center; font-weight:700;">${i + 1}</td><td>${TWS.ans(q)}</td></tr>`).join("")}
+                </table>
+                ${TWS.note("양쪽 모두 할 말이 있는 <strong>대등한 질문</strong>인지 확인합니다. 한쪽만 답할 수 있는 질문은 쟁점이 아닙니다.")}
+            </div>
+            <div class="ws-section">
+                <h4>4단계 · 논거 구축 <span style="font-weight:400; font-size:0.85rem;">(${A} 예시)</span></h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:10%;">쟁점</th><th style="width:26%;">우리 주장</th><th style="width:28%;">이유</th><th>근거</th></tr>
+                    ${[0, 1, 2].map(i => `<tr><td style="text-align:center; font-weight:700;">${i + 1}</td><td>${TWS.ans(i < 2 ? TWS.sideStance(t, 0) + "." : "반대 측 논거는 이 논제를 뒤집지 못한다.")}</td><td>${TWS.ans(i < 2 ? t.pro[i] : `${TWS.because(t.con[0])}은 일부 경우에 그칠 수 있다.`)}</td><td>${TWS.ans(TWS.evidence(t, i))}</td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>5단계 · 반대신문 설계 <span style="font-weight:400; font-size:0.85rem;">(${A}이 ${B}에게)</span></h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:26%;">상대 논거의 약한 고리</th><th style="width:26%;">우리가 물을 질문</th><th style="width:24%;">예상 답변</th><th>후속 질문</th></tr>
+                    ${[0, 1].map(i => `<tr><td>${TWS.ans(t.con[i])}</td><td>${TWS.ans(`그것이 언제나 그렇습니까, 아니면 일부 경우에 그렇습니까?`)}</td><td>${TWS.ans(`"대부분 그렇다"거나 "그럴 수 있다"고 답할 것이다.`)}</td><td>${TWS.ans(`그렇다면 ${TWS.because(t.pro[i])}까지 부정할 수는 없지 않습니까?`)}</td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>마무리 점검</h4>
+                ${TWS.note("일곱 항목에 모두 표시할 수 있어야 토론 준비가 끝난 것입니다. 특히 근거의 <strong>출처</strong>와 <strong>예상 질문</strong>을 빠뜨리기 쉽습니다.")}
+            </div>`;
+    },
+
+    case: (t) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        const lines = {
+            fact: [
+                `논제의 핵심 낱말이 무엇을 가리키는지 먼저 정하고, 논제 배경에서 다루는 범위로 한정한다.`,
+                `${TWS.evidence(t, 0)} 조사 주체와 방법, 표본을 함께 밝혀 믿을 만한 자료임을 보인다.`,
+                `${TWS.because(t.pro[0])}이 우연히 함께 나타나는 것이 아니라 원인과 결과로 이어진다는 연결 고리를 설명한다.`,
+                `${TWS.noun(t.con[0], "반대 자료")}도 있지만, 조사 조건이 다르거나 일부 사례에 그친다고 답한다.`
+            ],
+            policy: [
+                `${TWS.because(t.pro[0])}에서 지금 이대로 두면 문제가 계속된다.`,
+                `${TWS.because(t.pro[1])}에서 이 방안은 문제의 원인을 직접 겨눈다.`,
+                `비용과 인력, 필요한 법 절차를 따져 보고 단계적으로 시작할 수 있음을 보인다. ${TWS.evidence(t, 0)}`,
+                `${TWS.noun(t.con[0], "우려")}가 있지만, 보완 장치를 함께 두면 줄일 수 있다.`
+            ],
+            value: [
+                `우리는 '______'을(를) 판단 기준으로 삼는다. (예: 누구에게나 공정한가 · 사람을 해치지 않는가 · 더 많은 사람에게 이로운가 가운데 논제에 맞는 것을 고른다)`,
+                `그 기준은 특정한 사람에게만 유리하지 않고 누구에게나 적용할 수 있으므로 받아들일 만하다.`,
+                `${TWS.because(t.pro[0])}이 그 기준에 비추어 본 실제 사례이다. ${(t.books || [])[0] ? `그림책 《${t.books[0]}》의 장면도 같은 방향을 보여 준다.` : ""}`,
+                `${TWS.noun(t.con[0], "반론")}도 있지만, ${TWS.because(t.pro[1])}이 더 무겁다.`
+            ]
+        }[t.type] || [];
+        return `
+            <div class="ws-section">
+                <h4>우리 모둠의 입장</h4>
+                ${TWS.ans(`<strong>${A}</strong> 입장으로 쓴 예시입니다. ${B}으로 쓸 때는 찬반 논거를 맞바꾸어 쓰게 합니다.`)}
+                <p class="ws-prompt" style="margin-top:8px;">${meta.burden}</p>
+            </div>
+            ${meta.criteria.map((c, i) => `
+            <div class="ws-section">
+                <h4>${i + 1}. ${c.label}</h4>
+                <p class="ws-prompt">${c.desc}</p>
+                ${TWS.ans(lines[i] || "")}
+            </div>`).join("")}
+            <div class="ws-section">
+                <h4>5. 예상 반론과 재반론</h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th>상대가 할 반론</th><th>우리의 재반론</th></tr>
+                    ${[0, 1].map(i => `<tr><td>${TWS.ans(t.con[i])}</td><td>${TWS.ans(`그런 경우가 있더라도 ${TWS.because(t.pro[1 - i])}은 그대로 남는다.`)}</td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>6. 입론 한 문장으로 정리하기</h4>
+                ${TWS.ans(t.type === "fact"
+                    ? `우리는 ${TWS.because(t.pro[0])}과 ${TWS.because(t.pro[1])}에서 이 논제가 사실이라고 봅니다.`
+                    : `우리는 ${TWS.because(t.pro[0])}과 ${TWS.because(t.pro[1])}에서 이 논제에 찬성합니다.`)}
+            </div>`;
+    },
+
+    flow: (t) => {
+        const [A, B] = topicSides(t);
+        const iss = TWS.issues(t);
+        const cell = {
+            "입론": [`${TWS.sideStance(t, 0)}. ① ${t.pro[0]} ② ${t.pro[1]}`, `${TWS.sideStance(t, 1)}. ① ${t.con[0]} ② ${t.con[1]}`],
+            "교차 질의": [`Q. ${TWS.plain(t.con[0])}는 모든 경우에 해당합니까? → 일부라고 인정받음`, `Q. ${TWS.plain(t.pro[0])}를 보여 주는 근거의 출처는 무엇입니까? → 자료 출처 확인`],
+            "반론": [`→ ${B}의 '${TWS.plain(t.con[1])}'는 예외적인 경우에 그친다.`, `→ ${A}의 '${TWS.plain(t.pro[1])}'는 다른 원인으로도 설명된다.`],
+            "최종 발언": [`쟁점 '${iss[1] || ""}'에서 우리 논거가 더 충분했다.`, `쟁점 '${iss[0] || ""}'에서 상대의 전제가 흔들렸다.`]
+        };
+        return `
+            <div class="ws-section">
+                <h4>기록 예시</h4>
+                ${TWS.note("학생에게는 <strong>요점만 짧게</strong> 적고, 답해야 할 말에는 화살표(→)를 달게 합니다. 아래는 그렇게 적은 모습의 예입니다.")}
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:16%;">단계</th><th>${A}</th><th>${B}</th></tr>
+                    ${Object.keys(cell).map(k => `<tr><td style="text-align:center; font-weight:700;">${k}</td><td>${TWS.ans(cell[k][0])}</td><td>${TWS.ans(cell[k][1])}</td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>가장 크게 부딪친 쟁점</h4>
+                ${TWS.ans(`${iss[0] || ""} — ${A}은 ${TWS.because(t.pro[0])}을, ${B}은 ${TWS.because(t.con[0])}을 내세워 맞섰다.`)}
+            </div>`;
+    },
+
+    judge: (t) => {
+        const meta = TOPIC_TYPE_INFO[t.type];
+        const [A, B] = topicSides(t);
+        const rows = [...meta.criteria, { label: "상대 주장에 대한 응답", desc: "상대가 한 말을 정확히 짚고 그에 맞게 답했는가?" }, { label: "말하기 태도 (시간·예의)", desc: "주어진 시간을 지키고 상대를 존중했는가?" }];
+        return `
+            <div class="ws-section">
+                <h4>1. 평가표 채점 기준</h4>
+                <table class="ws-table ws-table-compact">
+                    <tr><th style="width:24%;">평가 기준</th><th>5점</th><th>3점</th><th>1점</th></tr>
+                    ${rows.map(r => `<tr><td><strong>${r.label}</strong></td><td>${TWS.ans(`${TWS.plain(r.desc)} — 근거를 들어 분명히 보였다.`)}</td><td>${TWS.ans("다루기는 했으나 근거가 부족하거나 일부만 보였다.")}</td><td>${TWS.ans("다루지 않았거나 논제와 어긋났다.")}</td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section">
+                <h4>2. 더 설득력 있었던 쪽</h4>
+                ${TWS.note("어느 쪽을 골랐는지보다 <strong>판정을 가른 논거를 구체적으로</strong> 적었는지를 봅니다.")}
+                ${TWS.ans(`(예) ${A} — ${TWS.because(t.pro[0])}을 자료로 뒷받침했고, 반대 측의 '${TWS.plain(t.con[0])}'에 예외를 짚어 답했기 때문이다.`)}
+            </div>
+            <div class="ws-section">
+                <h4>3. 내 생각은 어떻게 달라졌나요?</h4>
+                ${TWS.ans(`(예) 토론 전에는 '잘 모르겠다'였지만, ${TWS.because(t.pro[1])}을 듣고 '찬성하는 편'으로 옮겼다. 그래도 ${TWS.because(t.con[1])}은 여전히 생각해 볼 문제로 남는다.`)}
+            </div>
+            <div class="ws-section">
+                <h4>4. 상대에게서 배운 점</h4>
+                ${TWS.ans(`(예) 나와 다른 쪽에서도 ${TWS.because(t.con[0])}처럼 귀 기울일 만한 까닭이 있다는 것을 알게 되었다.`)}
+            </div>`;
+    }
+};
+
+function buildTopicTeacherPage(t, p) {
+    const meta = TOPIC_TYPE_INFO[t.type];
+    return `
+        <div class="worksheet-paper ws-topic-page ws-teacher-page ws-topic-break">
+            <div style="text-align:center; margin-bottom:18px;">
+                <p class="ws-teacher-badge">교사용 · 예시 답안</p>
+                <p style="font-size:0.82rem; color:#8a5a44; letter-spacing:0.06em; margin:0 0 8px;">${meta.label} · ${t.level} · ${TOPIC_WS_FORMS[p]}</p>
+                <h3 style="font-size:1.4rem; color:#111; margin:0 0 10px; line-height:1.45; word-break:keep-all;">${t.claim}</h3>
+                <p class="ws-teach-lead">예시 답안은 이 논제의 배경·찬반 논거·통계·그림책 자료로 구성했습니다. 학급 수준에 맞게 다듬어 쓰시고, 학생 답이 예시와 달라도 근거가 타당하면 인정해 주세요.</p>
+            </div>
+            ${TOPIC_WS_ANSWERS[p](t)}
+        </div>`;
+}
+
+function buildTopicWorksheet(t, form, hints, audience = "both") {
     const pages = form === "full" ? ["analysis", "case", "flow", "judge"] : [form];
     const top = `
         <div class="worksheet-print-header no-print" style="text-align: right; margin-bottom: 20px;">
             <button onclick="window.print()" class="btn btn-secondary"><i class="fa-solid fa-print"></i> 활동지 인쇄하기</button>
         </div>`;
-    return top + pages.map((p, i) => `
+    const student = audience === "teacher" ? "" : pages.map((p, i) => `
         <div class="worksheet-paper ws-topic-page${i ? " ws-topic-break" : ""}">
             ${topicWsHeader(t, TOPIC_WS_FORMS[p])}
             ${TOPIC_WS_BUILDERS[p](t, hints)}
         </div>`).join("");
+    // 교사용은 학생용 뒤에 새 쪽부터 이어 붙인다 (교사용만일 때 첫 쪽은 쪽나눔 없이)
+    const teacher = audience === "student" ? "" : pages.map((p, i) => {
+        const html = buildTopicTeacherPage(t, p);
+        return (audience === "teacher" && i === 0) ? html.replace(" ws-topic-break", "") : html;
+    }).join("");
+    return top + student + teacher;
 }
 
 function generateTopicWorksheet() {
@@ -11768,7 +12012,8 @@ function generateTopicWorksheet() {
     const t = debateTopicsDB[Number(topicSel.value)];
     const form = formSel.value;
     if (!t || !(form === "full" || TOPIC_WS_BUILDERS[form])) return;
-    output.innerHTML = buildTopicWorksheet(t, form, hintBox ? hintBox.checked : true);
+    const audSel = document.getElementById("topic-ws-audience");
+    output.innerHTML = buildTopicWorksheet(t, form, hintBox ? hintBox.checked : true, audSel ? audSel.value : "both");
     output.classList.remove("hidden");
     setupWorksheetAutosave("논제:" + t.claim, "topic-" + form);
 }

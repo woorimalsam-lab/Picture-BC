@@ -3910,3 +3910,34 @@ footer { padding: 56px 24px 44px; }
     padding-top: 6px;
     border-top: 1px dashed var(--border-color);
 }
+
+/* ============================================
+   논제 학습지 · 교사용 예시 답안
+   ============================================ */
+.ws-audience { margin-top: 12px; }
+.ws-teacher-badge {
+    display: inline-block; margin: 0 0 10px; padding: 4px 14px; border-radius: 20px;
+    background: #3D5A80; color: #fff; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em;
+}
+.ws-teach-lead {
+    font-size: 0.8rem; color: #555; line-height: 1.6; margin: 0 auto; max-width: 620px;
+    padding: 8px 12px; background: #f3f6fa; border-radius: 8px; word-break: keep-all;
+}
+.ws-ans {
+    font-size: 0.86rem; line-height: 1.65; color: #1f3a5f; word-break: keep-all;
+    padding: 6px 10px; margin: 2px 0; background: #f5f8fc; border-left: 3px solid #7a9cc6; border-radius: 4px;
+}
+.ws-teach-note {
+    font-size: 0.8rem; color: #7a5a2e; background: #fdf6e8; border-radius: 6px;
+    padding: 6px 10px; margin: 6px 0; line-height: 1.55;
+}
+@media print {
+    .ws-ans { background: #f5f8fc !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .ws-teacher-badge { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media print {
+    /* 교사용 항목은 제목과 내용이 서로 다른 쪽으로 갈라지지 않게 */
+    .ws-teacher-page .ws-section,
+    .ws-teacher-page .ws-book-info-box { break-inside: avoid; page-break-inside: avoid; }
+    .ws-teacher-page .ws-table tr { break-inside: avoid; page-break-inside: avoid; }
+}
