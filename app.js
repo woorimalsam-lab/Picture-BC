@@ -318,7 +318,9 @@
         "effect": "다수의 동료가 가진 다양한 논리를 단시간에 접하면서 내 논리의 허점을 보완하고, 타인의 우수한 의견을 신속하게 흡수하여 주장을 고도로 정교화할 수 있습니다.",
         "tips": [
             "1:1 대화 시간이 너무 길어지면 지루해지므로, 1회차당 2~3분 내외로 타이트하게 끊어 역동성을 부여하세요.",
-            "회전이 반복될수록 '이전 파트너의 좋은 아이디어'를 적극적으로 인용하여 내 주장을 보완하도록 지도합니다."
+            "회전이 반복될수록 '이전 파트너의 좋은 아이디어'를 적극적으로 인용하여 내 주장을 보완하도록 지도합니다.",
+            "자리를 옮길 때마다 찬성과 반대를 서로 바꿔 맡게 하면, 한 논제를 양쪽에서 모두 겪어 보게 됩니다.",
+            "교실 안에서 이동이 생기므로 '신호가 울리면 바깥쪽 원만, 한 칸씩'처럼 규칙을 먼저 정해 두세요."
         ],
         "steps": [
             {
@@ -341,7 +343,8 @@
         "books": [
             "스갱 아저씨의 염소",
             "토끼와 거북이, 두 번째 경주",
-            "괜찮아"
+            "괜찮아",
+            "터널"
         ],
         "tags": [
             "협동학습",
@@ -913,68 +916,6 @@
         "teacherScenario": {
             "intro": "강아지똥을 읽었습니다. 가장 하찮고 쓸모없다고 여겨지는 존재조차 생명을 품어 기르는 굳으하고 숨겨진 사랑의 이야기입니다. 두 명씩 짝을 지어 질문 카드를 뽑고, 짝에게 끊임없이 '왜 그렇게 생각해?', '그것의 예외는 없을까?'라며 예리한 질문을 던지고 반론을 전개하며 서로의 생각을 끝까지 흔들고 자극해 보십시오.",
             "wrapUp": "짝과 함께 대화의 공방을 나누며 처음 가졌던 투박한 생각들이 한결 정교해졌습니다. 하브루타는 상대를 이기기 위함이 아니라, 질문을 통해 서로의 뇌세포를 일깨우고 보이지 않던 이면의 논리를 함께 발견해 나가는 아름다운 유대적 학습입니다."
-        }
-    },
-    {
-        "id": "carousel-debate",
-        "name": "회전목마 토론 (짝 토론 포함)",
-        "concept": "책상을 안쪽과 바깥쪽 둥근 원 모양으로 배치하고, 마치 회전목마가 돌아가듯 바깥쪽 학생들이 자리를 이동하며 새로운 짝과 1:1 찬반 토론(짝 토론)을 반복하는 역동적인 활동입니다.",
-        "easy": "회전목마처럼 자리를 옮겨 가며 여러 짝과 1:1 찬반 토론을 반복하는 활동이에요. 짧은 대화를 여러 번 하며 내 주장을 다듬어요.",
-        "time": "40분",
-        "prep": "회전목마 대형으로 책상 배치, 논제 카드",
-        "effect": "여러 친구와 짧은 시간 안에 의견을 나누면서 자신의 주장을 다듬고, 다른 사람의 다양한 관점을 수용하는 유연성을 배웁니다.",
-        "tips": [
-            "짝 토론 시 찬성 1분, 반대 1분, 상호토론 2분 등 명확한 시간 제한을 두어 박진감을 높이세요.",
-            "자리를 옮길 때마다 역할을 바꾸거나(찬성->반대), 기존 주장을 발전시키도록 안내하세요.",
-            "교실 안에서 움직임이 발생하므로 규칙을 명확히 하고 질서를 유지하는 것이 중요합니다."
-        ],
-        "steps": [
-            {
-                "title": "1단계: 대형 만들기",
-                "desc": "학생들을 안쪽 원과 바깥쪽 원으로 나누어 서로 마주 보도록 앉힙니다."
-            },
-            {
-                "title": "2단계: 1차 짝 토론",
-                "desc": "마주앉은 짝과 찬성/반대로 나뉘어 1분씩 의견을 말하고 2분간 상호토론합니다."
-            },
-            {
-                "title": "3단계: 회전 이동",
-                "desc": "신호에 맞춰 바깥쪽 원의 학생들이 한 칸씩 옆으로 이동하여 새로운 파트너를 만납니다."
-            },
-            {
-                "title": "4단계: N차 토론 반복",
-                "desc": "새로운 파트너와 다시 짝 토론을 진행하며 논거를 발전시킵니다."
-            },
-            {
-                "title": "5단계: 전체 공유",
-                "desc": "가장 인상 깊었던 상대방의 의견을 전체와 공유하며 마무리합니다."
-            }
-        ],
-        "books": [
-            "터널"
-        ],
-        "tags": [
-            "놀이형",
-            "활동형",
-            "역동적"
-        ],
-        "icon": "fa-arrows-spin",
-        "script": {
-            "book": "일반 논제",
-            "dialog": [
-                {
-                    "role": "바깥쪽 원 학생",
-                    "text": "방금 전 친구는 이렇게 말했는데, 네 생각은 어때? 나는 여전히 찬성 입장이야."
-                },
-                {
-                    "role": "안쪽 원 학생",
-                    "text": "나는 반대야. 네가 말한 장점도 있지만 이런 단점도 생각해야 해."
-                }
-            ]
-        },
-        "teacherScenario": {
-            "intro": "회전목마 형태로 파트너를 무작위로 계속 만나가며 짧고 압축적인 1대1 찬반 토론을 릴레이로 수행합니다. 상대방이 던지는 새로운 반론에 부딪칠 때마다, 나의 입론을 즉각적으로 수정 및 고도화하는 훈련을 전개해 주십시오.",
-            "wrapUp": "여러 명의 생각을 연속해서 접하다 보니, 나도 모르게 가졌던 논리적 편향성이 부서지고 타인의 근거를 흡수하여 논리가 정교하게 코팅되는 기적을 맛보았습니다. 짝과 마주 보며 나눈 짧은 대화들이 쌓여 우리 모두의 논리적 지도가 확장되었습니다."
         }
     },
     {
@@ -1816,9 +1757,9 @@ const books = [
             "피해를 입었을 때 동일한 방식으로 되갚아 주는 복수는 갈등 해결에 도움이 되는가?"
         ],
         "tags": [
-            "초등저학년",
-            "인과관계",
-            "복수와용서"
+            "#초등저학년",
+            "#인과관계",
+            "#복수와용서"
         ],
         "gradient": "linear-gradient(135deg, #a88b56, #ddc397)",
         "icon": "fa-poop",
@@ -1956,9 +1897,9 @@ const books = [
             "갈등이 생겼을 때 규칙으로 공간을 분할하는 것과 자유로운 협동으로 공유하는 것 중 무엇이 더 효과적인가?"
         ],
         "tags": [
-            "초등중학년",
-            "협동심",
-            "자원분배"
+            "#초등중학년",
+            "#협동심",
+            "#자원분배"
         ],
         "gradient": "linear-gradient(135deg, #ffa502, #ff7f50)",
         "icon": "fa-cube",
@@ -2484,7 +2425,7 @@ const books = [
         "title": "터널",
         "author": "앤서니 브라운 글/그림",
         "summary": "성격도 취향도 너무나 달라 매일같이 티격태격 싸우는 오빠 잭과 여동생 로즈의 이야기입니다. 어느 날 오빠는 동생의 만류를 뿌리치고 어둡고 축축한 터널 속으로 들어갔다가 돌로 변해버리고 맙니다. 무서움에 떨던 동생은 오빠를 구하기 위해 터널 속으로 뛰어들어 오빠를 온 마음으로 안아줌으로써 돌에서 깨어나게 만듭니다. 형제/남매간의 갈등과 그 속에 숨겨진 끈끈한 가족애를 앤서니 브라운 특유의 초현실주의적 삽화로 신비롭게 담아냈습니다. 형제간 갈등 극복에 대해 고찰하기 좋은 작품입니다.",
-        "technique": "회전목마 토론 (짝 토론 포함)",
+        "technique": "회전목마 토론 (Carousel)",
         "tags": [
             "#형제갈등",
             "#가족애",
@@ -3836,7 +3777,7 @@ function initHeroMotion() {
     if (conn.saveData) return;
     if (/(^|-)?(slow-)?2g$/.test(conn.effectiveType || "")) return;   // 영상 450KB이므로 2G에서만 건너뛴다
 
-    const V = "4.6.0";
+    const V = ASSET_VERSION;
     [["images/hero_scene.webm", "video/webm"], ["images/hero_scene.mp4", "video/mp4"]]
         .forEach(([src, type]) => {
             const s = document.createElement("source");
@@ -4132,6 +4073,17 @@ function initTabNavigation() {
     }
 }
 
+// index.html 이 app.js 를 부를 때 붙이는 ?v= 값을 그대로 쓴다.
+// 그림 파일 이름을 그대로 두고 내용만 바꿔도 새로 받아 가게 하려는 것이다.
+const ASSET_VERSION = (function () {
+    try {
+        const src = (document.currentScript && document.currentScript.src) || "";
+        const m = src.match(/[?&]v=([\d.]+)/);
+        if (m) return m[1];
+    } catch (e) {}
+    return "4.7.0";
+})();
+
 function fetchRealCover(bookTitle, domElement) {
     const book = typeof books !== 'undefined' ? books.find(b => {
         const t1 = b.title.replace(/\s/g, '').toLowerCase();
@@ -4193,7 +4145,7 @@ function fetchRealCover(bookTitle, domElement) {
             realImg.style.objectFit = "cover";
         }
         const imgName = coverId === 44 ? `book_cover_${coverId}_v3` : `book_cover_${coverId}`;
-        realImg.src = `images/${imgName}.${ext}?v=1.3.6`;
+        realImg.src = `images/${imgName}.${ext}?v=${ASSET_VERSION}`;
     }
 }
 
@@ -5535,7 +5487,7 @@ const debateTopicsDB = [
       background: "인간 중심주의와 생명 평등의 관점이 부딪칩니다. 동물권 논의의 바탕이 되는 물음입니다.",
       pro: ["도덕적 판단과 책임을 질 수 있는 존재다.", "문명을 만들고 이어 왔다."],
       con: ["능력의 차이가 우월함을 뜻하지 않는다.", "우월하다는 생각이 착취를 정당화해 왔다."],
-      books: ["우리, 집", "시애틀 추장", "나는 안내견이야"] },
+      books: ["우리, 집", "시애틀 추장", "나는 안내견이야", "더 이상 아이를 먹을 수는 없어!"] },
     { type: "value", field: "관계", level: "중학·고등", claim: "온라인에서 맺은 관계도 진짜 관계다.",
       background: "친구와 공동체를 온라인에서 만나는 일이 흔해지면서, 관계의 조건을 다시 묻게 됐습니다.",
       pro: ["거리와 상관없이 마음을 나눌 수 있다.", "현실에서 말 못 할 이야기를 나누기도 한다."],
@@ -5605,7 +5557,7 @@ const debateTopicsDB = [
       background: "공감하려 애써도 다른 사람의 마음을 온전히 아는 일은 어렵습니다. 그래도 노력할 가치가 있는지 묻습니다.",
       pro: ["겪어 보지 않은 일을 안다고 말할 수 없다.", "다 안다고 여길 때 오해가 생긴다."],
       con: ["묻고 들으면 가까워질 수 있다.", "알 수 없다고 포기하면 관계가 멈춘다."],
-      books: ["알사탕", "나는 강물처럼 말해요", "이파라파냐무냐무"] },
+      books: ["알사탕", "나는 강물처럼 말해요", "이파라파냐무냐무", "벽 속에 사는 아이"] },
     { type: "value", field: "인권", level: "초등·중학", claim: "어린이도 어른만큼 중요한 결정에 참여할 수 있다.",
       background: "어린이와 관련된 일을 어른이 정하는 경우가 많습니다. 아동의 참여권은 유엔아동권리협약에 담긴 권리이기도 합니다.",
       pro: ["자기 삶에 관한 일은 자기가 가장 잘 안다.", "참여해 봐야 판단하는 힘이 자란다."],
@@ -5770,7 +5722,7 @@ const debateTopicsDB = [
       background: "먹는 일은 문화이자 생존이지만, 공장식 축산과 동물의 고통이 알려지면서 물음이 커졌습니다.",
       pro: ["오랜 세월 이어 온 자연스러운 일이다.", "필요한 영양을 얻는 현실적 방법이다."],
       con: ["고통을 느끼는 존재를 먹는 일에는 이유가 필요하다.", "다른 방법으로도 살아갈 수 있다."],
-      books: ["꽃을 선물할게", "돼지책"] },
+      books: ["꽃을 선물할게", "돼지책", "더 이상 아이를 먹을 수는 없어!"] },
 
     { type: "value", field: "환경", level: "중학·고등", claim: "기후 변화의 책임은 개인보다 기업과 정부에 있다.",
       background: "배출량의 대부분은 소수의 기업과 산업에서 나옵니다. 개인 실천을 강조하는 것이 책임을 떠넘기는 일이라는 비판도 있습니다.",
@@ -5952,7 +5904,7 @@ const debateTopicsDB = [
       background: "자유가 늘어나는 만큼 책임도 커집니다. 자라는 일을 어떻게 볼지 묻습니다.",
       pro: ["스스로 정할 수 있는 일이 많아진다.", "할 수 있는 일이 늘어난다."],
       con: ["책임과 부담이 함께 늘어난다.", "마음껏 놀던 시간은 돌아오지 않는다."],
-      books: ["100만 번 산 고양이", "할머니의 여름휴가"] },
+      books: ["100만 번 산 고양이", "할머니의 여름휴가", "우리는 언제나 다시 만나"] },
 
     { type: "value", field: "인식", level: "고등", claim: "우리가 보고 들은 것은 믿을 만하다.",
       background: "합성 영상과 편집된 정보가 늘면서, 직접 본 것조차 의심해야 하는 시대가 됐습니다.",
@@ -6161,7 +6113,7 @@ const debateTopicsDB = [
       background: "혼자 있는 친구를 두고, 다가가야 할 책임이 누구에게 있는지 묻습니다.",
       pro: ["아무도 나서지 않으면 그 아이는 계속 혼자다.", "함께 지내는 곳이라면 서로 살필 책임이 있다."],
       con: ["억지로 다가가면 그 친구가 더 불편할 수 있다.", "혼자 있고 싶은 마음도 존중해야 한다."],
-      books: ["까마귀 소년", "틀려도 괜찮아"] },
+      books: ["까마귀 소년", "틀려도 괜찮아", "벽 속에 사는 아이"] },
 
     { type: "value", field: "자아", level: "초등·중학", claim: "누군가를 따라 하는 것은 배움의 시작이다.",
       background: "흉내 내는 일을 배움으로 볼지, 자기다움을 잃는 일로 볼지 묻습니다.",
@@ -6210,7 +6162,7 @@ const debateTopicsDB = [
       background: "신념이나 종교, 건강을 이유로 채식을 택하는 학생이 늘고 있습니다.",
       pro: ["먹을 수 있는 것이 없어 굶는 학생이 생기지 않는다.", "선택은 개인의 신념에 속한다."],
       con: ["조리 인력과 비용이 더 든다.", "성장기에 필요한 영양을 갖추기 어려울 수 있다."],
-      books: ["꽃을 선물할게"] },
+      books: ["꽃을 선물할게", "더 이상 아이를 먹을 수는 없어!"] },
 
     { type: "policy", field: "인권", level: "중학·고등", claim: "공공기관은 모든 안내문을 쉬운 말로 다시 써야 한다.",
       background: "어려운 행정 용어 때문에 필요한 제도를 이용하지 못하는 사람이 있습니다.",
@@ -6813,12 +6765,12 @@ const debateTopicsDB = [
       background: "속상한 친구 앞에서 무엇을 해 주어야 할지, 고쳐 주는 일과 곁에 있어 주는 일 가운데 무엇이 먼저인지 묻습니다.",
       pro: ["마음이 가라앉아야 해결책도 귀에 들어온다.", "섣부른 조언은 내 마음을 몰라준다는 느낌을 준다."],
       con: ["들어만 주면 문제는 그대로 남는다.", "도움을 청한 친구에게는 구체적인 방법이 필요하다."],
-      books: ["가만히 들어주었어", "알사탕"] },
+      books: ["가만히 들어주었어", "알사탕", "벽 속에 사는 아이"] },
     { type: "fact", field: "감정", level: "초등·중학", claim: "걱정을 말로 꺼내면 걱정이 줄어든다.",
       background: "마음속 걱정을 누군가에게 말하거나 글로 적는 일이 실제로 걱정을 덜어 주는지 따집니다.",
       pro: ["말로 꺼내면 막연한 걱정이 구체적인 문제로 바뀐다.", "누군가 알고 있다는 사실만으로도 마음이 놓인다."],
       con: ["말할수록 걱정을 더 곱씹게 되기도 한다.", "털어놓은 뒤 상대의 반응 때문에 오히려 걱정이 늘 수 있다."],
-      books: ["겁쟁이 빌리", "가만히 들어주었어"] },
+      books: ["겁쟁이 빌리", "가만히 들어주었어", "내겐 너무 무거운", "우리는 언제나 다시 만나"] },
     { type: "value", field: "감정", level: "초등·중학", claim: "어른도 화가 나서 소리를 질렀다면 아이에게 사과해야 한다.",
       background: "화를 낸 어른이 아이에게 먼저 미안하다고 말하는 것이 옳은지, 어른의 권위를 해치는 일인지 묻습니다.",
       pro: ["잘못을 인정하는 모습이 가장 좋은 본보기가 된다.", "사과하지 않으면 아이는 자기 잘못이라고 여긴다."],
@@ -6828,7 +6780,7 @@ const debateTopicsDB = [
       background: "소중한 것을 잃었을 때 슬픔에서 서둘러 벗어나는 것과 충분히 슬퍼하는 것 가운데 무엇이 나은지 따집니다.",
       pro: ["억누른 슬픔은 나중에 더 크게 되돌아온다.", "충분히 슬퍼해야 떠난 것을 제대로 떠나보낼 수 있다."],
       con: ["슬픔에 오래 머물면 일상을 되찾기 어렵다.", "어떤 슬픔은 잊는 것이 스스로를 지키는 길이다."],
-      books: ["무릎딱지", "엄마가 유령이 되었어!"] },
+      books: ["무릎딱지", "엄마가 유령이 되었어!", "내겐 너무 무거운"] },
     { type: "fact", field: "감정", level: "중학·고등", claim: "소리를 지르는 훈육은 아이의 마음에 오래 상처를 남긴다.",
       background: "큰 소리로 꾸짖는 일이 한때의 훈육으로 끝나는지, 아이의 마음에 오래 남는 상처가 되는지 따집니다.",
       pro: ["겁을 먹은 아이는 무엇을 잘못했는지보다 두려움을 기억한다.", "소리 지르기가 되풀이되면 아이는 자신이 사랑받지 못한다고 느낀다."],
@@ -6903,7 +6855,7 @@ const debateTopicsDB = [
       background: "가족과 함께 보내는 시간의 양이 아이의 행복과 실제로 맞닿아 있는지 따집니다.",
       pro: ["함께 있는 시간이 많아야 속마음을 나눌 기회도 많다.", "보살핌을 받는다는 느낌이 아이의 마음을 안정시킨다."],
       con: ["시간의 양보다 함께 보내는 시간의 질이 더 중요하다.", "다툼이 잦은 가정이라면 오래 함께 있는 것이 오히려 힘들다."],
-      books: ["구름빵", "고함쟁이 엄마"] },
+      books: ["구름빵", "고함쟁이 엄마", "우리는 언제나 다시 만나"] },
     { type: "value", field: "실존", level: "초등·중학", claim: "아이에게도 죽음에 대해 솔직하게 말해 주어야 한다.",
       background: "가족이나 반려동물이 세상을 떠났을 때, 아이에게 죽음을 그대로 알려 줄지 감추거나 돌려 말할지 묻습니다.",
       pro: ["감추면 아이는 버림받았다고 오해하기 쉽다.", "솔직하게 알아야 제대로 슬퍼하고 작별할 수 있다."],
@@ -6963,7 +6915,7 @@ const debateTopicsDB = [
       background: "마음의 상처를 서둘러 극복하도록 돕는 것과, 저절로 아물 때까지 기다려 주는 것 가운데 무엇이 나은지 묻습니다.",
       pro: ["억지로 떼어 낸 딱지처럼 서두르면 상처가 덧난다.", "스스로 아문 상처가 더 단단한 마음을 남긴다."],
       con: ["기다리기만 하면 상처가 더 깊어질 수도 있다.", "도움을 받아야 빨리 회복되는 상처도 있다."],
-      books: ["무릎딱지", "나쁜 일이 있어도 나쁜 날은 아니야"] },
+      books: ["무릎딱지", "나쁜 일이 있어도 나쁜 날은 아니야", "내겐 너무 무거운"] },
     { type: "value", field: "관계", level: "초등·중학", claim: "가족 사이에도 미안하다는 말은 분명하게 해야 한다.",
       background: "가족끼리는 말하지 않아도 마음을 안다고 볼지, 가족 사이일수록 사과를 말로 분명히 해야 할지 묻습니다.",
       pro: ["말하지 않으면 상대는 내가 미안한 줄 모른다.", "가까운 사이일수록 서운함이 쌓이기 쉽다."],
@@ -8423,7 +8375,7 @@ const literatureWorks = [
       conflict: "붙잡고 싶은 마음과 서운해할까 봐 붙잡지 못하는 마음",
       question: "붙잡지 않는 것은 배려인가, 마음을 숨기는 일인가?",
       derived: [
-        { type: "value", claim: "사랑한다면 붙잡기보다 보내 주어야 한다." },
+        { type: "value", claim: "이별 앞에서 속마음을 숨기는 것은 상대를 위한 배려다." },
         { type: "fact", claim: "참고 말하지 않으면 상대는 그 마음을 알지 못한다." }
       ],
       topics: ["아낌없이 주는 사랑은 아름다운 사랑이다.", "남의 마음은 끝내 다 알 수 없다."],
@@ -9222,6 +9174,25 @@ function renderStatPanel() {
 
 let litState = { genre: "all", level: "all" };
 
+// 검색 결과에서 문학 작품 카드로 곧장 건너간다 (갈래 탭까지 맞춰 준다)
+window.openLiteratureWork = function (title) {
+    const work = (typeof literatureWorks !== "undefined") && literatureWorks.find(w => w.title === title);
+    if (!work) return;
+    const link = document.querySelector('.nav-links a[href="#topic-section"]');
+    if (link) link.click();
+    const tab = document.querySelector('.topic-tab-btn[data-topic-tab="lit"]');
+    if (tab) tab.click();
+    litState.genre = work.genre;
+    renderLiteraturePanel();
+    setTimeout(() => {
+        const card = document.querySelector(`.lit-card[data-lit-title="${title}"]`);
+        if (!card) return;
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+        card.classList.add("is-found");
+        setTimeout(() => card.classList.remove("is-found"), 2400);
+    }, 120);
+};
+
 function renderLiteraturePanel() {
     const box = document.getElementById("topic-panel-lit");
     if (!box || typeof literatureWorks === "undefined") return;
@@ -9280,7 +9251,7 @@ function renderLiteraturePanel() {
                 : `<span class="topic-book topic-book-plain"><i class="fa-solid fa-book"></i> ${title}</span>`;
         }).join("");
         return `
-            <article class="lit-card">
+            <article class="lit-card" data-lit-title="${w.title}">
                 <div class="lit-head">
                     <span class="lit-genre" data-genre="${w.genre}">${w.genre}</span>
                     <h4 class="lit-title">${w.title}</h4>
@@ -10068,6 +10039,28 @@ function setupTechFilters() {
     });
 }
 
+// 같은 뜻인데 표기가 갈리는 말들 — 한쪽으로 검색해도 다른 쪽이 함께 걸리게 한다
+const SEARCH_ALIASES = [
+    ["인공지능", "ai"],
+    ["sns", "에스엔에스", "누리소통망", "소셜미디어"],
+    ["스마트폰", "휴대폰", "휴대전화", "핸드폰"],
+    ["기후변화", "기후위기", "지구온난화"],
+    ["반려동물", "애완동물"],
+    ["채식", "비건"],
+    ["안락사", "존엄사"],
+    ["학교폭력", "학폭"],
+    ["온라인", "인터넷"]
+];
+// 검색어가 묶음의 한 낱말과 똑같을 때만 넓힌다 (긴 문장을 넣었을 때 엉뚱한 결과가 섞이지 않도록)
+function expandSearchQuery(q) {
+    const out = [q];
+    if (!q) return out;
+    SEARCH_ALIASES.forEach(group => {
+        if (group.includes(q)) group.forEach(w => { if (!out.includes(w)) out.push(w); });
+    });
+    return out;
+}
+
 function setupMainSearch() {
     const mainSearchInput = document.getElementById("search-input");
     const clearMainSearchBtn = document.getElementById("clear-search");
@@ -10082,6 +10075,9 @@ function setupMainSearch() {
 
     function runSearch() {
         const query = mainSearchInput.value.toLowerCase().trim();
+        const qList = expandSearchQuery(query);
+        // 같은 뜻의 다른 표기까지 함께 살펴본다 ('인공지능'으로 찾아도 'AI' 논제가 걸리도록)
+        const qHit = (v) => { if (!v) return false; const x = String(v).toLowerCase(); return qList.some(q => x.includes(q)); };
         
         // Show/hide clear button
         if (clearMainSearchBtn) {
@@ -10114,12 +10110,12 @@ function setupMainSearch() {
                 // Query check
                 if (query === "") return true;
                 
-                const titleMatch = b.title && b.title.toLowerCase().includes(query);
-                const authorMatch = b.author && b.author.toLowerCase().includes(query);
-                const summaryMatch = b.summary && b.summary.toLowerCase().includes(query);
-                const techMatch = b.technique && b.technique.toLowerCase().includes(query);
-                const tagsMatch = b.tags && b.tags.some(tag => tag.toLowerCase().includes(query));
-                const topicsMatch = b.debateTopics && b.debateTopics.some(topic => topic.toLowerCase().includes(query));
+                const titleMatch = b.title && qHit(b.title);
+                const authorMatch = b.author && qHit(b.author);
+                const summaryMatch = b.summary && qHit(b.summary);
+                const techMatch = b.technique && qHit(b.technique);
+                const tagsMatch = b.tags && b.tags.some(tag => qHit(tag));
+                const topicsMatch = b.debateTopics && b.debateTopics.some(topic => qHit(topic));
                 
                 return titleMatch || authorMatch || summaryMatch || techMatch || tagsMatch || topicsMatch;
             });
@@ -10130,10 +10126,10 @@ function setupMainSearch() {
         if (currentType === "all" || currentType === "tech") {
             // Find all books that match the query
             const matchedBooks = books.filter(b => {
-                const titleMatch = b.title && b.title.toLowerCase().includes(query);
-                const authorMatch = b.author && b.author.toLowerCase().includes(query);
-                const summaryMatch = b.summary && b.summary.toLowerCase().includes(query);
-                const tagsMatch = b.tags && b.tags.some(tag => tag.toLowerCase().includes(query));
+                const titleMatch = b.title && qHit(b.title);
+                const authorMatch = b.author && qHit(b.author);
+                const summaryMatch = b.summary && qHit(b.summary);
+                const tagsMatch = b.tags && b.tags.some(tag => qHit(tag));
                 return titleMatch || authorMatch || summaryMatch || tagsMatch;
             });
 
@@ -10153,9 +10149,9 @@ function setupMainSearch() {
             // Temporary list of techniques matching text to collect their tags
             const textMatchedTechs = techniques.filter(t => {
                 if (query === "") return false;
-                const nameMatch = t.name && t.name.toLowerCase().includes(query);
-                const conceptMatch = t.concept && t.concept.toLowerCase().includes(query);
-                const easyMatch = t.easy && t.easy.toLowerCase().includes(query);
+                const nameMatch = t.name && qHit(t.name);
+                const conceptMatch = t.concept && qHit(t.concept);
+                const easyMatch = t.easy && qHit(t.easy);
                 return nameMatch || conceptMatch || easyMatch;
             });
 
@@ -10191,16 +10187,16 @@ function setupMainSearch() {
 
                 // 2. Text Match (Medium-high priority)
                 if (query !== "") {
-                    const nameMatch = t.name && t.name.toLowerCase().includes(query);
-                    const conceptMatch = t.concept && t.concept.toLowerCase().includes(query);
-                    const easyMatch = t.easy && t.easy.toLowerCase().includes(query);
-                    const effectMatch = t.effect && t.effect.toLowerCase().includes(query);
+                    const nameMatch = t.name && qHit(t.name);
+                    const conceptMatch = t.concept && qHit(t.concept);
+                    const easyMatch = t.easy && qHit(t.easy);
+                    const effectMatch = t.effect && qHit(t.effect);
                     const stepsMatch = t.steps && t.steps.some(step =>
-                        (step.title && step.title.toLowerCase().includes(query)) ||
-                        (step.desc && step.desc.toLowerCase().includes(query))
+                        (step.title && qHit(step.title)) ||
+                        (step.desc && qHit(step.desc))
                     );
-                    const tipsMatch = t.tips && t.tips.some(tip => tip.toLowerCase().includes(query));
-                    const tagsMatch = t.tags && t.tags.some(tag => tag.toLowerCase().includes(query));
+                    const tipsMatch = t.tips && t.tips.some(tip => qHit(tip));
+                    const tagsMatch = t.tags && t.tags.some(tag => qHit(tag));
 
                     if (nameMatch || conceptMatch || easyMatch || effectMatch || stepsMatch || tipsMatch || tagsMatch) {
                         score += 100;
@@ -10252,11 +10248,11 @@ function setupMainSearch() {
             matchingTheories = debateTheory.sections.filter(sec => {
                 if (query === "") return currentType === "theory";   // '개념' 탭에서는 전체 목록을 보여 준다
                 
-                const titleMatch = sec.title && sec.title.toLowerCase().includes(query);
-                const contentMatch = sec.content && sec.content.toLowerCase().includes(query);
+                const titleMatch = sec.title && qHit(sec.title);
+                const contentMatch = sec.content && qHit(sec.content);
                 const pointsMatch = sec.keyPoints && sec.keyPoints.some(kp => 
-                    (kp.label && kp.label.toLowerCase().includes(query)) || 
-                    (kp.desc && kp.desc.toLowerCase().includes(query))
+                    (kp.label && qHit(kp.label)) || 
+                    (kp.desc && qHit(kp.desc))
                 );
 
                 return titleMatch || contentMatch || pointsMatch;
@@ -10269,8 +10265,8 @@ function setupMainSearch() {
             matchingArchive = worksheets.filter(ws => {
                 if (query === "") return false; // Don't show archive when there is no query
 
-                const titleMatch = ws.title && ws.title.toLowerCase().includes(query);
-                const descMatch = ws.desc && ws.desc.toLowerCase().includes(query);
+                const titleMatch = ws.title && qHit(ws.title);
+                const descMatch = ws.desc && qHit(ws.desc);
 
                 return titleMatch || descMatch;
             });
@@ -10285,15 +10281,15 @@ function setupMainSearch() {
                 if (query === "") return { t, score: currentType === "topic" ? 1 : 0 };
                 let score = 0;
                 const meta = (typeof TOPIC_TYPE_INFO !== "undefined" && TOPIC_TYPE_INFO[t.type]) || {};
-                if (t.claim && t.claim.toLowerCase().includes(query)) score += 100;
-                if ((t.books || []).some(b => b.toLowerCase().includes(query))) score += 40;
-                if (t.field && t.field.toLowerCase().includes(query)) score += 35;
-                if (meta.label && meta.label.toLowerCase().includes(query)) score += 30;
-                if (t.level && t.level.toLowerCase().includes(query)) score += 20;
-                if (t.background && t.background.toLowerCase().includes(query)) score += 15;
-                if ((t.pro || []).some(x => x.toLowerCase().includes(query)) ||
-                    (t.con || []).some(x => x.toLowerCase().includes(query))) score += 10;
-                if ((t.stats || []).some(st => (st.label || "").toLowerCase().includes(query))) score += 8;
+                if (t.claim && qHit(t.claim)) score += 100;
+                if ((t.books || []).some(b => qHit(b))) score += 40;
+                if (t.field && qHit(t.field)) score += 35;
+                if (meta.label && qHit(meta.label)) score += 30;
+                if (t.level && qHit(t.level)) score += 20;
+                if (t.background && qHit(t.background)) score += 15;
+                if ((t.pro || []).some(x => qHit(x)) ||
+                    (t.con || []).some(x => qHit(x))) score += 10;
+                if ((t.stats || []).some(st => qHit(st.label || ""))) score += 8;
                 return { t, score };
             }).filter(x => x.score > 0);
 
@@ -10303,7 +10299,34 @@ function setupMainSearch() {
             matchingTopics = scored.slice(0, limit).map(x => x.t);
         }
 
-        totalCount = matchingBooks.length + matchingTechs.length + matchingTopics.length + matchingTheories.length + matchingArchive.length;
+        // 6. Search Literature (문학 작품) — 제목·작가·갈래·줄거리·갈등·파생 논제까지 훑는다
+        let matchingLit = [];
+        let matchingLitTotal = 0;
+        const litOn = currentType === "topic" || (currentType === "all" && currentTag === "all");
+        if (litOn && query !== "" && typeof literatureWorks !== "undefined") {
+            const scored = literatureWorks.map((w) => {
+                let score = 0;
+                if (w.title && qHit(w.title)) score += 100;
+                if (w.author && qHit(w.author)) score += 60;
+                if (w.genre && qHit(w.genre)) score += 35;
+                if ((w.derived || []).some(d => qHit(d.claim || ""))) score += 30;
+                if ((w.topics || []).some(c => qHit(c))) score += 25;
+                if (w.level && qHit(w.level)) score += 20;
+                if (w.conflict && qHit(w.conflict)) score += 15;
+                if (w.question && qHit(w.question)) score += 15;
+                if (w.summary && qHit(w.summary)) score += 12;
+                if ((w.books || []).some(b => qHit(b))) score += 10;
+                if (w.kind && qHit(w.kind)) score += 8;
+                if (qHit(String(w.year || ""))) score += 5;
+                return { w, score };
+            }).filter(x => x.score > 0);
+
+            scored.sort((a, b) => (b.score - a.score) || (literatureWorks.indexOf(a.w) - literatureWorks.indexOf(b.w)));
+            matchingLitTotal = scored.length;
+            matchingLit = scored.slice(0, currentType === "topic" ? 30 : 9).map(x => x.w);
+        }
+
+        totalCount = matchingBooks.length + matchingTechs.length + matchingTopics.length + matchingTheories.length + matchingArchive.length + matchingLit.length;
 
         if (totalCount === 0) {
             resultsPanel.innerHTML = `
@@ -10455,6 +10478,52 @@ function setupMainSearch() {
                     </h3>
                     <div class="search-topic-grid">
                         ${topicsHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // Render Literature (문학 작품)
+        if (matchingLit.length > 0) {
+            let litHTML = "";
+            matchingLit.forEach(w => {
+                const topicBtns = (w.topics || []).map(claim => {
+                    const ti = debateTopicsDB.findIndex(t => t.claim === claim);
+                    if (ti < 0) return "";
+                    const tm = (typeof TOPIC_TYPE_INFO !== "undefined" && TOPIC_TYPE_INFO[debateTopicsDB[ti].type]) || {};
+                    return `<button type="button" class="lit-topic-btn" onclick="openTopicWorksheet(${ti})" title="이 논제로 학습지 만들기">
+                                <span class="topic-chip topic-chip-${debateTopicsDB[ti].type}">${tm.label || ""}</span>
+                                <span class="lit-topic-claim">${claim}</span>
+                                <i class="fa-solid fa-file-pen"></i>
+                            </button>`;
+                }).join("");
+                litHTML += `
+                    <article class="lit-card search-lit-card">
+                        <div class="lit-head">
+                            <span class="lit-genre" data-genre="${w.genre}">${w.genre}</span>
+                            <h4 class="lit-title">${w.title}</h4>
+                            <span class="lit-author">${w.kind ? w.kind + " · " : ""}${w.author} · ${w.year}</span>
+                            <span class="topic-chip topic-chip-level">${w.level}</span>
+                        </div>
+                        <p class="lit-summary">${w.summary}</p>
+                        ${topicBtns ? `<div class="lit-linked"><span class="lit-linked-label"><i class="fa-solid fa-scale-balanced"></i>이어지는 논제</span>${topicBtns}</div>` : ""}
+                        <div class="topic-actions">
+                            <button type="button" class="topic-ws-btn" onclick="openLiteratureWork('${w.title.replace(/'/g, "\\'")}')"><i class="fa-solid fa-feather"></i> 문학에서 자세히 보기</button>
+                        </div>
+                    </article>
+                `;
+            });
+
+            const litMore = matchingLitTotal > matchingLit.length
+                ? ` <span style="font-size:0.85rem; font-weight:500; color:var(--text-secondary);">(전체 ${matchingLitTotal}건 중 관련도 높은 ${matchingLit.length}건)</span>`
+                : "";
+            containerHTML += `
+                <div class="search-result-group">
+                    <h3 style="font-size:1.3rem; margin-bottom:20px; border-bottom:2px solid var(--accent-green, #708A6F); padding-bottom:8px; color:var(--text-primary);">
+                        <i class="fa-solid fa-feather" style="margin-right:8px; color:var(--accent-green, #708A6F);"></i>문학 작품 결과 (${matchingLit.length}건)${litMore}
+                    </h3>
+                    <div class="search-lit-grid">
+                        ${litHTML}
                     </div>
                 </div>
             `;
@@ -12393,7 +12462,7 @@ function renderSeatingLayout(techId) {
                 </div>
             </div>
         `;
-    } else if (techId === "carousel" || techId === "carousel-debate") {
+    } else if (techId === "carousel") {
         return `
             <div style="position: relative; width: 140px; height: 120px; display: flex; justify-content: center; align-items: center; background: #fff; border-radius: 8px;">
                 <div style="position: absolute; width: 100px; height: 100px; border: 2px dashed #c084fc; border-radius: 50%; display: flex; justify-content: center; align-items: center;">

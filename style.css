@@ -3941,3 +3941,13 @@ footer { padding: 56px 24px 44px; }
     .ws-teacher-page .ws-book-info-box { break-inside: avoid; page-break-inside: avoid; }
     .ws-teacher-page .ws-table tr { break-inside: avoid; page-break-inside: avoid; }
 }
+
+/* 통합 검색에 나오는 문학 작품 카드 */
+.search-lit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 22px; }
+.search-lit-card .lit-summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+/* 검색에서 찾아온 작품을 잠깐 밝혀 준다 */
+.lit-card.is-found {
+    border-color: var(--accent-coral);
+    box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.25), var(--shadow-hover);
+}
+@media (max-width: 768px) { .search-lit-grid { grid-template-columns: 1fr; } }
