@@ -3663,6 +3663,12 @@ const worksheets = [
         "desc": "「춘향전」의 춘향·이몽룡·변학도·월매를 뜨거운 의자에 앉히는 모둠 활동지입니다. 학생용 4쪽과 교사용 2쪽으로 되어 있습니다.",
         "icon": "fa-file-word",
         "link": "춘향전_핫시팅_모둠활동지.docx"
+    },
+    {
+        "title": "[수업자료] 파노라마 토론 수업 설계 — 《완벽한 아이 팔아요》",
+        "desc": "그림책 《완벽한 아이 팔아요》로 파노라마 토론을 진행한 수업 설계 자료입니다. 부모·아이·마트 세 자리로 역할을 나누고, 질문 만들기부터 입장 말하기·서로 묻기·함께 살 길 찾기 3라운드와 성찰까지의 흐름을 담았습니다. 그림책 본문 사진은 저작권 때문에 빼고 올렸습니다.",
+        "icon": "fa-file-powerpoint",
+        "link": "2-3. 파노라마 토론 수업 설계(완벽한 아이 팔아요).pptx"
     }
 ];
 
@@ -4088,7 +4094,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "4.8.0";
+    return "4.9.0";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
@@ -11252,37 +11258,113 @@ function setupWorksheetGenerator() {
         `;
     } else if (type === "panorama") {
         worksheetHTML += `
-            <div class="ws-section">
-                <h4>🖼️ 파노라마 토론 · 세 자리에서 보기 활동지</h4>
-                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">세 명이 서로 다른 자리를 하나씩 맡아, 같은 사건을 세 자리에서 나란히 바라봅니다.</p>
-                <p style="font-size: 0.9rem; font-weight:700; color:#111111;">내가 맡은 자리: <input type="text" style="width:200px; padding:2px 6px; border:1px solid #ccc; display:inline;" placeholder="예: 부모 / 아이 / 마트"></p>
+            <div class="ws-section ws-keep">
+                <h4>🖼️ 1단계. 내 마음이 머문 장면</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">토론에 앞서, 책을 읽으며 마음에 걸린 장면부터 붙잡습니다.</p>
+                <table class="ws-table">
+                    <tr>
+                        <th style="width: 50%;">가장 마음에 남은 장면 (글 또는 그림)</th>
+                        <th style="width: 50%;">왜 이 장면이 내 마음을 붙잡았나요?</th>
+                    </tr>
+                    <tr>
+                        <td><textarea style="height: 74px;" placeholder="장면을 글로 적거나 이 칸에 그림으로 그려도 좋습니다..."></textarea></td>
+                        <td><textarea style="height: 74px;" placeholder="그 장면에서 어떤 마음이 들었는지 적어 보세요..."></textarea></td>
+                    </tr>
+                </table>
+                <p style="font-size: 0.88rem; font-weight:700; color:#111111; margin-top:14px;">🔗 현실로 가져오기 — 지금 내 상황이나 마음과 닮은 점이 있나요?</p>
+                <textarea class="ws-textarea-box ws-textarea-short" placeholder="내가 겪었던 일이나 지금 느끼는 마음 가운데 닮은 점을 적어 보세요..."></textarea>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>❓ 2단계. 이야기 문을 열 질문 만들기</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">책에 답이 있는 질문과, 답이 나와 있지 않은 질문을 나누어 만들어 봅시다.</p>
+                <table class="ws-table">
+                    <tr>
+                        <th style="width: 50%;">책 속 질문 — 책에 답이 있는 것</th>
+                        <th style="width: 50%;">책 밖 질문 — 답이 나와 있지 않은 것</th>
+                    </tr>
+                    <tr>
+                        <td><textarea style="height: 64px;" placeholder="예: 부모는 왜 아이를 마트에서 골라 왔을까?"></textarea></td>
+                        <td><textarea style="height: 64px;" placeholder="예: 부모가 자기를 물리러 왔을 때 아이의 진짜 속마음은?"></textarea></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>🎭 3단계. 관점 배정 · 인물의 마음속으로</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">세 명이 한 모둠이 되어 서로 다른 자리를 하나씩 맡습니다. 인물뿐 아니라 그 인물을 그렇게 만든 사회나 제도에도 한 자리를 주면 토론이 깊어집니다.</p>
+                <p style="font-size: 0.9rem; font-weight:700; color:#111111;">내가 맡은 자리: <input type="text" style="width:220px; padding:2px 6px; border:1px solid #ccc; display:inline;" placeholder="예: 부모 / 아이 / 마트"></p>
                 <div style="background-color: #f2f6fc; padding: 12px; border-radius: 8px; margin-top: 12px; margin-bottom: 16px; border-left: 4px solid var(--accent-sage);">
                     <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-sage);">📚 권장 토론 논제:</p>
                     <ul style="padding-left: 20px; font-size: 0.85rem; line-height: 1.6; color: #333333; margin: 0;">
                         ${book.debatePropositions ? book.debatePropositions.map(t => `<li>${t}</li>`).join("") : '<li>추천 논제 정보가 없습니다.</li>'}
                     </ul>
                 </div>
-                <table class="ws-table" style="margin-top: 16px;">
+                <table class="ws-table">
                     <tr>
-                        <th style="width: 50%;">1. [내 자리에서] 그 일을 겪은 나의 사정과 속마음</th>
-                        <th style="width: 50%;">2. [서로 묻기] 다른 자리의 친구와 주고받은 이야기</th>
+                        <th style="width: 34%;">이 자리에 선 나의 표정은?</th>
+                        <th style="width: 33%;">내가 건넬 첫마디는?</th>
+                        <th style="width: 33%;">그 일을 겪은 나의 사정과 속마음</th>
                     </tr>
                     <tr>
-                        <td>
-                            <textarea style="min-height: 180px;" placeholder="내가 맡은 자리에서 그 일이 어떻게 보였는지, 그 인물의 속마음을 담아 적어 보세요..."></textarea>
-                        </td>
-                        <td>
-                            <textarea style="min-height: 180px;" placeholder="다른 자리의 이야기를 들으며 알게 된, 서로 부딪치는 사정들을 적으세요..."></textarea>
-                        </td>
+                        <td><textarea style="height: 68px;" placeholder="말없이 표정만 지어 본다면 어떤 얼굴일까요..."></textarea></td>
+                        <td><textarea style="height: 68px;" placeholder="이 자리에서 맨 처음 하고 싶은 말을 소리 내어 말해 보고 적으세요..."></textarea></td>
+                        <td><textarea style="height: 68px;" placeholder="내가 맡은 자리에서 그 일이 어떻게 보였는지 속마음을 담아 적어 보세요..."></textarea></td>
+                    </tr>
+                </table>
+                <p style="font-size: 0.88rem; font-weight:700; color:#111111; margin-top:14px;">🔍 내 자리에서 다른 자리에 던지고 싶은 날카로운 질문</p>
+                <textarea class="ws-textarea-box ws-textarea-short" placeholder="누구에게 무엇을 묻고 싶은가요? '○○에게 — ' 처럼 상대를 밝혀 적으세요..."></textarea>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>🗣️ 4단계. 파노라마 펼치기 · 1라운드 입장 말하기</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">우리는 왜 이 자리를 지키는가. 주장 · 근거 · 설명의 차례로 적어 발표합니다.</p>
+                <table class="ws-table">
+                    <tr>
+                        <th style="width: 34%;">[주장] 나(우리)는 ~라고 생각합니다</th>
+                        <th style="width: 33%;">[근거] 왜냐하면 ~이기 때문입니다</th>
+                        <th style="width: 33%;">[설명] 예를 들어 ~</th>
+                    </tr>
+                    <tr>
+                        <td><textarea style="height: 68px;" placeholder="내 자리의 입장을 한 문장으로..."></textarea></td>
+                        <td><textarea style="height: 68px;" placeholder="그렇게 보는 까닭을..."></textarea></td>
+                        <td><textarea style="height: 68px;" placeholder="책의 장면이나 우리 둘레의 일을 들어..."></textarea></td>
                     </tr>
                 </table>
             </div>
-            <div class="ws-section">
-                <h4>🤝 3. 모두가 함께 살아갈 수 있는 해결책</h4>
-                <textarea class="ws-textarea-box" placeholder="주인공 한 사람만이 아니라 둘레 사람들도 함께 살아갈 수 있는 약속문을 적어 보세요..."></textarea>
+            <div class="ws-section ws-keep">
+                <h4>🤔 4단계. 파노라마 펼치기 · 2라운드 서로 묻기</h4>
+                <p style="font-size: 0.85rem; color: #d9534f; font-weight:700; margin-bottom: 10px;">상대를 꺾는 질문이 아니라, 상대를 더 알고 싶은 질문만 던집니다.</p>
+                <table class="ws-table">
+                    <tr><th style="width: 22%;">누구에게</th><th style="width: 78%;">내가 던진 질문과 그 자리에서 들은 답</th></tr>
+                    <tr><td><input type="text" placeholder="예: 마트"></td><td><textarea style="height: 40px;" placeholder="질문 1과 그에 대한 답..."></textarea></td></tr>
+                    <tr><td><input type="text" placeholder="예: 부모"></td><td><textarea style="height: 40px;" placeholder="질문 2와 그에 대한 답..."></textarea></td></tr>
+                    <tr><td><input type="text" placeholder="예: 아이"></td><td><textarea style="height: 40px;" placeholder="질문 3과 그에 대한 답..."></textarea></td></tr>
+                </table>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>🤝 4단계. 파노라마 펼치기 · 3라운드 함께 살 길 찾기</h4>
+                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">각 자리에 그럴 만한 까닭이 있었음을 인정한 뒤, 책 속 모두가 함께 살아갈 방법을 찾아봅시다.</p>
+                <table class="ws-table">
+                    <tr><th style="width: 8%;">1</th><td><textarea style="height: 40px;" placeholder="누구에게 어떤 도움이 되는 방법인지 함께 적으세요..."></textarea></td></tr>
+                    <tr><th>2</th><td><textarea style="height: 40px;"></textarea></td></tr>
+                    <tr><th>3</th><td><textarea style="height: 40px;"></textarea></td></tr>
+                </table>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>🌱 5단계. 나를 찾아가는 성찰지 · 토론을 마치며</h4>
+                <table class="ws-table">
+                    <tr>
+                        <th style="width: 34%;">생각의 변화<br><span style="font-weight:400; font-size:0.8rem;">토론 전과 후, 내 생각은 어떻게 달라졌나요?</span></th>
+                        <th style="width: 33%;">타인의 발견<br><span style="font-weight:400; font-size:0.8rem;">가장 인상 깊었던 다른 사람의 의견이나 태도는?</span></th>
+                        <th style="width: 33%;">삶으로의 연결<br><span style="font-weight:400; font-size:0.8rem;">이 주제가 내 삶이나 우리 사회에 주는 것은?</span></th>
+                    </tr>
+                    <tr>
+                        <td><textarea style="height: 74px;" placeholder="새로 알게 되거나 깨달은 점을 적으세요..."></textarea></td>
+                        <td><textarea style="height: 74px;" placeholder="가장 이해하기 어려웠던 자리를 다시 본 소감도 좋습니다..."></textarea></td>
+                        <td><textarea style="height: 74px;" placeholder="오늘 토론이 내 생활에서 어떤 뜻을 갖는지 적으세요..."></textarea></td>
+                    </tr>
+                </table>
             </div>
         `;
-    } else if (type === "fan") {
+        } else if (type === "fan") {
         worksheetHTML += `
             <div class="ws-section">
                 <h4>🌀 선풍기 토론 · 듣고 이어 말하기 활동지</h4>

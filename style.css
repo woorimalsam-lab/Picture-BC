@@ -568,7 +568,7 @@ h1, h2, h3, h4 {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
     gap: 28px;
 }
 .technique-card {
@@ -665,7 +665,7 @@ h1, h2, h3, h4 {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
     gap: 32px;
 }
 .book-card {
@@ -826,7 +826,7 @@ h1, h2, h3, h4 {
     border-radius: 30px;
     padding: 48px;
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
     gap: 40px;
     backdrop-filter: var(--glass-blur);
     -webkit-backdrop-filter: var(--glass-blur);
@@ -981,7 +981,7 @@ h1, h2, h3, h4 {
 }
 .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     gap: 20px;
 }
 .form-row-buttons {
@@ -1383,14 +1383,14 @@ footer {
         justify-content: center;
     }
     .helper-card-container {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
         padding: 32px;
     }
     .guide-body {
         grid-template-columns: 1fr;
     }
     .form-row {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 }
 
@@ -1576,7 +1576,7 @@ footer {
 }
 .archive-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
     gap: 24px;
 }
 .archive-card {
@@ -1675,7 +1675,7 @@ footer {
 
 .theory-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
     gap: 28px;
     max-width: 1200px;
     margin: 0 auto;
@@ -1972,7 +1972,7 @@ footer {
 /* 기법 카드 크기 균일화 */
 .techniques-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(320px, 100%), 1fr));
     gap: 28px;
 }
 
@@ -2448,7 +2448,7 @@ footer {
     font-size: 0.88rem; color: var(--text-secondary);
     background: var(--bg-secondary); border-radius: 10px; padding: 9px 14px; margin-bottom: 14px;
 }
-.topic-criteria { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-bottom: 12px; }
+.topic-criteria { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 10px; margin-bottom: 12px; }
 .topic-crit {
     background: var(--bg-secondary); border-left: 3px solid var(--accent-sage);
     border-radius: 8px; padding: 10px 12px;
@@ -2474,7 +2474,7 @@ footer {
 /* 논제 카드 */
 .topic-grid {
     max-width: 1000px; margin: 0 auto;
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 20px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); gap: 20px;
 }
 .topic-card {
     background: var(--bg-card);
@@ -2606,7 +2606,7 @@ footer {
     background: var(--bg-secondary); border-radius: 20px; padding: 2px 9px;
 }
 .topic-group-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 20px;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); gap: 20px;
 }
 #topic-grid { display: block; max-width: none; }
 @media (max-width: 640px) {
@@ -3087,7 +3087,7 @@ body.class-mode-open { overflow: hidden; }
     max-width: 1120px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr));
     gap: 24px;
 }
 .reading-card {
@@ -3497,7 +3497,7 @@ footer { padding: 56px 24px 44px; }
 .stat-quick-btn:hover { border-color: var(--accent-sage); color: var(--accent-sage); }
 
 /* 다섯 가지 확인 */
-.stat-checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; margin-top: 16px; }
+.stat-checks { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr)); gap: 12px; margin-top: 16px; }
 .stat-check {
     background: var(--bg-secondary); border-radius: 14px; padding: 16px 14px; text-align: center;
 }
@@ -3526,7 +3526,7 @@ footer { padding: 56px 24px 44px; }
     letter-spacing: 0.06em; margin: 0 0 10px;
     padding-left: 10px; border-left: 3px solid var(--accent-sage);
 }
-.stat-sources { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 10px; }
+.stat-sources { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 10px; }
 .stat-source {
     display: flex; align-items: flex-start; gap: 12px;
     padding: 15px 16px; border-radius: 14px;
@@ -3655,7 +3655,7 @@ footer { padding: 56px 24px 44px; }
 /* 검색 결과 안의 논제 카드 */
 .search-topic-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
     gap: 20px;
 }
 .search-topic-bg {
@@ -3671,7 +3671,7 @@ footer { padding: 56px 24px 44px; }
 /* ============================================
    문학에서 논제 뽑기
    ============================================ */
-.lit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 22px; }
+.lit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); gap: 22px; }
 .lit-card {
     background: var(--bg-card); border: 1px solid var(--border-color);
     border-radius: 18px; padding: 24px 26px; box-shadow: var(--shadow-soft);
@@ -3871,7 +3871,7 @@ footer { padding: 56px 24px 44px; }
 
 .news-tools {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(230px, 100%), 1fr));
     gap: 12px;
     margin-top: 18px;
 }
@@ -3943,7 +3943,7 @@ footer { padding: 56px 24px 44px; }
 }
 
 /* 통합 검색에 나오는 문학 작품 카드 */
-.search-lit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 22px; }
+.search-lit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(360px, 100%), 1fr)); gap: 22px; }
 .search-lit-card .lit-summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 /* 검색에서 찾아온 작품을 잠깐 밝혀 준다 */
 .lit-card.is-found {
@@ -3951,3 +3951,52 @@ footer { padding: 56px 24px 44px; }
     box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.25), var(--shadow-hover);
 }
 @media (max-width: 768px) { .search-lit-grid { grid-template-columns: 1fr; } }
+
+/* ── 어떤 화면에서도 가로로 밀려나지 않게 ─────────────────── */
+/* 그리드·플렉스 칸은 내용물의 최소 너비에 밀려 상자를 넘지 않는다 */
+.helper-intro,
+.helper-form-wrapper,
+.form-group,
+.form-row > *,
+.helper-card-container > * { min-width: 0; }
+
+/* 목록이 긴 선택 상자는 가장 긴 항목 길이만큼 넓어지려 한다 */
+select { max-width: 100%; }
+
+/* 긴 제목·주소가 상자를 밀어내지 않게 */
+.book-card, .technique-card, .topic-card, .lit-card, .archive-card,
+.ws-section, .worksheet-paper { min-width: 0; overflow-wrap: anywhere; }
+
+/* 표가 넓을 때는 그 표만 옆으로 넘겨 본다 (화면 전체가 밀리지 않도록) */
+.ws-table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+/* 마지막 안전망: 화면 전체가 가로로 밀리는 일은 없게 */
+html, body { max-width: 100%; overflow-x: hidden; }
+
+/* 아주 좁은 화면(320px 안팎)에서 여백을 줄여 글이 시원하게 보이도록 */
+@media (max-width: 360px) {
+    section { padding-left: 16px !important; padding-right: 16px !important; }
+    .helper-card-container { padding: 24px 18px; }
+    .container { padding-left: 0; padding-right: 0; }
+}
+
+@media print {
+    /* 표의 머리줄만 앞 쪽에 홀로 남는 일이 없게 — 머리줄과 첫 칸을 붙여 둔다 */
+    .ws-table { break-inside: auto; page-break-inside: auto; }
+    .ws-table tr { break-inside: avoid; page-break-inside: avoid; }
+    .ws-table thead { display: table-header-group; }
+    .ws-table th { break-after: avoid; page-break-after: avoid; }
+    /* 칸 제목이 내용과 떨어져 쪽 끝에 홀로 남지 않게 */
+    .ws-section > h4 { break-after: avoid; page-break-after: avoid; }
+    .ws-section > h4 + p { break-before: avoid; page-break-before: avoid; }
+}
+
+/* 한두 줄이면 되는 짧은 답 칸 — 화면과 인쇄 모두 낮게 */
+.ws-textarea-box.ws-textarea-short { min-height: 64px; height: 64px; }
+@media print {
+    .ws-textarea-box.ws-textarea-short { min-height: 64px !important; height: 64px !important; }
+}
+@media print {
+    /* 한 쪽보다 짧은 칸은 제목과 내용을 통째로 다음 쪽으로 넘긴다 */
+    .ws-keep { break-inside: avoid; page-break-inside: avoid; }
+}
