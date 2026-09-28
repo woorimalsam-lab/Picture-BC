@@ -3837,8 +3837,633 @@ document.addEventListener("DOMContentLoaded", () => {
     initMobileNav();
     handleDeepLink();
     initTopicSection();
+    renderSubjectSection();
+    renderTrainingSection();
     initPolish();
 });
+
+
+// ── 교과별 토론 입구 ─────────────────────────────────────────────
+// fields: 이 교과와 이어지는 논제 분야. math 는 '자료로 판가름할 사실 논제'를 따로 고른다.
+const SUBJECT_GUIDE = [
+    {
+        key: "korean", label: "국어", icon: "fa-book-open",
+        hook: "문학 작품의 갈등과 인물의 선택은 그대로 토론거리가 됩니다. 비문학 단원에서는 글쓴이의 주장을 논제로 바꿔 찬반을 나눠 보세요.",
+        fields: ["미디어", "인식", "문화", "관계", "감정"],
+        techs: [
+            { id: "panorama", why: "인물마다 자리를 나눠 맡아 작품을 여러 겹으로 읽습니다." },
+            { id: "hotseating", why: "인물을 뜨거운 의자에 앉혀 속마음을 묻습니다. 소설 단원에 잘 맞습니다." },
+            { id: "valuebar", why: "인물의 선택이 옳았는지 0~10 눈금 위에 서 보며 해석의 폭을 확인합니다." },
+            { id: "reasoning", why: "'왜 그랬을까'의 근거를 작품 속 문장에서 찾게 합니다." }
+        ],
+        scene: { unit: "소설 단원 · 「오발탄」", tech: "가치수직선 토론", min: 15, flow: "'철호처럼 양심을 지키며 사는 것이 옳다'를 칠판에 적고 0~10 자리에 서게 한 뒤, 양 끝과 가운데에서 한 명씩 까닭을 듣고 다시 자리를 고르게 합니다." },
+        sources: ["bigkinds", "mcst", "kpf"],
+        literature: true
+    },
+    {
+        key: "math", label: "수학", icon: "fa-square-root-variable",
+        hook: "수학 토론은 '정답이 무엇인가'가 아니라 '왜 그렇게 되는가, 이 결론을 내려도 되는가'를 따지는 시간입니다. 통계 단원의 자료 해석, 풀이를 서로 견주는 활동, 흔한 오개념을 판정하는 활동이 특히 잘 맞습니다.",
+        math: true,
+        techs: [
+            { id: "trafficlight", why: "그래프나 명제를 하나 보여 주고 '참인가'를 카드로 바로 확인합니다. 오개념을 드러내는 데 좋습니다." },
+            { id: "fan", why: "앞사람의 풀이를 요약해야 내 풀이를 말할 수 있어, 서로의 풀이를 끝까지 듣게 됩니다." },
+            { id: "2stay2stray", why: "모둠마다 다른 풀이를 맡겨 설명하게 하면 풀이 비교가 저절로 일어납니다." },
+            { id: "pmi", why: "평균·중앙값처럼 여러 방법 가운데 무엇을 쓸지 좋은 점과 아쉬운 점을 따집니다." }
+        ],
+        scenes: [
+            { unit: "통계 · 대푯값", tech: "신호등 토론", min: 10, flow: "'평균은 우리 반의 키를 가장 잘 보여 준다'를 제시하고 카드를 들게 한 뒤, 극단값이 있는 자료를 하나 더 보여 주고 다시 들게 합니다. 색이 바뀐 학생에게 까닭을 묻습니다." },
+            { unit: "확률 · 오개념 판정", tech: "신호등 → 이유찾기", min: 15, flow: "'동전을 다섯 번 연속 앞면이 나왔다면 다음엔 뒷면이 나올 확률이 더 높다'에 카드를 들게 합니다. 의견이 갈리면 모둠별로 까닭을 수식이나 시뮬레이션으로 밝혀 발표하게 합니다." },
+            { unit: "함수·수열 · 풀이 비교", tech: "둘 가고 둘 남기", min: 20, flow: "같은 문제를 모둠마다 다른 방법(그래프·식·표)으로 풀게 합니다. 두 명은 남아 우리 풀이를 설명하고 두 명은 다른 모둠 풀이를 들어 와, '어느 풀이가 언제 더 좋은가'를 정리합니다." },
+            { unit: "통계 · 표본과 여론조사", tech: "PMI 토론", min: 10, flow: "기사 속 여론조사 결과 하나를 보여 주고, 이 결과를 믿을 수 있는지 좋은 점·아쉬운 점·흥미로운 점으로 나눕니다. 표본 크기와 추출 방법이 자연스럽게 쟁점이 됩니다." }
+        ],
+        frames: {
+            title: "수학 토론 말하기 틀",
+            items: ["내 풀이는 ~에서 시작했어. 왜냐하면 ~", "네 풀이와 내 풀이는 ~에서 달라.", "이 경우에도 성립할까? 예를 들어 ~이면?", "이 자료만으로 ~라고 말하기엔 ~가 부족해.", "반례를 하나 찾아볼게. ~"]
+        },
+        tips: ["학생이 틀린 답을 내놓아도 곧바로 고치지 말고 '왜 그렇게 생각했어?'부터 묻게 하세요. 오개념이 드러나는 순간이 가장 좋은 토론거리입니다.", "논제 목록에는 통계 자료로 판가름할 수 있는 사실 논제만 모아 두었습니다. 자료 해석 수행평가에 그대로 쓸 수 있습니다."],
+        sources: ["kosis", "edu", "index", "sgis"]
+    },
+    {
+        key: "english", label: "영어", icon: "fa-language",
+        hook: "영어 토론의 목표는 이기는 것이 아니라 영어로 의견을 주고받는 경험입니다. 긴 토론 대신 짝 단위의 짧은 교환을 여러 번, 말하기 틀과 함께 주면 영어가 서툰 학생도 입을 엽니다.",
+        fields: ["문화", "미디어", "기술", "환경", "인권"],
+        techs: [
+            { id: "carousel", why: "짝을 바꿔 가며 같은 주장을 여러 번 말해 표현이 입에 붙습니다. 말하기 수행평가 연습으로 좋습니다." },
+            { id: "trafficlight", why: "Agree / Disagree / Not sure 카드로 시작해, 한 문장씩 까닭을 붙이게 합니다." },
+            { id: "argumentgame", why: "Point–Reason–Example 세 마디 틀로 말하기와 쓰기를 함께 연습합니다." },
+            { id: "hotseating", why: "읽기 지문의 글쓴이나 인물을 뜨거운 의자에 앉혀 영어로 인터뷰합니다." }
+        ],
+        scenes: [
+            { unit: "말하기 · 의견 표현", tech: "회전목마 토론", min: 15, flow: "'Schools should ban smartphones in class.'를 두고 짝과 2분씩 세 번 자리를 바꿔 말합니다. 짝이 바뀔 때마다 앞 짝에게서 들은 표현을 하나씩 빌려 쓰게 합니다." },
+            { unit: "읽기 · 지문 이해", tech: "핫시팅", min: 15, flow: "읽기 지문의 글쓴이 역할을 교사가 먼저 맡아 영어 질문을 받고, 이어 학생 한 명이 앉습니다. 질문은 'Why did you ~?', 'What would you do if ~?' 틀에서 고르게 해 부담을 줄입니다." },
+            { unit: "쓰기 · 의견 글", tech: "브레인라이팅 → 논증 게임", min: 20, flow: "논제의 이유를 영어로 한 줄씩 적어 돌린 뒤(10분), 가장 좋은 이유 하나를 골라 Point–Reason–Example 세 문장으로 완성합니다(10분). 그대로 에세이의 한 문단이 됩니다." },
+            { unit: "시작 5분 · 워밍업", tech: "신호등 토론", min: 5, flow: "오늘 지문과 이어지는 한 문장('Social media makes us lonelier.')에 카드를 들고, 두 명에게 'I agree/disagree because ~' 한 문장만 말하게 합니다." }
+        ],
+        frames: {
+            title: "영어 토론 표현 카드",
+            items: ["I agree / disagree because ~", "In my opinion, ~. For example, ~", "I see your point, but ~", "Could you explain what you mean by ~?", "So you're saying that ~, right?", "That's a good point. I'd like to add that ~"]
+        },
+        tips: ["처음에는 우리말로 생각을 정리하고 영어로 옮기게 해도 괜찮습니다. 목표는 틀리지 않는 영어가 아니라 끝까지 말해 보는 경험입니다.", "표현 카드를 책상 위에 올려 두고, 쓴 표현에 표시하게 하면 말하기 수행평가의 관찰 근거가 됩니다."],
+        sources: ["bigkinds", "kpf"]
+    },
+    {
+        key: "social", label: "사회", icon: "fa-landmark",
+        hook: "제도와 정책을 다루는 단원은 모두 정책 논제가 됩니다. 통계와 기사를 근거로 쓰게 하면 주장이 훨씬 단단해집니다.",
+        fields: ["사회", "정치", "노동", "복지", "인권", "정의", "역사", "평화", "안전", "공동체"],
+        techs: [
+            { id: "procon", why: "정책의 찬반을 모두 맡아 보며 한쪽 주장만 외우지 않게 합니다." },
+            { id: "worldcafe", why: "한 제도의 여러 측면을 테이블별로 나눠 다룹니다." },
+            { id: "doublepyramid", why: "찬반이 팽팽한 정책에서 양쪽 대표 안을 모아 절충안을 만듭니다." },
+            { id: "2stay2stray", why: "모둠마다 다른 나라·제도를 조사하게 하고 서로 설명하게 합니다." }
+        ],
+        scene: { unit: "민주주의와 선거", tech: "프로콘 토론", min: 20, flow: "'선거권 연령을 만 16세로 낮춰야 한다'를 두고 짝끼리 찬성 2분 → 반대 2분 → 편을 바꿔 2분씩. 마지막 5분은 '둘 다 겪어 보니 어느 쪽 근거가 더 무거웠나'를 적습니다." },
+        sources: ["kosis", "index", "bigkinds", "mods"]
+    },
+    {
+        key: "ethics", label: "도덕·윤리", icon: "fa-scale-balanced",
+        hook: "윤리 사상과 딜레마 단원은 가치 논제의 보물창고입니다. 정답을 가르치기보다 판단의 기준이 무엇인지 드러나게 하세요.",
+        fields: ["윤리", "인성", "정의", "자유", "실존", "행복", "자아", "용기"],
+        techs: [
+            { id: "valuebar", why: "딜레마에 대한 판단이 찬반 둘이 아니라 여러 자리에 퍼져 있음을 보여 줍니다." },
+            { id: "angeldevil", why: "한 사람 안의 두 마음을 소리 내어 들려주며 선택의 무게를 느끼게 합니다." },
+            { id: "socratic", why: "정답이 없는 질문을 오래 붙들고 이야기하게 합니다." },
+            { id: "havruta", why: "짝과 '왜?'를 주고받으며 사상가의 주장을 스스로 따져 봅니다." }
+        ],
+        scene: { unit: "공리주의와 의무론", tech: "가치수직선 토론", min: 15, flow: "'다수를 위해 한 사람이 손해를 보는 것은 정당하다'에 0~10으로 서게 합니다. 공리주의·의무론으로 각 자리의 까닭을 설명해 보게 하고 자리를 다시 고르게 합니다." },
+        sources: ["bigkinds", "tong"]
+    },
+    {
+        key: "science", label: "과학", icon: "fa-flask",
+        hook: "과학기술과 사회 단원, 생명과학의 윤리 쟁점이 그대로 토론이 됩니다. 실험 결과를 해석하는 장면도 '이 결론을 내려도 되는가'로 바꾸면 토론이 됩니다.",
+        fields: ["생명", "환경", "기술", "건강", "안전"],
+        techs: [
+            { id: "pmi", why: "새로운 기술의 좋은 점·아쉬운 점·흥미로운 점을 고르게 따집니다." },
+            { id: "reasoning", why: "실험 결과와 자료에서 결론의 근거를 찾게 합니다." },
+            { id: "procon", why: "유전자 편집·원자력처럼 찬반이 갈리는 기술을 양쪽에서 봅니다." },
+            { id: "hexadebate", why: "환경 문제의 원인과 결과를 카드로 이어 붙여 얽힘을 보여 줍니다." }
+        ],
+        scene: { unit: "과학과 사회 · 생명공학", tech: "PMI 토론", min: 10, flow: "'유전자 가위로 질병을 미리 고쳐야 한다'를 두고 좋은 점·아쉬운 점·흥미로운 점을 붙임쪽지 한 장씩 붙입니다. 흥미로운 점에서 나온 질문 하나로 다음 차시를 엽니다." },
+        sources: ["climate", "kdca", "kosis", "bigkinds"]
+    },
+    {
+        key: "info", label: "정보", icon: "fa-laptop-code",
+        hook: "인공지능 윤리, 개인정보, 알고리즘의 공정성은 정보 교과에서 바로 쓸 수 있는 논제입니다.",
+        fields: ["기술", "미디어"],
+        techs: [
+            { id: "ai-assisted-debate", why: "AI를 토론 상대로 쓰면서 AI의 답을 검증하는 법도 함께 배웁니다." },
+            { id: "procon", why: "알고리즘·개인정보 규제를 양쪽에서 따져 봅니다." },
+            { id: "pmi", why: "새 서비스를 설계하기 전에 좋은 점·아쉬운 점·흥미로운 점을 먼저 따집니다." }
+        ],
+        scene: { unit: "인공지능과 윤리", tech: "디지털/AI 보조 토론", min: 20, flow: "'AI가 만든 콘텐츠에는 반드시 표시를 달아야 한다'에 대한 내 주장을 쓰고, AI에게 반론 세 가지를 받아 그중 하나를 모둠이 함께 반박합니다." },
+        sources: ["iapc", "kpf", "bigkinds"]
+    },
+    {
+        key: "arts", label: "예술·체육", icon: "fa-palette",
+        hook: "작품 감상과 경기 규칙 모두 '무엇이 더 좋은가, 무엇이 공정한가'를 묻는 순간 토론이 됩니다.",
+        fields: ["문화", "건강", "성장", "감정"],
+        techs: [
+            { id: "trafficlight", why: "감상 뒤 '이것도 예술인가'를 카드로 들어 보게 합니다." },
+            { id: "worldcafe", why: "작품이나 경기 영상마다 테이블을 만들어 돌아가며 감상을 나눕니다." },
+            { id: "eraser-debate", why: "작품의 좋은 점 가운데 덜 중요한 것을 지워 가며 핵심을 찾습니다." }
+        ],
+        scene: { unit: "현대 미술 감상", tech: "신호등 토론", min: 10, flow: "'인공지능이 만든 것도 예술이라 할 수 있다'에 카드를 들게 한 뒤, 작품 두 점을 보여 주고 다시 들게 합니다. 바뀐 학생에게 무엇을 보고 바뀌었는지 묻습니다." },
+        sources: ["mcst", "kdca"]
+    },
+    {
+        key: "career", label: "진로·창체", icon: "fa-compass",
+        hook: "진로 선택과 학급 규칙은 학생 자신의 이야기라 가장 쉽게 입이 열립니다. 학급 회의를 토론 형식으로 바꿔 보세요.",
+        fields: ["진로", "성공", "성장", "자아", "노동", "공동체"],
+        techs: [
+            { id: "valuebar", why: "'좋아하는 일 vs 잘하는 일'처럼 진로 가치관을 눈금 위에 드러냅니다." },
+            { id: "doublepyramid", why: "학급 규칙을 정할 때 찬반 대표 안을 모아 합의안을 만듭니다." },
+            { id: "brainwriting", why: "학급 문제의 해결책을 말없이 적어 돌리며 모두의 생각을 모읍니다." }
+        ],
+        scene: { unit: "진로 탐색", tech: "가치수직선 토론", min: 10, flow: "'남들이 부러워하는 일보다 내가 의미를 느끼는 일을 골라야 한다'에 0~10으로 서게 하고, 비슷한 자리에 선 친구끼리 까닭을 나눈 뒤 전체에 한 줄씩 말하게 합니다." },
+        sources: ["kess", "tong", "kosis"]
+    }
+];
+
+// 학교급 선택 — 초등·중학·고등. 고르면 논제·문학이 그 수준부터 보인다.
+const SCHOOL_LEVELS = [
+    { key: "all", label: "전체" },
+    { key: "초등", label: "초등", topic: ["초등·중학"] },
+    { key: "중학", label: "중학", topic: ["초등·중학", "중학·고등"] },
+    { key: "고등", label: "고등", topic: ["중학·고등", "고등"] }
+];
+function getSchoolLevel() {
+    try { return localStorage.getItem("pbc-level") || "all"; } catch (e) { return "all"; }
+}
+function setSchoolLevel(v) {
+    try { localStorage.setItem("pbc-level", v); } catch (e) {}
+}
+// 논제가 지금 고른 학교급에 맞는가
+function topicFitsLevel(t, lv) {
+    const L = SCHOOL_LEVELS.find(x => x.key === (lv || getSchoolLevel()));
+    return !L || !L.topic || L.topic.includes(t.level);
+}
+
+// 학교급을 골라 두었으면 논제 목록도 그 수준부터 보여 준다
+function defaultTopicLevel() { return getSchoolLevel() === "all" ? "all" : "pref"; }
+
+// ── 기법별 수업 활용 안내 ─────────────────────────────────────────
+// quick   : 가장 짧게 쓸 때 걸리는 시간(분), 한 차시 안에서 넣기 좋은 자리, 짧게 하는 방법
+// observe : 활동 중에 교사가 눈여겨볼 점
+// rubric  : 간단한 평가 기준 (잘함 / 보통 / 노력)
+// setuk   : 교과세특 문장 예시 — 학생이 실제로 한 말과 행동으로 바꿔 써야 한다
+const TECH_CLASS_GUIDE = {
+    panorama: {
+        quick: { min: 20, slots: ["전개"], how: "한 장면만 골라 세 자리를 나누고, 1라운드 '입장 말하기'만 합니다. 서로 묻기와 함께 살 길 찾기는 다음 차시로 넘겨도 됩니다." },
+        observe: ["맡은 자리의 논리를 끝까지 지키며 말하는가", "다른 자리에 던지는 질문이 공격이 아니라 이해를 향하는가", "마지막에 여러 자리를 아우르는 해결책을 내놓는가"],
+        rubric: [
+            { k: "관점 취하기", hi: "맡은 자리의 사정을 작품 근거와 함께 설명함", mid: "맡은 자리의 입장은 말하나 근거가 막연함", lo: "자기 생각으로 돌아와 버림" },
+            { k: "질문", hi: "상대 자리의 속사정을 드러내는 질문을 던짐", mid: "사실을 확인하는 질문에 머묾", lo: "질문하지 않음" },
+            { k: "통합", hi: "세 자리를 모두 고려한 해결책을 제시함", mid: "한두 자리만 고려함", lo: "한 자리 편만 듦" }
+        ],
+        setuk: ["「완벽한 아이 팔아요」 파노라마 토론에서 '마트'의 자리를 맡아, 아이를 성능으로 진열하는 것이 개인의 악의가 아니라 경쟁을 부추기는 사회 구조에서 비롯된다고 논리를 세워 발표함.", "다른 자리에 선 친구에게 '당신이 바란 완벽함은 누구를 위한 것이었나요?'라고 물어 부모 역할의 숨은 불안을 끌어내고, 세 자리를 모두 살리는 해결책을 모둠에서 가장 먼저 제안함."]
+    },
+    valuebar: {
+        quick: { min: 10, slots: ["도입", "정리"], how: "논제 한 줄을 제시하고 자리에 서게 한 뒤, 양 끝과 가운데에서 한 명씩만 까닭을 듣고 다시 서게 합니다. 수업 첫 10분이나 마지막 10분에 넣기 좋습니다." },
+        observe: ["처음 자리를 고른 까닭을 분명히 말하는가", "다른 자리에 선 친구의 말을 끝까지 듣는가", "자리를 옮겼다면 무엇 때문인지 설명하는가"],
+        rubric: [
+            { k: "입장의 근거", hi: "자리를 고른 까닭을 구체적 근거로 설명함", mid: "까닭은 있으나 막연함", lo: "까닭을 말하지 못함" },
+            { k: "경청", hi: "다른 자리의 근거를 요약해 되짚음", mid: "듣기는 하나 반응이 없음", lo: "듣지 않고 자기 말만 함" },
+            { k: "생각의 변화", hi: "자리를 옮기거나 지킨 까닭을 성찰적으로 설명함", mid: "변화만 말하고 까닭이 약함", lo: "변화를 돌아보지 않음" }
+        ],
+        setuk: ["'다수를 위해 한 사람이 손해를 보는 것은 정당하다'를 두고 한 가치수직선 토론에서 처음 3에 섰다가, 친구가 든 의무론의 근거를 듣고 5로 자리를 옮기며 '결과만으로 옳고 그름을 판단하기 어렵다'고 까닭을 밝힘.", "양 끝에 선 친구들의 주장을 각각 한 문장으로 요약한 뒤 자신은 가운데에 선 까닭을 설명하여, 대립된 입장 사이의 조건을 찾는 모습을 보임."]
+    },
+    brainwriting: {
+        quick: { min: 15, slots: ["전개"], how: "3~4명이 종이를 한 바퀴만 돌리고, 한 칸에 한 줄씩만 씁니다. 마지막 3분에 모둠이 가장 좋은 생각 하나를 고릅니다." },
+        observe: ["앞사람의 생각을 읽고 이어서 발전시키는가", "비판 대신 보태는 말로 적는가", "말수가 적은 학생도 자기 생각을 적는가"],
+        rubric: [
+            { k: "아이디어", hi: "구체적이고 실행 가능한 해결책을 냄", mid: "막연한 해결책을 냄", lo: "칸을 비워 둠" },
+            { k: "이어 쓰기", hi: "앞 생각을 발전시켜 보탬", mid: "앞 생각과 따로 놂", lo: "앞 생각을 읽지 않음" },
+            { k: "선별", hi: "가장 좋은 생각을 고른 까닭을 설명함", mid: "고르기만 함", lo: "참여하지 않음" }
+        ],
+        setuk: ["브레인라이팅 활동에서 앞사람이 적은 '학교 안 쉼터 만들기'에 '쉬는 시간마다 조용한 교실 한 곳을 돌아가며 열자'는 실행 방법을 덧붙여 모둠의 최종 해결책으로 채택되게 함.", "말로 발표하는 데에는 소극적이었으나 글로 쓰는 활동에서는 모든 칸에 구체적인 제안을 적어, 모둠원들의 생각을 한 단계씩 발전시키는 역할을 함."]
+    },
+    procon: {
+        quick: { min: 20, slots: ["전개"], how: "짝끼리 찬성 2분 → 반대 2분 → 편을 바꿔 2분씩 → 마지막 5분에 '어느 쪽 근거가 더 무거웠나'를 적습니다." },
+        observe: ["편을 바꾼 뒤에도 그 편의 논리를 성실히 세우는가", "상대 주장을 정확히 짚어 반박하는가", "양쪽을 겪은 뒤 균형 잡힌 판단을 내리는가"],
+        rubric: [
+            { k: "논증", hi: "주장·이유·근거를 갖춰 말함", mid: "주장과 이유만 말함", lo: "주장만 되풀이함" },
+            { k: "관점 전환", hi: "반대편 논리도 설득력 있게 세움", mid: "반대편 논리가 약함", lo: "편을 바꾸지 못함" },
+            { k: "종합", hi: "양쪽 근거의 무게를 견주어 판단함", mid: "한쪽으로 결론만 냄", lo: "판단하지 않음" }
+        ],
+        setuk: ["'선거권 연령을 만 16세로 낮춰야 한다'는 프로콘 토론에서 찬성 편일 때는 청소년의 정치 참여 사례를, 반대 편으로 바꾼 뒤에는 교실의 정치화 우려를 근거로 들어 양쪽 논리를 모두 설득력 있게 세움.", "양쪽 입장을 모두 맡아 본 뒤 '찬성 쪽 근거가 더 무거웠지만 교육 제도가 먼저 갖춰져야 한다'는 조건부 결론을 내려, 쟁점을 균형 있게 판단하는 태도를 보임."]
+    },
+    hotseating: {
+        quick: { min: 15, slots: ["도입", "정리"], how: "교사가 먼저 인물이 되어 5분 동안 질문을 받고, 이어서 학생 한 명이 5분 앉습니다. 소설·역사 인물을 처음 소개할 때 좋습니다." },
+        observe: ["인물의 입장에서 일관되게 답하는가", "질문이 인물의 속마음을 끌어내는가", "답할 때 작품이나 사료의 근거를 쓰는가"],
+        rubric: [
+            { k: "질문", hi: "인물의 선택 뒤에 숨은 까닭을 묻는 질문을 함", mid: "줄거리를 확인하는 질문을 함", lo: "질문하지 않음" },
+            { k: "인물 되기", hi: "인물의 처지에서 근거를 들어 답함", mid: "인물의 처지는 살리나 근거가 약함", lo: "자기 생각으로 답함" },
+            { k: "공감", hi: "인물의 사정을 헤아린 성찰을 남김", mid: "느낌만 남김", lo: "성찰이 없음" }
+        ],
+        setuk: ["핫시팅 활동에서 「춘향전」의 월매 역할을 맡아 딸의 신분 상승을 바란 까닭을 당대 신분 질서와 연결하여 답해, 인물의 선택을 시대적 맥락에서 이해하는 모습을 보임.", "뜨거운 의자에 앉은 인물에게 '그때 다른 선택지는 없었나요?'라고 물어 인물의 딜레마를 드러냈으며, 활동 뒤 인물에게 쓰는 편지에서 선택의 무게에 공감하는 글을 씀."]
+    },
+    carousel: {
+        quick: { min: 15, slots: ["전개"], how: "짝을 세 번만 바꾸고, 한 번에 2분씩 말합니다. 마지막 3분에 '가장 좋았던 앞 짝의 한마디'를 적게 합니다." },
+        observe: ["짝이 바뀔수록 주장이 다듬어지는가", "앞 짝에게 들은 근거를 빌려 쓰는가", "새 짝의 말을 듣고 반박을 미리 준비하는가"],
+        rubric: [
+            { k: "주장의 발전", hi: "대화가 거듭될수록 근거를 보태 주장을 다듬음", mid: "같은 말을 되풀이함", lo: "주장이 흐트러짐" },
+            { k: "경청과 활용", hi: "앞 짝의 근거를 자기 말에 녹여 씀", mid: "들은 것을 활용하지 않음", lo: "듣지 않음" },
+            { k: "최종 정리", hi: "다듬어진 주장을 논리적으로 정리함", mid: "정리가 막연함", lo: "정리하지 않음" }
+        ],
+        setuk: ["회전목마 토론에서 세 명의 짝과 차례로 의견을 나누며 두 번째 짝에게 들은 통계 근거를 세 번째 대화에 활용하여, 처음보다 한층 정교해진 주장을 펼침.", "짝이 바뀔 때마다 앞에서 받은 반박을 미리 예상하고 답을 준비해, 대화를 거듭할수록 주장의 빈틈을 스스로 메워 가는 모습을 보임."]
+    },
+    socratic: {
+        quick: { min: 20, slots: ["전개"], how: "열린 질문 하나만 정해 20분 동안 원형으로 이야기합니다. 관찰 모둠 없이 교사가 대화 태도를 짧게 돌려주는 것으로 마칩니다." },
+        observe: ["앞사람의 말을 이어받아 말하는가", "책·자료의 구체적인 대목을 근거로 드는가", "다른 사람이 말할 기회를 배려하는가"],
+        rubric: [
+            { k: "근거", hi: "텍스트의 구체적인 대목을 짚어 말함", mid: "텍스트를 두루뭉술하게 언급함", lo: "텍스트 없이 말함" },
+            { k: "대화 잇기", hi: "앞사람의 말을 받아 질문하거나 발전시킴", mid: "앞 말과 따로 놂", lo: "참여하지 않음" },
+            { k: "배려", hi: "말이 적은 사람에게 기회를 넘김", mid: "자기 차례만 지킴", lo: "대화를 독점함" }
+        ],
+        setuk: ["소크라틱 세미나에서 '우리는 왜 약속을 지켜야 하는가'라는 질문을 두고, 작품 속 인물이 약속을 어긴 장면을 근거로 들며 앞 친구의 발언을 이어받아 논의를 깊게 함.", "발언이 적은 친구에게 '너는 그 장면을 어떻게 봤어?'라고 기회를 넘겨 대화의 폭을 넓혔으며, 세미나 뒤 성찰 글에서 자신의 생각이 바뀐 지점을 구체적으로 밝힘."]
+    },
+    worldcafe: {
+        quick: { min: 25, slots: ["전개"], how: "테이블을 2~3개만 두고, 손님은 한 번만 이동합니다. 자리 주인은 새 손님에게 1분 안에 앞 이야기를 들려줍니다." },
+        observe: ["자리 주인이 앞 이야기를 정확히 전달하는가", "손님이 기존 생각 위에 새 생각을 보태는가", "종이에 생각이 자유롭게 쌓이는가"],
+        rubric: [
+            { k: "기여", hi: "새로운 관점을 보태 논의를 넓힘", mid: "기존 생각에 동의만 함", lo: "보태지 않음" },
+            { k: "전달", hi: "앞 이야기를 요약해 정확히 전함", mid: "일부만 전함", lo: "전하지 못함" },
+            { k: "종합", hi: "여러 테이블의 생각을 엮어 정리함", mid: "한 테이블 생각만 정리함", lo: "정리하지 않음" }
+        ],
+        setuk: ["월드카페 토론에서 자리 주인을 맡아 앞선 손님들의 논의를 1분 안에 요약해 전달하고, 새 손님의 의견을 기존 논의와 연결해 종이 위에 정리하는 역할을 해냄.", "세 테이블을 옮겨 다니며 들은 생각을 엮어 '개발과 보전은 누가 비용을 치르느냐의 문제'라는 새로운 관점으로 정리해 발표함."]
+    },
+    argumentgame: {
+        quick: { min: 10, slots: ["도입"], how: "게임판 없이 짝끼리 '나는 ~라고 생각해 / 왜냐하면 ~ / 예를 들면 ~' 세 마디 말하기를 번갈아 세 판 합니다." },
+        observe: ["주장·이유·근거를 빠짐없이 갖추는가", "근거가 주장과 실제로 이어지는가", "친구의 말에서 빠진 마디를 짚어 주는가"],
+        rubric: [
+            { k: "구조", hi: "세 마디를 모두 갖춰 말함", mid: "두 마디만 갖춤", lo: "주장만 말함" },
+            { k: "근거의 적절성", hi: "구체적이고 주장과 잘 이어진 근거를 듦", mid: "근거가 막연함", lo: "근거가 주장과 어긋남" },
+            { k: "동료 피드백", hi: "친구의 말에서 빠진 부분을 짚어 줌", mid: "듣기만 함", lo: "참여하지 않음" }
+        ],
+        setuk: ["논증 게임에서 '학교 급식에 채식 선택권을 두어야 한다'를 주장하며 이유와 함께 실제 급식 잔반 통계를 근거로 들어, 세 마디 논증 구조를 정확히 갖춰 말함.", "짝의 발표에서 근거가 빠진 것을 짚어 '예를 들면 어떤 경우야?'라고 물어 논증을 완성하도록 도와, 동료의 말하기를 함께 다듬는 모습을 보임."]
+    },
+    trafficlight: {
+        quick: { min: 5, slots: ["도입", "정리"], how: "카드 들기 → 두 명에게 까닭 듣기 → 다시 들기, 5분이면 됩니다. 수업 첫머리에 생각을 열거나 끝에 배운 것을 확인할 때 씁니다." },
+        observe: ["카드를 고른 까닭을 말할 수 있는가", "색을 바꾼 학생이 무엇 때문인지 설명하는가", "노란 카드를 든 학생이 양쪽에 질문하는가"],
+        rubric: [
+            { k: "입장 표명", hi: "색을 고른 까닭을 근거와 함께 말함", mid: "까닭이 막연함", lo: "까닭을 말하지 못함" },
+            { k: "생각의 변화", hi: "색을 바꾼 까닭을 구체적으로 설명함", mid: "바꿨으나 까닭이 약함", lo: "변화를 설명하지 않음" },
+            { k: "질문", hi: "다른 색의 친구에게 궁금한 점을 물음", mid: "질문이 막연함", lo: "질문하지 않음" }
+        ],
+        setuk: ["신호등 토론에서 처음 초록 카드를 들었다가, 극단값이 있는 자료를 본 뒤 노란 카드로 바꾸며 '평균만으로는 자료 전체를 대표하기 어렵다'고 까닭을 밝힘.", "노란 카드를 든 채 찬성과 반대 쪽에 각각 질문을 던져 두 입장의 조건을 드러냈으며, 활동 뒤 자신의 판단 기준을 한 문장으로 정리함."]
+    },
+    pmi: {
+        quick: { min: 10, slots: ["정리"], how: "좋은 점·아쉬운 점·흥미로운 점을 붙임쪽지 한 장씩 붙이고, 흥미로운 점 하나를 골라 다음 차시의 질문으로 삼습니다." },
+        observe: ["세 칸을 고르게 채우는가", "흥미로운 점(I)에서 새로운 질문을 끌어내는가", "아쉬운 점을 줄일 방법까지 생각하는가"],
+        rubric: [
+            { k: "균형", hi: "좋은 점과 아쉬운 점을 고르게 찾음", mid: "한쪽에 치우침", lo: "한 칸만 채움" },
+            { k: "창의적 관점", hi: "흥미로운 점에서 새로운 질문이나 가능성을 찾음", mid: "흥미로운 점이 막연함", lo: "흥미로운 점을 찾지 못함" },
+            { k: "대안", hi: "아쉬운 점을 줄일 구체적 방법을 제시함", mid: "방법이 막연함", lo: "대안이 없음" }
+        ],
+        setuk: ["유전자 편집 기술을 PMI로 분석하며 질병 치료의 가능성과 함께 경제적 격차에 따른 접근성 문제를 아쉬운 점으로 짚고, '보험 적용 범위'라는 흥미로운 쟁점을 찾아냄.", "PMI 활동에서 좋은 점과 아쉬운 점을 고르게 제시한 뒤 아쉬운 점을 줄일 구체적 방안까지 제안하여, 새로운 기술을 다각도로 판단하는 모습을 보임."]
+    },
+    "2stay2stray": {
+        quick: { min: 20, slots: ["전개"], how: "모둠 정리 5분 → 다른 모둠 한 곳만 방문 8분 → 돌아와 보태기 7분으로 줄입니다." },
+        observe: ["남은 사람이 우리 모둠 생각을 정확히 설명하는가", "다녀온 사람이 좋은 생각을 골라 적어 오는가", "돌아와서 우리 결과물을 실제로 고치는가"],
+        rubric: [
+            { k: "설명", hi: "모둠의 결론과 근거를 명확히 설명함", mid: "결론만 설명함", lo: "설명하지 못함" },
+            { k: "수집", hi: "다른 모둠의 핵심 근거를 골라 기록함", mid: "기록이 막연함", lo: "기록하지 않음" },
+            { k: "보완", hi: "모은 생각으로 결과물을 발전시킴", mid: "일부만 반영함", lo: "반영하지 않음" }
+        ],
+        setuk: ["둘 가고 둘 남기 활동에서 다른 모둠을 방문해 '비용을 누가 부담하는가'라는 새로운 쟁점을 기록해 와, 모둠의 해결책에 재원 마련 방안을 보태도록 이끎.", "모둠에 남아 방문객에게 우리 모둠의 결론을 근거와 함께 설명하고, 방문객의 질문을 반영해 결론의 약한 부분을 보완함."]
+    },
+    fan: {
+        quick: { min: 10, slots: ["전개", "정리"], how: "모둠 4명이 한 바퀴만 돌고, 한 사람당 요약 15초 + 내 생각 30초로 끊습니다." },
+        observe: ["앞사람의 말을 정확히 요약하는가", "요약 뒤에 자기 생각을 새로 보태는가", "바퀴가 돌수록 모둠의 생각이 모이는가"],
+        rubric: [
+            { k: "요약", hi: "앞사람의 핵심을 정확히 요약함", mid: "일부만 요약함", lo: "요약하지 못함" },
+            { k: "보태기", hi: "앞 생각을 발전시키는 새 생각을 보탬", mid: "앞 생각을 되풀이함", lo: "보태지 않음" },
+            { k: "경청 태도", hi: "끝까지 듣고 말함", mid: "듣다가 딴생각을 함", lo: "듣지 않음" }
+        ],
+        setuk: ["선풍기 토론에서 앞사람의 주장을 '결국 규칙보다 사정을 먼저 봐야 한다는 말'로 정확히 요약한 뒤, 예외를 두는 기준을 새로 제안하여 모둠의 논의를 한 단계 발전시킴.", "앞사람의 발언을 요약해야 말할 수 있는 규칙 속에서 매번 핵심을 정확히 짚어 요약하며, 다른 사람의 말을 끝까지 듣는 태도를 보임."]
+    },
+    reasoning: {
+        quick: { min: 15, slots: ["도입", "전개"], how: "이해하기 어려운 장면 하나를 골라, 까닭 세 가지와 그 증거를 책(자료)에서 찾게 합니다." },
+        observe: ["추측이 아니라 텍스트의 증거를 드는가", "그림·표·장면 같은 비언어 단서도 활용하는가", "여러 증거를 이어 하나의 설명을 만드는가"],
+        rubric: [
+            { k: "증거", hi: "텍스트의 구체적인 대목을 증거로 듦", mid: "증거가 막연함", lo: "추측만 함" },
+            { k: "추론", hi: "여러 증거를 이어 논리적으로 설명함", mid: "증거를 나열만 함", lo: "설명하지 못함" },
+            { k: "발표", hi: "쪽수나 대목을 짚으며 설득력 있게 발표함", mid: "발표가 막연함", lo: "발표하지 않음" }
+        ],
+        setuk: ["이유찾기 토론에서 인물이 떠나기로 한 까닭을 찾으며 대사와 배경 묘사 두 곳을 증거로 들어, 인물의 선택이 앞선 사건에서 비롯되었음을 논리적으로 설명함.", "그림 속 인물의 시선 방향과 색의 변화를 단서로 활용해 작가의 의도를 해석하는 등, 글과 그림을 함께 읽는 모습을 보임."]
+    },
+    havruta: {
+        quick: { min: 10, slots: ["도입"], how: "짝끼리 질문 하나씩을 주고받고, 답을 들은 사람이 '왜 그렇게 생각해?'로 두 번만 되묻게 합니다." },
+        observe: ["사실 확인을 넘는 질문을 만드는가", "답을 듣고 다시 되묻는가", "짝과 함께 책을 다시 찾아보는가"],
+        rubric: [
+            { k: "질문의 깊이", hi: "가치나 까닭을 묻는 질문을 만듦", mid: "사실을 확인하는 질문을 만듦", lo: "질문을 만들지 못함" },
+            { k: "되묻기", hi: "답을 듣고 까닭을 다시 물어 대화를 이어 감", mid: "한 번 묻고 끝냄", lo: "되묻지 않음" },
+            { k: "근거", hi: "답할 때 책의 대목을 근거로 듦", mid: "근거가 막연함", lo: "근거 없이 답함" }
+        ],
+        setuk: ["하브루타 활동에서 '쓸모없는 존재가 세상에 있을까'라는 질문을 스스로 만들고, 짝의 답에 두 번 되물으며 쓸모를 판단하는 기준 자체를 묻는 데까지 논의를 끌어감.", "짝과 질문을 주고받다 막히자 교사를 부르지 않고 함께 책을 다시 읽으며 실마리를 찾아, 스스로 답을 찾아가는 태도를 보임."]
+    },
+    "eraser-debate": {
+        quick: { min: 15, slots: ["정리"], how: "칠판에 낱말을 모은 뒤 한 모둠에 한 번씩만 지울 기회를 줍니다. 남은 낱말 두세 개로 수업을 정리합니다." },
+        observe: ["지울 때 까닭을 분명히 말하는가", "지워지지 않게 지키는 논리를 세우는가", "남은 것이 왜 핵심인지 설명하는가"],
+        rubric: [
+            { k: "판단 근거", hi: "지우는 까닭을 논리적으로 설명함", mid: "까닭이 막연함", lo: "까닭 없이 지우려 함" },
+            { k: "방어", hi: "지킬 까닭을 근거와 함께 말함", mid: "방어가 약함", lo: "방어하지 않음" },
+            { k: "핵심 파악", hi: "남은 낱말이 핵심인 까닭을 설명함", mid: "결과만 받아들임", lo: "참여하지 않음" }
+        ],
+        setuk: ["지우개 토론에서 '편리함'이 '안전'에 포함되는 하위 가치라는 논리로 지우기를 제안하여, 여러 가치의 관계를 구조적으로 파악하는 모습을 보임.", "모둠이 낸 '공정'이 지워지지 않도록 다른 가치들이 모두 공정을 전제로 한다는 근거를 들어 끝까지 지켜 냄."]
+    },
+    "ai-assisted-debate": {
+        quick: { min: 20, slots: ["전개"], how: "내 주장을 한 줄로 쓰고, AI에게 반론 세 가지를 받아 그중 하나만 모둠이 함께 반박합니다." },
+        observe: ["AI의 답을 그대로 믿지 않고 따져 보는가", "AI의 반론 가운데 타당한 것과 아닌 것을 가려내는가", "재반박에 AI가 아닌 자기 근거를 쓰는가"],
+        rubric: [
+            { k: "비판적 검토", hi: "AI 답의 오류나 치우침을 찾아 지적함", mid: "AI 답을 일부만 검토함", lo: "AI 답을 그대로 옮김" },
+            { k: "재반박", hi: "자기 근거로 반론을 논리적으로 반박함", mid: "반박이 막연함", lo: "반박하지 못함" },
+            { k: "도구 활용", hi: "목적에 맞게 질문을 다듬어 AI를 활용함", mid: "질문이 막연함", lo: "활용하지 못함" }
+        ],
+        setuk: ["AI 보조 토론에서 AI가 제시한 반론 가운데 통계 수치가 출처 없이 제시된 점을 찾아내 직접 공식 통계로 확인하고, 이를 근거로 재반박함.", "AI에게 받은 반론 세 가지를 타당성에 따라 분류한 뒤, 가장 강한 반론에 대해 모둠원과 함께 자기 경험과 자료를 근거로 반박문을 작성함."]
+    },
+    doublepyramid: {
+        quick: { min: 25, slots: ["전개"], how: "혼자 쓰기 3분 → 짝과 고르기 5분 → 넷이 다듬기 7분 → 두 대표 안 견주기 10분으로 줄입니다." },
+        observe: ["짝과 견줄 때 더 나은 안을 근거로 고르는가", "넷이 모일 때 안을 실제로 발전시키는가", "찬반 대표 안을 아우르는 새 안을 내는가"],
+        rubric: [
+            { k: "안의 질", hi: "구체적이고 근거가 분명한 안을 냄", mid: "막연한 안을 냄", lo: "안을 내지 못함" },
+            { k: "수렴", hi: "여러 안의 장점을 합쳐 발전시킴", mid: "하나를 고르기만 함", lo: "참여하지 않음" },
+            { k: "통합", hi: "찬반 양쪽을 아우르는 절충안을 제시함", mid: "한쪽 안에 가까움", lo: "통합하지 못함" }
+        ],
+        setuk: ["쌍 피라미드 토론에서 짝의 안과 자신의 안을 견주어 장점을 합친 수정안을 만들고, 최종 단계에서 찬성과 반대 대표 안의 공통 조건을 찾아 절충안을 제안함.", "피라미드 단계를 거칠 때마다 앞 단계에서 나온 반대 의견을 정리해 두었다가 최종 합의안에 반영하여, 소수 의견을 존중하는 합의 과정을 이끎."]
+    },
+    angeldevil: {
+        quick: { min: 10, slots: ["도입", "정리"], how: "교사가 가운데 인물이 되고, 학생 두 명이 천사와 악마로 한 번씩만 속삭입니다. 나머지는 인물이 무엇을 고를지 예측합니다." },
+        observe: ["천사와 악마 모두 설득력 있는 까닭을 드는가", "비난 대신 설득하는가", "가운데 인물이 선택의 까닭을 설명하는가"],
+        rubric: [
+            { k: "설득", hi: "맡은 마음의 논리를 설득력 있게 펼침", mid: "까닭이 약함", lo: "설득하지 못함" },
+            { k: "이해", hi: "양쪽 마음이 모두 자연스러운 것임을 이해함", mid: "한쪽만 옳다고 봄", lo: "이해하지 못함" },
+            { k: "판단", hi: "양쪽을 견주어 선택하고 까닭을 설명함", mid: "선택만 함", lo: "선택하지 못함" }
+        ],
+        setuk: ["두 마음 토론에서 악마 역할을 맡아 인물의 솔직한 욕구를 현실적인 근거로 설득력 있게 대변하면서도, 활동 뒤 성찰에서 욕구 자체가 잘못은 아니라는 점을 짚어 냄.", "가운데 인물 역할을 맡아 천사와 악마의 말을 모두 들은 뒤 두 마음의 근거를 견주어 선택하고, 그 선택의 대가까지 설명하는 모습을 보임."]
+    },
+    hexadebate: {
+        quick: { min: 20, slots: ["정리"], how: "단원의 핵심 낱말 6~8개만 카드로 주고, 모둠이 이어 붙이며 까닭을 말하게 합니다. 단원 정리 활동으로 좋습니다." },
+        observe: ["카드를 이을 때 까닭을 분명히 말하는가", "원인과 결과의 방향을 구분하는가", "가장 많이 이어진 핵심 카드를 찾아내는가"],
+        rubric: [
+            { k: "연결의 근거", hi: "두 개념이 이어지는 까닭을 정확히 설명함", mid: "까닭이 막연함", lo: "까닭 없이 붙임" },
+            { k: "구조 파악", hi: "원인·결과·조건을 구분해 연결함", mid: "관계를 뭉뚱그림", lo: "관계를 보지 못함" },
+            { k: "핵심 찾기", hi: "중심 개념을 찾아 쟁점으로 발전시킴", mid: "중심 개념만 찾음", lo: "찾지 못함" }
+        ],
+        setuk: ["헥사 토론에서 '개발'과 '환경 파괴' 카드 사이에 '규제의 공백'을 조건으로 끼워 넣어, 두 개념이 곧바로 이어지는 것이 아니라 제도에 따라 달라진다고 설명함.", "단원의 핵심 개념을 육각형 카드로 연결하며 가장 많이 이어진 개념을 쟁점으로 찾아내, 단원 전체의 구조를 파악하는 모습을 보임."]
+    }
+};
+
+// ── 학교급 고르기 칩 (교과별 토론·논제 목록이 함께 쓴다) ──────────────
+function levelChipsHTML() {
+    const cur = getSchoolLevel();
+    return `<div class="level-pref" role="group" aria-label="우리 학교급">
+        <span class="level-pref-label"><i class="fa-solid fa-school"></i> 우리 학교급</span>
+        ${SCHOOL_LEVELS.map(l => `<button type="button" class="level-chip ${cur === l.key ? "active" : ""}" data-level-pref="${l.key}" aria-pressed="${cur === l.key}">${l.label}</button>`).join("")}
+    </div>`;
+}
+function bindLevelChips(root, onChange) {
+    root.querySelectorAll("[data-level-pref]").forEach(b => b.addEventListener("click", () => {
+        setSchoolLevel(b.dataset.levelPref);
+        onChange();
+        if (typeof window.__topicLevelChanged === "function") window.__topicLevelChanged();
+    }));
+}
+
+// ── 교과별 토론 ───────────────────────────────────────────────────
+function subjectTopics(sub, lv) {
+    const base = sub.math
+        ? debateTopicsDB.filter(t => t.type === "fact" && TOPIC_STATS[t.claim])
+        : debateTopicsDB.filter(t => (sub.fields || []).includes(t.field));
+    const fit = base.filter(t => topicFitsLevel(t, lv));
+    const order = { "고등": 0, "중학·고등": 1, "초등·중학": 2 };
+    return lv === "고등" ? fit.sort((a, b) => order[a.level] - order[b.level]) : fit;
+}
+
+let subjectKey = null;
+function renderSubjectSection() {
+    const box = document.getElementById("subject-panel");
+    if (!box || typeof SUBJECT_GUIDE === "undefined") return;
+    if (!subjectKey) {
+        let saved = null;
+        try { saved = localStorage.getItem("pbc-subject"); } catch (e) {}
+        subjectKey = (SUBJECT_GUIDE.find(s => s.key === saved) || SUBJECT_GUIDE[0]).key;
+    }
+    const sub = SUBJECT_GUIDE.find(s => s.key === subjectKey) || SUBJECT_GUIDE[0];
+    const lv = getSchoolLevel();
+    const all = subjectTopics(sub, lv);
+    const shown = all.slice(0, 8);
+    const scenes = sub.scenes || (sub.scene ? [sub.scene] : []);
+
+    const techCards = sub.techs.map(x => {
+        const t = techniques.find(tt => tt.id === x.id);
+        if (!t) return "";
+        const q = TECH_CLASS_GUIDE[x.id] && TECH_CLASS_GUIDE[x.id].quick;
+        return `<button type="button" class="subject-tech" onclick="openModal('tech','${t.id}')">
+                <span class="subject-tech-icon"><i class="fa-solid ${t.icon}"></i></span>
+                <span class="subject-tech-body"><strong>${t.name}</strong><span>${x.why}</span></span>
+                ${q ? `<span class="quick-badge"><i class="fa-regular fa-clock"></i> ${q.min}분부터</span>` : ""}
+            </button>`;
+    }).join("");
+
+    const sceneCards = scenes.map(sc => `
+            <div class="subject-scene">
+                <span class="subject-scene-tag"><i class="fa-regular fa-clock"></i> ${sc.min}분</span>
+                <h5>${sc.unit}<small> · ${sc.tech}</small></h5>
+                <p>${sc.flow}</p>
+            </div>`).join("");
+
+    const topicRows = shown.map(t => {
+        const idx = debateTopicsDB.indexOf(t);
+        const meta = TOPIC_TYPE_INFO[t.type] || {};
+        return `<li class="subject-topic">
+                <span class="topic-chip topic-chip-${t.type}">${meta.label || ""}</span>
+                <span class="subject-topic-claim">${t.claim}</span>
+                <span class="subject-topic-level">${t.level}</span>
+                <button type="button" class="subject-topic-ws" onclick="openTopicWorksheet(${idx})"><i class="fa-solid fa-file-pen"></i> 학습지</button>
+            </li>`;
+    }).join("");
+
+    const srcLinks = (sub.sources || []).map(k => STAT_SOURCES[k]).filter(Boolean)
+        .map(s => `<a class="subject-src" href="${s.url}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${s.name}</a>`).join("");
+
+    box.innerHTML = `
+        ${levelChipsHTML()}
+        <div class="subject-tabs" role="tablist" aria-label="교과 고르기">
+            ${SUBJECT_GUIDE.map(s => `<button type="button" role="tab" class="subject-tab ${s.key === sub.key ? "active" : ""}" data-subject="${s.key}" aria-selected="${s.key === sub.key}"><i class="fa-solid ${s.icon}"></i> ${s.label}</button>`).join("")}
+        </div>
+        <article class="subject-card">
+            <div class="subject-head">
+                <h3><i class="fa-solid ${sub.icon}"></i> ${sub.label} 수업에서 토론하기</h3>
+                <p>${sub.hook}</p>
+            </div>
+
+            <h4 class="subject-sub"><i class="fa-regular fa-clock"></i> 이렇게 짧게 넣어 보세요</h4>
+            <div class="subject-scenes">${sceneCards}</div>
+
+            ${sub.frames ? `
+            <div class="subject-frames">
+                <h4 class="subject-sub"><i class="fa-regular fa-comment-dots"></i> ${sub.frames.title}</h4>
+                <ul>${sub.frames.items.map(f => `<li>${f}</li>`).join("")}</ul>
+                <p class="subject-frames-note">칠판에 붙이거나 학생 책상 위에 올려 두면, 말문이 막힐 때 바로 꺼내 씁니다.</p>
+            </div>` : ""}
+
+            <h4 class="subject-sub"><i class="fa-solid fa-comments"></i> 이 교과에 잘 맞는 기법</h4>
+            <div class="subject-techs">${techCards}</div>
+
+            ${(sub.tips || []).length ? `<ul class="subject-tips">${sub.tips.map(t => `<li><i class="fa-solid fa-lightbulb"></i> ${t}</li>`).join("")}</ul>` : ""}
+
+            <h4 class="subject-sub"><i class="fa-solid fa-scale-balanced"></i> 바로 쓸 수 있는 논제 <small>${all.length}개 가운데 ${shown.length}개 · 누르면 학습지가 만들어집니다</small></h4>
+            <ul class="subject-topics">${topicRows || `<li class="subject-empty">이 학교급에 맞는 논제가 없습니다. 학교급을 '전체'로 바꿔 보세요.</li>`}</ul>
+
+            ${srcLinks ? `<h4 class="subject-sub"><i class="fa-solid fa-chart-column"></i> 근거 자료 찾기</h4><div class="subject-srcs">${srcLinks}</div>` : ""}
+            ${sub.literature ? `<button type="button" class="btn btn-secondary subject-lit-btn" onclick="openLiteraturePanel()"><i class="fa-solid fa-feather"></i> 교과서 문학 ${literatureWorks.length}편에서 논제 찾기</button>` : ""}
+        </article>`;
+
+    box.querySelectorAll("[data-subject]").forEach(b => b.addEventListener("click", () => {
+        subjectKey = b.dataset.subject;
+        try { localStorage.setItem("pbc-subject", subjectKey); } catch (e) {}
+        renderSubjectSection();
+    }));
+    bindLevelChips(box, renderSubjectSection);
+}
+
+window.openLiteraturePanel = function () {
+    const link = document.querySelector('.nav-links a[href="#topic-section"]');
+    if (link) link.click();
+    const tab = document.querySelector('.topic-tab-btn[data-topic-tab="lit"]');
+    if (tab) tab.click();
+};
+
+// 짧게 쓰는 기법만 모아 보기 (연수·교과 화면에서 바로 건너온다)
+window.openQuickTechniques = function () {
+    const link = document.querySelector('.nav-links a[href="#techniques-section"]');
+    if (link) link.click();
+    const btn = document.querySelector('.tech-filter-btn[data-filter="quick"]');
+    if (btn) btn.click();
+};
+
+// ── 기법 설명 창에 붙는 '짧게 쓰는 법 · 관찰과 기록' ──────────────────
+function techClassGuideHTML(techId) {
+    const g = (typeof TECH_CLASS_GUIDE !== "undefined") && TECH_CLASS_GUIDE[techId];
+    if (!g) return "";
+    return `
+        <div class="modal-section tech-quick">
+            <h4><i class="fa-regular fa-clock"></i> 짧게 쓰는 법 <span class="quick-badge">${g.quick.min}분부터</span></h4>
+            <p class="tech-quick-slots">한 차시 안에서 넣기 좋은 자리 · ${g.quick.slots.map(s => `<span>${s}</span>`).join("")}</p>
+            <p>${g.quick.how}</p>
+        </div>
+        <div class="modal-section tech-assess">
+            <h4><i class="fa-solid fa-clipboard-check"></i> 관찰과 평가</h4>
+            <p class="tech-assess-lead">활동 중에 이런 모습을 눈여겨보세요.</p>
+            <ul class="tech-observe">${g.observe.map(o => `<li>${o}</li>`).join("")}</ul>
+            <div class="tech-rubric-wrap">
+                <table class="tech-rubric">
+                    <thead><tr><th>기준</th><th>잘함</th><th>보통</th><th>노력 필요</th></tr></thead>
+                    <tbody>${g.rubric.map(r => `<tr><th>${r.k}</th><td>${r.hi}</td><td>${r.mid}</td><td>${r.lo}</td></tr>`).join("")}</tbody>
+                </table>
+            </div>
+        </div>
+        <div class="modal-section tech-setuk">
+            <h4><i class="fa-solid fa-pen-nib"></i> 교과세특 문장 예시</h4>
+            ${g.setuk.map(s => `<blockquote>${s}</blockquote>`).join("")}
+            <p class="tech-setuk-note"><i class="fa-solid fa-circle-info"></i> 예시 문장을 그대로 옮기면 모든 학생의 기록이 같아집니다. 학생이 실제로 한 말과 행동, 다룬 논제로 바꿔 쓰세요.</p>
+        </div>`;
+}
+
+// ── 연수 안내 ─────────────────────────────────────────────────────
+// 제목·시간은 여기서 고치면 화면과 인쇄물에 함께 반영된다.
+const TRAINING = {
+    title: "함께 만드는 수업 속 토론",
+    tagline: "가볍게 시작해 깊이 남는 — 교과를 넘어 함께 짓는 토론 수업",
+    subtitle: "고등학교 전교사 연수 · 90분",
+    url: "https://woorimalsam-lab.github.io/Picture-BC/#subject-section",
+    flow: [
+        { min: 10, title: "여는 체험 · 신호등 토론", desc: "'수업 시간에 토론할 여유는 없다'에 초록·빨강·노랑 카드를 들어 봅니다. 연수가 끝날 때 한 번 더 듭니다.", techs: ["trafficlight"] },
+        { min: 10, title: "토론은 행사가 아니라 10분짜리 활동", desc: "도입이나 정리에 끼우는 짧은 토론이면 진도를 해치지 않습니다. 사실·가치·정책 논제의 차이를 짧게 살핍니다." },
+        { min: 30, title: "짧은 기법 세 가지 맛보기", desc: "선생님들이 학생이 되어 가치수직선 → PMI → 선풍기 토론을 10분씩 직접 해 봅니다.", techs: ["valuebar", "pmi", "fan"] },
+        { min: 25, title: "같은 교과끼리 함께 설계하기", desc: "같은 교과 선생님끼리 모둠을 지어, QR을 찍어 '교과별 토론'에 들어갑니다. 논제 하나를 골라 학습지를 즉석에서 만들고, 내일 쓸 10분짜리 수업 장면을 함께 짭니다." },
+        { min: 10, title: "함께 만든 장면 나누기", desc: "모둠마다 설계한 장면을 1분씩 소개합니다. 다른 교과의 장면에서 빌려 올 것을 하나씩 적고, 기법별 관찰 기준과 세특 예시로 평가까지 이어 봅니다." },
+        { min: 5, title: "닫는 체험 · 다시 신호등", desc: "처음 논제에 카드를 다시 듭니다. 색이 바뀐 분께 무엇이 생각을 바꿨는지 여쭙습니다.", techs: ["trafficlight"] }
+    ]
+};
+
+function loadQrLib() {
+    if (window.QRCode) return Promise.resolve(true);
+    return new Promise(res => {
+        const sc = document.createElement("script");
+        sc.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js";
+        sc.onload = () => res(!!window.QRCode);
+        sc.onerror = () => res(false);
+        document.head.appendChild(sc);
+    });
+}
+
+function renderTrainingSection() {
+    const box = document.getElementById("training-panel");
+    if (!box) return;
+    const total = TRAINING.flow.reduce((n, f) => n + f.min, 0);
+    const techLink = (id) => {
+        const t = techniques.find(x => x.id === id);
+        return t ? `<button type="button" class="training-tech" onclick="openModal('tech','${id}')"><i class="fa-solid ${t.icon}"></i> ${t.name}</button>` : "";
+    };
+    box.innerHTML = `
+        <div class="training-sheet">
+            <div class="training-head">
+                <span class="training-sub">${TRAINING.subtitle}</span>
+                <h3>${TRAINING.title}</h3>
+                ${TRAINING.tagline ? `<p class="training-tagline">${TRAINING.tagline}</p>` : ""}
+            </div>
+            <div class="training-body">
+                <ol class="training-flow">
+                    ${TRAINING.flow.map(f => `
+                    <li>
+                        <span class="training-min">${f.min}분</span>
+                        <div>
+                            <strong>${f.title}</strong>
+                            <p>${f.desc}</p>
+                            ${(f.techs || []).length ? `<div class="training-techs no-print">${f.techs.map(techLink).join("")}</div>` : ""}
+                        </div>
+                    </li>`).join("")}
+                </ol>
+                <aside class="training-qr-box">
+                    <div id="training-qr" class="training-qr" aria-label="사이트 주소 QR 코드"></div>
+                    <p class="training-qr-cap">휴대폰 카메라로 찍으면<br><strong>교과별 토론</strong>으로 바로 들어갑니다</p>
+                    <p class="training-url">${TRAINING.url.replace(/^https:\/\//, "").replace(/#.*$/, "")}</p>
+                </aside>
+            </div>
+            <div class="training-memo">
+                <h4><i class="fa-solid fa-people-group"></i> 우리 모둠이 함께 만든 10분 토론 장면</h4>
+                <table>
+                    <tr><th>교과 · 단원</th><td></td><th>논제</th><td></td></tr>
+                    <tr><th>기법</th><td></td><th>넣을 자리</th><td>도입 · 전개 · 정리</td></tr>
+                    <tr><th>10분 흐름</th><td colspan="3" class="training-memo-tall"></td></tr>
+                    <tr><th>다른 교과에서<br>빌려 올 것</th><td colspan="3" class="training-memo-mid"></td></tr>
+                </table>
+            </div>
+            <p class="training-total">모두 ${total}분 · 시간에 맞춰 '짧은 기법 맛보기'의 가짓수를 줄이거나 늘리세요.</p>
+        </div>
+        <div class="training-actions no-print">
+            <button type="button" class="btn btn-primary" id="training-print"><i class="fa-solid fa-print"></i> 연수 안내 한 장 인쇄</button>
+            <button type="button" class="btn btn-secondary" onclick="document.querySelector('.nav-links a[href=\\'#subject-section\\']').click()"><i class="fa-solid fa-chalkboard-user"></i> 교과별 토론 열기</button>
+            <button type="button" class="btn btn-secondary" onclick="openQuickTechniques()"><i class="fa-regular fa-clock"></i> 10분이면 되는 기법</button>
+        </div>`;
+
+    const qrBox = document.getElementById("training-qr");
+    loadQrLib().then(ok => {
+        if (!qrBox) return;
+        if (!ok) { qrBox.innerHTML = `<p class="training-qr-fallback">QR을 불러오지 못했습니다.<br>아래 주소로 들어오세요.</p>`; return; }
+        qrBox.innerHTML = "";
+        new QRCode(qrBox, { text: TRAINING.url, width: 168, height: 168, correctLevel: QRCode.CorrectLevel.M });
+    });
+    const pb = document.getElementById("training-print");
+    if (pb) pb.addEventListener("click", () => {
+        document.body.classList.add("print-training");
+        const done = () => { document.body.classList.remove("print-training"); window.removeEventListener("afterprint", done); };
+        window.addEventListener("afterprint", done);
+        window.print();
+        setTimeout(done, 1500);
+    });
+}
 
 // 스크롤에 따른 헤더 밀도 변화 (탭 전환과 충돌하지 않는 범위로 제한)
 function initPolish() {
@@ -3880,7 +4505,7 @@ function initMobileNav() {
 
     // 데스크톱 크기로 돌아가면 강제로 닫기(스크롤 잠금 해제)
     window.addEventListener("resize", () => {
-        if (window.innerWidth > 1024 && nav.classList.contains("open")) setOpen(false);
+        if (window.innerWidth > 1240 && nav.classList.contains("open")) setOpen(false);
     });
 }
 
@@ -4094,7 +4719,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "4.9.0";
+    return "5.0.5";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
@@ -4197,7 +4822,7 @@ function renderTechniques() {
         let durationText = tech.time ? tech.time.split(" ")[0] : "40분";
         
         container.innerHTML += `
-            <div class="technique-card" onclick="openModal('tech', '${tech.id}')" data-difficulty="${difficulty}" data-tags="${(tech.tags || []).join(",")}" data-name="${tech.name}" data-concept="${tech.concept}">
+            <div class="technique-card" onclick="openModal('tech', '${tech.id}')" data-quick="${(TECH_CLASS_GUIDE[tech.id] || { quick: { min: 99 } }).quick.min}" data-difficulty="${difficulty}" data-tags="${(tech.tags || []).join(",")}" data-name="${tech.name}" data-concept="${tech.concept}">
                 <div class="tech-header">
                     <div class="tech-icon-wrapper">
                         <i class="fa-solid ${tech.icon}"></i>
@@ -4206,6 +4831,7 @@ function renderTechniques() {
                 <h3 style="margin-top:14px; font-size:1.15rem; color:var(--text-primary); font-family:var(--font-sans); font-weight:700;">${tech.name}</h3>
                 <div class="tech-tags" style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                     ${(tech.tags || []).map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
+                    ${TECH_CLASS_GUIDE[tech.id] ? `<span class="quick-badge"><i class="fa-regular fa-clock"></i> ${TECH_CLASS_GUIDE[tech.id].quick.min}분부터</span>` : ""}
                 </div>
                 <p class="tech-desc">${tech.easy || tech.concept}</p>
                 <div class="tech-footer" style="margin-top:auto; padding-top:14px; border-top:1px dashed var(--border-color); display:flex; justify-content:space-between; align-items:center;">
@@ -4813,6 +5439,7 @@ window.openModal = function(type, key) {
                 </div>
                 
                 ${tipsHTML}
+                ${techClassGuideHTML(tech.id)}
                 ${stepsHTML}
                 ${scriptHTML}
                 ${teacherScenarioHTML}
@@ -8856,7 +9483,7 @@ const TOPIC_THEMES = [
 ];
 const themeOf = (field) => (TOPIC_THEMES.find(t => t.fields.includes(field)) || { key: "etc", label: "기타" });
 
-let topicState = { theme: "all", level: "all" };
+let topicState = { theme: "all", level: defaultTopicLevel() };
 
 // 논제 목록 렌더링
 function renderTopicList(type) {
@@ -8879,6 +9506,9 @@ function renderTopicList(type) {
             <p class="topic-burden"><i class="fa-solid fa-circle-info"></i> ${meta.burden}</p>`;
     }
 
+    const prefBox = document.getElementById("topic-level-pref");
+    if (prefBox) { prefBox.innerHTML = levelChipsHTML(); bindLevelChips(prefBox, () => { topicState.level = defaultTopicLevel(); renderTopicList(type); renderSubjectSection(); }); }
+
     const srcSel = document.getElementById("topic-source");
     const sv = srcSel ? srcSel.value : "all";
     const bySource = (t) => sv === "all" || (sv === "contest" ? !!t.source : !t.source);
@@ -8895,7 +9525,7 @@ function renderTopicList(type) {
             }).join("");
         themeBox.querySelectorAll("[data-theme]").forEach(b => b.addEventListener("click", () => {
             topicState.theme = b.dataset.theme;
-            topicState.level = "all";
+            topicState.level = defaultTopicLevel();
             renderTopicList(type);
         }));
     }
@@ -8907,6 +9537,7 @@ function renderTopicList(type) {
     if (levelBox) {
         levelBox.innerHTML =
             `<button type="button" class="topic-step-chip ${topicState.level === "all" ? "active" : ""}" data-level="all">전체 <em>${byTheme.length}</em></button>` +
+            (getSchoolLevel() !== "all" ? `<button type="button" class="topic-step-chip topic-step-pref ${topicState.level === "pref" ? "active" : ""}" data-level="pref"><i class="fa-solid fa-school"></i> 우리 학교급(${getSchoolLevel()}) <em>${byTheme.filter(t => topicFitsLevel(t)).length}</em></button>` : "") +
             ["초등·중학", "중학·고등", "고등"].map(lv => {
                 const n = byTheme.filter(t => t.level === lv).length;
                 return n ? `<button type="button" class="topic-step-chip ${topicState.level === lv ? "active" : ""}" data-level="${lv}">${lv} <em>${n}</em></button>` : "";
@@ -8917,7 +9548,9 @@ function renderTopicList(type) {
         }));
     }
 
-    const list = topicState.level === "all" ? byTheme : byTheme.filter(t => t.level === topicState.level);
+    const list = topicState.level === "all" ? byTheme
+        : topicState.level === "pref" ? byTheme.filter(t => topicFitsLevel(t))
+        : byTheme.filter(t => t.level === topicState.level);
     const countEl = document.getElementById("topic-count");
     if (countEl) countEl.textContent = `${list.length}개 논제`;
 
@@ -9318,7 +9951,7 @@ function initTopicSection() {
             panelLit.style.display = key === "lit" ? "block" : "none";
             if (key === "lit") renderLiteraturePanel();
         }
-        if (isList) { current = key; topicState = { theme: "all", level: "all" }; renderTopicList(key); }
+        if (isList) { current = key; topicState = { theme: "all", level: defaultTopicLevel() }; renderTopicList(key); }
     };
 
     tabs.forEach(b => b.addEventListener("click", () => show(b.dataset.topicTab)));
@@ -9335,6 +9968,7 @@ function initTopicSection() {
     }
 
     show("fact");
+    window.__topicLevelChanged = () => { topicState.level = defaultTopicLevel(); renderTopicList(current); };
 }
 
 // ── 수업 진행 모드 (프로젝터용 큰 화면 + 단계별 타이머) ──────────────────────
@@ -10024,6 +10658,8 @@ function setupTechFilters() {
                 matchesFilter = true;
             } else if (["초급", "중급", "고급"].includes(currentFilter)) {
                 matchesFilter = (difficulty === currentFilter);
+            } else if (currentFilter === "quick") {
+                matchesFilter = Number(card.getAttribute("data-quick")) <= 10;
             } else if (currentFilter === "역할극") {
                 // 역할극/감상인 경우 태그 검사
                 matchesFilter = tags.includes("역할극") || tags.includes("감상") || tags.includes("자기성찰");
