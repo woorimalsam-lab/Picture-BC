@@ -4228,3 +4228,62 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* 교과 화면 — 논제의 과목·단원 표시와 구분선 */
 .subject-topic-unit { font-size: 0.75rem; font-weight: 700; color: var(--accent-sage); background: rgba(112, 138, 111, 0.12); border-radius: 8px; padding: 2px 8px; white-space: nowrap; }
 .subject-topic-divider { list-style: none; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); margin: 10px 0 2px; padding-top: 10px; border-top: 1px dashed var(--border-color); }
+
+/* ── v5.2 정책 논제 '지금은' · 2022 개정 교육과정 성취기준 ── */
+.topic-now {
+    font-size: 0.84rem; line-height: 1.6; color: var(--text-secondary);
+    background: rgba(212, 163, 115, 0.12); border-left: 3px solid var(--accent-gold);
+    border-radius: 0 10px 10px 0; padding: 7px 12px; margin: -4px 0 10px; word-break: keep-all;
+}
+.topic-now-label {
+    display: inline-block; font-size: 0.72rem; font-weight: 800; color: #fff;
+    background: var(--accent-gold); border-radius: 999px; padding: 1px 8px; margin-right: 7px;
+}
+.dark-mode .topic-now-label { color: #1F261D; }
+.topic-std {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px;
+    font-size: 0.76rem; color: var(--accent-sage); margin: 0 0 10px; word-break: keep-all;
+}
+.topic-std > i { margin-right: -4px; }
+.topic-std span { cursor: help; border-bottom: 1px dotted currentColor; }
+.topic-std-full {
+    margin-top: 12px; font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary);
+    border-top: 1px dashed var(--border-color); padding-top: 10px;
+}
+.topic-std-full strong { display: block; font-size: 0.8rem; color: var(--accent-sage); margin-bottom: 4px; }
+.topic-std-full ul { margin: 0; padding-left: 16px; }
+.topic-std-full li { margin-bottom: 4px; word-break: keep-all; }
+.topic-std-full code, .cur-std-text code { font-family: inherit; font-weight: 700; color: var(--text-primary); }
+.topic-std-full em { font-style: normal; font-weight: 700; color: var(--accent-sage); margin-right: 4px; }
+.subject-topic-now {
+    display: block; margin-top: 3px; font-size: 0.78rem; font-weight: 400; line-height: 1.55;
+    color: var(--text-secondary); word-break: keep-all;
+}
+.subject-topic-now b { color: var(--accent-gold); margin-right: 4px; }
+.cur-note { font-size: 0.85rem; line-height: 1.6; color: var(--text-secondary); margin: -4px 0 12px; word-break: keep-all; }
+.cur-courses { display: flex; flex-direction: column; gap: 8px; }
+.cur-course { border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-primary); }
+.cur-course summary {
+    cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 11px 14px; font-size: 0.92rem; color: var(--text-primary);
+}
+.cur-course summary::-webkit-details-marker { display: none; }
+.cur-course summary::before { content: "▸"; color: var(--accent-sage); margin-right: 2px; transition: transform .2s; }
+.cur-course[open] summary::before { transform: rotate(90deg); }
+.cur-course summary strong { flex: 1; min-width: 0; }
+.cur-course summary span { font-size: 0.78rem; color: var(--text-secondary); white-space: nowrap; }
+.cur-stds { list-style: none; margin: 0; padding: 0 14px 12px; display: flex; flex-direction: column; gap: 10px; }
+.cur-std { border-top: 1px dashed var(--border-color); padding-top: 10px; min-width: 0; }
+.cur-std-text { font-size: 0.86rem; line-height: 1.6; color: var(--text-primary); margin: 0 0 8px; word-break: keep-all; }
+.cur-std-topics { display: flex; flex-direction: column; gap: 6px; }
+.cur-topic {
+    display: flex; align-items: flex-start; gap: 8px; width: 100%; text-align: left;
+    border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary);
+    border-radius: 10px; padding: 7px 10px; font-family: inherit; font-size: 0.85rem; line-height: 1.5; cursor: pointer; word-break: keep-all;
+}
+.cur-topic .topic-chip { flex-shrink: 0; }
+.cur-topic:hover { border-color: var(--accent-coral); }
+.cur-topic:hover > span:last-child { color: var(--accent-coral); }
+@media print {
+    .topic-now, .topic-std, .topic-std-full { break-inside: avoid; }
+}
