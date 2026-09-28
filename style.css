@@ -4328,3 +4328,28 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .tech-rubric tbody th { white-space: normal; }
     .tech-rubric td::before { content: attr(data-label); display: block; font-size: 0.74rem; font-weight: 800; color: var(--accent-sage); margin-bottom: 2px; }
 }
+
+/* ── v5.4 교육과정: 과목 전체 · 유형별 묶음 · 성취기준 모두 보기 ── */
+.cur-type-head {
+    font-size: 0.86rem; font-weight: 800; color: var(--accent-sage);
+    margin: 16px 0 8px; padding-bottom: 4px; border-bottom: 2px solid rgba(112, 138, 111, 0.25);
+}
+.cur-type-head small { font-weight: 500; color: var(--text-secondary); margin-left: 4px; }
+.cur-course summary .cur-badge {
+    font-size: 0.74rem; font-weight: 800; color: var(--accent-coral); white-space: nowrap;
+    background: rgba(224, 122, 95, 0.12); border-radius: 999px; padding: 2px 9px;
+}
+.cur-course summary .cur-count { font-size: 0.76rem; color: var(--text-secondary); white-space: nowrap; }
+.cur-all-btn {
+    display: inline-flex; align-items: center; gap: 6px; margin: 0 14px 12px;
+    border: 1px dashed var(--border-color); background: transparent; color: var(--text-secondary);
+    border-radius: 10px; padding: 6px 12px; font-family: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+}
+.cur-all-btn:hover { border-color: var(--accent-sage); color: var(--accent-sage); }
+.cur-all-btn:disabled { opacity: 0.6; cursor: wait; }
+.cur-all { list-style: none; margin: 0; padding: 0 14px 12px; display: flex; flex-direction: column; gap: 8px; }
+.cur-all li { border-top: 1px dashed var(--border-color); padding-top: 8px; min-width: 0; }
+.cur-all li .cur-std-text { margin-bottom: 0; color: var(--text-secondary); }
+.cur-all li.linked .cur-std-text { color: var(--text-primary); }
+.cur-all li.linked .cur-std-topics { margin-top: 6px; }
+.cur-stds:empty { display: none; }
