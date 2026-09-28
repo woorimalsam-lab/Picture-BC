@@ -3972,29 +3972,31 @@ const SUBJECT_GUIDE = [
     },
     {
         key: "social", label: "사회", icon: "fa-landmark",
-        hook: "제도와 정책을 다루는 단원은 모두 정책 논제가 됩니다. 통계와 기사를 근거로 쓰게 하면 주장이 훨씬 단단해집니다.",
-        fields: ["사회", "정치", "노동", "복지", "인권", "정의", "역사", "평화", "안전", "공동체"],
+        hook: "일반사회·지리·역사·도덕을 아우르는 교과입니다. 제도와 정책은 정책 논제로, 역사 속 선택과 윤리 딜레마는 가치 논제로 바꾸면 곧바로 토론이 됩니다. 통계·사료·사상가의 글을 근거로 쓰게 하면 주장이 훨씬 단단해집니다.",
+        fields: ["사회", "정치", "노동", "복지", "인권", "정의", "역사", "평화", "안전", "공동체", "윤리", "인성", "자유", "실존", "행복", "자아", "용기"],
         techs: [
             { id: "procon", why: "정책의 찬반을 모두 맡아 보며 한쪽 주장만 외우지 않게 합니다." },
-            { id: "worldcafe", why: "한 제도의 여러 측면을 테이블별로 나눠 다룹니다." },
             { id: "doublepyramid", why: "찬반이 팽팽한 정책에서 양쪽 대표 안을 모아 절충안을 만듭니다." },
-            { id: "2stay2stray", why: "모둠마다 다른 나라·제도를 조사하게 하고 서로 설명하게 합니다." }
+            { id: "hotseating", why: "역사 인물을 뜨거운 의자에 앉혀 그 선택의 까닭을 묻습니다." },
+            { id: "panorama", why: "한 사건을 나라·계층·세대마다 다른 자리에서 바라봅니다." },
+            { id: "valuebar", why: "딜레마나 역사적 선택에 대한 판단이 여러 자리에 퍼져 있음을 0~10 눈금으로 보여 줍니다." },
+            { id: "socratic", why: "사료나 사상가의 글 한 편을 함께 읽고 질문으로 해석을 넓힙니다." }
         ],
-        scene: { unit: "민주주의와 선거", tech: "프로콘 토론", min: 20, flow: "'선거권 연령을 만 16세로 낮춰야 한다'를 두고 짝끼리 찬성 2분 → 반대 2분 → 편을 바꿔 2분씩. 마지막 5분은 '둘 다 겪어 보니 어느 쪽 근거가 더 무거웠나'를 적습니다." },
-        sources: ["kosis", "index", "bigkinds", "mods"]
-    },
-    {
-        key: "ethics", label: "도덕·윤리", icon: "fa-scale-balanced",
-        hook: "윤리 사상과 딜레마 단원은 가치 논제의 보물창고입니다. 정답을 가르치기보다 판단의 기준이 무엇인지 드러나게 하세요.",
-        fields: ["윤리", "인성", "정의", "자유", "실존", "행복", "자아", "용기"],
-        techs: [
-            { id: "valuebar", why: "딜레마에 대한 판단이 찬반 둘이 아니라 여러 자리에 퍼져 있음을 보여 줍니다." },
-            { id: "angeldevil", why: "한 사람 안의 두 마음을 소리 내어 들려주며 선택의 무게를 느끼게 합니다." },
-            { id: "socratic", why: "정답이 없는 질문을 오래 붙들고 이야기하게 합니다." },
-            { id: "havruta", why: "짝과 '왜?'를 주고받으며 사상가의 주장을 스스로 따져 봅니다." }
+        scenes: [
+            { unit: "정치 · 민주주의와 선거", tech: "프로콘 토론", min: 20, flow: "'선거권 연령을 만 16세로 낮춰야 한다'를 두고 짝끼리 찬성 2분 → 반대 2분 → 편을 바꿔 2분씩. 마지막 5분은 '둘 다 겪어 보니 어느 쪽 근거가 더 무거웠나'를 적습니다." },
+            { unit: "한국사1 · 개항과 근대 국가", tech: "핫시팅", min: 15, flow: "흥선 대원군과 개화파 지식인을 맡은 학생을 앞에 앉히고, 나머지 학생이 '왜 문을 닫았나요 / 왜 열자고 했나요'를 묻습니다. 답을 들은 뒤 '통상 수교 거부 정책은 당시로서는 합리적인 선택이었다'에 대한 생각을 한 문장으로 씁니다." },
+            { unit: "윤리와 사상 · 공리주의와 의무론", tech: "가치수직선 토론", min: 15, flow: "'다수를 위해 한 사람이 손해를 보는 것은 정당하다'에 0~10으로 서게 합니다. 공리주의·의무론으로 각 자리의 까닭을 설명해 보게 하고 자리를 다시 고르게 합니다." },
+            { unit: "역사로 탐구하는 현대 세계 · 전쟁과 기억", tech: "소크라틱 세미나", min: 20, flow: "서로 다른 나라의 전쟁 기념관 안내문 두 편을 나눠 읽고 '무엇을 기억하게 하고 무엇을 빼놓았는가'를 질문으로 나눕니다. 마지막에 '전쟁 기념관은 승리보다 희생을 기억하는 곳이어야 한다'에 대한 자기 생각을 씁니다." }
         ],
-        scene: { unit: "공리주의와 의무론", tech: "가치수직선 토론", min: 15, flow: "'다수를 위해 한 사람이 손해를 보는 것은 정당하다'에 0~10으로 서게 합니다. 공리주의·의무론으로 각 자리의 까닭을 설명해 보게 하고 자리를 다시 고르게 합니다." },
-        sources: ["bigkinds", "tong"]
+        frames: { title: "사회 토론 말 틀", items: ["통계(자료) ○○에 따르면 …", "그때 사람의 눈으로 보면 … / 오늘의 기준으로 보면 …", "○○의 자리에 서 보면 이 문제는 …로 보입니다.", "제 판단의 기준은 ○○(자유·평등·공익)입니다. 왜냐하면 …"] },
+        tips: ["정책 논제는 '지금은 어떤가'부터 확인하게 하면, 무엇을 바꾸자는 주장인지가 또렷해집니다.", "'그때의 눈'과 '지금의 눈'을 나눠 말하게 하면, 오늘의 기준으로 과거를 함부로 재단하는 일을 줄일 수 있습니다.", "윤리 딜레마는 정답을 가르치기보다 판단의 기준이 무엇인지 드러나게 하세요."],
+        groups: [
+            { label: "일반사회", units: ["통합사회", "통합사회1", "통합사회2", "정치", "법과 사회", "경제", "사회와 문화", "사회문제 탐구", "금융과 경제생활", "국제 관계의 이해"] },
+            { label: "지리", units: ["세계시민과 지리", "한국지리 탐구", "도시의 미래 탐구", "여행지리", "기후변화와 지속가능한 세계"] },
+            { label: "역사", units: ["한국사1", "한국사2", "세계사", "동아시아 역사 기행", "역사로 탐구하는 현대 세계"] },
+            { label: "도덕·윤리", units: ["현대사회와 윤리", "윤리와 사상", "인문학과 윤리", "윤리문제 탐구"] }
+        ],
+        sources: ["kosis", "index", "mods", "bigkinds", "histdb", "archives"]
     },
     {
         key: "science", label: "과학", icon: "fa-flask",
@@ -4085,29 +4087,6 @@ const SUBJECT_GUIDE = [
         sources: ["kdca", "bigkinds"]
     },
     {
-        key: "history", label: "역사", icon: "fa-scroll",
-        hook: "사료 속 인물의 선택과, 역사를 기억하는 방식이 그대로 토론거리가 됩니다. '그때 그 사람의 눈'과 '오늘 우리의 눈'을 오가며 과거를 평가하는 기준을 세워 봅니다.",
-        fields: ["역사", "평화"],
-        techs: [
-            { id: "hotseating", why: "역사 인물을 뜨거운 의자에 앉혀 그 선택의 까닭을 묻습니다." },
-            { id: "panorama", why: "한 사건을 나라·계층·세대마다 다른 자리에서 바라봅니다." },
-            { id: "valuebar", why: "'합리적인 선택이었나'를 0~10 눈금에 서서 평가의 폭을 드러냅니다." },
-            { id: "socratic", why: "사료 한 편을 함께 읽고 질문으로 해석을 넓힙니다." }
-        ],
-        scenes: [
-            { unit: "한국사1 · 개항과 근대 국가", tech: "핫시팅", min: 15, flow: "흥선 대원군과 개화파 지식인을 맡은 학생을 앞에 앉히고, 나머지 학생이 '왜 문을 닫았나요 / 왜 열자고 했나요'를 묻습니다. 답을 들은 뒤 '통상 수교 거부 정책은 당시로서는 합리적인 선택이었다'에 대한 생각을 한 문장으로 씁니다." },
-            { unit: "역사로 탐구하는 현대 세계 · 전쟁과 기억", tech: "소크라틱 세미나", min: 20, flow: "서로 다른 나라의 전쟁 기념관 안내문 두 편을 나눠 읽고 '무엇을 기억하게 하고 무엇을 빼놓았는가'를 질문으로 나눕니다. 마지막에 '전쟁 기념관은 승리보다 희생을 기억하는 곳이어야 한다'에 대한 자기 생각을 씁니다." }
-        ],
-        frames: { title: "역사 토론 말 틀", items: ["그때 사람의 눈으로 보면 …", "사료 ○○에는 '…'라고 적혀 있습니다.", "오늘의 기준으로 평가하면 …", "○○의 자리에 서 보면 이 사건은 …로 보입니다."] },
-        tips: ["'그때의 눈'과 '지금의 눈'을 나눠 말하게 하면, 오늘의 기준으로 과거를 함부로 재단하는 일을 줄일 수 있습니다.", "교과서 서술만 근거로 쓰지 말고 사료(일기·신문·법령) 한 줄을 인용하게 하면 주장이 단단해집니다."],
-        groups: [
-            { label: "한국사", units: ["한국사1", "한국사2"] },
-            { label: "세계사", units: ["세계사"] },
-            { label: "동아시아와 현대 세계", units: ["동아시아 역사 기행", "역사로 탐구하는 현대 세계"] }
-        ],
-        sources: ["histdb", "archives", "bigkinds"]
-    },
-    {
         key: "techhome", label: "기술·가정", icon: "fa-screwdriver-wrench",
         hook: "생애 설계, 돌봄, 소비, 공학 설계처럼 삶과 바로 닿는 내용이 많아 '우리 집이라면?', '내가 설계자라면?'으로 바꾸면 곧바로 토론이 됩니다.",
         fields: ["복지", "기술", "건강", "환경"],
@@ -4176,8 +4155,9 @@ const SUBJECT_GUIDE = [
         sources: ["kess", "tong", "kosis"]
     }
 ];
-// 교과 탭은 가나다순으로, 진로·창체만 맨 뒤에 둔다
-SUBJECT_GUIDE.sort((a, b) => (a.key === "career") - (b.key === "career") || a.label.localeCompare(b.label, "ko"));
+// 교과 탭은 가나다순으로, 맨 뒤에는 교양 → 연극·영화·무용 → 진로·창체 차례로 둔다
+const SUBJECT_TAIL = ["liberal", "perform", "career"];
+SUBJECT_GUIDE.sort((a, b) => (SUBJECT_TAIL.indexOf(a.key) - SUBJECT_TAIL.indexOf(b.key)) || a.label.localeCompare(b.label, "ko"));
 
 // 학교급 선택 — 초등·중학·고등. 고르면 논제·문학이 그 수준부터 보인다.
 const SCHOOL_LEVELS = [
@@ -4523,6 +4503,7 @@ function renderSubjectSection() {
     if (!subjectKey) {
         let saved = null;
         try { saved = localStorage.getItem("pbc-subject"); } catch (e) {}
+        if (saved === "history" || saved === "ethics") saved = "social";
         subjectKey = (SUBJECT_GUIDE.find(s => s.key === saved) || SUBJECT_GUIDE[0]).key;
     }
     const sub = SUBJECT_GUIDE.find(s => s.key === subjectKey) || SUBJECT_GUIDE[0];
@@ -4556,6 +4537,11 @@ function renderSubjectSection() {
                 <span class="topic-chip topic-chip-${t.type}">${meta.label || ""}</span>
                 <span class="subject-topic-claim">${t.claim}${t.now ? `<small class="subject-topic-now"><b>지금은</b> ${t.now}</small>` : ""}</span>
                 ${t.unit ? `<span class="subject-topic-unit">${t.unit}</span>` : `<span class="subject-topic-level">${t.level}</span>`}
+                <select class="subject-topic-techsel" aria-label="토론 기법으로 학습지 만들기" onchange="if (this.value) { openTopicWorksheet(${idx}, this.value); this.value = ''; }">
+                    <option value="">기법으로 학습지 ▾</option>
+                    <optgroup label="이 교과에 잘 맞는 기법">${sub.techs.map(x => techniques.find(tt => tt.id === x.id)).filter(Boolean).map(tt => `<option value="tech-${tt.id}">${techShortName(tt)}</option>`).join("")}</optgroup>
+                    <optgroup label="다른 기법">${techniques.filter(tt => !sub.techs.some(x => x.id === tt.id)).map(tt => `<option value="tech-${tt.id}">${techShortName(tt)}</option>`).join("")}</optgroup>
+                </select>
                 <button type="button" class="subject-topic-ws" onclick="openTopicWorksheet(${idx})"><i class="fa-solid fa-file-pen"></i> 학습지</button>
             </li>`;
     };
@@ -5014,7 +5000,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.4.0";
+    return "5.5.0";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
@@ -6067,15 +6053,15 @@ const CURRICULUM_COURSES = {
     "12사탐": ["사회문제 탐구", "social", "융합 선택", 12],
     "12금융": ["금융과 경제생활", "social", "융합 선택", 12],
     "12기지": ["기후변화와 지속가능한 세계", "social", "융합 선택", 12],
-    "10한사1": ["한국사1", "history", "공통", 13],
-    "10한사2": ["한국사2", "history", "공통", 13],
-    "12세사": ["세계사", "history", "일반 선택", 13],
-    "12동역": ["동아시아 역사 기행", "history", "진로 선택", 14],
-    "12역현": ["역사로 탐구하는 현대 세계", "history", "융합 선택", 14],
-    "12현윤": ["현대사회와 윤리", "ethics", "일반 선택", 15],
-    "12윤사": ["윤리와 사상", "ethics", "진로 선택", 15],
-    "12인윤": ["인문학과 윤리", "ethics", "진로 선택", 12],
-    "12윤탐": ["윤리문제 탐구", "ethics", "융합 선택", 13],
+    "10한사1": ["한국사1", "social", "공통", 13],
+    "10한사2": ["한국사2", "social", "공통", 13],
+    "12세사": ["세계사", "social", "일반 선택", 13],
+    "12동역": ["동아시아 역사 기행", "social", "진로 선택", 14],
+    "12역현": ["역사로 탐구하는 현대 세계", "social", "융합 선택", 14],
+    "12현윤": ["현대사회와 윤리", "social", "일반 선택", 15],
+    "12윤사": ["윤리와 사상", "social", "진로 선택", 15],
+    "12인윤": ["인문학과 윤리", "social", "진로 선택", 12],
+    "12윤탐": ["윤리문제 탐구", "social", "융합 선택", 13],
     "10통과1": ["통합과학1", "science", "공통", 14],
     "10통과2": ["통합과학2", "science", "공통", 13],
     "10과탐1": ["과학탐구실험1", "science", "공통", 4],
@@ -7098,7 +7084,7 @@ const debateTopicsDB = [
       pro: ["사람은 과거로부터 회복할 기회를 가져야 한다.", "영구히 남는 기록은 새로운 형벌이 된다."],
       con: ["공적 기록을 지우면 진실이 가려진다.", "누구의 기록을 지울지 정하기 어렵다."],
       books: ["미어캣의 스카프", "완벽한 아이 팔아요"] },
-    { subject: "ethics", unit: "현대사회와 윤리 · 환경 윤리", type: "value", field: "환경", level: "중학·고등", claim: "미래 세대를 위해 지금 세대가 불편을 감수하는 것은 의무다.",
+    { subject: "social", unit: "현대사회와 윤리 · 환경 윤리", type: "value", field: "환경", level: "중학·고등", claim: "미래 세대를 위해 지금 세대가 불편을 감수하는 것은 의무다.",
       background: "기후위기의 결과는 지금의 어린이와 아직 태어나지 않은 세대가 더 크게 겪습니다. 세대 간 정의의 문제입니다.",
       pro: ["우리가 만든 문제를 다음 세대에 떠넘길 수 없다.", "지금 줄이지 않으면 되돌릴 수 없다."],
       con: ["오늘의 삶도 그만큼 소중하다.", "개인의 절제보다 구조를 바꾸는 것이 먼저다."],
@@ -8986,32 +8972,32 @@ const debateTopicsDB = [
       con: ["혐오 표현은 소수자의 존엄과 안전을 직접 해친다.","차별을 부추기는 말까지 보호하면 공동체의 평등이 무너진다."],
       std: ["12법사02-02", "12윤탐02-03"],
       books: [] },
-    { subject: "ethics", unit: "윤리와 사상 · 칸트", type: "value", field: "윤리", level: "고등", claim: "거짓말은 어떤 경우에도 옳지 않다.",
+    { subject: "social", unit: "윤리와 사상 · 칸트", type: "value", field: "윤리", level: "고등", claim: "거짓말은 어떤 경우에도 옳지 않다.",
       background: "사람의 생명을 지키기 위한 거짓말까지 옳지 않은지 묻는 칸트 윤리의 대표적인 질문입니다.",
       pro: ["거짓말을 허용하면 신뢰라는 사회의 기반이 무너진다.","결과를 따져 거짓말을 허용하기 시작하면 기준이 사라진다."],
       con: ["생명을 지키기 위한 거짓말은 도덕적으로 옳다.","선의의 거짓말은 관계를 지키는 배려가 되기도 한다."],
       std: ["12윤사03-04"],
       books: [] },
-    { subject: "ethics", unit: "현대사회와 윤리 · 생명 윤리", type: "value", field: "생명", level: "고등", claim: "인간의 수명을 크게 늘리는 기술은 바람직하다.",
+    { subject: "social", unit: "현대사회와 윤리 · 생명 윤리", type: "value", field: "생명", level: "고등", claim: "인간의 수명을 크게 늘리는 기술은 바람직하다.",
       background: "노화를 늦추고 수명을 크게 늘리는 기술이 인류에게 바람직한지 따집니다.",
       pro: ["더 오래 건강하게 사는 것은 인류의 오랜 바람이다.","질병과 노화로 인한 고통을 줄인다."],
       con: ["기술을 누릴 수 있는 사람과 없는 사람의 격차가 커진다.","인구와 자원 문제가 더 심각해진다."],
       std: ["12현윤02-01"],
       books: [] },
-    { subject: "ethics", unit: "현대사회와 윤리 · 과학기술 윤리", type: "policy", field: "기술", level: "고등", claim: "자율주행차는 사고 순간 더 많은 사람을 살리는 쪽을 택하도록 설계해야 한다.",
+    { subject: "social", unit: "현대사회와 윤리 · 과학기술 윤리", type: "policy", field: "기술", level: "고등", claim: "자율주행차는 사고 순간 더 많은 사람을 살리는 쪽을 택하도록 설계해야 한다.",
       now: "사고 순간 자율주행차가 누구를 보호할지 정한 기준은 없다.",
       background: "피할 수 없는 사고에서 자율주행차가 누구를 보호해야 하는지, 공리주의와 의무론이 맞서는 문제입니다.",
       pro: ["피해를 가장 적게 하는 것이 합리적인 판단이다.","기준을 미리 정해 두어야 사고 뒤 책임을 가릴 수 있다."],
       con: ["사람의 목숨을 숫자로 견주는 것은 인간 존엄에 어긋난다.","탑승자를 희생시키도록 설계한 차는 사람들이 사지 않을 것이다."],
       std: ["12윤탐03-03", "12윤사03-04"],
       books: [] },
-    { subject: "ethics", unit: "윤리와 사상 · 정의론", type: "value", field: "정의", level: "고등", claim: "부모의 재산과 배경에 힘입어 얻은 성공도 정당한 성공이다.",
+    { subject: "social", unit: "윤리와 사상 · 정의론", type: "value", field: "정의", level: "고등", claim: "부모의 재산과 배경에 힘입어 얻은 성공도 정당한 성공이다.",
       background: "타고난 조건이 성공에 끼치는 영향을 어떻게 볼지, 롤스의 정의론과 자유주의의 관점이 맞섭니다.",
       pro: ["부모가 자녀를 돕는 것은 자연스럽고 자유로운 선택이다.","기회를 얻은 뒤의 성과는 본인의 노력으로 이룬 것이다."],
       con: ["출발선이 다른 경쟁은 공정하지 않다.","우연히 주어진 조건으로 얻은 이익은 사회와 나눠야 한다는 정의론이 있다."],
       std: ["12현윤04-03", "12인윤03-02"],
       books: [] },
-    { subject: "ethics", unit: "윤리와 사상 · 행복론", type: "value", field: "행복", level: "고등", claim: "행복은 즐거움을 많이 누리는 것이다.",
+    { subject: "social", unit: "윤리와 사상 · 행복론", type: "value", field: "행복", level: "고등", claim: "행복은 즐거움을 많이 누리는 것이다.",
       background: "행복이 즐거움을 누리는 데 있는지, 덕을 실천하며 사는 데 있는지에 대한 오랜 윤리 사상의 논쟁입니다.",
       pro: ["괴로움이 적고 즐거움이 많은 삶을 누구나 행복하다고 느낀다.","즐거움은 행복을 구체적으로 설명해 준다."],
       con: ["순간의 즐거움보다 덕을 실천하는 삶이 참된 행복이라는 주장이 있다.","즐거움만 좇으면 오히려 공허함과 중독에 빠진다."],
@@ -9275,76 +9261,76 @@ const debateTopicsDB = [
       std: ["12진로02-07", "12진로01-01"],
       books: [] },
     // ── 역사 교과 · 과학 네 갈래 (고등) ─────────────────────
-    { subject: "history", unit: "한국사1 · 고대 국가", type: "value", field: "역사", level: "고등", claim: "신라의 삼국 통일은 우리 역사의 첫 민족 통일로 볼 수 있다.",
+    { subject: "social", unit: "한국사1 · 고대 국가", type: "value", field: "역사", level: "고등", claim: "신라의 삼국 통일은 우리 역사의 첫 민족 통일로 볼 수 있다.",
       background: "신라는 당과 손잡고 백제와 고구려를 무너뜨린 뒤 나당 전쟁으로 당을 몰아냈습니다. 이를 '민족 통일'로 볼 수 있는지, 북쪽의 발해와 함께 '남북국 시대'로 봐야 하는지 따집니다.",
       pro: ["세 나라의 사람과 문화가 한 나라 안에서 합쳐지는 바탕이 되었다.", "나당 전쟁으로 당을 몰아내 한반도를 스스로 지켜냈다."],
       con: ["외세인 당을 끌어들였고 고구려의 옛 땅 대부분을 잃었다.", "북쪽에 고구려를 이은 발해가 있었으므로 완전한 통일이 아니다."],
       std: ["10한사1-01-01"],
       books: [] },
-    { subject: "history", unit: "한국사1 · 조선의 사회", type: "value", field: "역사", level: "고등", claim: "조선의 과거 제도는 능력에 따라 인재를 뽑는 공정한 제도였다.",
+    { subject: "social", unit: "한국사1 · 조선의 사회", type: "value", field: "역사", level: "고등", claim: "조선의 과거 제도는 능력에 따라 인재를 뽑는 공정한 제도였다.",
       background: "조선은 시험으로 관리를 뽑는 과거 제도를 운영했습니다. 신분 사회였던 조선에서 이 제도가 얼마나 공정했는지, 오늘날의 공정 논쟁과 견주어 따집니다.",
       pro: ["집안이 아니라 시험 성적으로 관리를 뽑는 원칙을 제도로 세웠다.", "법으로는 양인도 응시할 수 있어 신분 이동의 통로가 되었다."],
       con: ["오랜 시간 공부할 여유가 있는 양반 집안만 실제로 합격할 수 있었다.", "서얼의 응시를 막는 등 차별이 있었고, 가문 덕에 관직에 오르는 길도 남아 있었다."],
       std: ["10한사1-02-03", "10한사1-01-03"],
       books: [] },
-    { subject: "history", unit: "한국사1 · 개항과 근대 국가", type: "value", field: "역사", level: "고등", claim: "흥선 대원군의 통상 수교 거부 정책은 당시로서는 합리적인 선택이었다.",
+    { subject: "social", unit: "한국사1 · 개항과 근대 국가", type: "value", field: "역사", level: "고등", claim: "흥선 대원군의 통상 수교 거부 정책은 당시로서는 합리적인 선택이었다.",
       background: "병인양요와 신미양요를 겪은 흥선 대원군은 서양과의 통상을 거부하고 척화비를 세웠습니다. 당시 국제 정세에 비추어 이 선택을 평가합니다.",
       pro: ["서양 열강의 무력 침입 앞에서 나라를 지키려는 현실적인 방어책이었다.", "준비 없이 문을 열었다면 더 빨리 침탈당했을 수 있다."],
       con: ["근대 문물을 받아들이고 대비할 시간을 놓쳐 개항 뒤 대응력이 약해졌다.", "먼저 문을 연 일본은 근대화를 서둘러 두 나라의 격차가 크게 벌어졌다."],
       std: ["10한사1-03-01", "10한사1-03-02"],
       books: [] },
-    { subject: "history", unit: "한국사2 · 일제 식민 통치", type: "fact", field: "역사", level: "고등", claim: "일제 강점기의 철도·공장 건설은 한국의 근대화에 기여했다.",
+    { subject: "social", unit: "한국사2 · 일제 식민 통치", type: "fact", field: "역사", level: "고등", claim: "일제 강점기의 철도·공장 건설은 한국의 근대화에 기여했다.",
       background: "일제 강점기에 철도·항만·공장이 늘어난 것을 두고, 근대화의 바탕이 되었다는 주장('식민지 근대화론')과 수탈을 위한 것이었다는 주장('식민지 수탈론')이 맞서 왔습니다. 통계와 사료를 근거로 따집니다.",
       pro: ["이 시기에 철도·항만·공장 같은 근대 시설과 제도가 크게 늘었다는 통계가 있다.", "해방 뒤 산업화에 쓰인 시설과 기술 인력의 일부가 이때 생겼다."],
       con: ["시설은 쌀과 자원을 일본으로 실어 나르고 전쟁을 치르기 위한 수탈 수단이었다.", "한국인은 경영과 기술에서 밀려나 이익 대부분이 일본인에게 돌아갔다."],
       std: ["10한사2-01-02", "10한사2-01-01"],
       books: [] },
-    { subject: "history", unit: "한국사2 · 산업화와 민주화", type: "value", field: "역사", level: "고등", claim: "한국의 압축 성장은 다른 나라가 본받을 만한 발전 모델이다.",
+    { subject: "social", unit: "한국사2 · 산업화와 민주화", type: "value", field: "역사", level: "고등", claim: "한국의 압축 성장은 다른 나라가 본받을 만한 발전 모델이다.",
       background: "한국은 1960년대 이후 수출 중심 산업화로 한 세대 만에 가난한 나라에서 선진국이 되었습니다. 그 성과와 함께 치른 대가를 견주어 따집니다.",
       pro: ["한 세대 만에 가난에서 벗어난 드문 사례로, 교육 투자와 수출 전략은 다른 나라에도 참고가 된다.", "원조를 받던 나라가 원조를 주는 나라가 되었다."],
       con: ["노동권 억압, 환경 오염, 수도권 집중 같은 큰 대가를 치렀다.", "독재 아래에서 이룬 성장 방식을 모델로 삼으면 민주주의를 가볍게 여기게 된다."],
       std: ["10한사2-02-04", "10한사2-02-05"],
       books: [] },
-    { subject: "history", unit: "동아시아 역사 기행 · 역사 갈등", type: "policy", field: "평화", level: "고등", claim: "한·중·일이 함께 만든 공동 역사 교과서를 학교에서 쓰게 해야 한다.",
+    { subject: "social", unit: "동아시아 역사 기행 · 역사 갈등", type: "policy", field: "평화", level: "고등", claim: "한·중·일이 함께 만든 공동 역사 교과서를 학교에서 쓰게 해야 한다.",
       now: "세 나라의 학자와 시민단체가 함께 쓴 역사 교재가 나온 적은 있지만, 학교는 저마다 자기 나라 교과서로 가르친다.",
       background: "독일과 프랑스는 두 나라가 함께 만든 역사 교과서를 학교에서 쓴 적이 있습니다. 동아시아의 역사 갈등을 줄이기 위해 공동 교과서가 필요한지 따집니다.",
       pro: ["같은 사건을 서로의 눈으로 보며 오해와 편견을 줄일 수 있다.", "독일·프랑스처럼 화해를 교육으로 이어 간 사례가 있다."],
       con: ["영토와 과거사 인식 차이가 커서 합의된 서술을 만들기 어렵다.", "합의를 위해 불편한 사실을 흐리게 쓰면 오히려 역사를 왜곡할 수 있다."],
       std: ["12동역04-03", "10한사2-03-03"],
       books: [] },
-    { subject: "history", unit: "세계사 · 교류와 팽창", type: "value", field: "역사", level: "고등", claim: "몽골 제국의 팽창은 세계 역사에 해로움보다 이로움이 컸다.",
+    { subject: "social", unit: "세계사 · 교류와 팽창", type: "value", field: "역사", level: "고등", claim: "몽골 제국의 팽창은 세계 역사에 해로움보다 이로움이 컸다.",
       background: "몽골 제국은 13세기에 아시아와 유럽에 걸친 거대한 제국을 세웠습니다. 파괴와 교류라는 두 얼굴을 견주어 평가합니다.",
       pro: ["역참과 교역로가 이어져 동서의 물건과 기술, 지식이 활발히 오갔다.", "여러 종교와 문화를 비교적 너그럽게 받아들였다."],
       con: ["정복 과정에서 수많은 도시가 파괴되고 많은 사람이 목숨을 잃었다.", "넓어진 교역로를 따라 흑사병이 퍼져 큰 피해를 낳았다."],
       std: ["12세사02-01", "12동역02-03"],
       books: [] },
-    { subject: "history", unit: "세계사 · 시민 혁명", type: "value", field: "역사", level: "고등", claim: "프랑스 혁명의 공포 정치는 혁명을 지키기 위해 어쩔 수 없는 선택이었다.",
+    { subject: "social", unit: "세계사 · 시민 혁명", type: "value", field: "역사", level: "고등", claim: "프랑스 혁명의 공포 정치는 혁명을 지키기 위해 어쩔 수 없는 선택이었다.",
       background: "프랑스 혁명 중 로베스피에르가 이끈 정부는 반혁명 세력을 막는다며 수많은 사람을 처형했습니다. 혁명의 이상과 수단을 견주어 따집니다.",
       pro: ["안팎의 반혁명 세력과 외국 군대의 공격으로 혁명이 무너질 위기였다.", "강한 통제가 없었다면 봉건제 폐지 같은 혁명의 성과를 지키지 못했을 수 있다."],
       con: ["제대로 된 재판 없이 많은 사람을 처형해 혁명이 내건 인권을 스스로 어겼다.", "공포 정치가 반발을 불러 결국 나폴레옹의 독재로 이어졌다."],
       std: ["12세사03-02"],
       books: [] },
-    { subject: "history", unit: "세계사 · 산업 혁명", type: "fact", field: "노동", level: "고등", claim: "산업 혁명은 당시 노동자의 삶을 더 낫게 만들었다.",
+    { subject: "social", unit: "세계사 · 산업 혁명", type: "fact", field: "노동", level: "고등", claim: "산업 혁명은 당시 노동자의 삶을 더 낫게 만들었다.",
       background: "산업 혁명 시기 노동자의 생활 수준이 나아졌는지는 경제사학자 사이에서 오래 다툰 문제입니다. 임금, 수명, 노동 시간 자료를 근거로 따집니다.",
       pro: ["길게 보면 실질 임금이 오르고 값싼 공산품으로 생활이 나아졌다.", "농촌보다 일자리가 많아 사람들이 스스로 도시로 모여들었다."],
       con: ["초기에는 긴 노동 시간과 아동 노동, 비위생적인 도시 빈민가로 삶의 질이 나빠졌다.", "이득은 먼저 공장주에게 돌아가고 노동자의 형편은 수십 년 뒤에야 나아졌다."],
       std: ["12세사03-03"],
       books: [] },
-    { subject: "history", unit: "역사로 탐구하는 현대 세계 · 역사 정책", type: "policy", field: "역사", level: "고등", claim: "옛 식민 지배국은 식민지였던 나라에 공식 사과하고 배상해야 한다.",
+    { subject: "social", unit: "역사로 탐구하는 현대 세계 · 역사 정책", type: "policy", field: "역사", level: "고등", claim: "옛 식민 지배국은 식민지였던 나라에 공식 사과하고 배상해야 한다.",
       now: "독일이 나미비아 학살을 인정하고 지원을 약속하는 등 일부 나라가 사과나 유감을 밝혔지만, 법적 배상까지 한 경우는 드물다.",
       background: "제국주의 시대의 식민 지배에 대해 오늘날 국가가 책임을 져야 하는지 논란이 이어집니다. 사과와 배상이 화해로 이어질 수 있는지 따집니다.",
       pro: ["식민 지배가 남긴 가난과 갈등이 지금까지 이어지고 있어 책임을 져야 한다.", "진정한 사과와 배상이 있어야 과거를 넘어 화해할 수 있다."],
       con: ["오래전 일을 지금 세대의 세금으로 배상하는 것은 공정하지 않다.", "배상액을 두고 새로운 갈등이 생겨 오히려 관계가 나빠질 수 있다."],
       std: ["12역현04-03", "12세사03-04"],
       books: [] },
-    { subject: "history", unit: "역사로 탐구하는 현대 세계 · 역사 정책", type: "policy", field: "역사", level: "고등", claim: "일제의 식민 지배를 미화하거나 정당화하는 발언을 법으로 처벌해야 한다.",
+    { subject: "social", unit: "역사로 탐구하는 현대 세계 · 역사 정책", type: "policy", field: "역사", level: "고등", claim: "일제의 식민 지배를 미화하거나 정당화하는 발언을 법으로 처벌해야 한다.",
       now: "5·18 민주화운동을 왜곡하는 허위 사실 유포는 2021년부터 처벌하지만, 식민 지배를 미화하는 발언을 처벌하는 법은 여러 차례 발의만 되었을 뿐 아직 없다.",
       background: "독일은 나치 범죄를 부정하는 발언을 형법으로 처벌합니다. 역사 왜곡을 법으로 막을지, 토론과 교육으로 바로잡을지 따집니다.",
       pro: ["피해자와 후손의 존엄을 해치는 발언을 막을 수 있다.", "역사 왜곡이 퍼지는 것을 막는 분명한 기준이 된다."],
       con: ["역사 해석을 국가가 정하면 학문과 표현의 자유가 위축된다.", "처벌보다 교육과 토론으로 바로잡는 것이 더 효과적이다."],
       std: ["12역현04-03", "10한사2-01-01"],
       books: [] },
-    { subject: "history", unit: "역사로 탐구하는 현대 세계 · 전쟁과 기억", type: "value", field: "평화", level: "고등", claim: "전쟁 기념관은 승리보다 희생을 기억하는 곳이어야 한다.",
+    { subject: "social", unit: "역사로 탐구하는 현대 세계 · 전쟁과 기억", type: "value", field: "평화", level: "고등", claim: "전쟁 기념관은 승리보다 희생을 기억하는 곳이어야 한다.",
       background: "세계 여러 나라의 전쟁 기념 시설은 무엇을 기억하게 하는지가 저마다 다릅니다. 기념관이 어떤 기억을 남겨야 하는지 따집니다.",
       pro: ["승리를 앞세우면 전쟁을 미화하고 다음 전쟁을 쉽게 받아들이게 된다.", "모든 편의 희생을 기억해야 적이었던 나라와도 화해할 수 있다."],
       con: ["나라를 지킨 승리와 헌신을 기리는 것도 공동체를 묶는 소중한 기억이다.", "희생만 강조하면 누가 전쟁을 일으켰는지 책임이 흐려질 수 있다."],
@@ -14717,6 +14703,212 @@ const TOPIC_WS_BUILDERS = {
 // ───────── 교사용 학습지 (예시 답안) ─────────
 // 학생용과 같은 양식에 예시 답안을 채워 보여 준다. 입력 칸을 만들지 않으므로
 // 학생용 학습지의 자동저장(칸 순서 기준)에는 영향을 주지 않는다.
+// ── 논제 × 토론 기법 학습지 ─────────────────────────────────────
+// 어떤 논제든 토론 기법 20가지의 진행 단계에 맞춰 학습지를 만든다.
+// 앞(논제 살펴보기·첫 생각)과 뒤(달라진 생각)는 같고, 가운데 활동만 기법마다 다르다.
+const techShortName = (tech) => tech.name.replace(/\s*\([A-Za-z0-9 \-]+\)/g, "").trim();
+const tws = {
+    box: (h, ph = "") => `<textarea class="ws-topic-box" style="height:${h}px;"${ph ? ` placeholder="${ph}"` : ""}></textarea>`,
+    cell: (h) => `<textarea style="height:${h}px;"></textarea>`,
+    line: () => `<input class="ws-line" type="text">`,
+    // 행마다 칸을 만든다. heads: 머리글, rows: 행 수 또는 첫 칸 이름 목록
+    table: (heads, rows, h = 56) => {
+        const labels = Array.isArray(rows) ? rows : Array.from({ length: rows }, () => null);
+        return `<table class="ws-table ws-table-compact">
+            <tr>${heads.map(x => `<th>${x}</th>`).join("")}</tr>
+            ${labels.map(l => `<tr>${heads.map((_, i) => i === 0 && l !== null ? `<td><strong>${l}</strong></td>` : `<td>${tws.cell(h)}</td>`).join("")}</tr>`).join("")}
+        </table>`;
+    },
+    scale11: (name) => `<div class="ws-scale ws-scale-11">${Array.from({ length: 11 }, (_, i) => `<label class="ws-scale-item"><input type="radio" name="${name}" value="${i}"><span>${i}</span></label>`).join("")}</div>`,
+    lights: (t, name) => {
+        const [g, r] = t.type === "fact" ? ["그렇다", "아니다"] : ["찬성", "반대"];
+        return `<div class="ws-scale ws-scale-3">${[["🟢 초록", g], ["🟡 노랑", "잘 모르겠다"], ["🔴 빨강", r]].map(([c, l], i) => `<label class="ws-scale-item"><input type="radio" name="${name}" value="${i}"><span>${c} · ${l}</span></label>`).join("")}</div>`;
+    }
+};
+// 논제 유형에 따라 '무엇을 모을지'를 바꿔 묻는다
+const topicAsk = (t) => ({
+    fact: { idea: "이 주장이 맞는지 가려 줄 근거나 자료", judge: "무엇을 증거로 삼을 것인가" },
+    value: { idea: "이 판단을 가를 기준이나 사례", judge: "무엇을 기준으로 판단할 것인가" },
+    policy: { idea: "지금의 문제를 풀 방법과 그 부작용", judge: "지금 바꿔야 할 만큼 문제가 큰가" }
+}[t.type] || { idea: "떠오르는 생각", judge: "무엇이 가장 중요한가" });
+
+// 기법별 가운데 활동. [제목, 안내, 내용] 목록을 돌려준다. prepost: false면 앞뒤 5단 척도를 생략
+const TOPIC_TECH_CORE = {
+    panorama: { secs: (t) => [
+        ["세 자리 정하기", "이 논제와 얽힌 서로 다른 자리 셋을 정하세요. 사람만이 아니라 제도나 사회, 말 없는 사물도 자리가 될 수 있습니다.", tws.table(["자리 (누구 · 무엇)", "그 자리가 지키려는 가치", "그 자리의 첫마디"], ["자리 1", "자리 2", "자리 3"], 46)],
+        ["1라운드 · 내 자리의 입장", "맡은 자리에서 '우리는 왜 이 자리를 지키는가'를 주장과 근거의 차례로 적으세요.", tws.box(80, "주장 → 근거 → 예시")],
+        ["2라운드 · 서로 묻기", "상대를 꺾는 질문이 아니라, 상대 자리를 더 알고 싶은 질문을 하세요.", tws.table(["누구에게", "더 알고 싶은 질문", "들은 대답"], 2, 50)],
+        ["3라운드 · 함께 살 길 찾기", "세 자리 모두에 그럴 만한 까닭이 있었음을 인정하고, 모두가 받아들일 수 있는 방법을 한 문장으로 모아 보세요.", tws.box(70)]
+    ] },
+    valuebar: { prepost: false, secs: (t) => [
+        ["0~10 눈금에 서기", `0은 '전혀 아니다', 10은 '정말 그렇다'입니다. 논제에 대한 내 자리를 고르고 까닭을 적으세요.`, tws.scale11("vb-1") + tws.box(56, "이 자리를 고른 까닭")],
+        ["다른 자리의 목소리", "양 끝과 가운데에 선 친구의 까닭을 들은 대로 적으세요.", tws.table(["선 자리 (숫자)", "들은 까닭"], 3, 44)],
+        ["다시 서기", "친구들의 말을 들은 뒤 다시 자리를 고르세요. 옮겼다면 무엇 때문인지, 그대로라면 무엇이 더 단단해졌는지 적으세요.", tws.scale11("vb-2") + tws.box(56)]
+    ] },
+    brainwriting: { secs: (t) => [
+        ["돌려 쓰며 생각 쌓기", `활동지를 옆으로 돌리며, 앞사람의 생각에 덧붙여 '${topicAsk(t).idea}'을 말없이 적으세요.`, tws.table(["차례", "생각 1", "생각 2", "생각 3"], ["나", "두 번째 사람", "세 번째 사람"], 50)],
+        ["모둠이 고른 가장 좋은 생각", "모인 생각 가운데 가장 설득력 있는 것 하나를 고르고 그 까닭을 적으세요.", tws.box(70)]
+    ] },
+    procon: { secs: (t) => {
+        const [A, B] = topicSides(t);
+        return [
+            [`${A}이 되어`, "먼저 이쪽 입장을 맡아 주장과 근거를 세우세요.", tws.table(["주장", "근거 (자료·사례)"], 2, 50)],
+            [`${B}이 되어`, "편을 바꿔 반대쪽 입장을 맡아 보세요.", tws.table(["주장", "근거 (자료·사례)"], 2, 50)],
+            ["두 편을 모두 겪어 보니", "어느 쪽 근거가 더 무거웠나요? 그 까닭은 무엇인가요?", tws.box(70)]
+        ];
+    } },
+    hotseating: { secs: (t) => [
+        ["뜨거운 의자에 앉을 사람", "이 논제로 가장 큰 영향을 받거나 결정을 내려야 하는 사람을 정하고, 그 사람의 처지를 적으세요.", `<p class="ws-prompt">누구: ${tws.line()}</p>` + tws.box(50, "그 사람이 처한 상황")],
+        ["묻고 듣기", "그 사람의 속마음과 결정의 까닭을 드러내는 질문을 하고, 대답을 적으세요.", tws.table(["질문", "들은 대답"], 3, 46)],
+        ["인터뷰 뒤 알게 된 것", "그 사람의 자리에 서 보니 논제가 어떻게 달리 보이나요?", tws.box(64)]
+    ] },
+    carousel: { secs: (t) => [
+        ["짝을 바꿔 가며 나누기", "안쪽 원과 바깥 원이 마주 보고, 짝이 바뀔 때마다 들은 생각을 적으세요.", tws.table(["차례", "짝의 생각", "내가 새로 얻은 점"], ["1번째 짝", "2번째 짝", "3번째 짝"], 48)],
+        ["가장 설득력 있던 말", "여러 짝에게 들은 말 가운데 내 생각을 가장 흔든 것은 무엇인가요?", tws.box(64)]
+    ] },
+    socratic: { secs: (t) => [
+        ["여는 질문 만들기", `논제 속 핵심 낱말을 골라 '○○란 무엇인가?', '언제나 그런가?'처럼 정답 없는 질문을 만드세요. 붙잡을 물음: ${topicAsk(t).judge}?`, tws.box(56)],
+        ["대화 기록", "누가 무엇을 말했는지, 그 말에 내가 이어 묻고 싶은 것은 무엇인지 적으세요.", tws.table(["누가", "한 말", "이어 묻고 싶은 것"], 3, 46)],
+        ["대화 뒤 새로 생긴 질문", "처음 질문보다 한 걸음 더 들어간 질문을 적으세요.", tws.box(56)]
+    ] },
+    worldcafe: { secs: (t) => {
+        const tables = t.type === "policy" ? ["탁자 1 · 지금의 문제", "탁자 2 · 해결 방법", "탁자 3 · 부작용과 대안"]
+            : t.type === "fact" ? ["탁자 1 · 뜻과 범위", "탁자 2 · 근거와 자료", "탁자 3 · 반대 증거"]
+            : ["탁자 1 · 판단 기준", "탁자 2 · 기준에 비춘 사례", "탁자 3 · 맞서는 가치"];
+        return [
+            ["탁자를 옮겨 다니며", "탁자마다 다른 질문을 두고 이야기합니다. 각 탁자에서 나온 생각을 적으세요.", tws.table(["탁자", "나온 생각"], tables, 54)],
+            ["처음 탁자로 돌아와 모은 결론", "여러 탁자의 생각을 모아 우리 모둠의 결론을 적으세요.", tws.box(70)]
+        ];
+    } },
+    argumentgame: { secs: (t) => [
+        ["논증 카드 만들기", "주장·이유·근거가 한 줄로 이어지도록 카드를 만드세요.", tws.table(["주장", "이유", "근거 (자료·사례)"], 2, 50)],
+        ["상대 논증의 약한 고리", "상대 모둠의 카드에서 이유와 근거가 약하게 이어진 곳을 찾아 반박하세요.", tws.table(["상대 주장", "약한 곳", "반박"], 2, 50)]
+    ] },
+    trafficlight: { prepost: false, secs: (t) => [
+        ["신호등 들기", "논제를 듣고 내 생각에 맞는 색을 고르고, 까닭을 적으세요.", tws.lights(t, "tl-1") + tws.box(50, "이 색을 든 까닭")],
+        ["다른 색을 든 친구의 까닭", "나와 다른 색을 든 친구의 말을 들은 대로 적으세요.", tws.table(["색", "들은 까닭"], ["🟢", "🟡", "🔴"], 42)],
+        ["다시 들기", "자료와 친구의 말을 들은 뒤 다시 색을 고르세요. 바뀌었다면 무엇 때문인가요?", tws.lights(t, "tl-2") + tws.box(50)]
+    ] },
+    pmi: { secs: (t) => [
+        ["좋은 점 · 아쉬운 점 · 흥미로운 점", "논제가 말하는 일을 세 갈래로 고르게 따져 보세요. 흥미로운 점에는 더 알아보고 싶은 질문을 적어도 됩니다.", tws.table(["", "내 생각", "모둠에서 나온 생각"], ["P 좋은 점", "M 아쉬운 점", "I 흥미로운 점"], 54)],
+        ["PMI를 마치고", "세 갈래를 견주어 보니 어느 쪽이 더 무거운가요?", tws.box(60)]
+    ] },
+    "2stay2stray": { secs: (t) => [
+        ["우리 모둠의 결론", "모둠에서 나눈 결론과 그 까닭을 한눈에 보이게 정리하세요.", tws.box(64)],
+        ["다른 모둠에서 들은 것", "떠난 두 사람은 다른 모둠의 결론을 배워 오고, 남은 두 사람은 손님에게 설명합니다.", tws.table(["모둠", "들은 결론", "우리와 다른 점"], 2, 50)],
+        ["돌아와 고친 결론", "배워 온 내용으로 우리 모둠의 결론을 고치거나 더하세요.", tws.box(60)]
+    ] },
+    fan: { secs: (t) => [
+        ["요약하고 이어 말하기", "앞사람의 의견을 한 문장으로 요약한 뒤에야 내 의견을 말할 수 있습니다.", tws.table(["앞사람 의견 요약", "내 의견 (그래서 · 그런데 · 게다가)"], 3, 46)],
+        ["요약하며 들어 보니", "상대 말을 요약하려고 들었을 때 무엇이 달라졌나요?", tws.box(56)]
+    ] },
+    reasoning: { secs: (t) => [
+        ["주장과 이유 찾기", "주장마다 '왜 그런가'의 이유와, 그 이유를 받치는 증거를 찾으세요.", tws.table(["주장", "이유", "증거 (자료·사례)"], 2, 52)],
+        ["이유가 약한 곳", "이유와 증거가 잘 이어지지 않는 곳은 어디인가요? 어떤 자료가 더 있으면 단단해질까요?", tws.box(60)]
+    ] },
+    havruta: { secs: (t) => [
+        ["질문 만들기", "논제를 두고 세 가지 꼴의 질문을 만드세요.", tws.table(["질문 꼴", "내 질문"], ["왜 ~일까?", "어떻게 ~할까?", "만약 ~라면?"], 42)],
+        ["짝과 묻고 답하기", "짝과 질문을 주고받으며 '왜?'를 한 번 더 물으세요.", tws.table(["질문", "짝의 답", "다시 물은 것과 내 생각"], 2, 50)],
+        ["가장 좋은 질문 하나", "둘이 고른 가장 좋은 질문과 그 까닭을 적으세요.", tws.box(46)]
+    ] },
+    "eraser-debate": { secs: (t) => [
+        ["떠오른 것 모두 적기", `논제에 대해 모둠이 떠올린 '${topicAsk(t).idea}'을 모두 적으세요.`, `<table class="ws-table ws-table-compact">${[0, 1].map(() => `<tr>${[0, 1, 2].map(() => `<td>${tws.cell(40)}</td>`).join("")}</tr>`).join("")}</table>`],
+        ["하나씩 지우기", "덜 중요하다고 합의한 것부터 하나씩 지우고, 지운 까닭을 적으세요.", tws.table(["지운 것", "지운 까닭"], 3, 42)],
+        ["마지막까지 남은 것", "끝까지 남은 것과, 그것이 가장 중요한 까닭을 적으세요.", tws.box(56)]
+    ] },
+    "ai-assisted-debate": { secs: (t) => [
+        ["AI에게 묻기", "논제에 대해 AI에게 물은 질문과, AI의 답을 요약해 적으세요.", `<p class="ws-prompt">물은 질문: ${tws.line()}</p>` + tws.box(56, "AI의 답 요약")],
+        ["AI의 답 확인하기", "AI가 든 근거를 믿을 만한 자료로 직접 확인하세요.", tws.table(["AI가 든 근거", "직접 찾은 자료 (출처)", "맞음 · 틀림 · 모름"], 2, 48)],
+        ["AI가 놓친 관점", "AI의 답에서 빠진 사람, 가치, 자료는 무엇인가요?", tws.box(56)]
+    ] },
+    doublepyramid: { secs: (t) => {
+        const [A, B] = topicSides(t);
+        return [
+            ["혼자 → 짝 → 모둠으로 좁히기", "혼자 근거 세 가지를 쓰고, 짝과 둘로, 모둠에서 하나로 좁혀 가세요.", tws.table(["단계", "고른 근거"], ["혼자 (3개)", "짝과 (2개)", "모둠 (1개)"], 48)],
+            ["두 편의 대표 안", `${A}과 ${B}의 대표 안을 나란히 적으세요.`, tws.table([A, B], 1, 60)],
+            ["함께 만든 합의안", "두 대표 안에서 서로 받아들일 수 있는 것을 모아 합의안을 만드세요.", tws.box(64)]
+        ];
+    } },
+    angeldevil: { secs: (t) => [
+        ["고민하는 사람", "이 논제 앞에서 결정을 내려야 하는 사람을 정하세요.", `<p class="ws-prompt">누구: ${tws.line()}</p>`],
+        ["두 마음의 목소리", "한쪽 마음과 다른 쪽 마음이 되어 각자의 까닭을 속삭이듯 적으세요.", tws.table(["한쪽 마음", "다른 쪽 마음"], 2, 50)],
+        ["고민하는 사람의 선택", "두 목소리를 모두 들은 뒤 그 사람은 무엇을 골랐을까요? 까닭도 적으세요.", tws.box(64)]
+    ] },
+    hexadebate: { secs: (t) => [
+        ["육각형 카드에 적기", "논제에서 떠오른 낱말·사람·사건·가치를 카드 한 장에 하나씩 적으세요.", `<table class="ws-table ws-table-compact">${[0, 1].map(() => `<tr>${[0, 1, 2].map(() => `<td>${tws.line()}</td>`).join("")}</tr>`).join("")}</table>`],
+        ["카드 이어 붙이기", "서로 이어진다고 생각하는 두 카드를 골라, 왜 이어지는지 말로 설명하세요.", tws.table(["카드 A", "카드 B", "이어진 까닭"], 3, 44)],
+        ["이어진 그림으로 본 논제의 핵심", "카드가 이어진 모양을 보고, 이 논제에서 가장 중요한 연결 고리를 적으세요.", tws.box(60)]
+    ] }
+};
+
+function buildTopicTechWs(t, techId, hints) {
+    const tech = techniques.find(x => x.id === techId);
+    const core = TOPIC_TECH_CORE[techId];
+    if (!tech || !core) return "";
+    const [A, B] = topicSides(t);
+    const hintList = (arr) => `<ul class="ws-hint">${arr.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    const secs = core.secs(t);
+    const prepost = core.prepost !== false;
+    let n = 0;
+    const sec = (title, lead, body) => `
+        <div class="ws-section ws-keep">
+            <h4>${++n}. ${title}</h4>
+            ${lead ? `<p class="ws-prompt">${lead}</p>` : ""}
+            ${body}
+        </div>`;
+    return `
+        <div class="ws-book-info-box">
+            <h4>📌 논제 살펴보기 · ${techShortName(tech)}</h4>
+            ${hints ? `<p style="margin-bottom:8px;">${t.background}</p>
+            <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${hintList(t.pro)}</td><td>${hintList(t.con)}</td></tr></table>` : ""}
+            <p style="margin:8px 0 0;"><strong>이렇게 진행해요</strong> · ${tech.steps.map((s, i) => `${i + 1}. ${s.title.replace(/\s*\([^)]*\)\s*$/, "")}`).join(" → ")}</p>
+        </div>
+        ${prepost ? sec("토론 전, 나의 첫 생각", "", topicWsScale(t, "tech-pre") + tws.box(50, "그렇게 생각한 까닭")) : ""}
+        ${secs.map(([title, lead, body]) => sec(title, lead, body)).join("")}
+        ${prepost ? sec("토론 뒤, 달라진 생각", "", topicWsScale(t, "tech-post") + tws.box(50, "처음과 달라진 점, 또는 더 단단해진 까닭")) : ""}`;
+}
+
+function buildTopicTechTeacherPage(t, techId) {
+    const tech = techniques.find(x => x.id === techId);
+    const g = TECH_CLASS_GUIDE[techId] || {};
+    const meta = TOPIC_TYPE_INFO[t.type];
+    const [A, B] = topicSides(t);
+    const li = (arr) => `<ul class="ws-hint">${arr.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    return `
+        <div class="worksheet-paper ws-topic-page ws-teacher-page ws-topic-break">
+            <div style="text-align:center; margin-bottom:18px;">
+                <p class="ws-teacher-badge">교사용 · 진행 안내</p>
+                <p style="font-size:0.82rem; color:#8a5a44; letter-spacing:0.06em; margin:0 0 8px;">${meta.label} · ${t.level} · ${techShortName(tech)}</p>
+                <h3 style="font-size:1.4rem; color:#111; margin:0 0 10px; line-height:1.45; word-break:keep-all;">${t.claim}</h3>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>진행 순서</h4>
+                <ol class="ws-hint">${tech.steps.map(s => `<li><strong>${s.title}</strong> — ${s.desc}</li>`).join("")}</ol>
+                ${g.quick ? `<p class="ws-prompt">짧게 할 때 · ${g.quick.how}</p>` : ""}
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>예상 쟁점</h4>
+                ${t.now ? `<p class="ws-prompt"><strong>지금은</strong> ${t.now}</p>` : ""}
+                <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${li(t.pro)}</td><td>${li(t.con)}</td></tr></table>
+            </div>
+            ${g.observe ? `<div class="ws-section ws-keep"><h4>관찰 포인트</h4>${li(g.observe)}</div>` : ""}
+            ${g.rubric ? `<div class="ws-section ws-keep"><h4>평가 기준</h4>
+                <table class="ws-table ws-table-compact"><tr><th>기준</th><th>잘함</th><th>보통</th><th>노력 필요</th></tr>
+                ${g.rubric.map(r => `<tr><td><strong>${r.k}</strong></td><td>${r.hi}</td><td>${r.mid}</td><td>${r.lo}</td></tr>`).join("")}</table></div>` : ""}
+            <div class="ws-section ws-keep">
+                <h4>세특 쓰기 틀</h4>
+                <p class="ws-prompt">'${t.claim}'를 논제로 한 ${techShortName(tech)}에서 ______의 입장(자리)을 맡아 ______을 근거로 ______라고 주장함. 토론 과정에서 ______(친구의 의견·자료)를 듣고 ______ 점을 고려해 생각을 ______함.</p>
+                <p class="ws-prompt">학생이 실제로 한 말과 행동, 찾은 자료로 빈칸을 채우면 학생마다 다른 기록이 됩니다.${(t.std || []).length ? ` 관련 성취기준 ${t.std.map(c => `[${c}]`).join(" ")}` : ""}</p>
+            </div>
+        </div>`;
+}
+
+// 논제 학습지 형식에 기법 20가지를 더한다 (형식 이름: tech-기법 id)
+techniques.forEach(tech => {
+    TOPIC_WS_FORMS["tech-" + tech.id] = techShortName(tech);
+    TOPIC_WS_BUILDERS["tech-" + tech.id] = (t, hints) => buildTopicTechWs(t, tech.id, hints);
+});
+
 const TWS = {
     ans: (html) => `<div class="ws-ans">${html}</div>`,
     note: (html) => `<p class="ws-teach-note">🧭 ${html}</p>`,
@@ -14961,6 +15153,7 @@ const TOPIC_WS_ANSWERS = {
 };
 
 function buildTopicTeacherPage(t, p) {
+    if (p.startsWith("tech-")) return buildTopicTechTeacherPage(t, p.slice(5));
     const meta = TOPIC_TYPE_INFO[t.type];
     return `
         <div class="worksheet-paper ws-topic-page ws-teacher-page ws-topic-break">
@@ -15046,7 +15239,7 @@ function initTopicWorksheet() {
 }
 
 // 논제 카드의 「학습지 만들기」 → 학습지 메이커로 이동해 바로 생성
-window.openTopicWorksheet = function (idx) {
+window.openTopicWorksheet = function (idx, form) {
     const t = debateTopicsDB[idx];
     if (!t) return;
     setWsMode("topic");
@@ -15057,6 +15250,8 @@ window.openTopicWorksheet = function (idx) {
     refreshTopicWsOptions();
     const topicSel = document.getElementById("topic-ws-topic");
     if (topicSel) topicSel.value = String(idx);
+    const formSel = document.getElementById("topic-ws-form");
+    if (formSel && form && TOPIC_WS_BUILDERS[form]) formSel.value = form;
     const link = document.querySelector(`.nav-links a[href="#worksheet-section"]`);
     if (link) link.click();
     generateTopicWorksheet();

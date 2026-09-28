@@ -4353,3 +4353,16 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .cur-all li.linked .cur-std-text { color: var(--text-primary); }
 .cur-all li.linked .cur-std-topics { margin-top: 6px; }
 .cur-stds:empty { display: none; }
+
+/* ── v5.5 논제 × 토론 기법 학습지 ── */
+.ws-scale-3 { grid-template-columns: repeat(3, 1fr); }
+.ws-scale-11 { grid-template-columns: repeat(11, 1fr); gap: 4px; }
+.ws-scale-11 .ws-scale-item { padding: 6px 0; font-size: 0.8rem; font-weight: 700; }
+@media (max-width: 560px) {
+    .ws-scale-11 { grid-template-columns: repeat(6, 1fr); }
+}
+.subject-topic-techsel {
+    border: 1px solid var(--accent-sage); background: transparent; color: var(--accent-sage);
+    border-radius: 10px; padding: 5px 8px; font-family: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; max-width: 100%;
+}
+.subject-topic-techsel option, .subject-topic-techsel optgroup { color: #222; background: #fff; }
