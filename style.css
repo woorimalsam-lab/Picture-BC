@@ -4224,3 +4224,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .nav-links a { white-space: nowrap; font-size: 0.88rem; }
     .nav-links a i { display: none; }
 }
+
+/* 교과 화면 — 논제의 과목·단원 표시와 구분선 */
+.subject-topic-unit { font-size: 0.75rem; font-weight: 700; color: var(--accent-sage); background: rgba(112, 138, 111, 0.12); border-radius: 8px; padding: 2px 8px; white-space: nowrap; }
+.subject-topic-divider { list-style: none; font-size: 0.82rem; font-weight: 700; color: var(--text-secondary); margin: 10px 0 2px; padding-top: 10px; border-top: 1px dashed var(--border-color); }

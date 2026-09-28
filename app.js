@@ -3907,6 +3907,48 @@ const SUBJECT_GUIDE = [
         sources: ["bigkinds", "kpf"]
     },
     {
+        key: "japanese", label: "일본어", icon: "fa-torii-gate",
+        hook: "일본어 토론은 문법보다 '말씨와 문화의 차이'에서 시작하면 쉽습니다. 경어, 분위기를 읽는 소통, 대중문화처럼 학생들이 이미 궁금해하는 주제를 논제로 삼고, 정해진 표현 틀로 짧게 주고받게 하세요.",
+        fields: [],
+        techs: [
+            { id: "carousel", why: "짝을 바꿔 가며 같은 표현을 여러 번 말해 회화 문형이 입에 붙습니다." },
+            { id: "trafficlight", why: "賛成(찬성)·反対(반대)·まだわからない(아직 모르겠다) 카드로 시작해 한 문장씩 까닭을 붙입니다." },
+            { id: "pmi", why: "경어나 생활 문화처럼 한국과 다른 점의 좋은 점·아쉬운 점을 우리말로 먼저 따져 봅니다." },
+            { id: "hotseating", why: "지문 속 인물이나 일본 여행객 역할을 뜨거운 의자에 앉혀 일본어로 인터뷰합니다." }
+        ],
+        scenes: [
+            { unit: "일본어 회화 · 의견 말하기", tech: "회전목마 토론", min: 15, flow: "'번역 앱만으로도 일본 여행에서 충분히 소통할 수 있다'를 두고, 표현 카드의 「私は〜と思います。なぜなら〜からです。」 틀로 짝을 바꿔 가며 세 번 말합니다." },
+            { unit: "일본 문화 · 경어", tech: "PMI 토론", min: 10, flow: "상대에 따라 말씨를 바꾸는 경어 문화의 좋은 점·아쉬운 점·흥미로운 점을 우리말로 붙임쪽지에 적고, 한국어의 높임법과 견주어 봅니다." }
+        ],
+        frames: {
+            title: "일본어 토론 표현 카드",
+            items: ["私は〜と思います。(저는 ~라고 생각합니다)", "なぜなら、〜からです。(왜냐하면 ~이기 때문입니다)", "たとえば、〜。(예를 들면 ~)", "〜さんの意見に賛成です／反対です。(~ 씨 의견에 찬성/반대합니다)", "もう少し詳しく教えてください。(조금 더 자세히 말해 주세요)"]
+        },
+        tips: ["처음에는 까닭을 우리말로 말해도 괜찮다고 해 주세요. 주장 한 문장만 일본어로 말해도 충분한 출발입니다.", "문화 차이를 다룰 때는 '일본 사람은 모두 ~하다'처럼 한 나라를 한 가지로 묶는 말을 피하도록 짚어 주세요."],
+        sources: ["bigkinds", "kosis"]
+    },
+    {
+        key: "chinese", label: "중국어", icon: "fa-yin-yang",
+        hook: "중국어 토론은 한자·성조·생활 문화처럼 한국어와 닮고 다른 지점을 논제로 삼으면 학생들이 쉽게 입을 엽니다. 짧은 문형 카드를 주고 짝 단위로 주고받게 하세요.",
+        fields: [],
+        techs: [
+            { id: "trafficlight", why: "我同意(동의)·我不同意(반대)·我不知道(모르겠다) 카드로 시작해 한 문장씩 까닭을 붙입니다." },
+            { id: "carousel", why: "짝을 바꿔 가며 같은 문형을 여러 번 말해 성조와 표현이 입에 붙습니다." },
+            { id: "havruta", why: "고사성어 하나를 두고 짝과 '왜 이런 말이 생겼을까?'를 주고받으며 뜻과 쓰임을 파고듭니다." },
+            { id: "pmi", why: "모바일 결제처럼 현대 중국 사회의 모습을 좋은 점·아쉬운 점·흥미로운 점으로 나눠 봅니다." }
+        ],
+        scenes: [
+            { unit: "중국어 회화 · 동의와 반대", tech: "신호등 토론", min: 10, flow: "'다른 나라를 방문할 때는 그 나라의 관습을 따라야 한다'에 카드를 들고, 「我同意，因为……」 또는 「我不同意，因为……」 한 문장으로 까닭을 말하게 합니다." },
+            { unit: "중국 문화 · 한자와 성어", tech: "하브루타", min: 15, flow: "고사성어 하나를 짝과 나눠 읽고 '이 말은 왜 생겼을까?', '요즘 어떤 상황에 쓸 수 있을까?'를 번갈아 묻습니다. 가장 좋은 질문을 모둠에서 하나 고릅니다." }
+        ],
+        frames: {
+            title: "중국어 토론 표현 카드",
+            items: ["我认为……。Wǒ rènwéi…… (저는 ~라고 생각합니다)", "因为……，所以……。Yīnwèi…… suǒyǐ…… (~때문에, 그래서 ~)", "比如说……。Bǐrú shuō…… (예를 들면 ~)", "我同意／不同意你的看法。Wǒ tóngyì / bù tóngyì nǐ de kànfǎ. (네 생각에 동의해/동의하지 않아)", "你能再说一遍吗？Nǐ néng zài shuō yí biàn ma? (다시 한번 말해 줄래요?)"]
+        },
+        tips: ["성조가 조금 틀려도 끝까지 말하도록 격려해 주세요. 뜻이 통했는지 짝이 확인해 주는 것만으로도 충분한 연습입니다.", "간체자와 번체자, 한국 한자를 나란히 보여 주면 '문자는 어떻게 달라지는가'라는 토론거리가 됩니다."],
+        sources: ["bigkinds", "kosis"]
+    },
+    {
         key: "social", label: "사회", icon: "fa-landmark",
         hook: "제도와 정책을 다루는 단원은 모두 정책 논제가 됩니다. 통계와 기사를 근거로 쓰게 하면 주장이 훨씬 단단해집니다.",
         fields: ["사회", "정치", "노동", "복지", "인권", "정의", "역사", "평화", "안전", "공동체"],
@@ -3958,16 +4000,55 @@ const SUBJECT_GUIDE = [
         sources: ["iapc", "kpf", "bigkinds"]
     },
     {
-        key: "arts", label: "예술·체육", icon: "fa-palette",
-        hook: "작품 감상과 경기 규칙 모두 '무엇이 더 좋은가, 무엇이 공정한가'를 묻는 순간 토론이 됩니다.",
-        fields: ["문화", "건강", "성장", "감정"],
+        key: "art", label: "미술", icon: "fa-palette",
+        hook: "미술 감상은 '이것도 예술인가, 이 작품의 가치는 어디서 오는가'를 묻는 순간 토론이 됩니다. 정답을 알려 주기보다 보는 눈이 서로 다르다는 것을 드러내게 하세요.",
+        fields: [],
         techs: [
-            { id: "trafficlight", why: "감상 뒤 '이것도 예술인가'를 카드로 들어 보게 합니다." },
-            { id: "worldcafe", why: "작품이나 경기 영상마다 테이블을 만들어 돌아가며 감상을 나눕니다." },
-            { id: "eraser-debate", why: "작품의 좋은 점 가운데 덜 중요한 것을 지워 가며 핵심을 찾습니다." }
+            { id: "trafficlight", why: "작품을 보여 주고 '이것도 예술인가'를 카드로 들어 보게 합니다." },
+            { id: "worldcafe", why: "작품마다 테이블을 만들어 돌아가며 감상과 비평을 쌓습니다." },
+            { id: "valuebar", why: "'작품의 가치는 가격으로 드러난다'처럼 생각이 갈리는 문장에 0~10으로 서 봅니다." },
+            { id: "eraser-debate", why: "작품의 좋은 점을 모두 적은 뒤 덜 중요한 것을 지워 가며 핵심을 찾습니다." }
         ],
-        scene: { unit: "현대 미술 감상", tech: "신호등 토론", min: 10, flow: "'인공지능이 만든 것도 예술이라 할 수 있다'에 카드를 들게 한 뒤, 작품 두 점을 보여 주고 다시 들게 합니다. 바뀐 학생에게 무엇을 보고 바뀌었는지 묻습니다." },
-        sources: ["mcst", "kdca"]
+        scenes: [
+            { unit: "미술 감상과 비평", tech: "신호등 토론", min: 10, flow: "'아름답지 않은 작품도 훌륭한 예술이 될 수 있다'에 카드를 들게 한 뒤, 불편하거나 낯선 작품 두 점을 보여 주고 다시 들게 합니다. 바뀐 학생에게 무엇을 보고 바뀌었는지 묻습니다." },
+            { unit: "미술과 매체 · 인공지능과 창작", tech: "월드카페", min: 25, flow: "테이블마다 사람이 그린 그림과 인공지능이 만든 그림을 한 점씩 놓고 '무엇이 다른가, 누가 작가인가'를 적으며 돌아갑니다." }
+        ],
+        tips: ["감상 토론에서는 '좋다·싫다'에서 멈추지 말고 '작품의 어디를 보고 그렇게 느꼈는지'를 짚게 하세요. 그것이 비평의 근거가 됩니다."],
+        sources: ["mcst", "bigkinds"]
+    },
+    {
+        key: "music", label: "음악", icon: "fa-music",
+        hook: "음악 토론은 '무엇이 좋은 음악인가, 창작은 어디까지인가'를 묻는 데서 시작합니다. 한 곡을 함께 듣고 곧바로 짧게 의견을 나누면 감상 수업이 토론 수업이 됩니다.",
+        fields: [],
+        techs: [
+            { id: "trafficlight", why: "곡을 들은 뒤 '이것도 창작인가'를 카드로 들어 보게 합니다." },
+            { id: "procon", why: "샘플링·스트리밍 수익처럼 찬반이 갈리는 음악 산업 문제를 양쪽에서 봅니다." },
+            { id: "carousel", why: "한 곡에 대한 감상을 짝을 바꿔 가며 나누고, 들은 표현을 빌려 감상문을 다듬습니다." },
+            { id: "socratic", why: "'노래 가사는 시인가'처럼 정답 없는 질문을 가사를 근거로 오래 이야기합니다." }
+        ],
+        scenes: [
+            { unit: "음악 감상과 비평", tech: "신호등 토론", min: 10, flow: "원곡과 그 곡을 샘플링한 곡을 차례로 들려주고 '샘플링도 창작이다'에 카드를 들게 합니다. 두 곡에서 무엇이 달라졌는지를 까닭으로 말하게 합니다." },
+            { unit: "음악과 미디어", tech: "프로콘 토론", min: 20, flow: "'인공지능이 작곡한 곡도 사람이 만든 곡만큼 감동을 줄 수 있다'를 두고 짝끼리 찬성과 반대를 번갈아 맡은 뒤, 마지막에 두 곡을 들려주고 어느 쪽이 인공지능 곡인지 맞혀 봅니다." }
+        ],
+        tips: ["감상 토론 전에 곡을 한 번 더 들려주세요. 두 번째 들을 때 근거로 쓸 소리를 찾는 학생이 크게 늘어납니다."],
+        sources: ["mcst", "bigkinds"]
+    },
+    {
+        key: "pe", label: "체육", icon: "fa-person-running",
+        hook: "체육 토론은 경기 규칙과 판정, 공정, 건강처럼 학생들이 몸으로 겪는 문제에서 시작합니다. 경기 영상 한 장면이나 수업 중 있었던 판정 하나가 곧바로 논제가 됩니다.",
+        fields: ["건강"],
+        techs: [
+            { id: "trafficlight", why: "경기 영상의 판정 장면을 보여 주고 '옳은 판정인가'를 카드로 들게 합니다." },
+            { id: "valuebar", why: "'도핑한 선수는 영구 출전 금지' 같은 징계 수위를 0~10 눈금으로 드러냅니다." },
+            { id: "procon", why: "e스포츠의 올림픽 종목 채택처럼 찬반이 갈리는 스포츠 쟁점을 양쪽에서 봅니다." },
+            { id: "doublepyramid", why: "우리 반 경기 규칙을 정할 때 찬반 대표 안을 모아 합의안을 만듭니다." }
+        ],
+        scenes: [
+            { unit: "스포츠 문화 · 스포츠와 공정", tech: "신호등 토론", min: 10, flow: "논란이 된 판정 장면을 보여 주고 '비디오 판독과 인공지능 심판을 적극 도입해야 한다'에 카드를 들게 합니다. 느린 화면을 다시 보여 준 뒤 한 번 더 듭니다." },
+            { unit: "스포츠 생활 · 규칙 만들기", tech: "쌍 피라미드 토론", min: 20, flow: "수업 중 경기에서 실력 차이를 줄이는 규칙(예: 득점한 학생은 다음 공격에서 빠지기)을 찬반으로 나눠 다듬고, 두 대표 안을 합쳐 우리 반 규칙으로 정해 실제 경기에 써 봅니다." }
+        ],
+        tips: ["토론으로 정한 규칙을 그 시간 경기에 바로 적용해 보게 하면, 토론의 결과를 몸으로 확인하는 경험이 됩니다."],
+        sources: ["kdca", "bigkinds"]
     },
     {
         key: "career", label: "진로·창체", icon: "fa-compass",
@@ -4022,7 +4103,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["「완벽한 아이 팔아요」 파노라마 토론에서 '마트'의 자리를 맡아, 아이를 성능으로 진열하는 것이 개인의 악의가 아니라 경쟁을 부추기는 사회 구조에서 비롯된다고 논리를 세워 발표함.", "다른 자리에 선 친구에게 '당신이 바란 완벽함은 누구를 위한 것이었나요?'라고 물어 부모 역할의 숨은 불안을 끌어내고, 세 자리를 모두 살리는 해결책을 모둠에서 가장 먼저 제안함."]
     },
     valuebar: {
-        quick: { min: 10, slots: ["도입", "정리"], how: "논제 한 줄을 제시하고 자리에 서게 한 뒤, 양 끝과 가운데에서 한 명씩만 까닭을 듣고 다시 서게 합니다. 수업 첫 10분이나 마지막 10분에 넣기 좋습니다." },
+        quick: { min: 10, slots: ["도입", "정리"], how: "논제 한 줄을 제시하고 자리에 서게 한 뒤, 양 끝과 가운데에서 한 명씩만 까닭을 듣고 다시 서게 합니다. 수업 첫머리나 끝에 넣기 좋습니다." },
         observe: ["처음 자리를 고른 까닭을 분명히 말하는가", "다른 자리에 선 친구의 말을 끝까지 듣는가", "자리를 옮겼다면 무엇 때문인지 설명하는가"],
         rubric: [
             { k: "입장의 근거", hi: "자리를 고른 까닭을 구체적 근거로 설명함", mid: "까닭은 있으나 막연함", lo: "까닭을 말하지 못함" },
@@ -4032,7 +4113,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["'다수를 위해 한 사람이 손해를 보는 것은 정당하다'를 두고 한 가치수직선 토론에서 처음 3에 섰다가, 친구가 든 의무론의 근거를 듣고 5로 자리를 옮기며 '결과만으로 옳고 그름을 판단하기 어렵다'고 까닭을 밝힘.", "양 끝에 선 친구들의 주장을 각각 한 문장으로 요약한 뒤 자신은 가운데에 선 까닭을 설명하여, 대립된 입장 사이의 조건을 찾는 모습을 보임."]
     },
     brainwriting: {
-        quick: { min: 15, slots: ["전개"], how: "3~4명이 종이를 한 바퀴만 돌리고, 한 칸에 한 줄씩만 씁니다. 마지막 3분에 모둠이 가장 좋은 생각 하나를 고릅니다." },
+        quick: { min: 15, slots: ["전개"], how: "3~4명이 종이를 한 바퀴만 돌리고, 한 칸에 한 줄씩만 씁니다. 마지막에 모둠이 가장 좋은 생각 하나를 고릅니다." },
         observe: ["앞사람의 생각을 읽고 이어서 발전시키는가", "비판 대신 보태는 말로 적는가", "말수가 적은 학생도 자기 생각을 적는가"],
         rubric: [
             { k: "아이디어", hi: "구체적이고 실행 가능한 해결책을 냄", mid: "막연한 해결책을 냄", lo: "칸을 비워 둠" },
@@ -4042,7 +4123,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["브레인라이팅 활동에서 앞사람이 적은 '학교 안 쉼터 만들기'에 '쉬는 시간마다 조용한 교실 한 곳을 돌아가며 열자'는 실행 방법을 덧붙여 모둠의 최종 해결책으로 채택되게 함.", "말로 발표하는 데에는 소극적이었으나 글로 쓰는 활동에서는 모든 칸에 구체적인 제안을 적어, 모둠원들의 생각을 한 단계씩 발전시키는 역할을 함."]
     },
     procon: {
-        quick: { min: 20, slots: ["전개"], how: "짝끼리 찬성 2분 → 반대 2분 → 편을 바꿔 2분씩 → 마지막 5분에 '어느 쪽 근거가 더 무거웠나'를 적습니다." },
+        quick: { min: 20, slots: ["전개"], how: "짝끼리 찬성 → 반대 → 편을 바꿔 한 번씩 더 말한 뒤, 마지막에 '어느 쪽 근거가 더 무거웠나'를 적습니다." },
         observe: ["편을 바꾼 뒤에도 그 편의 논리를 성실히 세우는가", "상대 주장을 정확히 짚어 반박하는가", "양쪽을 겪은 뒤 균형 잡힌 판단을 내리는가"],
         rubric: [
             { k: "논증", hi: "주장·이유·근거를 갖춰 말함", mid: "주장과 이유만 말함", lo: "주장만 되풀이함" },
@@ -4052,7 +4133,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["'선거권 연령을 만 16세로 낮춰야 한다'는 프로콘 토론에서 찬성 편일 때는 청소년의 정치 참여 사례를, 반대 편으로 바꾼 뒤에는 교실의 정치화 우려를 근거로 들어 양쪽 논리를 모두 설득력 있게 세움.", "양쪽 입장을 모두 맡아 본 뒤 '찬성 쪽 근거가 더 무거웠지만 교육 제도가 먼저 갖춰져야 한다'는 조건부 결론을 내려, 쟁점을 균형 있게 판단하는 태도를 보임."]
     },
     hotseating: {
-        quick: { min: 15, slots: ["도입", "정리"], how: "교사가 먼저 인물이 되어 5분 동안 질문을 받고, 이어서 학생 한 명이 5분 앉습니다. 소설·역사 인물을 처음 소개할 때 좋습니다." },
+        quick: { min: 15, slots: ["도입", "정리"], how: "교사가 먼저 인물이 되어 질문을 받고, 이어서 학생 한 명이 앉습니다. 소설·역사 인물을 처음 소개할 때 좋습니다." },
         observe: ["인물의 입장에서 일관되게 답하는가", "질문이 인물의 속마음을 끌어내는가", "답할 때 작품이나 사료의 근거를 쓰는가"],
         rubric: [
             { k: "질문", hi: "인물의 선택 뒤에 숨은 까닭을 묻는 질문을 함", mid: "줄거리를 확인하는 질문을 함", lo: "질문하지 않음" },
@@ -4062,7 +4143,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["핫시팅 활동에서 「춘향전」의 월매 역할을 맡아 딸의 신분 상승을 바란 까닭을 당대 신분 질서와 연결하여 답해, 인물의 선택을 시대적 맥락에서 이해하는 모습을 보임.", "뜨거운 의자에 앉은 인물에게 '그때 다른 선택지는 없었나요?'라고 물어 인물의 딜레마를 드러냈으며, 활동 뒤 인물에게 쓰는 편지에서 선택의 무게에 공감하는 글을 씀."]
     },
     carousel: {
-        quick: { min: 15, slots: ["전개"], how: "짝을 세 번만 바꾸고, 한 번에 2분씩 말합니다. 마지막 3분에 '가장 좋았던 앞 짝의 한마디'를 적게 합니다." },
+        quick: { min: 15, slots: ["전개"], how: "짝을 세 번만 바꾸고, 한 번에 짧게 말합니다. 마지막에 '가장 좋았던 앞 짝의 한마디'를 적게 합니다." },
         observe: ["짝이 바뀔수록 주장이 다듬어지는가", "앞 짝에게 들은 근거를 빌려 쓰는가", "새 짝의 말을 듣고 반박을 미리 준비하는가"],
         rubric: [
             { k: "주장의 발전", hi: "대화가 거듭될수록 근거를 보태 주장을 다듬음", mid: "같은 말을 되풀이함", lo: "주장이 흐트러짐" },
@@ -4072,7 +4153,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["회전목마 토론에서 세 명의 짝과 차례로 의견을 나누며 두 번째 짝에게 들은 통계 근거를 세 번째 대화에 활용하여, 처음보다 한층 정교해진 주장을 펼침.", "짝이 바뀔 때마다 앞에서 받은 반박을 미리 예상하고 답을 준비해, 대화를 거듭할수록 주장의 빈틈을 스스로 메워 가는 모습을 보임."]
     },
     socratic: {
-        quick: { min: 20, slots: ["전개"], how: "열린 질문 하나만 정해 20분 동안 원형으로 이야기합니다. 관찰 모둠 없이 교사가 대화 태도를 짧게 돌려주는 것으로 마칩니다." },
+        quick: { min: 20, slots: ["전개"], how: "열린 질문 하나만 정해 원형으로 이야기합니다. 관찰 모둠 없이 교사가 대화 태도를 짧게 돌려주는 것으로 마칩니다." },
         observe: ["앞사람의 말을 이어받아 말하는가", "책·자료의 구체적인 대목을 근거로 드는가", "다른 사람이 말할 기회를 배려하는가"],
         rubric: [
             { k: "근거", hi: "텍스트의 구체적인 대목을 짚어 말함", mid: "텍스트를 두루뭉술하게 언급함", lo: "텍스트 없이 말함" },
@@ -4082,7 +4163,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["소크라틱 세미나에서 '우리는 왜 약속을 지켜야 하는가'라는 질문을 두고, 작품 속 인물이 약속을 어긴 장면을 근거로 들며 앞 친구의 발언을 이어받아 논의를 깊게 함.", "발언이 적은 친구에게 '너는 그 장면을 어떻게 봤어?'라고 기회를 넘겨 대화의 폭을 넓혔으며, 세미나 뒤 성찰 글에서 자신의 생각이 바뀐 지점을 구체적으로 밝힘."]
     },
     worldcafe: {
-        quick: { min: 25, slots: ["전개"], how: "테이블을 2~3개만 두고, 손님은 한 번만 이동합니다. 자리 주인은 새 손님에게 1분 안에 앞 이야기를 들려줍니다." },
+        quick: { min: 25, slots: ["전개"], how: "테이블을 2~3개만 두고, 손님은 한 번만 이동합니다. 자리 주인은 새 손님에게 앞 이야기를 짧게 들려줍니다." },
         observe: ["자리 주인이 앞 이야기를 정확히 전달하는가", "손님이 기존 생각 위에 새 생각을 보태는가", "종이에 생각이 자유롭게 쌓이는가"],
         rubric: [
             { k: "기여", hi: "새로운 관점을 보태 논의를 넓힘", mid: "기존 생각에 동의만 함", lo: "보태지 않음" },
@@ -4102,7 +4183,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["논증 게임에서 '학교 급식에 채식 선택권을 두어야 한다'를 주장하며 이유와 함께 실제 급식 잔반 통계를 근거로 들어, 세 마디 논증 구조를 정확히 갖춰 말함.", "짝의 발표에서 근거가 빠진 것을 짚어 '예를 들면 어떤 경우야?'라고 물어 논증을 완성하도록 도와, 동료의 말하기를 함께 다듬는 모습을 보임."]
     },
     trafficlight: {
-        quick: { min: 5, slots: ["도입", "정리"], how: "카드 들기 → 두 명에게 까닭 듣기 → 다시 들기, 5분이면 됩니다. 수업 첫머리에 생각을 열거나 끝에 배운 것을 확인할 때 씁니다." },
+        quick: { min: 5, slots: ["도입", "정리"], how: "카드 들기 → 두 명에게 까닭 듣기 → 다시 들기로 끝냅니다. 수업 첫머리에 생각을 열거나 끝에 배운 것을 확인할 때 씁니다." },
         observe: ["카드를 고른 까닭을 말할 수 있는가", "색을 바꾼 학생이 무엇 때문인지 설명하는가", "노란 카드를 든 학생이 양쪽에 질문하는가"],
         rubric: [
             { k: "입장 표명", hi: "색을 고른 까닭을 근거와 함께 말함", mid: "까닭이 막연함", lo: "까닭을 말하지 못함" },
@@ -4122,7 +4203,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["유전자 편집 기술을 PMI로 분석하며 질병 치료의 가능성과 함께 경제적 격차에 따른 접근성 문제를 아쉬운 점으로 짚고, '보험 적용 범위'라는 흥미로운 쟁점을 찾아냄.", "PMI 활동에서 좋은 점과 아쉬운 점을 고르게 제시한 뒤 아쉬운 점을 줄일 구체적 방안까지 제안하여, 새로운 기술을 다각도로 판단하는 모습을 보임."]
     },
     "2stay2stray": {
-        quick: { min: 20, slots: ["전개"], how: "모둠 정리 5분 → 다른 모둠 한 곳만 방문 8분 → 돌아와 보태기 7분으로 줄입니다." },
+        quick: { min: 20, slots: ["전개"], how: "모둠 정리 → 다른 모둠 한 곳만 방문 → 돌아와 보태기로 줄입니다." },
         observe: ["남은 사람이 우리 모둠 생각을 정확히 설명하는가", "다녀온 사람이 좋은 생각을 골라 적어 오는가", "돌아와서 우리 결과물을 실제로 고치는가"],
         rubric: [
             { k: "설명", hi: "모둠의 결론과 근거를 명확히 설명함", mid: "결론만 설명함", lo: "설명하지 못함" },
@@ -4132,7 +4213,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["둘 가고 둘 남기 활동에서 다른 모둠을 방문해 '비용을 누가 부담하는가'라는 새로운 쟁점을 기록해 와, 모둠의 해결책에 재원 마련 방안을 보태도록 이끎.", "모둠에 남아 방문객에게 우리 모둠의 결론을 근거와 함께 설명하고, 방문객의 질문을 반영해 결론의 약한 부분을 보완함."]
     },
     fan: {
-        quick: { min: 10, slots: ["전개", "정리"], how: "모둠 4명이 한 바퀴만 돌고, 한 사람당 요약 15초 + 내 생각 30초로 끊습니다." },
+        quick: { min: 10, slots: ["전개", "정리"], how: "모둠 4명이 한 바퀴만 돌고, 한 사람당 요약 한 줄과 내 생각 한두 문장으로 끊습니다." },
         observe: ["앞사람의 말을 정확히 요약하는가", "요약 뒤에 자기 생각을 새로 보태는가", "바퀴가 돌수록 모둠의 생각이 모이는가"],
         rubric: [
             { k: "요약", hi: "앞사람의 핵심을 정확히 요약함", mid: "일부만 요약함", lo: "요약하지 못함" },
@@ -4182,7 +4263,7 @@ const TECH_CLASS_GUIDE = {
         setuk: ["AI 보조 토론에서 AI가 제시한 반론 가운데 통계 수치가 출처 없이 제시된 점을 찾아내 직접 공식 통계로 확인하고, 이를 근거로 재반박함.", "AI에게 받은 반론 세 가지를 타당성에 따라 분류한 뒤, 가장 강한 반론에 대해 모둠원과 함께 자기 경험과 자료를 근거로 반박문을 작성함."]
     },
     doublepyramid: {
-        quick: { min: 25, slots: ["전개"], how: "혼자 쓰기 3분 → 짝과 고르기 5분 → 넷이 다듬기 7분 → 두 대표 안 견주기 10분으로 줄입니다." },
+        quick: { min: 25, slots: ["전개"], how: "혼자 쓰기 → 짝과 고르기 → 넷이 다듬기 → 두 대표 안 견주기로 줄입니다." },
         observe: ["짝과 견줄 때 더 나은 안을 근거로 고르는가", "넷이 모일 때 안을 실제로 발전시키는가", "찬반 대표 안을 아우르는 새 안을 내는가"],
         rubric: [
             { k: "안의 질", hi: "구체적이고 근거가 분명한 안을 냄", mid: "막연한 안을 냄", lo: "안을 내지 못함" },
@@ -4231,12 +4312,14 @@ function bindLevelChips(root, onChange) {
 
 // ── 교과별 토론 ───────────────────────────────────────────────────
 function subjectTopics(sub, lv) {
+    const mine = (t) => !!t.subject && [].concat(t.subject).includes(sub.key);
     const base = sub.math
         ? debateTopicsDB.filter(t => t.type === "fact" && TOPIC_STATS[t.claim])
         : debateTopicsDB.filter(t => (sub.fields || []).includes(t.field));
-    const fit = base.filter(t => topicFitsLevel(t, lv));
     const order = { "고등": 0, "중학·고등": 1, "초등·중학": 2 };
-    return lv === "고등" ? fit.sort((a, b) => order[a.level] - order[b.level]) : fit;
+    const rest = base.filter(t => !mine(t) && topicFitsLevel(t, lv));
+    if (lv === "고등") rest.sort((a, b) => order[a.level] - order[b.level]);
+    return { own: debateTopicsDB.filter(t => mine(t) && topicFitsLevel(t, lv)), rest };
 }
 
 let subjectKey = null;
@@ -4250,18 +4333,18 @@ function renderSubjectSection() {
     }
     const sub = SUBJECT_GUIDE.find(s => s.key === subjectKey) || SUBJECT_GUIDE[0];
     const lv = getSchoolLevel();
-    const all = subjectTopics(sub, lv);
-    const shown = all.slice(0, 8);
+    const tp = subjectTopics(sub, lv);
+    const restShown = tp.rest.slice(0, tp.own.length ? 4 : 8);
+    const shownN = tp.own.length + restShown.length;
+    const totalN = tp.own.length + tp.rest.length;
     const scenes = sub.scenes || (sub.scene ? [sub.scene] : []);
 
     const techCards = sub.techs.map(x => {
         const t = techniques.find(tt => tt.id === x.id);
         if (!t) return "";
-        const q = TECH_CLASS_GUIDE[x.id] && TECH_CLASS_GUIDE[x.id].quick;
         return `<button type="button" class="subject-tech" onclick="openModal('tech','${t.id}')">
                 <span class="subject-tech-icon"><i class="fa-solid ${t.icon}"></i></span>
                 <span class="subject-tech-body"><strong>${t.name}</strong><span>${x.why}</span></span>
-                ${q ? `<span class="quick-badge"><i class="fa-regular fa-clock"></i> ${q.min}분부터</span>` : ""}
             </button>`;
     }).join("");
 
@@ -4272,16 +4355,18 @@ function renderSubjectSection() {
                 <p>${sc.flow}</p>
             </div>`).join("");
 
-    const topicRows = shown.map(t => {
+    const topicRow = (t) => {
         const idx = debateTopicsDB.indexOf(t);
         const meta = TOPIC_TYPE_INFO[t.type] || {};
         return `<li class="subject-topic">
                 <span class="topic-chip topic-chip-${t.type}">${meta.label || ""}</span>
                 <span class="subject-topic-claim">${t.claim}</span>
-                <span class="subject-topic-level">${t.level}</span>
+                ${t.unit ? `<span class="subject-topic-unit">${t.unit}</span>` : `<span class="subject-topic-level">${t.level}</span>`}
                 <button type="button" class="subject-topic-ws" onclick="openTopicWorksheet(${idx})"><i class="fa-solid fa-file-pen"></i> 학습지</button>
             </li>`;
-    }).join("");
+    };
+    const topicRows = tp.own.map(topicRow).join("") +
+        (restShown.length ? (tp.own.length ? `<li class="subject-topic-divider">다른 분야에서 함께 쓸 만한 논제</li>` : "") + restShown.map(topicRow).join("") : "");
 
     const srcLinks = (sub.sources || []).map(k => STAT_SOURCES[k]).filter(Boolean)
         .map(s => `<a class="subject-src" href="${s.url}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${s.name}</a>`).join("");
@@ -4312,7 +4397,7 @@ function renderSubjectSection() {
 
             ${(sub.tips || []).length ? `<ul class="subject-tips">${sub.tips.map(t => `<li><i class="fa-solid fa-lightbulb"></i> ${t}</li>`).join("")}</ul>` : ""}
 
-            <h4 class="subject-sub"><i class="fa-solid fa-scale-balanced"></i> 바로 쓸 수 있는 논제 <small>${all.length}개 가운데 ${shown.length}개 · 누르면 학습지가 만들어집니다</small></h4>
+            <h4 class="subject-sub"><i class="fa-solid fa-scale-balanced"></i> 이 교과의 논제 <small>${totalN}개 가운데 ${shownN}개 · 누르면 학습지가 만들어집니다</small></h4>
             <ul class="subject-topics">${topicRows || `<li class="subject-empty">이 학교급에 맞는 논제가 없습니다. 학교급을 '전체'로 바꿔 보세요.</li>`}</ul>
 
             ${srcLinks ? `<h4 class="subject-sub"><i class="fa-solid fa-chart-column"></i> 근거 자료 찾기</h4><div class="subject-srcs">${srcLinks}</div>` : ""}
@@ -4334,11 +4419,11 @@ window.openLiteraturePanel = function () {
     if (tab) tab.click();
 };
 
-// 짧게 쓰는 기법만 모아 보기 (연수·교과 화면에서 바로 건너온다)
+// 토론 기법 목록으로 건너가기 (연수 화면에서 쓴다)
 window.openQuickTechniques = function () {
     const link = document.querySelector('.nav-links a[href="#techniques-section"]');
     if (link) link.click();
-    const btn = document.querySelector('.tech-filter-btn[data-filter="quick"]');
+    const btn = document.querySelector('.tech-filter-btn[data-filter="all"]');
     if (btn) btn.click();
 };
 
@@ -4348,7 +4433,7 @@ function techClassGuideHTML(techId) {
     if (!g) return "";
     return `
         <div class="modal-section tech-quick">
-            <h4><i class="fa-regular fa-clock"></i> 짧게 쓰는 법 <span class="quick-badge">${g.quick.min}분부터</span></h4>
+            <h4><i class="fa-solid fa-feather-pointed"></i> 짧게 쓰는 법</h4>
             <p class="tech-quick-slots">한 차시 안에서 넣기 좋은 자리 · ${g.quick.slots.map(s => `<span>${s}</span>`).join("")}</p>
             <p>${g.quick.how}</p>
         </div>
@@ -4445,7 +4530,7 @@ function renderTrainingSection() {
         <div class="training-actions no-print">
             <button type="button" class="btn btn-primary" id="training-print"><i class="fa-solid fa-print"></i> 연수 안내 한 장 인쇄</button>
             <button type="button" class="btn btn-secondary" onclick="document.querySelector('.nav-links a[href=\\'#subject-section\\']').click()"><i class="fa-solid fa-chalkboard-user"></i> 교과별 토론 열기</button>
-            <button type="button" class="btn btn-secondary" onclick="openQuickTechniques()"><i class="fa-regular fa-clock"></i> 10분이면 되는 기법</button>
+            <button type="button" class="btn btn-secondary" onclick="openQuickTechniques()"><i class="fa-solid fa-comments"></i> 토론 기법 모아 보기</button>
         </div>`;
 
     const qrBox = document.getElementById("training-qr");
@@ -4719,7 +4804,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.0.5";
+    return "5.1.1";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
@@ -4822,7 +4907,7 @@ function renderTechniques() {
         let durationText = tech.time ? tech.time.split(" ")[0] : "40분";
         
         container.innerHTML += `
-            <div class="technique-card" onclick="openModal('tech', '${tech.id}')" data-quick="${(TECH_CLASS_GUIDE[tech.id] || { quick: { min: 99 } }).quick.min}" data-difficulty="${difficulty}" data-tags="${(tech.tags || []).join(",")}" data-name="${tech.name}" data-concept="${tech.concept}">
+            <div class="technique-card" onclick="openModal('tech', '${tech.id}')" data-difficulty="${difficulty}" data-tags="${(tech.tags || []).join(",")}" data-name="${tech.name}" data-concept="${tech.concept}">
                 <div class="tech-header">
                     <div class="tech-icon-wrapper">
                         <i class="fa-solid ${tech.icon}"></i>
@@ -4831,7 +4916,6 @@ function renderTechniques() {
                 <h3 style="margin-top:14px; font-size:1.15rem; color:var(--text-primary); font-family:var(--font-sans); font-weight:700;">${tech.name}</h3>
                 <div class="tech-tags" style="margin-top:8px; display:flex; gap:6px; flex-wrap:wrap;">
                     ${(tech.tags || []).map(tag => `<span class="tech-tag">${tag}</span>`).join("")}
-                    ${TECH_CLASS_GUIDE[tech.id] ? `<span class="quick-badge"><i class="fa-regular fa-clock"></i> ${TECH_CLASS_GUIDE[tech.id].quick.min}분부터</span>` : ""}
                 </div>
                 <p class="tech-desc">${tech.easy || tech.concept}</p>
                 <div class="tech-footer" style="margin-top:auto; padding-top:14px; border-top:1px dashed var(--border-color); display:flex; justify-content:space-between; align-items:center;">
@@ -5317,7 +5401,7 @@ window.openModal = function(type, key) {
         if (tech.steps && tech.steps.length > 0) {
             stepsHTML = `
                 <div class="modal-section" style="margin-bottom:20px;">
-                    <h4><i class="fa-solid fa-list-ol"></i> 진행 단계 (시간)</h4>
+                    <h4><i class="fa-solid fa-list-ol"></i> 진행 단계</h4>
                     <div style="display:flex; flex-direction:column; gap:14px; margin-top:10px;">
                         ${tech.steps.map((step, sIdx) => `
                             <div style="background-color: var(--bg-secondary); padding:16px; border-radius:12px; border-left:4px solid var(--accent-coral); display:flex; gap:12px; align-items:flex-start;">
@@ -6003,7 +6087,7 @@ const debateTopicsDB = [
       pro: ["과도한 사용이 수면과 정신 건강을 해친다.", "알고리즘은 스스로 멈추기 어렵게 설계돼 있다."],
       con: ["청소년의 자기결정권을 지나치게 제한한다.", "가정과 교육으로 해결할 문제다."],
       books: ["미어캣의 스카프"] },
-    { type: "policy", field: "환경", level: "고등", claim: "탄소세를 도입해야 한다.",
+    { subject: "science", unit: "기후변화와 환경생태", type: "policy", field: "환경", level: "고등", claim: "탄소세를 도입해야 한다.",
       background: "온실가스를 배출한 만큼 비용을 물리는 제도로, 여러 나라가 시행 중입니다. 물가와 산업 경쟁력에 미치는 영향이 쟁점입니다.",
       pro: ["배출에 값을 매겨야 실제로 줄어든다.", "거둔 세금을 전환 지원에 쓸 수 있다."],
       con: ["물가 상승 부담이 서민에게 더 크게 간다.", "기업의 경쟁력과 일자리에 영향을 준다."],
@@ -6048,7 +6132,7 @@ const debateTopicsDB = [
       pro: ["보는 사람에게 감동을 준다면 예술이다.", "도구가 바뀌었을 뿐 사람이 기획한 결과다."],
       con: ["창작자의 경험과 의도가 없으면 예술이 아니다.", "학습에 쓰인 원작자의 몫이 사라진다."],
       books: ["아름다운 실수", "점"] },
-    { type: "value", field: "기술", level: "고등", claim: "편리함을 위해 개인정보를 내주는 것은 합리적인 선택이다.",
+    { subject: "info", unit: "정보 · 개인정보", type: "value", field: "기술", level: "고등", claim: "편리함을 위해 개인정보를 내주는 것은 합리적인 선택이다.",
       background: "맞춤 추천과 간편 결제는 개인정보를 바탕으로 작동합니다. 편의와 프라이버시가 맞바꿔지는 구조입니다.",
       pro: ["원하는 서비스를 얻기 위한 자발적 교환이다.", "정보 활용이 사회 전체의 효율을 높인다."],
       con: ["한 번 넘긴 정보는 통제할 수 없다.", "선택지가 없는 상태에서의 동의는 자발적이지 않다."],
@@ -7561,6 +7645,451 @@ const debateTopicsDB = [
       pro: ["말하지 않으면 상대는 내가 미안한 줄 모른다.", "가까운 사이일수록 서운함이 쌓이기 쉽다."],
       con: ["가족은 말보다 행동으로 마음을 전하는 사이다.", "작은 일마다 사과하면 오히려 어색해진다."],
       books: ["고함쟁이 엄마", "터널"] },
+    // ── 교과별 심화 논제 (고등) ─────────────────────
+    { subject: "korean", unit: "문학", type: "value", field: "문화", level: "고등", claim: "고전 문학은 현대어로 풀어 읽혀도 작품의 가치가 줄지 않는다.",
+      background: "고전 작품을 원문 대신 현대어 풀이로 읽히는 것이 작품 이해를 돕는지, 고유한 말맛과 가치를 잃게 하는지 따집니다.",
+      pro: ["뜻을 먼저 이해해야 작품의 주제와 정서에 다가갈 수 있다.","현대어 풀이 덕분에 더 많은 학생이 고전을 끝까지 읽는다."],
+      con: ["운율과 말맛처럼 원문에만 있는 아름다움이 사라진다.","풀이한 사람의 해석이 끼어들어 작품이 다른 글이 된다."],
+      books: [] },
+    { subject: "korean", unit: "독서와 작문", type: "policy", field: "미디어", level: "고등", claim: "학교 글쓰기 과제에 생성형 AI 사용을 허용해야 한다.",
+      background: "생성형 AI가 초안과 교정까지 해 주는 시대에 학교 글쓰기에서 AI 사용을 허용할지, 어디까지 허용할지를 다룹니다.",
+      pro: ["사회에서 쓰게 될 도구이므로 바르게 쓰는 법을 학교에서 배워야 한다.","초안 부담이 줄면 생각을 다듬고 고쳐 쓰는 데 시간을 쓸 수 있다."],
+      con: ["스스로 생각을 조직하는 글쓰기 능력이 길러지지 않는다.","학생이 쓴 글과 AI가 쓴 글을 가려 평가하기 어렵다."],
+      books: [] },
+    { subject: "korean", unit: "문학 · 주제 탐구 독서", type: "value", field: "인식", level: "고등", claim: "작품의 의미는 작가의 의도보다 독자의 해석이 결정한다.",
+      background: "작품 해석에서 작가의 의도와 독자의 해석 가운데 무엇을 앞세워야 하는지에 대한 오랜 비평 논쟁입니다.",
+      pro: ["작품은 발표되는 순간 독자의 삶과 만나 새로운 의미를 얻는다.","작가의 의도는 끝내 확인할 수 없는 경우가 많다."],
+      con: ["작가의 의도를 무시하면 어떤 해석도 허용되는 자의적 읽기가 된다.","창작 당시의 맥락을 알아야 작품을 깊이 이해할 수 있다."],
+      books: [] },
+    { subject: "korean", unit: "화법과 언어", type: "policy", field: "문화", level: "고등", claim: "공문서와 방송에서는 외래어 대신 다듬은 우리말을 써야 한다.",
+      background: "'가이드라인', '로드맵'처럼 공공 언어에 섞인 외래어를 다듬은 우리말로 바꿔야 하는지 따집니다.",
+      pro: ["누구나 알아들어야 하는 공공 언어에는 쉬운 우리말이 알맞다.","외래어를 모르는 사람이 정보에서 소외되지 않는다."],
+      con: ["이미 널리 쓰여 뜻이 분명한 외래어를 바꾸면 오히려 혼란스럽다.","언어는 자연스럽게 변하는 것이라 억지로 막기 어렵다."],
+      books: [] },
+    { subject: "korean", unit: "매체 의사소통", type: "fact", field: "인식", level: "고등", claim: "기사에 달린 댓글은 독자가 기사 내용을 판단하는 데 영향을 준다.",
+      background: "같은 기사라도 아래 달린 댓글에 따라 독자의 판단이 달라지는지 따지는 사실 논제입니다.",
+      pro: ["여러 사람의 반응을 보면 그것이 다수 의견처럼 느껴진다.","기사보다 댓글을 먼저 읽는 독자도 많다."],
+      con: ["독자는 댓글을 개인 의견으로 걸러 읽을 줄 안다.","기사 판단에는 댓글보다 원래 가진 생각이 더 크게 작용한다."],
+      stats: [{src: "kpf",label: "언론수용자 조사 – 뉴스 이용과 신뢰도"}],
+      books: [] },
+    { subject: "korean", unit: "화법과 언어", type: "value", field: "관계", level: "고등", claim: "토론에서는 설득보다 경청이 더 중요하다.",
+      background: "토론의 목적이 상대를 설득하는 데 있는지, 서로를 이해하는 데 있는지 따집니다.",
+      pro: ["상대의 말을 정확히 들어야 제대로 된 반박도 할 수 있다.","경청하는 태도가 토론을 싸움이 아닌 대화로 만든다."],
+      con: ["토론은 결국 청중을 설득하기 위한 말하기이다.","듣기만 하고 자기 주장을 세우지 못하면 토론이 성립하지 않는다."],
+      books: [] },
+    { subject: "math", unit: "수학 전반 · 평가", type: "policy", field: "인식", level: "고등", claim: "고등학교 수학 시험에서 공학용 계산기 사용을 허용해야 한다.",
+      background: "계산 과정보다 개념과 해석을 평가하려면 시험에서 계산기를 허용해야 하는지 따집니다.",
+      pro: ["복잡한 계산에 드는 시간을 줄여 개념과 문제 해결에 집중할 수 있다.","사회와 대학에서는 계산 도구를 쓰는 것이 자연스럽다."],
+      con: ["기본 계산 능력이 길러지지 않아 수 감각이 약해진다.","계산기를 가진 학생과 없는 학생 사이에 공정성 문제가 생긴다."],
+      books: [] },
+    { subject: "math", unit: "확률과 통계 · 통계적 추정", type: "fact", field: "인식", level: "고등", claim: "여론조사는 표본이 클수록 결과를 믿을 수 있다.",
+      background: "표본의 크기만으로 조사 결과의 신뢰도가 보장되는지, 표본을 뽑는 방법이 더 중요한지 따집니다.",
+      pro: ["표본이 클수록 표본오차가 줄어든다.","큰 표본은 우연에 의한 치우침을 줄여 준다."],
+      con: ["표본이 한쪽으로 치우쳐 뽑혔다면 크기가 커도 결과가 틀린다.","질문 방식과 응답률도 결과에 큰 영향을 준다."],
+      books: [] },
+    { subject: "math", unit: "수학사 · 수리철학", type: "value", field: "인식", level: "고등", claim: "수학은 사람이 발명한 것이 아니라 발견한 것이다.",
+      background: "수학적 진리가 사람과 상관없이 존재해 발견되는 것인지, 사람이 만든 약속 체계인지에 대한 오랜 질문입니다.",
+      pro: ["피타고라스 정리는 누가 증명하든 언제나 성립한다.","서로 다른 문명이 같은 수학적 사실에 따로 도달했다."],
+      con: ["공리와 기호는 사람이 정한 약속이다.","다른 공리를 택하면 비유클리드 기하처럼 다른 수학이 만들어진다."],
+      books: [] },
+    { subject: "math", unit: "확률과 통계", type: "policy", field: "사회", level: "고등", claim: "고등학교에서 확률과 통계를 모든 학생의 필수 과목으로 해야 한다.",
+      background: "자료가 넘치는 사회에서 통계적 사고를 모든 학생이 배워야 하는지 따집니다.",
+      pro: ["뉴스와 광고 속 수치를 비판적으로 읽는 힘은 시민 모두에게 필요하다.","진로와 상관없이 대부분의 직업에서 자료를 다룬다."],
+      con: ["학생마다 진로와 흥미가 달라 선택권을 존중해야 한다.","필수 과목이 늘면 다른 과목을 배울 기회가 줄어든다."],
+      books: [] },
+    { subject: "math", unit: "인공지능 수학", type: "fact", field: "기술", level: "고등", claim: "인공지능의 판단 과정은 수학으로 설명할 수 있다.",
+      background: "인공지능이 행렬·확률·미분 같은 수학으로 작동하는 만큼, 그 판단 과정을 수학으로 설명할 수 있는지 따집니다.",
+      pro: ["인공지능은 행렬 연산과 경사하강법 같은 수학적 절차로 학습한다.","각 계산 단계는 모두 수식으로 적을 수 있다."],
+      con: ["수많은 매개변수가 얽혀 있어 특정 판단의 이유를 사람이 이해하기 어렵다.","계산 과정을 적는 것과 판단의 이유를 설명하는 것은 다르다."],
+      books: [] },
+    { subject: "math", unit: "확률과 통계 · 자료의 정리", type: "value", field: "윤리", level: "고등", claim: "통계를 발표할 때 주장에 유리한 대푯값을 골라 써도 된다.",
+      background: "평균·중앙값·최빈값 가운데 말하려는 주장에 유리한 값을 골라 발표하는 것이 정당한지 따집니다.",
+      pro: ["틀린 수치를 쓰는 것이 아니므로 거짓말은 아니다.","어떤 대푯값을 쓸지는 발표하는 사람의 재량이다."],
+      con: ["자료 전체의 모습을 왜곡해 듣는 사람을 잘못 이끈다.","수치에 대한 사회의 신뢰를 무너뜨린다."],
+      books: [] },
+    { subject: "english", unit: "영어 전반", type: "policy", field: "문화", level: "고등", claim: "영어 수업은 영어로만 진행해야 한다.",
+      background: "영어로만 진행하는 수업이 실력 향상에 도움이 되는지, 우리말 설명을 함께 써야 하는지 따집니다.",
+      pro: ["영어에 많이 노출될수록 듣기와 말하기 실력이 는다.","영어로 생각하는 습관이 생긴다."],
+      con: ["이해하지 못한 학생은 수업에서 소외된다.","문법처럼 어려운 개념은 우리말로 설명하는 편이 정확하다."],
+      books: [] },
+    { subject: "english", unit: "영어Ⅱ · 언어와 문화", type: "value", field: "기술", level: "고등", claim: "번역기가 있어도 외국어를 직접 배우는 것은 여전히 가치 있다.",
+      background: "번역기의 정확도가 높아진 시대에도 외국어를 직접 배울 까닭이 있는지 따집니다.",
+      pro: ["언어를 배우면 그 문화의 사고방식까지 이해하게 된다.","번역기는 맥락과 뉘앙스를 놓치는 경우가 많다."],
+      con: ["번역기의 정확도가 높아져 일상 소통에는 충분하다.","외국어 학습에 드는 시간을 다른 역량에 쓰는 편이 효율적이다."],
+      books: [] },
+    { subject: "english", unit: "영어Ⅱ · 세계 영어", type: "value", field: "문화", level: "고등", claim: "영어는 특정 나라의 언어라기보다 세계인의 공용어이다.",
+      background: "영어를 원어민의 언어로 보고 원어민 발음을 기준으로 삼아야 하는지, 다양한 영어를 인정해야 하는지 따집니다.",
+      pro: ["영어를 쓰는 사람 가운데 비원어민이 원어민보다 훨씬 많다.","소통이 목적이라면 원어민 발음만을 기준으로 삼을 까닭이 없다."],
+      con: ["언어에는 그 언어를 만든 사회의 문화와 규범이 담겨 있다.","기준이 없으면 서로 알아듣기 어려운 영어가 생긴다."],
+      books: [] },
+    { subject: "english", unit: "영어 발표와 토론", type: "policy", field: "문화", level: "고등", claim: "대학수학능력시험 영어 영역에 말하기 평가를 넣어야 한다.",
+      background: "읽기·듣기 중심의 시험이 말하기 교육을 소홀하게 만든다는 지적과, 대규모 시험에서 말하기를 공정하게 평가하기 어렵다는 반론이 맞섭니다.",
+      pro: ["시험에 나오지 않으면 학교에서도 말하기를 덜 가르치게 된다.","실제 소통 능력을 제대로 평가할 수 있다."],
+      con: ["수십만 명의 말하기를 짧은 기간에 공정하게 채점하기 어렵다.","말하기 사교육 부담이 더 커질 수 있다."],
+      books: [] },
+    { subject: "english", unit: "영어 듣기와 말하기", type: "fact", field: "미디어", level: "고등", claim: "영어 자막을 켜고 영상을 보면 듣기 실력이 더 빨리 는다.",
+      background: "외국 영상을 볼 때 영어 자막을 켜는 것이 자막 없이 보는 것보다 듣기 실력에 도움이 되는지 따집니다.",
+      pro: ["소리와 글자를 함께 보면 낯선 표현을 알아듣기 쉽다.","이해되는 입력이 많아야 언어가 는다."],
+      con: ["자막을 읽느라 소리에 집중하지 않게 된다.","실제 대화에는 자막이 없으므로 소리만으로 이해하는 훈련이 필요하다."],
+      books: [] },
+    { subject: "english", unit: "영어 독해와 작문", type: "value", field: "문화", level: "고등", claim: "원서로 읽는 것이 번역서로 읽는 것보다 작품을 더 잘 이해하는 길이다.",
+      background: "외국 작품을 원문으로 읽는 것과 잘 옮긴 번역서로 읽는 것 가운데 무엇이 작품 이해에 나은지 따집니다.",
+      pro: ["원문의 표현과 문체를 그대로 느낄 수 있다.","번역 과정에서 빠진 뜻을 직접 확인할 수 있다."],
+      con: ["언어 실력이 부족하면 오히려 작품을 오해한다.","좋은 번역은 원문의 뜻과 느낌을 충분히 옮긴다."],
+      books: [] },
+    { subject: "japanese", unit: "일본어 회화 · 경어", type: "value", field: "관계", level: "고등", claim: "상대에 따라 말씨를 바꾸는 경어 문화는 관계를 더 원만하게 만든다.",
+      background: "일본어와 한국어는 모두 상대와의 관계에 따라 높임 표현을 달리 씁니다. 이런 경어 문화가 관계를 부드럽게 하는지, 거리를 만드는지 따집니다.",
+      pro: ["상대를 존중한다는 뜻을 말씨로 분명히 전할 수 있다.","처음 만난 사이에서도 예의의 기준이 있어 부담이 줄어든다."],
+      con: ["위아래를 먼저 따지게 해 대등한 대화를 어렵게 한다.","말씨를 잘못 쓸까 봐 대화 자체를 꺼리게 된다."],
+      books: [] },
+    { subject: "japanese", unit: "일본어 · 일본 문화", type: "value", field: "문화", level: "고등", claim: "외국어는 그 나라의 대중문화로 시작해 배우는 것이 좋다.",
+      background: "애니메이션·드라마·음악 같은 대중문화가 일본어를 배우는 계기가 되는 경우가 많습니다. 이것이 좋은 출발점인지 따집니다.",
+      pro: ["좋아하는 콘텐츠가 있어야 오래 꾸준히 배울 수 있다.","실제로 쓰이는 생생한 표현을 접할 수 있다."],
+      con: ["대중문화 속 말투는 과장되거나 격식에 맞지 않는 경우가 많다.","흥미가 식으면 학습도 함께 멈추기 쉽다."],
+      books: [] },
+    { subject: ["japanese","chinese"], unit: "제2외국어", type: "policy", field: "문화", level: "고등", claim: "고등학생은 제2외국어를 한 과목 이상 반드시 배워야 한다.",
+      background: "영어 밖의 외국어를 필수로 배우게 해야 하는지, 선택으로 두어야 하는지 따집니다.",
+      pro: ["영어 밖의 언어와 문화를 접하면 세계를 보는 눈이 넓어진다.","가까운 나라들과의 교류가 늘어 실제 쓸모가 크다."],
+      con: ["입시 부담 속에서 과목이 늘면 학생의 선택권이 줄어든다.","짧게 배우고 끝나 실제로 쓸 수 있는 수준에 이르기 어렵다."],
+      books: [] },
+    { subject: "japanese", unit: "일본 문화 · 일본의 사회", type: "value", field: "복지", level: "고등", claim: "일본의 초고령 사회 대응은 한국이 배울 만하다.",
+      background: "일본은 한국보다 먼저 초고령 사회에 들어섰습니다. 돌봄·고용·지역 정책에서 일본의 경험을 참고할 만한지 따집니다.",
+      pro: ["먼저 겪은 나라의 성공과 실패는 시행착오를 줄여 준다.","고령자 고용과 지역 돌봄에서 오래 쌓아 온 제도가 있다."],
+      con: ["인구 구조와 복지 제도가 달라 그대로 옮기기 어렵다.","일본도 저출생과 고령화 문제를 풀지 못해 모범으로 보기 어렵다."],
+      stats: [{src: "kosis",label: "장래인구추계 – 고령인구 비율"}],
+      books: [] },
+    { subject: "japanese", unit: "일본 문화 · 문화 비교", type: "value", field: "문화", level: "고등", claim: "가까운 나라의 문화일수록 공통점보다 차이를 먼저 알아야 한다.",
+      background: "한국과 일본은 한자 문화, 식문화처럼 닮은 점이 많아 서로를 쉽게 안다고 여기기 쉽습니다. 오히려 차이에 주목해야 하는지 따집니다.",
+      pro: ["닮았다고 여기면 작은 차이에서 오해가 생기기 쉽다.","차이를 알아야 상대를 있는 그대로 존중할 수 있다."],
+      con: ["공통점에서 출발해야 친근감과 교류가 커진다.","차이만 강조하면 거리감과 편견이 생길 수 있다."],
+      books: [] },
+    { subject: "japanese", unit: "일본어 · 문자", type: "policy", field: "문화", level: "고등", claim: "초급 일본어 수업에서는 한자를 줄이고 가나 중심으로 가르쳐야 한다.",
+      background: "일본어는 히라가나·가타카나·한자를 섞어 씁니다. 처음 배우는 학생의 부담을 줄이려 한자를 줄여야 하는지 따집니다.",
+      pro: ["한자 부담이 줄면 말하기와 듣기에 더 많은 시간을 쓸 수 있다.","처음부터 흥미를 잃는 학생을 줄일 수 있다."],
+      con: ["실제 일본어 글은 한자 없이 읽을 수 없다.","한국어의 한자어 지식을 살리면 오히려 한자가 학습을 돕는다."],
+      books: [] },
+    { subject: "japanese", unit: "일본어 회화 · 언어와 문화", type: "value", field: "관계", level: "고등", claim: "분위기를 읽고 말을 아끼는 소통 방식은 상대에 대한 배려이다.",
+      background: "상대의 속마음을 짐작하고 분위기를 읽는 소통은 일본 문화의 특징으로 자주 이야기되지만, 한국에도 '눈치'라는 비슷한 말이 있습니다. 말을 아끼는 것이 배려인지 따집니다.",
+      pro: ["상대가 곤란하지 않도록 직접적인 거절이나 비판을 피할 수 있다.","말하지 않아도 알아주는 관계는 신뢰를 쌓는다."],
+      con: ["속마음을 짐작해야 해서 오해가 생기기 쉽다.","분명히 말하지 않으면 문제가 풀리지 않고 쌓인다."],
+      books: [] },
+    { subject: "japanese", unit: "일본어 회화", type: "fact", field: "기술", level: "고등", claim: "번역 앱만으로도 일본 여행에서 충분히 소통할 수 있다.",
+      background: "음성·사진 번역 앱이 발달한 지금, 일본어를 몰라도 여행에서 불편 없이 소통할 수 있는지 따집니다.",
+      pro: ["음성과 사진 번역으로 메뉴와 안내판까지 바로 읽을 수 있다.","여행에 필요한 대화는 짧고 정해진 표현이 많다."],
+      con: ["인터넷이 끊기거나 주변이 시끄러우면 쓰기 어렵다.","번역이 경어와 뉘앙스를 놓쳐 실례가 될 수 있다."],
+      stats: [{src: "kosis",label: "국민 해외관광객 목적지별 통계"}],
+      books: [] },
+    { subject: "chinese", unit: "중국 문화 · 한자", type: "value", field: "문화", level: "고등", claim: "한자는 동아시아의 공동 문화유산이다.",
+      background: "한자는 중국에서 만들어졌지만 한국·일본·베트남에서도 오랫동안 쓰였습니다. 이를 공동의 유산으로 볼 수 있는지 따집니다.",
+      pro: ["여러 나라가 한자로 기록하고 저마다의 한자어를 만들어 왔다.","한국의 한자어처럼 나라마다 자기 방식으로 발전시켰다."],
+      con: ["한자는 중국어를 적기 위해 만들어진 중국의 문자이다.","지금은 나라마다 쓰는 방식이 달라 공동 유산이라 부르기 어렵다."],
+      books: [] },
+    { subject: "chinese", unit: "중국어 · 문자", type: "policy", field: "문화", level: "고등", claim: "중국어 수업에서는 간체자와 번체자를 함께 가르쳐야 한다.",
+      background: "중국 대륙은 간체자를, 타이완과 홍콩은 번체자를 씁니다. 학교에서 둘을 함께 가르쳐야 하는지 따집니다.",
+      pro: ["한국에서 쓰는 한자는 번체자에 가까워 둘을 견주면 이해가 쉽다.","중국어권 전체와 소통하려면 두 글자체를 모두 알아야 한다."],
+      con: ["처음 배우는 학생에게 두 글자체는 큰 부담이다.","사용자가 가장 많은 간체자에 집중하는 편이 효율적이다."],
+      books: [] },
+    { subject: "chinese", unit: "중국 문화 · 생활 문화", type: "value", field: "관계", level: "고등", claim: "다른 나라를 방문할 때는 그 나라의 관습을 따라야 한다.",
+      background: "중국에는 선물로 피하는 물건이나 식사 자리의 예절처럼 한국과 다른 관습이 있습니다. 여행이나 교류에서 이를 따라야 하는지 따집니다.",
+      pro: ["상대의 관습을 따르는 것이 존중의 표현이다.","관습을 모르고 어기면 관계가 틀어질 수 있다."],
+      con: ["방문자에게 모든 관습을 완벽히 지키라고 요구하기는 어렵다.","서로 다름을 설명하고 이해하는 것이 더 중요하다."],
+      books: [] },
+    { subject: "chinese", unit: "중국어 회화 · 발음", type: "fact", field: "문화", level: "고등", claim: "성조를 틀리면 중국어로 소통하기 어렵다.",
+      background: "중국어는 같은 음절도 성조에 따라 뜻이 달라집니다. 성조가 틀려도 맥락으로 알아들을 수 있는지 따집니다.",
+      pro: ["성조에 따라 전혀 다른 낱말이 되어 뜻이 뒤바뀐다.","짧은 말일수록 맥락이 적어 오해가 커진다."],
+      con: ["문장 전체의 맥락이 있으면 상대가 뜻을 짐작할 수 있다.","중국어권에서도 지역마다 성조 발음이 달라 어느 정도의 차이는 알아듣는다."],
+      books: [] },
+    { subject: "chinese", unit: "중국 문화 · 현대 중국 사회", type: "value", field: "기술", level: "고등", claim: "모바일 결제가 현금을 완전히 대신하는 사회는 바람직하다.",
+      background: "중국은 모바일 결제가 일상 깊숙이 자리 잡은 나라로 자주 꼽힙니다. 현금 없는 사회가 바람직한지 따집니다.",
+      pro: ["결제가 빠르고 거래 기록이 남아 투명하다.","현금을 다루는 비용과 위험이 줄어든다."],
+      con: ["디지털 기기가 서툰 노인과 외국인이 불편을 겪는다.","모든 소비 기록이 남아 사생활 침해가 걱정된다."],
+      books: [] },
+    { subject: "chinese", unit: "중국어 · 성어", type: "value", field: "문화", level: "고등", claim: "고사성어는 오늘날에도 배울 가치가 있다.",
+      background: "중국 고전에서 나온 성어가 오늘날 한국어와 중국어에서 여전히 쓰입니다. 이를 배우는 것이 가치 있는지 따집니다.",
+      pro: ["짧은 말에 오랜 지혜와 이야기가 담겨 있다.","한국어와 중국어의 어휘와 표현을 풍부하게 이해하게 한다."],
+      con: ["일상에서 쓰이는 경우가 줄어 실용성이 낮다.","외워서 쓰는 성어는 생각을 틀에 박히게 한다."],
+      books: [] },
+    { subject: "chinese", unit: "한문 · 중국어", type: "policy", field: "문화", level: "고등", claim: "초·중학교에서 한자를 정규 교과로 가르쳐야 한다.",
+      background: "한국어 어휘에 한자어가 많은 만큼 한자를 정규 교과로 가르쳐야 하는지, 한글만으로 충분한지 따집니다.",
+      pro: ["한자어의 뜻을 알면 교과서 개념어를 정확히 이해할 수 있다.","중국어와 일본어를 배울 때 기초가 된다."],
+      con: ["이미 배울 과목이 많아 학습 부담이 커진다.","한글만으로도 충분히 뜻을 이해하고 소통할 수 있다."],
+      books: [] },
+    { subject: "chinese", unit: "중국어 · 진로", type: "fact", field: "진로", level: "고등", claim: "중국어를 배우면 진로 선택의 폭이 넓어진다.",
+      background: "한국과 중국의 교류가 많은 만큼 중국어 능력이 실제 진로에 도움이 되는지 따집니다.",
+      pro: ["한국과 중국의 무역·관광 교류가 활발해 중국어를 쓰는 일자리가 많다.","중국어를 쓰는 인구가 많아 활동 무대가 넓어진다."],
+      con: ["번역 기술이 발달해 외국어 능력만으로는 경쟁력이 크지 않다.","진로는 언어보다 전문 분야의 역량이 결정한다."],
+      stats: [{src: "kosis",label: "국가별 수출입 실적(무역통계)"}],
+      books: [] },
+    { subject: "social", unit: "정치 · 선거와 참여", type: "policy", field: "정치", level: "고등", claim: "선거에서 의무 투표제를 도입해야 한다.",
+      background: "투표를 하지 않으면 불이익을 주는 의무 투표제를 도입해야 하는지 따집니다.",
+      pro: ["투표율이 높아져 당선자의 대표성이 커진다.","적극 지지층 일부가 선거 결과를 좌우하는 일을 줄인다."],
+      con: ["투표하지 않을 자유도 정치적 의사 표현이다.","관심 없이 억지로 한 투표가 결과를 왜곡할 수 있다."],
+      stats: [{src: "kosis",label: "선거 투표율과 정치 참여"}],
+      books: [] },
+    { subject: "social", unit: "경제 · 사회 보장", type: "policy", field: "복지", level: "고등", claim: "모든 국민에게 조건 없이 기본소득을 지급해야 한다.",
+      background: "소득이나 일자리와 상관없이 모든 국민에게 일정 금액을 주는 기본소득을 도입해야 하는지 따집니다.",
+      pro: ["복지 사각지대를 없애고 대상을 가리는 행정 비용을 줄인다.","자동화로 일자리가 줄어드는 시대의 안전망이 된다."],
+      con: ["막대한 재원이 들어 세금 부담이 커진다.","일할 동기를 약하게 할 수 있다."],
+      stats: [{src: "index",label: "e-나라지표 – 사회보장 지출과 복지 수급 현황"}],
+      books: [] },
+    { subject: "social", unit: "경제 · 노동 시장", type: "fact", field: "노동", level: "고등", claim: "최저임금을 올리면 일자리가 줄어든다.",
+      background: "최저임금 인상이 고용을 줄이는지, 소득 증가로 경제에 도움이 되는지는 경제학에서도 논쟁이 이어지는 주제입니다.",
+      pro: ["인건비가 오르면 고용주는 고용을 줄이거나 자동화한다.","영세 자영업자가 직원을 줄였다는 사례가 보고된다."],
+      con: ["소득이 늘면 소비가 늘어 오히려 일자리가 생길 수 있다.","고용 감소 효과가 크지 않았다는 연구 결과도 있다."],
+      stats: [{src: "kosis",label: "경제활동인구조사 – 고용률과 근로시간"}],
+      books: [] },
+    { subject: "social", unit: "법과 사회", type: "value", field: "정의", level: "고등", claim: "법은 도덕의 최소한이어야 한다.",
+      background: "법이 사회 질서에 꼭 필요한 도덕만 담아야 하는지, 더 적극적으로 도덕을 이끌어야 하는지 따집니다.",
+      pro: ["법이 모든 도덕을 강제하면 개인의 자유가 지나치게 줄어든다.","법은 질서 유지에 꼭 필요한 것만 다뤄야 한다."],
+      con: ["도덕적으로 명백히 잘못된 일도 처벌하지 못하는 빈틈이 생긴다.","사회가 변할 때는 법이 도덕을 이끌어야 할 때도 있다."],
+      books: [] },
+    { subject: "social", unit: "세계시민과 지리 · 인구와 지역", type: "policy", field: "사회", level: "고등", claim: "지역 소멸을 막기 위해 수도권 대학의 정원을 줄여야 한다.",
+      background: "청년이 수도권으로 몰리며 지역 인구가 줄어드는 문제를 대학 정원 조정으로 풀 수 있는지 따집니다.",
+      pro: ["학생과 청년이 수도권으로 몰리는 흐름을 바꿀 수 있다.","지역 대학이 살아야 지역 경제와 일자리가 유지된다."],
+      con: ["학생의 대학 선택권을 제한한다.","대학 정원보다 지역의 일자리와 생활 여건이 더 근본적인 원인이다."],
+      stats: [{src: "kosis",label: "국내인구이동통계 – 시도별 순이동"}],
+      books: [] },
+    { subject: "social", unit: "정치 · 법과 사회", type: "value", field: "인권", level: "고등", claim: "혐오 표현도 표현의 자유로 보호해야 한다.",
+      background: "특정 집단을 깎아내리는 혐오 표현을 법으로 막아야 하는지, 표현의 자유로 보호해야 하는지 따집니다.",
+      pro: ["무엇이 혐오인지 국가가 정하면 표현의 자유가 위축된다.","나쁜 말은 금지보다 더 나은 말로 반박하는 것이 민주주의이다."],
+      con: ["혐오 표현은 소수자의 존엄과 안전을 직접 해친다.","차별을 부추기는 말까지 보호하면 공동체의 평등이 무너진다."],
+      books: [] },
+    { subject: "ethics", unit: "윤리와 사상 · 칸트", type: "value", field: "윤리", level: "고등", claim: "거짓말은 어떤 경우에도 옳지 않다.",
+      background: "사람의 생명을 지키기 위한 거짓말까지 옳지 않은지 묻는 칸트 윤리의 대표적인 질문입니다.",
+      pro: ["거짓말을 허용하면 신뢰라는 사회의 기반이 무너진다.","결과를 따져 거짓말을 허용하기 시작하면 기준이 사라진다."],
+      con: ["생명을 지키기 위한 거짓말은 도덕적으로 옳다.","선의의 거짓말은 관계를 지키는 배려가 되기도 한다."],
+      books: [] },
+    { subject: "ethics", unit: "현대사회와 윤리 · 생명 윤리", type: "value", field: "생명", level: "고등", claim: "인간의 수명을 크게 늘리는 기술은 바람직하다.",
+      background: "노화를 늦추고 수명을 크게 늘리는 기술이 인류에게 바람직한지 따집니다.",
+      pro: ["더 오래 건강하게 사는 것은 인류의 오랜 바람이다.","질병과 노화로 인한 고통을 줄인다."],
+      con: ["기술을 누릴 수 있는 사람과 없는 사람의 격차가 커진다.","인구와 자원 문제가 더 심각해진다."],
+      books: [] },
+    { subject: "ethics", unit: "현대사회와 윤리 · 과학기술 윤리", type: "policy", field: "기술", level: "고등", claim: "자율주행차는 사고 순간 더 많은 사람을 살리는 쪽을 택하도록 설계해야 한다.",
+      background: "피할 수 없는 사고에서 자율주행차가 누구를 보호해야 하는지, 공리주의와 의무론이 맞서는 문제입니다.",
+      pro: ["피해를 가장 적게 하는 것이 합리적인 판단이다.","기준을 미리 정해 두어야 사고 뒤 책임을 가릴 수 있다."],
+      con: ["사람의 목숨을 숫자로 견주는 것은 인간 존엄에 어긋난다.","탑승자를 희생시키도록 설계한 차는 사람들이 사지 않을 것이다."],
+      books: [] },
+    { subject: "ethics", unit: "윤리와 사상 · 정의론", type: "value", field: "정의", level: "고등", claim: "부모의 재산과 배경에 힘입어 얻은 성공도 정당한 성공이다.",
+      background: "타고난 조건이 성공에 끼치는 영향을 어떻게 볼지, 롤스의 정의론과 자유주의의 관점이 맞섭니다.",
+      pro: ["부모가 자녀를 돕는 것은 자연스럽고 자유로운 선택이다.","기회를 얻은 뒤의 성과는 본인의 노력으로 이룬 것이다."],
+      con: ["출발선이 다른 경쟁은 공정하지 않다.","우연히 주어진 조건으로 얻은 이익은 사회와 나눠야 한다는 정의론이 있다."],
+      books: [] },
+    { subject: "ethics", unit: "윤리와 사상 · 행복론", type: "value", field: "행복", level: "고등", claim: "행복은 즐거움을 많이 누리는 것이다.",
+      background: "행복이 즐거움을 누리는 데 있는지, 덕을 실천하며 사는 데 있는지에 대한 오랜 윤리 사상의 논쟁입니다.",
+      pro: ["괴로움이 적고 즐거움이 많은 삶을 누구나 행복하다고 느낀다.","즐거움은 행복을 구체적으로 설명해 준다."],
+      con: ["순간의 즐거움보다 덕을 실천하는 삶이 참된 행복이라는 주장이 있다.","즐거움만 좇으면 오히려 공허함과 중독에 빠진다."],
+      books: [] },
+    { subject: "ethics", unit: "현대사회와 윤리 · 환경 윤리", type: "value", field: "환경", level: "고등", claim: "지금 세대는 미래 세대를 위해 자신의 이익을 양보해야 한다.",
+      background: "아직 태어나지 않은 미래 세대에 대해 지금 세대가 어떤 책임을 지는지 묻는 환경 윤리의 질문입니다.",
+      pro: ["미래 세대도 살기 좋은 환경을 누릴 권리가 있다.","지금의 선택이 되돌릴 수 없는 결과를 남긴다."],
+      con: ["존재하지 않는 세대에 대한 의무를 정하기 어렵다.","지금 어려움을 겪는 사람의 삶도 똑같이 중요하다."],
+      books: [] },
+    { subject: "science", unit: "생명과학 · 유전", type: "policy", field: "생명", level: "고등", claim: "유전병을 막기 위한 배아 유전자 편집을 허용해야 한다.",
+      background: "유전자 가위 기술로 배아 단계에서 유전병의 원인을 고치는 것을 허용해야 하는지 따집니다.",
+      pro: ["대물림되는 심각한 유전병을 태어나기 전에 막을 수 있다.","기술이 정밀해져 안전성이 높아지고 있다."],
+      con: ["편집된 유전자가 후손에게 전해져 예측할 수 없는 영향을 남긴다.","치료를 넘어 원하는 형질을 고르는 맞춤 아기로 이어질 수 있다."],
+      books: [] },
+    { subject: "science", unit: "융합과학 탐구", type: "fact", field: "기술", level: "고등", claim: "인공지능은 스스로 과학적 발견을 해낼 수 있다.",
+      background: "단백질 구조 예측처럼 인공지능이 과학 문제를 푸는 사례가 늘면서, 인공지능이 발견의 주체가 될 수 있는지 따집니다.",
+      pro: ["단백질 구조 예측처럼 사람이 오래 풀지 못한 문제를 풀었다.","방대한 자료에서 사람이 놓친 규칙을 찾아낸다."],
+      con: ["무엇을 탐구할지 질문을 세우는 것은 여전히 사람이다.","결과를 해석하고 검증하는 과정 없이는 발견이라 할 수 없다."],
+      books: [] },
+    { subject: "science", unit: "과학사 · 과학의 본성", type: "value", field: "인식", level: "고등", claim: "과학 이론은 반박될 수 있기 때문에 가치가 있다.",
+      background: "반박될 가능성이 있어야 과학이라는 포퍼의 반증 가능성 주장을 두고, 과학 지식의 가치가 어디서 오는지 따집니다.",
+      pro: ["틀릴 수 있음을 인정하기에 과학은 스스로 고쳐 가며 발전한다.","반박할 수 없는 주장은 시험해 볼 수 없어 과학이라 하기 어렵다."],
+      con: ["오랫동안 검증된 이론은 사실상 확실한 지식이다.","늘 반박될 수 있다는 태도가 과학에 대한 불신을 부추길 수 있다."],
+      books: [] },
+    { subject: "science", unit: "지구과학 · 지진", type: "policy", field: "안전", level: "고등", claim: "지진에 약한 오래된 건물에는 내진 보강을 의무화해야 한다.",
+      background: "경주와 포항 지진 이후 한반도도 지진에서 안전하지 않다는 인식이 커졌습니다. 오래된 건물의 내진 보강을 의무로 해야 하는지 따집니다.",
+      pro: ["한반도도 지진에서 안전하지 않다는 것이 경주·포항 지진으로 드러났다.","사고가 난 뒤의 피해가 보강 비용보다 훨씬 크다."],
+      con: ["보강 비용이 커서 건물주와 세입자에게 부담이 된다.","위험이 낮은 지역까지 한꺼번에 의무화하는 것은 비효율적이다."],
+      books: [] },
+    { subject: "science", unit: "과학과 사회 · 과학자의 윤리", type: "value", field: "윤리", level: "고등", claim: "과학자는 연구 결과가 어떻게 쓰일지까지 책임져야 한다.",
+      background: "핵무기 개발처럼 연구 결과가 큰 피해로 이어진 역사를 두고, 과학자의 책임이 어디까지인지 따집니다.",
+      pro: ["연구가 큰 피해로 이어질 수 있음을 가장 잘 아는 사람이 과학자이다.","위험을 미리 알리는 것도 연구의 일부이다."],
+      con: ["연구의 쓰임은 사회와 정치가 결정한다.","책임을 지나치게 물으면 기초 연구가 위축된다."],
+      books: [] },
+    { subject: "info", unit: "인공지능 기초 · 알고리즘과 사회", type: "policy", field: "기술", level: "고등", claim: "알고리즘 추천의 기준을 이용자에게 공개하도록 의무화해야 한다.",
+      background: "영상·쇼핑·뉴스 플랫폼이 무엇을 기준으로 콘텐츠를 추천하는지 공개하게 해야 하는지 따집니다.",
+      pro: ["왜 이 콘텐츠를 보게 되는지 알아야 스스로 선택할 수 있다.","편향된 추천을 감시하고 바로잡을 수 있다."],
+      con: ["영업 비밀이 드러나 기업의 경쟁력이 떨어진다.","공개해도 너무 복잡해 이용자가 이해하기 어렵다."],
+      books: [] },
+    { subject: "info", unit: "정보 · 컴퓨팅 사고", type: "policy", field: "기술", level: "고등", claim: "고등학교에서 코딩 교육을 필수로 해야 한다.",
+      background: "디지털 사회에서 코딩을 모든 고등학생이 배워야 하는지, 선택으로 두어야 하는지 따집니다.",
+      pro: ["디지털 사회에서 컴퓨팅 사고력은 기초 소양이다.","진로와 상관없이 문제를 논리적으로 푸는 힘을 기른다."],
+      con: ["모든 학생이 코딩을 할 필요는 없다.","인공지능이 코드를 써 주는 시대에는 코딩 문법보다 다른 역량이 중요하다."],
+      books: [] },
+    { subject: "info", unit: "정보 · 디지털 윤리", type: "fact", field: "미디어", level: "고등", claim: "딥페이크는 기술로 가려낼 수 있다.",
+      background: "딥페이크 탐지 기술이 발전하고 있지만 생성 기술도 함께 발전합니다. 기술로 딥페이크를 가려낼 수 있는지 따집니다.",
+      pro: ["딥페이크 탐지 기술도 빠르게 발전하고 있다.","영상의 미세한 흔적을 분석하면 조작을 찾아낼 수 있다."],
+      con: ["생성 기술이 탐지 기술보다 늘 한발 앞선다.","이미 퍼진 뒤에 가려내면 피해를 되돌리기 어렵다."],
+      stats: [{src: "kpf",label: "언론수용자 조사 – 허위정보 경험"}],
+      books: [] },
+    { subject: "info", unit: "정보 · 정보 보안", type: "value", field: "윤리", level: "고등", claim: "보안 취약점을 찾아 알리려고 한 해킹은 정당하다.",
+      background: "시스템의 약점을 먼저 찾아 알리는 '화이트 해킹'이 허락 없이 이루어졌을 때도 정당한지 따집니다.",
+      pro: ["취약점을 먼저 찾아 알리면 더 큰 피해를 막는다.","많은 기업이 취약점을 찾은 사람에게 포상한다."],
+      con: ["허락 없이 남의 시스템에 들어가는 것은 불법이다.","선의인지 악의인지 겉으로 구별하기 어렵다."],
+      books: [] },
+    { subject: "info", unit: "인공지능 기초 · 데이터", type: "policy", field: "기술", level: "고등", claim: "생성형 AI의 학습 데이터 출처를 공개하도록 의무화해야 한다.",
+      background: "생성형 AI가 어떤 글·그림·음악으로 학습했는지 공개하게 해야 하는지 따집니다.",
+      pro: ["창작자가 자기 작품이 쓰였는지 알아야 권리를 주장할 수 있다.","데이터의 편향을 사회가 점검할 수 있다."],
+      con: ["학습 데이터가 방대해 출처를 모두 밝히기 어렵다.","기술 개발 경쟁에서 불리해질 수 있다."],
+      books: [] },
+    { subject: "art", unit: "미술과 매체 · 인공지능과 창작", type: "policy", field: "기술", level: "고등", claim: "인공지능으로 만든 그림은 미술 공모전에 낼 수 없게 해야 한다.",
+      background: "인공지능으로 만든 그림이 공모전에서 상을 받는 일이 생기면서, 출품을 막아야 하는지 논쟁이 일었습니다.",
+      pro: ["사람이 직접 표현하는 능력을 겨루는 자리의 취지를 지킬 수 있다.","직접 그린 참가자와의 경쟁이 공정하지 않다."],
+      con: ["인공지능도 붓처럼 표현의 도구로 쓸 수 있다.","사람의 기획과 선택이 들어간 작품까지 막는 것은 지나치다."],
+      books: [] },
+    { subject: "art", unit: "미술 감상과 비평 · 미술과 시장", type: "value", field: "문화", level: "고등", claim: "작품의 가치는 거래되는 가격으로 드러난다.",
+      background: "경매에서 수백억 원에 팔리는 작품을 두고, 가격이 작품의 가치를 말해 주는지 따집니다.",
+      pro: ["가격은 많은 사람의 평가가 모인 결과이다.","오래 높은 가격을 유지하는 작품에는 그만한 까닭이 있다."],
+      con: ["가격은 유행과 투기, 작가의 명성에 크게 흔들린다.","값을 매길 수 없는 감동과 의미가 예술의 본질이다."],
+      books: [] },
+    { subject: "art", unit: "미술 · 문화유산", type: "policy", field: "역사", level: "고등", claim: "부당하게 반출된 문화재는 원래 나라로 돌려주어야 한다.",
+      background: "전쟁이나 식민 지배 시기에 반출된 문화재를 지금 가진 나라가 돌려주어야 하는지 따집니다.",
+      pro: ["문화재는 그것을 만든 공동체의 정체성과 역사를 담고 있다.","부당하게 얻은 것을 돌려주는 것이 정의이다."],
+      con: ["반출 경위를 가리기 어려운 경우가 많다.","세계적인 박물관에 두면 더 많은 사람이 보고 더 잘 보존된다."],
+      books: [] },
+    { subject: "art", unit: "미술과 매체 · 공공 미술", type: "value", field: "문화", level: "고등", claim: "거리의 그라피티도 공공 미술로 인정해야 한다.",
+      background: "벽에 그린 그라피티가 예술로 평가받기도, 낙서로 지워지기도 합니다. 공공 미술로 인정해야 하는지 따집니다.",
+      pro: ["누구나 볼 수 있는 곳에서 사회에 말을 거는 것이 공공 미술의 본질이다.","도시에 활기를 불어넣고 새로운 예술가를 길러 낸다."],
+      con: ["허락 없이 남의 벽에 그리는 것은 재산권 침해이다.","모든 낙서를 예술로 부르면 기준이 무너진다."],
+      books: [] },
+    { subject: "art", unit: "미술 감상과 비평", type: "value", field: "인식", level: "고등", claim: "미술 작품을 이해하려면 작가의 삶과 시대 배경을 알아야 한다.",
+      background: "작품을 볼 때 배경지식이 먼저인지, 보는 사람의 느낌이 먼저인지 따집니다.",
+      pro: ["시대와 삶을 알면 작품 속 상징과 선택이 보인다.","배경지식 없이 보면 작품을 오해하기 쉽다."],
+      con: ["작품은 보는 사람이 느끼는 것만으로도 충분히 완성된다.","배경 설명이 앞서면 스스로 보고 느끼는 경험을 가로막는다."],
+      books: [] },
+    { subject: "art", unit: "미술과 사회", type: "policy", field: "문화", level: "고등", claim: "미술관과 박물관의 입장료를 모두 없애야 한다.",
+      background: "국립 박물관의 상설 전시처럼 무료로 볼 수 있는 곳도 있지만 입장료를 받는 곳도 많습니다. 모든 미술관·박물관을 무료로 해야 하는지 따집니다.",
+      pro: ["누구나 예술을 누릴 권리를 보장할 수 있다.","문턱이 낮아지면 예술을 즐기는 사람이 늘어난다."],
+      con: ["운영비를 세금으로 메워야 해 부담이 커진다.","전시의 질을 높이는 데 쓸 재원이 줄어든다."],
+      stats: [{src: "mcst",label: "국민 문화예술활동조사 – 문화예술 관람률"}],
+      books: [] },
+    { subject: "art", unit: "미술 창작 · 차용과 표절", type: "value", field: "윤리", level: "고등", claim: "다른 작품을 따라 그리는 것도 창작이 될 수 있다.",
+      background: "대가의 작품을 모사하거나 기존 이미지를 가져와 새로 쓰는 것이 창작인지, 표절인지 따집니다.",
+      pro: ["대가의 작품을 따라 그리며 배우는 것은 오래된 수련 방법이다.","기존 이미지를 새 맥락에 가져오는 차용도 현대 미술의 방법이다."],
+      con: ["남의 아이디어를 그대로 쓰면 표절이다.","따라 그린 작품을 자기 작품으로 내세우면 원작자의 권리를 해친다."],
+      books: [] },
+    { subject: "art", unit: "미술 감상과 비평 · 미적 가치", type: "value", field: "문화", level: "고등", claim: "아름답지 않은 작품도 훌륭한 예술이 될 수 있다.",
+      background: "불편하거나 충격적인 작품도 예술로서 가치가 있는지, 예술에서 아름다움이 반드시 필요한지 따집니다.",
+      pro: ["불편함과 충격으로 사회 문제를 드러내는 작품도 큰 의미가 있다.","아름다움의 기준은 시대와 사람마다 다르다."],
+      con: ["아름다움을 느끼게 하는 것이 예술의 기본 역할이다.","기준 없이 무엇이든 예술이 되면 감상하기 어려워진다."],
+      books: [] },
+    { subject: "music", unit: "음악과 미디어 · 인공지능과 창작", type: "value", field: "기술", level: "고등", claim: "인공지능이 작곡한 곡도 사람이 만든 곡만큼 감동을 줄 수 있다.",
+      background: "인공지능이 만든 곡이 음원 차트와 광고에 쓰이기 시작했습니다. 음악의 감동이 누가 만들었는지와 상관이 있는지 따집니다.",
+      pro: ["듣는 사람은 누가 만들었는지 몰라도 감동을 받는다.","인공지능은 수많은 곡의 구조를 배워 완성도 높은 곡을 만든다."],
+      con: ["음악의 감동은 만든 사람의 삶과 의도에서 나온다.","기존 곡을 조합한 결과라 새로움이 부족하다."],
+      books: [] },
+    { subject: "music", unit: "음악과 미디어 · 음악 산업", type: "policy", field: "노동", level: "고등", claim: "음원 스트리밍 수익을 창작자에게 더 많이 나누도록 제도를 바꿔야 한다.",
+      background: "스트리밍이 음악을 듣는 주된 방법이 되었지만, 작곡가와 연주자에게 돌아가는 몫이 적다는 지적이 이어집니다.",
+      pro: ["창작자가 정당한 대가를 받아야 음악이 계속 만들어진다.","유통 플랫폼의 몫이 지나치게 크다는 지적이 많다."],
+      con: ["플랫폼도 서비스를 유지하는 데 큰 비용이 든다.","이용료가 올라 소비자 부담이 커질 수 있다."],
+      books: [] },
+    { subject: "music", unit: "음악 · 교육과정", type: "value", field: "문화", level: "고등", claim: "음악 시간에는 대중음악보다 클래식과 국악을 더 많이 다뤄야 한다.",
+      background: "학교 음악 수업이 학생들이 즐겨 듣는 대중음악에서 출발해야 하는지, 학교가 아니면 접하기 어려운 음악을 다뤄야 하는지 따집니다.",
+      pro: ["학교가 아니면 접하기 어려운 음악을 경험할 기회이다.","오랜 세월 이어진 음악에서 음악의 기초를 배울 수 있다."],
+      con: ["학생이 즐겨 듣는 음악에서 출발해야 흥미가 생긴다.","대중음악에도 배울 만한 음악적 요소가 많다."],
+      books: [] },
+    { subject: "music", unit: "음악 연주와 창작 · 저작권", type: "value", field: "윤리", level: "고등", claim: "샘플링으로 다른 곡의 일부를 쓰는 것도 창작이다.",
+      background: "다른 곡의 한 부분을 잘라 새 곡에 쓰는 샘플링이 창작인지, 남의 작품에 기대는 것인지 따집니다.",
+      pro: ["기존 소리를 새롭게 엮어 전혀 다른 곡을 만든다.","힙합처럼 샘플링에서 태어난 장르도 있다."],
+      con: ["원작자의 허락 없이 쓰면 저작권 침해이다.","남의 곡의 인상적인 부분에 기대면 독창성이 약해진다."],
+      books: [] },
+    { subject: "music", unit: "음악 · 국악", type: "value", field: "문화", level: "고등", claim: "국악은 현대적으로 바꾸어야 오래 이어진다.",
+      background: "국악을 현대 악기·장르와 섞는 시도가 늘고 있습니다. 이것이 국악을 살리는 길인지, 고유함을 잃게 하는지 따집니다.",
+      pro: ["현대 악기와 장르를 만나야 젊은 세대가 즐겨 듣는다.","전통도 시대마다 변하며 이어져 왔다."],
+      con: ["바꾸다 보면 국악만의 고유한 소리와 형식이 사라진다.","원형을 지키는 것이 먼저이고, 새 시도는 그 위에서 해야 한다."],
+      books: [] },
+    { subject: "music", unit: "음악 · 음악과 삶", type: "fact", field: "건강", level: "고등", claim: "음악 활동은 스트레스를 줄이는 데 효과가 있다.",
+      background: "노래하거나 악기를 연주하는 활동이 실제로 스트레스를 줄이는지 따집니다.",
+      pro: ["노래와 연주는 긴장을 풀고 감정을 표현하게 한다.","음악 치료가 병원과 상담 현장에서 쓰이고 있다."],
+      con: ["사람마다 효과가 달라 모두에게 도움이 된다고 보기 어렵다.","평가나 경연이 걸린 음악 활동은 오히려 스트레스를 준다."],
+      stats: [{src: "kdca",label: "청소년건강행태조사 – 스트레스 인지율"}],
+      books: [] },
+    { subject: "music", unit: "음악 · 평가", type: "policy", field: "문화", level: "고등", claim: "음악 수행평가에서 가창·연주 실기의 비중을 줄여야 한다.",
+      background: "노래와 연주 실기 중심의 평가가 공정한지, 감상·비평·창작을 더 평가해야 하는지 따집니다.",
+      pro: ["타고난 재능이나 사교육 경험에 따라 점수가 갈린다.","감상·비평·창작처럼 다양한 음악 능력을 고르게 평가할 수 있다."],
+      con: ["직접 소리를 내 보는 경험이 음악 교육의 핵심이다.","실기를 연습하는 과정에서 끈기와 협동을 배운다."],
+      books: [] },
+    { subject: "music", unit: "음악 감상과 비평", type: "value", field: "문화", level: "고등", claim: "노래 가사는 시와 같은 문학적 가치를 지닌다.",
+      background: "대중가요 가사를 문학으로 볼 수 있는지 따집니다. 가수가 노벨 문학상을 받은 일로 이 논쟁이 더 커졌습니다.",
+      pro: ["좋은 가사는 운율과 비유로 삶을 노래한다는 점에서 시와 같다.","가수이자 작사가인 밥 딜런이 노벨 문학상을 받았다."],
+      con: ["가사는 선율과 함께할 때 완성되어 글만으로 평가하기 어렵다.","대부분의 가사는 시처럼 언어를 깊이 다듬지 않는다."],
+      books: [] },
+    { subject: "pe", unit: "스포츠 문화", type: "policy", field: "문화", level: "고등", claim: "e스포츠를 올림픽 정식 종목으로 채택해야 한다.",
+      background: "e스포츠가 아시안게임 정식 종목이 되면서 올림픽 종목으로도 채택해야 하는지 논의가 이어지고 있습니다.",
+      pro: ["전 세계 수많은 사람이 즐기고 지켜보는 경기이다.","전략과 순간 판단, 팀워크를 겨루는 엄연한 경쟁이다."],
+      con: ["몸을 쓰는 활동이 적어 스포츠의 본래 뜻과 거리가 멀다.","특정 회사가 게임의 규칙과 권리를 가지고 있어 공공성이 약하다."],
+      books: [] },
+    { subject: "pe", unit: "체육 · 운동과 건강", type: "policy", field: "건강", level: "고등", claim: "고등학교 체육 수업 시간을 지금보다 늘려야 한다.",
+      background: "입시 부담이 큰 고등학생에게 체육 수업을 더 늘려야 하는지 따집니다.",
+      pro: ["공부 부담이 큰 시기일수록 규칙적인 신체 활동이 필요하다.","운동 습관은 청소년기에 만들어져 평생 건강으로 이어진다."],
+      con: ["다른 과목 시간이 줄어 학업 부담이 커진다.","시간을 늘리기보다 수업의 질과 활동 내용을 바꾸는 것이 먼저이다."],
+      stats: [{src: "kdca",label: "청소년건강행태조사 – 신체활동 실천율"}],
+      books: [] },
+    { subject: "pe", unit: "스포츠 문화 · 스포츠와 공정", type: "policy", field: "정의", level: "고등", claim: "경기 판정에 비디오 판독과 인공지능 심판을 적극 도입해야 한다.",
+      background: "오심 논란이 되풀이되면서 기술로 판정을 돕거나 대신하게 해야 하는지 따집니다.",
+      pro: ["오심을 줄여 경기 결과를 공정하게 만든다.","선수와 관중이 판정을 더 믿게 된다."],
+      con: ["경기 흐름이 자주 끊겨 스포츠의 재미가 줄어든다.","사람 심판의 재량과 경기 운영도 스포츠의 일부이다."],
+      books: [] },
+    { subject: "pe", unit: "스포츠 문화 · 스포츠 윤리", type: "policy", field: "정의", level: "고등", claim: "금지 약물을 쓴 선수는 영구히 출전을 막아야 한다.",
+      background: "도핑 적발 선수에게 어느 정도의 징계가 알맞은지 따집니다.",
+      pro: ["강한 처벌이 있어야 약물 사용을 막을 수 있다.","깨끗하게 경쟁한 선수들의 노력을 지켜야 한다."],
+      con: ["실수나 오염으로 인한 경우까지 영구 징계하는 것은 지나치다.","처벌을 받은 뒤 다시 기회를 주는 것도 스포츠 정신이다."],
+      books: [] },
+    { subject: "pe", unit: "운동과 건강", type: "fact", field: "건강", level: "고등", claim: "규칙적인 운동은 학업 성취에도 도움이 된다.",
+      background: "운동이 몸의 건강뿐 아니라 공부에도 도움이 되는지 따지는 사실 논제입니다.",
+      pro: ["운동이 집중력과 기억력을 돕는다는 연구 결과가 있다.","운동으로 스트레스가 줄면 공부에 집중하기 쉽다."],
+      con: ["운동에 시간을 쓰면 공부 시간이 줄어든다.","운동과 성적의 관계는 생활 습관 같은 다른 요인의 영향일 수 있다."],
+      stats: [{src: "kdca",label: "청소년건강행태조사 – 신체활동 실천율"}],
+      books: [] },
+    { subject: "pe", unit: "스포츠 생활", type: "value", field: "공동체", level: "고등", claim: "학교 스포츠는 선수 육성보다 모든 학생의 참여를 목표로 해야 한다.",
+      background: "학교 운동부와 스포츠 활동이 우수 선수를 길러 내는 데 힘써야 하는지, 모든 학생이 즐기는 데 힘써야 하는지 따집니다.",
+      pro: ["모든 학생이 평생 운동을 즐길 바탕을 만드는 것이 학교의 역할이다.","소수 선수에게 자원이 쏠리면 대다수 학생은 운동에서 멀어진다."],
+      con: ["재능 있는 학생을 일찍 발굴해 키우는 것도 학교의 역할이다.","뛰어난 선수의 활약이 많은 학생에게 운동의 동기를 준다."],
+      books: [] },
+    { subject: "pe", unit: "운동과 건강 · 안전", type: "policy", field: "안전", level: "고등", claim: "폭염 경보가 내린 날에는 야외 체육 활동을 금지해야 한다.",
+      background: "여름이 더워지면서 학교 야외 체육 활동의 기준을 어디에 둘지 따집니다.",
+      pro: ["온열질환은 청소년에게도 생명을 위협할 수 있다.","기준이 분명해야 학교마다 판단이 흔들리지 않는다."],
+      con: ["실내 공간이 부족한 학교는 체육 수업을 하기 어려워진다.","시간대와 강도를 조절하면 안전하게 활동할 수 있다."],
+      stats: [{src: "kdca",label: "온열질환 감시 현황"}],
+      books: [] },
+    { subject: "pe", unit: "스포츠 문화 · 스포츠와 경제", type: "value", field: "노동", level: "고등", claim: "프로 선수의 높은 연봉은 정당하다.",
+      background: "일부 프로 선수가 받는 매우 높은 연봉이 그 가치에 맞는 보상인지 따집니다.",
+      pro: ["뛰어난 기량은 드물고 수많은 관중과 수익을 만든다.","선수 생활이 짧고 부상 위험이 커 그만한 보상이 필요하다."],
+      con: ["사회에 꼭 필요한 직업보다 지나치게 높은 보상을 받는다.","소수 스타에게 돈이 쏠려 대다수 선수는 어렵게 지낸다."],
+      books: [] },
+    { subject: "career", unit: "진로와 직업", type: "value", field: "진로", level: "고등", claim: "고등학생 때 진로를 일찍 정하는 것이 유리하다.",
+      background: "고교학점제로 과목 선택이 중요해지면서 진로를 일찍 정해야 하는지, 여러 가능성을 열어 두어야 하는지 따집니다.",
+      pro: ["목표가 분명하면 과목 선택과 활동을 집중할 수 있다.","일찍 준비할수록 전문성을 쌓을 시간이 늘어난다."],
+      con: ["다양한 경험 없이 정한 진로는 바뀌기 쉽다.","이른 결정이 다른 가능성을 스스로 닫게 한다."],
+      books: [] },
+    { subject: "career", unit: "진로와 직업 · 과목 선택", type: "policy", field: "진로", level: "고등", claim: "고교학점제에서 진로와 관계없는 과목도 일정 학점 이상 듣게 해야 한다.",
+      background: "진로에 맞춰 과목을 고르는 고교학점제에서, 폭넓은 교양을 위해 진로 밖 과목도 듣게 해야 하는지 따집니다.",
+      pro: ["폭넓은 교양이 있어야 변화하는 사회에 적응할 수 있다.","진로가 바뀔 때를 대비할 수 있다."],
+      con: ["원하는 분야를 깊이 공부할 시간이 줄어든다.","학생의 선택권을 넓히려는 고교학점제의 취지와 어긋난다."],
+      books: [] },
+    { subject: "career", unit: "진로와 직업", type: "value", field: "성공", level: "고등", claim: "대학 진학이 성공적인 진로의 필수 조건은 아니다.",
+      background: "대학 졸업장이 여전히 진로에서 꼭 필요한지, 다른 길로도 충분히 성공할 수 있는지 따집니다.",
+      pro: ["기술과 경력으로 인정받는 길이 점점 다양해지고 있다.","졸업장보다 실제 역량을 보는 기업이 늘고 있다."],
+      con: ["여전히 많은 직업에서 학위가 채용의 기본 조건이다.","대학에서 쌓는 관계와 경험도 진로에 중요하다."],
+      books: [] },
+    { subject: "career", unit: "창의적 체험활동 · 자치 활동", type: "policy", field: "공동체", level: "고등", claim: "학급 규칙은 학생들이 직접 정하고 스스로 지키게 해야 한다.",
+      background: "학급 규칙을 교사가 정할지, 학생 자치로 정할지 따집니다.",
+      pro: ["스스로 정한 규칙은 더 잘 지킨다.","민주적인 의사 결정을 직접 경험할 수 있다."],
+      con: ["다수결로 정하면 소수 학생이 불리해질 수 있다.","안전과 관련된 규칙은 학교가 책임지고 정해야 한다."],
+      books: [] },
+    { subject: "career", unit: "창의적 체험활동 · 봉사활동", type: "value", field: "공동체", level: "고등", claim: "봉사활동은 대가가 없어야 진정한 봉사이다.",
+      background: "봉사 시간 인정이나 보상이 봉사의 의미를 해치는지 따집니다.",
+      pro: ["대가를 바라면 남을 돕는 마음보다 이익이 앞선다.","대가 없이 할 때 봉사의 의미를 깊이 느낀다."],
+      con: ["기록이나 보상이 계기가 되어 봉사를 시작하는 사람도 많다.","동기와 상관없이 도움을 받는 사람에게는 똑같이 소중하다."],
+      books: [] },
+    { subject: "career", unit: "진로와 직업 · 일과 직업 세계", type: "policy", field: "노동", level: "고등", claim: "고등학생의 아르바이트 경험을 진로 활동으로 인정해야 한다.",
+      background: "아르바이트로 겪은 직업 경험을 학교의 진로 활동으로 인정해야 하는지 따집니다.",
+      pro: ["실제 일터에서 직업 세계를 생생하게 배운다.","책임감과 사회성을 기를 수 있다."],
+      con: ["학업에 쓸 시간이 줄어든다.","진로와 관련 없는 단순 노동까지 진로 활동으로 보기 어렵다."],
+      books: [] },
 ];
 
 // ───────── 논제별 근거 통계 연결 ─────────
@@ -10658,8 +11187,6 @@ function setupTechFilters() {
                 matchesFilter = true;
             } else if (["초급", "중급", "고급"].includes(currentFilter)) {
                 matchesFilter = (difficulty === currentFilter);
-            } else if (currentFilter === "quick") {
-                matchesFilter = Number(card.getAttribute("data-quick")) <= 10;
             } else if (currentFilter === "역할극") {
                 // 역할극/감상인 경우 태그 검사
                 matchesFilter = tags.includes("역할극") || tags.includes("감상") || tags.includes("자기성찰");
@@ -12443,7 +12970,8 @@ const FIELD_STAT_FALLBACK = {
 
 // 논제의 근거 자료 목록: 연결된 통계(없으면 분야별 통계) + 신문 기사
 const topicWsSources = (t) => {
-    const list = (t.stats && t.stats.length) ? t.stats.slice() : (FIELD_STAT_FALLBACK[t.field] ? [FIELD_STAT_FALLBACK[t.field]] : []);
+    // 교과 논제(subject)는 분야 기본 통계가 논제와 어긋나기 쉬워, 직접 연결한 통계가 없으면 기사로만 근거를 찾게 한다
+    const list = (t.stats && t.stats.length) ? t.stats.slice() : (!t.subject && FIELD_STAT_FALLBACK[t.field] ? [FIELD_STAT_FALLBACK[t.field]] : []);
     if (!list.some(s => s.src === "bigkinds")) list.push({ src: "bigkinds", label: "논제와 이어지는 신문 기사" });
     return list;
 };
