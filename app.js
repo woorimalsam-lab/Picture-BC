@@ -5018,7 +5018,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.6.0";
+    return "5.6.2";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
@@ -13630,9 +13630,10 @@ function setupWorksheetGenerator() {
                     <button onclick="window.print()" class="btn btn-secondary"><i class="fa-solid fa-print"></i> 활동지 인쇄하기</button>
                 </div>
                 <div class="worksheet-paper">
-                    <div style="text-align: center; margin-bottom: 30px;">
-                        <h3 style="font-size: 1.8rem; color: #111; margin-bottom: 10px;">${book.title} - 토론 학습지</h3>
-                        <p style="font-size: 1rem; color: #555;">학년: ______ 반: ______ 이름: ____________</p>
+                    <div style="text-align: center; margin-bottom: 24px;">
+                        <p style="font-size: 0.82rem; color: #8a5a44; letter-spacing: 0.06em; margin: 0 0 6px;">${(l => l + (/(활동지|학습지)$/.test(l) ? "" : " 학습지"))(((typeSelect.options[typeSelect.selectedIndex] || {}).text || "토론").replace(/\s*\([A-Za-z0-9 \-]+\)/g, ""))}</p>
+                        <h3 style="font-size: 1.6rem; color: #111; margin: 0 0 10px;">《${book.title}》</h3>
+                        <p style="font-size: 0.95rem; color: #555;">학년: ______ 반: ______ 모둠: ______ 이름: ____________</p>
                     </div>
                     ${wsAnalysisBlock(book, type)}
             `;
@@ -14119,109 +14120,96 @@ function setupWorksheetGenerator() {
             </div>
         `;
     } else if (type === "panorama") {
+        // 기법에 그림책 적용 예(apply)가 있으면 그 자리 이름과 예시를 쓴다
+        const pApply = ((techniques.find(x => x.id === "panorama") || {}).apply) || {};
+        const pRoles = pApply.book === book.title && pApply.roles ? pApply.roles : null;
+        const ex = pRoles
+            ? { inQ: "예: 부모는 왜 아이를 마트에서 골라 왔을까?", outQ: "예: 부모가 자기를 물리러 왔을 때 아이의 진짜 속마음은?" }
+            : { inQ: "예: 인물은 왜 그런 선택을 했을까?", outQ: "예: 그 인물이 끝내 말하지 못한 속마음은 무엇일까?" };
+        const roleNames = pRoles ? pRoles.map(r => r[0]) : null;
+        const roleCell = pRoles
+            ? `<table class="ws-table pano-table pano-roles"><tr>${pRoles.map(([r, d]) => `<td><label class="pano-role"><input type="radio" name="pano-role" value="${r}"><strong>${r}</strong><span>${d}</span></label></td>`).join("")}</tr></table>`
+            : `<p class="pano-line">내가 맡은 자리: <input class="ws-line" type="text" style="width:60%;"></p><p class="ws-prompt" style="margin-top:4px;">세 자리 가운데 하나는 인물을 그렇게 만든 사회나 제도에 주어 보세요.</p>`;
+        const askRows = (roleNames || [null, null, null]).map((r, i) => `<tr><td class="pano-who">${r ? `<strong>${r}</strong>에게` : `<input class="ws-line" type="text">`}</td><td><textarea style="height: 58px;" placeholder="질문 ${i + 1}과 그에 대한 답..."></textarea></td></tr>`).join("");
         worksheetHTML += `
             <div class="ws-section ws-keep">
-                <h4>🖼️ 1단계. 내 마음이 머문 장면</h4>
-                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">토론에 앞서, 책을 읽으며 마음에 걸린 장면부터 붙잡습니다.</p>
-                <table class="ws-table">
+                <h4>1단계 · 내 마음이 머문 장면</h4>
+                <p class="ws-prompt">토론에 앞서, 책을 읽으며 마음에 걸린 장면부터 붙잡습니다.</p>
+                <table class="ws-table pano-table">
+                    <tr><th style="width: 50%;">가장 마음에 남은 장면 (글 또는 그림)</th><th style="width: 50%;">왜 이 장면이 내 마음을 붙잡았나요?</th></tr>
                     <tr>
-                        <th style="width: 50%;">가장 마음에 남은 장면 (글 또는 그림)</th>
-                        <th style="width: 50%;">왜 이 장면이 내 마음을 붙잡았나요?</th>
+                        <td><textarea style="height: 66px;" placeholder="장면을 글로 적거나 그림으로 그려도 좋습니다..."></textarea></td>
+                        <td><textarea style="height: 66px;" placeholder="그 장면에서 어떤 마음이 들었는지 적어 보세요..."></textarea></td>
                     </tr>
-                    <tr>
-                        <td><textarea style="height: 74px;" placeholder="장면을 글로 적거나 이 칸에 그림으로 그려도 좋습니다..."></textarea></td>
-                        <td><textarea style="height: 74px;" placeholder="그 장면에서 어떤 마음이 들었는지 적어 보세요..."></textarea></td>
-                    </tr>
-                </table>
-                <p style="font-size: 0.88rem; font-weight:700; color:#111111; margin-top:14px;">🔗 현실로 가져오기 — 지금 내 상황이나 마음과 닮은 점이 있나요?</p>
-                <textarea class="ws-textarea-box ws-textarea-short" placeholder="내가 겪었던 일이나 지금 느끼는 마음 가운데 닮은 점을 적어 보세요..."></textarea>
-            </div>
-            <div class="ws-section ws-keep">
-                <h4>❓ 2단계. 이야기 문을 열 질문 만들기</h4>
-                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">책에 답이 있는 질문과, 답이 나와 있지 않은 질문을 나누어 만들어 봅시다.</p>
-                <table class="ws-table">
-                    <tr>
-                        <th style="width: 50%;">책 속 질문 — 책에 답이 있는 것</th>
-                        <th style="width: 50%;">책 밖 질문 — 답이 나와 있지 않은 것</th>
-                    </tr>
-                    <tr>
-                        <td><textarea style="height: 64px;" placeholder="예: 부모는 왜 아이를 마트에서 골라 왔을까?"></textarea></td>
-                        <td><textarea style="height: 64px;" placeholder="예: 부모가 자기를 물리러 왔을 때 아이의 진짜 속마음은?"></textarea></td>
-                    </tr>
+                    <tr><th colspan="2" style="text-align: left;">현실로 가져오기 — 내 경험이나 지금 마음과 닮은 점</th></tr>
+                    <tr><td colspan="2"><textarea style="height: 40px;"></textarea></td></tr>
                 </table>
             </div>
             <div class="ws-section ws-keep">
-                <h4>🎭 3단계. 관점 배정 · 인물의 마음속으로</h4>
-                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">세 명이 한 모둠이 되어 서로 다른 자리를 하나씩 맡습니다. 인물뿐 아니라 그 인물을 그렇게 만든 사회나 제도에도 한 자리를 주면 토론이 깊어집니다.</p>
-                <p style="font-size: 0.9rem; font-weight:700; color:#111111;">내가 맡은 자리: <input type="text" style="width:220px; padding:2px 6px; border:1px solid #ccc; display:inline;" placeholder="예: 부모 / 아이 / 마트"></p>
-                <div style="background-color: #f2f6fc; padding: 12px; border-radius: 8px; margin-top: 12px; margin-bottom: 16px; border-left: 4px solid var(--accent-sage);">
-                    <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-sage);">📚 권장 토론 논제:</p>
-                    <ul style="padding-left: 20px; font-size: 0.85rem; line-height: 1.6; color: #333333; margin: 0;">
-                        ${book.debatePropositions ? book.debatePropositions.map(t => `<li>${t}</li>`).join("") : '<li>추천 논제 정보가 없습니다.</li>'}
-                    </ul>
-                </div>
-                <table class="ws-table">
+                <h4>2단계 · 이야기 문을 여는 질문 만들기</h4>
+                <p class="ws-prompt">책에 답이 있는 질문과, 답이 나와 있지 않은 질문을 나누어 만들어 봅시다.</p>
+                <table class="ws-table pano-table">
+                    <tr><th style="width: 50%;">책 속 질문 — 책에 답이 있는 것</th><th style="width: 50%;">책 밖 질문 — 답이 나와 있지 않은 것</th></tr>
                     <tr>
-                        <th style="width: 34%;">이 자리에 선 나의 표정은?</th>
-                        <th style="width: 33%;">내가 건넬 첫마디는?</th>
-                        <th style="width: 33%;">그 일을 겪은 나의 사정과 속마음</th>
-                    </tr>
-                    <tr>
-                        <td><textarea style="height: 68px;" placeholder="말없이 표정만 지어 본다면 어떤 얼굴일까요..."></textarea></td>
-                        <td><textarea style="height: 68px;" placeholder="이 자리에서 맨 처음 하고 싶은 말을 소리 내어 말해 보고 적으세요..."></textarea></td>
-                        <td><textarea style="height: 68px;" placeholder="내가 맡은 자리에서 그 일이 어떻게 보였는지 속마음을 담아 적어 보세요..."></textarea></td>
-                    </tr>
-                </table>
-                <p style="font-size: 0.88rem; font-weight:700; color:#111111; margin-top:14px;">🔍 내 자리에서 다른 자리에 던지고 싶은 날카로운 질문</p>
-                <textarea class="ws-textarea-box ws-textarea-short" placeholder="누구에게 무엇을 묻고 싶은가요? '○○에게 — ' 처럼 상대를 밝혀 적으세요..."></textarea>
-            </div>
-            <div class="ws-section ws-keep">
-                <h4>🗣️ 4단계. 파노라마 펼치기 · 1라운드 입장 말하기</h4>
-                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">우리는 왜 이 자리를 지키는가. 주장 · 근거 · 설명의 차례로 적어 발표합니다.</p>
-                <table class="ws-table">
-                    <tr>
-                        <th style="width: 34%;">[주장] 나(우리)는 ~라고 생각합니다</th>
-                        <th style="width: 33%;">[근거] 왜냐하면 ~이기 때문입니다</th>
-                        <th style="width: 33%;">[설명] 예를 들어 ~</th>
-                    </tr>
-                    <tr>
-                        <td><textarea style="height: 68px;" placeholder="내 자리의 입장을 한 문장으로..."></textarea></td>
-                        <td><textarea style="height: 68px;" placeholder="그렇게 보는 까닭을..."></textarea></td>
-                        <td><textarea style="height: 68px;" placeholder="책의 장면이나 우리 둘레의 일을 들어..."></textarea></td>
+                        <td><textarea style="height: 66px;" placeholder="${ex.inQ}"></textarea></td>
+                        <td><textarea style="height: 66px;" placeholder="${ex.outQ}"></textarea></td>
                     </tr>
                 </table>
             </div>
-            <div class="ws-section ws-keep">
-                <h4>🤔 4단계. 파노라마 펼치기 · 2라운드 서로 묻기</h4>
-                <p style="font-size: 0.85rem; color: #d9534f; font-weight:700; margin-bottom: 10px;">상대를 꺾는 질문이 아니라, 상대를 더 알고 싶은 질문만 던집니다.</p>
-                <table class="ws-table">
-                    <tr><th style="width: 22%;">누구에게</th><th style="width: 78%;">내가 던진 질문과 그 자리에서 들은 답</th></tr>
-                    <tr><td><input type="text" placeholder="예: 마트"></td><td><textarea style="height: 40px;" placeholder="질문 1과 그에 대한 답..."></textarea></td></tr>
-                    <tr><td><input type="text" placeholder="예: 부모"></td><td><textarea style="height: 40px;" placeholder="질문 2와 그에 대한 답..."></textarea></td></tr>
-                    <tr><td><input type="text" placeholder="예: 아이"></td><td><textarea style="height: 40px;" placeholder="질문 3과 그에 대한 답..."></textarea></td></tr>
-                </table>
-            </div>
-            <div class="ws-section ws-keep">
-                <h4>🤝 4단계. 파노라마 펼치기 · 3라운드 함께 살 길 찾기</h4>
-                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">각 자리에 그럴 만한 까닭이 있었음을 인정한 뒤, 책 속 모두가 함께 살아갈 방법을 찾아봅시다.</p>
-                <table class="ws-table">
-                    <tr><th style="width: 8%;">1</th><td><textarea style="height: 40px;" placeholder="누구에게 어떤 도움이 되는 방법인지 함께 적으세요..."></textarea></td></tr>
-                    <tr><th>2</th><td><textarea style="height: 40px;"></textarea></td></tr>
-                    <tr><th>3</th><td><textarea style="height: 40px;"></textarea></td></tr>
-                </table>
-            </div>
-            <div class="ws-section ws-keep">
-                <h4>🌱 5단계. 나를 찾아가는 성찰지 · 토론을 마치며</h4>
-                <table class="ws-table">
+            <div class="ws-section ws-keep ws-page-break">
+                <h4>3단계 · 자리 정하고 그 마음에 들어가기</h4>
+                <p class="ws-prompt">세 명이 한 모둠이 되어 서로 다른 자리를 하나씩 맡습니다. ${pRoles ? "내가 맡은 자리에 동그라미를 하세요." : ""}</p>
+                ${roleCell}
+                ${(book.debatePropositions || []).length ? `<div class="pano-props"><strong>함께 붙잡을 논제</strong><ul>${book.debatePropositions.map(t => `<li>${t}</li>`).join("")}</ul></div>` : ""}
+                <table class="ws-table pano-table">
+                    <tr><th style="width: 34%;">이 자리에 선 나의 표정</th><th style="width: 33%;">내가 건넬 첫마디</th><th style="width: 33%;">그 일을 겪은 나의 사정과 속마음</th></tr>
                     <tr>
-                        <th style="width: 34%;">생각의 변화<br><span style="font-weight:400; font-size:0.8rem;">토론 전과 후, 내 생각은 어떻게 달라졌나요?</span></th>
-                        <th style="width: 33%;">타인의 발견<br><span style="font-weight:400; font-size:0.8rem;">가장 인상 깊었던 다른 사람의 의견이나 태도는?</span></th>
-                        <th style="width: 33%;">삶으로의 연결<br><span style="font-weight:400; font-size:0.8rem;">이 주제가 내 삶이나 우리 사회에 주는 것은?</span></th>
+                        <td><textarea style="height: 118px;" placeholder="말없이 표정만 지어 본다면..."></textarea></td>
+                        <td><textarea style="height: 118px;" placeholder="이 자리에서 맨 처음 하고 싶은 말..."></textarea></td>
+                        <td><textarea style="height: 118px;" placeholder="내 자리에서 그 일이 어떻게 보였는지..."></textarea></td>
+                    </tr>
+                    <tr><th colspan="3" style="text-align: left;">다른 자리에 던지고 싶은 질문 — '○○에게' 처럼 상대를 밝혀 적으세요</th></tr>
+                    <tr><td colspan="3"><textarea style="height: 62px;"></textarea></td></tr>
+                </table>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>4단계 · 파노라마 펼치기</h4>
+                <p class="pano-round">1라운드 · 입장 말하기 <span>우리는 왜 이 자리를 지키는가? 주장 · 근거 · 예시의 차례로 적어 발표합니다.</span></p>
+                <table class="ws-table pano-table">
+                    <tr><th style="width: 34%;">주장 — 나는 ~라고 생각합니다</th><th style="width: 33%;">근거 — 왜냐하면 ~</th><th style="width: 33%;">예시 — 예를 들어 ~</th></tr>
+                    <tr>
+                        <td><textarea style="height: 150px;" placeholder="내 자리의 입장을 한 문장으로..."></textarea></td>
+                        <td><textarea style="height: 150px;" placeholder="그렇게 보는 까닭을..."></textarea></td>
+                        <td><textarea style="height: 150px;" placeholder="책의 장면이나 우리 둘레의 일을 들어..."></textarea></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="ws-section ws-keep ws-page-break">
+                <p class="pano-round">2라운드 · 서로 묻기 <span>상대를 꺾는 질문이 아니라, 상대를 더 알고 싶은 질문만 던집니다.</span></p>
+                <table class="ws-table pano-table">
+                    <tr><th style="width: 20%;">누구에게</th><th>내가 던진 질문과 그 자리에서 들은 답</th></tr>
+                    ${askRows}
+                </table>
+            </div>
+            <div class="ws-section ws-keep">
+                <p class="pano-round">3라운드 · 함께 살 길 찾기 <span>각 자리에 그럴 만한 까닭이 있었음을 인정하고, 모두가 함께 살아갈 방법을 찾습니다.</span></p>
+                <table class="ws-table pano-table">
+                    <tr><th style="width: 20%;">방법</th><th>누구에게 어떤 도움이 되나요?</th></tr>
+                    ${[1, 2, 3].map(n => `<tr><td class="pano-who"><strong>${n}</strong></td><td><textarea style="height: 46px;"></textarea></td></tr>`).join("")}
+                </table>
+            </div>
+            <div class="ws-section ws-keep">
+                <h4>5단계 · 토론을 마치며</h4>
+                <table class="ws-table pano-table">
+                    <tr>
+                        <th style="width: 34%;">생각의 변화<br><span class="pano-th-sub">토론 전과 후, 내 생각은 어떻게 달라졌나요?</span></th>
+                        <th style="width: 33%;">타인의 발견<br><span class="pano-th-sub">가장 인상 깊었던 다른 자리의 말은?</span></th>
+                        <th style="width: 33%;">삶으로의 연결<br><span class="pano-th-sub">이 이야기가 내 삶과 우리 사회에 주는 것은?</span></th>
                     </tr>
                     <tr>
-                        <td><textarea style="height: 74px;" placeholder="새로 알게 되거나 깨달은 점을 적으세요..."></textarea></td>
-                        <td><textarea style="height: 74px;" placeholder="가장 이해하기 어려웠던 자리를 다시 본 소감도 좋습니다..."></textarea></td>
-                        <td><textarea style="height: 74px;" placeholder="오늘 토론이 내 생활에서 어떤 뜻을 갖는지 적으세요..."></textarea></td>
+                        <td><textarea style="height: 104px;"></textarea></td>
+                        <td><textarea style="height: 104px;"></textarea></td>
+                        <td><textarea style="height: 104px;"></textarea></td>
                     </tr>
                 </table>
             </div>
@@ -14517,74 +14505,37 @@ function setupWorksheetGenerator() {
                 // Get dynamic scenario for the selected book and technique
                 const dynScenario = getDynamicScenario(book, tech);
 
+                const gApply = tech.apply && tech.apply.book === book.title ? tech.apply : null;
                 worksheetHTML += `
                     </div> <!-- Close 1st Page .worksheet-paper -->
-                    
-                    <div class="worksheet-paper worksheet-page-2" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
-                        <div style="text-align: center; margin-bottom: 25px; border-bottom: 2px solid var(--accent-coral); padding-bottom: 12px;">
-                            <h3 style="font-size: 1.6rem; color: #111; margin-bottom: 6px;"><i class="fa-solid fa-chalkboard-user"></i> ${tech.name} - 토론 가상 시나리오 및 가이드</h3>
-                            <p style="font-size: 0.9rem; color: #555; margin: 0;">그림책 《${book.title}》을 활용한 수업 가이드라인입니다.</p>
+
+                    <div class="worksheet-paper worksheet-page-2 ws-guide" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
+                        <div class="ws-guide-head">
+                            <p class="ws-teacher-badge">교사용 · 수업 가이드</p>
+                            <h3>${tech.name.replace(/\s*\([A-Za-z0-9 \-]+\)/g, "")} 진행 가이드</h3>
+                            <p>그림책 《${book.title}》으로 수업할 때 참고하세요.</p>
                         </div>
-                        
-                        <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 20px;">
-                            <!-- Left Section: Script & Dialog -->
-                            <div style="flex: 1.2; min-width: 320px; background: #fafbfc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
-                                <h4 style="font-size: 1.1rem; color: #1e293b; margin-top: 0; margin-bottom: 15px; display: flex; align-items: center; gap: 8px;">
-                                    <i class="fa-solid fa-comments" style="color: var(--accent-coral);"></i> 수업 가상 시나리오
-                                </h4>
-                                <div style="font-size: 0.85rem; line-height: 1.6; color: #334155; display: flex; flex-direction: column; gap: 14px;">
-                                    <div style="background-color: #fef8f5; border-left: 4px solid var(--accent-coral); padding: 10px 14px; border-radius: 4px;">
-                                        <strong style="color: #c05638; font-size: 0.9rem; display: block; margin-bottom: 4px;">👨‍🏫 교사 도입 발문:</strong>
-                                        <span>${dynScenario.intro}</span>
-                                    </div>
-                                    
-                                    <div style="margin-top: 5px;">
-                                        <strong style="color: #475569; display: block; margin-bottom: 8px;"><i class="fa-solid fa-users-viewfinder"></i> 모둠 가상 대화 시나리오:</strong>
-                                        <div style="display: flex; flex-direction: column; gap: 8px; max-height: 320px; overflow-y: auto; padding-right: 5px;">
-                                            ${dynScenario.dialog && dynScenario.dialog.length > 0 ? dynScenario.dialog.map(d => `
-                                                <div style="background: #ffffff; border-radius: 8px; padding: 10px 12px; border: 1px solid #e2e8f0; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-                                                    <span style="font-weight: 700; color: #475569; display: block; margin-bottom: 3px;">👤 ${d.role}</span>
-                                                    <span style="color: #1e293b; font-style: italic;">"${d.text}"</span>
-                                                </div>
-                                            `).join("") : '<div style="color: #94a3b8;">가상 대화 내용이 없습니다.</div>'}
-                                        </div>
-                                    </div>
-                                    
-                                    <div style="background-color: #f4f8f5; border-left: 4px solid var(--accent-sage); padding: 10px 14px; border-radius: 4px;">
-                                        <strong style="color: #2e6f40; font-size: 0.9rem; display: block; margin-bottom: 4px;">👨‍🏫 교사 성찰 및 정리 발문:</strong>
-                                        <span>${dynScenario.wrapUp}</span>
-                                    </div>
+                        ${tech.easy ? `<p class="ws-guide-easy"><strong>이 기법은</strong> ${tech.easy}</p>` : ""}
+                        <div class="ws-guide-grid">
+                            <section>
+                                <h4>수업 흐름과 발문</h4>
+                                <div class="ws-guide-say"><strong>도입 발문</strong>${dynScenario.intro}</div>
+                                ${dynScenario.dialog && dynScenario.dialog.length ? `
+                                <p class="ws-guide-sub">모둠 대화 예시</p>
+                                <div class="ws-guide-dialog">${dynScenario.dialog.map(d => `<div class="ws-guide-line"><strong>${d.role}</strong>"${d.text}"</div>`).join("")}</div>` : ""}
+                                <div class="ws-guide-say"><strong>정리 발문</strong>${dynScenario.wrapUp}</div>
+                            </section>
+                            <aside>
+                                <div class="ws-guide-box">
+                                    <h4>자리 배치</h4>
+                                    <div class="ws-guide-seat">${renderSeatingLayout(tech.id, gApply ? gApply.roles : null)}</div>
                                 </div>
-                            </div>
-                            
-                            <!-- Right Section: Seating & Tips -->
-                            <div style="flex: 0.8; min-width: 260px; display: flex; flex-direction: column; gap: 20px;">
-                                <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; display: flex; flex-direction: column; justify-content: space-between; min-height: 260px;">
-                                    <div>
-                                        <h4 style="font-size: 1.1rem; color: #1e293b; margin-top: 0; margin-bottom: 8px; text-align: left; display: flex; align-items: center; gap: 8px;">
-                                            <i class="fa-solid fa-chair" style="color: var(--accent-sage);"></i> 자리 배치 권장 구성도
-                                        </h4>
-                                        <p style="font-size: 0.78rem; color: #64748b; line-height: 1.4; text-align: left; margin-bottom: 15px;">${tech.concept}</p>
-                                    </div>
-                                    
-                                    <div style="display: flex; justify-content: center; align-items: center; flex-grow: 1; padding: 10px 0;">
-                                        ${renderSeatingLayout(tech.id)}
-                                    </div>
-                                    
-                                    <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 8px;">
-                                        ※ 인쇄 시 이 페이지도 함께 인쇄하여 참고하실 수 있습니다.
-                                    </div>
+                                ${gApply && gApply.points ? `<div class="ws-guide-box"><h4>이 그림책에서 짚을 점</h4><ul>${gApply.points.map(p => `<li>${p}</li>`).join("")}</ul></div>` : ""}
+                                <div class="ws-guide-box">
+                                    <h4>지도 팁</h4>
+                                    <ul>${(tech.tips || []).map(tip => `<li>${tip}</li>`).join("")}</ul>
                                 </div>
-                                
-                                <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 16px 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);">
-                                    <strong style="color: #b45309; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; margin-bottom: 6px;">
-                                        <i class="fa-solid fa-circle-info"></i> 교사용 지도 꿀팁 (Tips)
-                                    </strong>
-                                    <ul style="padding-left: 18px; margin: 0; font-size: 0.78rem; color: #78350f; line-height: 1.5; display: flex; flex-direction: column; gap: 4px;">
-                                        ${tech.tips ? tech.tips.map(tip => `<li>${tip}</li>`).join("") : '<li>학습지의 질문들을 클릭하시면 1페이지의 질문 상자에 자동으로 입력됩니다.</li>'}
-                                    </ul>
-                                </div>
-                            </div>
+                            </aside>
                         </div>
                     </div>
                 `;
@@ -15581,7 +15532,17 @@ window.copyShareLink = function (type, value) {
 };
 
 // Seat layout rendering function based on techId
-function renderSeatingLayout(techId) {
+function renderSeatingLayout(techId, roles) {
+    if (techId === "panorama") {
+        const r = roles && roles.length === 3 ? roles.map(x => x[0]) : ["자리 1", "자리 2", "자리 3"];
+        return `
+            <div class="seat-pano" aria-label="세 명이 삼각형으로 마주 앉는 자리 배치">
+                <span class="seat-pano-seat seat-a">${r[0]}</span>
+                <span class="seat-pano-seat seat-b">${r[1]}</span>
+                <span class="seat-pano-seat seat-c">${r[2]}</span>
+                <span class="seat-pano-mid">세 명이 한 모둠<br>서로 마주 보고 앉기</span>
+            </div>`;
+    }
     if (["socratic", "angeldevil", "valuebar", "valueline"].includes(techId)) {
         return `
             <div style="position: relative; width: 220px; height: 130px; border: 2px dashed #cbd5e1; border-radius: 50% / 50% 50% 10% 10%; display: flex; justify-content: center; align-items: center; background: #fff;">

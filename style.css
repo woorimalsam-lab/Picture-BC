@@ -4366,3 +4366,62 @@ html, body { max-width: 100%; overflow-x: hidden; }
     border-radius: 10px; padding: 5px 8px; font-family: inherit; font-size: 0.8rem; font-weight: 700; cursor: pointer; max-width: 100%;
 }
 .subject-topic-techsel option, .subject-topic-techsel optgroup { color: #222; background: #fff; }
+
+/* ── v5.6.1 파노라마 학습지 · 그림책 학습지 교사용 가이드 ── */
+.pano-roles td { width: 33.3%; vertical-align: top; }
+.pano-role { display: flex; flex-direction: column; gap: 3px; cursor: pointer; }
+.pano-role input { align-self: flex-start; accent-color: #E07A5F; width: 16px; height: 16px; }
+.pano-role strong { font-size: 1rem; color: #111; }
+.pano-role span { font-size: 0.8rem; color: #666; line-height: 1.45; }
+.pano-line { font-size: 0.92rem; font-weight: 700; color: #111; }
+.pano-props { border: 1px solid #d9e2d6; border-left: 4px solid #708A6F; border-radius: 6px; padding: 8px 12px; margin: 10px 0 12px; }
+.pano-props strong { display: block; font-size: 0.85rem; color: #54704f; margin-bottom: 2px; }
+.pano-props ul { margin: 0; padding-left: 18px; font-size: 0.85rem; line-height: 1.55; color: #333; }
+.pano-round { font-size: 0.95rem; font-weight: 800; color: #111; margin: 4px 0 8px; }
+.pano-round span { display: block; font-size: 0.82rem; font-weight: 500; color: #666; margin-top: 2px; }
+.pano-who { text-align: center; vertical-align: middle; font-size: 0.9rem; color: #222; }
+.pano-th-sub { font-weight: 400; font-size: 0.78rem; color: #555; }
+.ws-page-break { margin-top: 28px; padding-top: 24px; border-top: 1px dashed #ccc; }
+@media print {
+    .ws-page-break { break-before: page; page-break-before: always; margin-top: 0; padding-top: 0; border-top: none; }
+}
+.ws-guide-head { text-align: center; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid #E07A5F; }
+.ws-guide-head h3 { font-size: 1.45rem; color: #111; margin: 8px 0 4px; }
+.ws-guide-head p { font-size: 0.88rem; color: #555; margin: 0; }
+.ws-guide-easy { font-size: 0.86rem; line-height: 1.6; color: #333; border: 1px solid #e8e0d4; background: #faf6ef; border-radius: 8px; padding: 10px 12px; margin: 0 0 16px; }
+.ws-guide-easy strong { color: #8a5a44; margin-right: 4px; }
+.ws-guide-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: 18px; }
+.ws-guide h4 { font-size: 0.98rem; color: #111; margin: 0 0 10px; padding-left: 8px; border-left: 4px solid #E07A5F; }
+.ws-guide-say { border: 1px solid #e2d8cc; border-radius: 8px; padding: 10px 12px; margin-bottom: 12px; font-size: 0.85rem; line-height: 1.6; color: #333; }
+.ws-guide-say strong { display: block; color: #8a5a44; margin-bottom: 4px; }
+.ws-guide-sub { font-size: 0.82rem; font-weight: 700; color: #555; margin: 4px 0 6px; }
+.ws-guide-dialog { display: flex; flex-direction: column; gap: 8px; margin-bottom: 12px; }
+.ws-guide-line { border-left: 3px solid #cbd5e1; padding: 2px 10px; font-size: 0.83rem; line-height: 1.55; color: #333; }
+.ws-guide-line strong { display: block; font-size: 0.78rem; color: #475569; }
+.ws-guide-box { border: 1px solid #e2d8cc; border-radius: 8px; padding: 12px 14px; margin-bottom: 14px; }
+.ws-guide-box ul { margin: 0; padding-left: 18px; font-size: 0.82rem; line-height: 1.6; color: #333; }
+.ws-guide-box li { margin-bottom: 4px; }
+.ws-guide-seat { display: flex; justify-content: center; padding: 4px 0; }
+@media (max-width: 700px) { .ws-guide-grid { grid-template-columns: 1fr; } }
+@media print { .ws-guide-easy { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+.seat-pano { position: relative; width: 220px; height: 170px; }
+.seat-pano-seat {
+    position: absolute; width: 64px; height: 64px; border-radius: 50%; border: 2px solid #E07A5F; background: #fff;
+    display: flex; align-items: center; justify-content: center; font-size: 0.82rem; font-weight: 800; color: #8a3f2a; text-align: center;
+}
+.seat-a { left: 78px; top: 0; }
+.seat-b { left: 0; bottom: 0; }
+.seat-c { right: 0; bottom: 0; }
+.seat-pano-mid { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-size: 0.72rem; color: #666; text-align: center; line-height: 1.4; white-space: nowrap; }
+/* 파노라마 학습지 표는 여백을 줄여 쪽에 맞춘다 */
+.pano-table th, .pano-table td { padding: 8px 10px; }
+.pano-table textarea { font-size: 0.85rem; }
+.ws-guide-head .ws-teacher-badge { color: #fff; font-size: 0.8rem; margin: 0; }
+.ws-guide-say { font-size: 0.82rem; line-height: 1.55; padding: 8px 12px; margin-bottom: 10px; }
+.ws-guide-line { font-size: 0.8rem; line-height: 1.5; }
+.ws-guide-box { padding: 10px 12px; margin-bottom: 12px; }
+.ws-guide-box ul { font-size: 0.8rem; line-height: 1.55; }
+.ws-guide-easy { font-size: 0.83rem; margin-bottom: 12px; }
+.seat-pano { height: 150px; }
+.seat-pano-seat { width: 56px; height: 56px; }
+.seat-a { left: 82px; }
