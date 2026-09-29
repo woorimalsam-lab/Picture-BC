@@ -1476,7 +1476,6 @@ footer {
     
     .ws-textarea-box {
         border: 1px solid #111111 !important;
-        min-height: 160px !important;
     }
     
     .ws-meta-table td,
@@ -4469,3 +4468,63 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* 메인 버튼 글자가 중간에서 끊기지 않게: 버튼째 다음 줄로 넘긴다 */
 .hero-buttons { flex-wrap: wrap; gap: 12px; }
 .hero-buttons .btn { white-space: nowrap; }
+
+/* ── v5.7 파노라마 학습지(선생님 양식): 인쇄에서는 칸 안 예시 글을 지우고 빈칸으로 ── */
+@media print { .pano-table textarea::placeholder, .pano-table input::placeholder { color: transparent; } }
+.pano-roles .ws-line { margin-top: 4px; font-size: 0.82rem; }
+
+/* ── v5.7 학습지 효율: 거의 빈 쪽이 생기지 않게 칸과 여백을 줄인다 (화면·인쇄 같게) ── */
+.ws-section { margin-bottom: 22px; }
+.ws-table th, .ws-table td { padding: 10px 12px; }
+.ws-table textarea { height: 120px; }
+.ws-textarea-box { min-height: 110px; padding: 10px 12px; }
+.pano-roles .ws-line { width: 100%; }
+/* 그림책 학습지: 마지막 서술 칸 하나 때문에 둘째 쪽이 생기지 않게 */
+.ws-section { margin-bottom: 18px; }
+.ws-table textarea { height: 100px; }
+.ws-textarea-box { min-height: 88px; }
+/* 인쇄에서도 칸 높이는 화면(인라인 높이 포함)과 같게 둔다 */
+
+/* ── v5.7 그림책 들여다보기 상자: 태그는 제목 줄로, 두 안내 상자는 나란히 (파노라마는 위아래) ── */
+.ws-analysis { margin-bottom: 16px; border: 1.5px solid #e8e0d4; border-radius: 12px; overflow: hidden; }
+.ws-an-head { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; background: #faf6ef; padding: 8px 14px; border-bottom: 1px solid #e8e0d4; }
+.ws-an-head strong { font-size: 0.95rem; color: #8a5a44; }
+.ws-an-author { font-size: 0.78rem; color: #999; }
+.ws-an-tags { margin-left: auto; display: inline-flex; flex-wrap: wrap; gap: 4px; }
+.ws-an-tag { background: #f4efe8; border: 1px solid #e5dccf; border-radius: 20px; padding: 1px 9px; font-size: 0.74rem; color: #6b5d4f; }
+.ws-an-body { padding: 10px 14px 12px; font-size: 0.86rem; line-height: 1.6; color: #333; }
+.ws-an-sum { margin: 0 0 8px; }
+.ws-an-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.ws-an-pair.ws-an-stack { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.ws-an-pair p { margin: 0; padding: 8px 12px; border-radius: 6px; }
+.ws-an-pair strong { display: block; margin-bottom: 2px; }
+.ws-an-focus { background: #fdf3ee; border-left: 4px solid #E07A5F; }
+.ws-an-focus strong { color: #c05b40; }
+.ws-an-point { background: #f1f5ee; border-left: 4px solid #708A6F; }
+.ws-an-point strong { color: #54704f; }
+@media screen and (max-width: 560px) { .ws-an-pair { grid-template-columns: minmax(0, 1fr); } .ws-an-tags { margin-left: 0; } }
+/* 단계 제목 여백을 조금 줄여 마지막 서술 칸이 첫 쪽에 들어가게 */
+.ws-section h4 { font-size: 1.05rem; margin-bottom: 8px; }
+.ws-analysis { margin-bottom: 12px; }
+
+/* 헥사 낱말 카드 6장: 인쇄·넓은 화면은 한 줄, 좁은 화면은 두 줄 */
+.hex-cards { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; }
+@media screen and (max-width: 600px) { .hex-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* ── 세특 쓰기 틀: 동기 → 과정 → 성장 ── */
+.ws-setuk-frame td { font-size: 0.86rem; line-height: 1.7; word-break: keep-all; }
+.ws-setuk-frame td:first-child { text-align: center; vertical-align: middle; }
+.setuk-tag { color: #c0392b; font-weight: 800; }
+.ws-setuk-frame .setuk-q { display: block; font-size: 0.76rem; color: #555; margin-top: 2px; line-height: 1.4; }
+.ws-setuk-ex { border: 1.5px solid #9fb3d9; border-radius: 6px; padding: 10px 14px; margin: 10px 0 8px; background: #fbfcff; }
+.ws-setuk-ex p { font-size: 0.88rem; line-height: 1.75; margin: 0 0 4px; color: #222; word-break: keep-all; }
+.ws-setuk-ex p:last-child { margin-bottom: 0; }
+.ws-setuk-ex .ws-setuk-ex-h { font-size: 0.8rem; font-weight: 700; color: #3b5b99; margin-bottom: 6px; }
+@media print { .ws-setuk-ex { background: #ffffff !important; border-color: #6b7fa8 !important; } }
+
+/* 기법 설명 창의 세특 예시: 동기 → 과정 → 성장 */
+.tech-setuk-lead { font-size: 0.86rem; color: var(--text-secondary); line-height: 1.6; margin: 4px 0 8px; }
+.tech-setuk-3 p { margin: 0 0 6px; }
+.tech-setuk-3 p:last-child { margin-bottom: 0; }
+.tech-setuk-alt { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin: 12px 0 0; }
+.ws-std-code { white-space: nowrap; }
