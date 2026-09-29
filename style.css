@@ -4425,3 +4425,27 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .seat-pano { height: 150px; }
 .seat-pano-seat { width: 56px; height: 56px; }
 .seat-a { left: 82px; }
+
+/* ── v5.6.3 화면에서 보이는 대로 인쇄되게: 학습지 한 쪽 = A4(210mm, 여백 12mm) ── */
+@page { size: A4; margin: 12mm; }
+/* 바깥 틀은 투명하게 두고, 안쪽 쪽마다 A4 종이로 보이게 한다 */
+#worksheet-paper.worksheet-paper {
+    padding: 0; border: none; background: transparent; box-shadow: none; min-height: 0;
+}
+#worksheet-paper > .worksheet-paper {
+    width: 210mm; max-width: 100%; margin: 0 auto 28px; padding: 12mm;
+    box-sizing: border-box; min-height: 0;
+}
+#worksheet-paper > .worksheet-paper.ws-topic-break,
+#worksheet-paper > .worksheet-paper.worksheet-page-2 { margin-top: 0; border-top: 1px solid #dcdcdc; padding-top: 12mm; }
+.worksheet-print-header { display: flex; justify-content: flex-end; align-items: center; gap: 12px; flex-wrap: wrap; }
+.worksheet-print-header::before {
+    content: "A4 용지 · 배율 '기본값(100%)'으로 인쇄하면 화면과 같게 나옵니다.";
+    font-size: 0.8rem; color: var(--text-secondary);
+}
+@media (max-width: 768px) {
+    #worksheet-paper > .worksheet-paper { padding: 20px 16px; }
+}
+@media print {
+    #worksheet-paper > .worksheet-paper { width: auto; max-width: none; padding: 0 !important; margin: 0 !important; border: none !important; }
+}
