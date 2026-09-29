@@ -1370,7 +1370,7 @@ footer {
 }
 
 /* --- 반응형 레이아웃 대응 --- */
-@media (max-width: 992px) {
+@media screen and (max-width: 992px) {
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
@@ -1394,7 +1394,7 @@ footer {
     }
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .hero-content h1 {
         font-size: 2.3rem;
     }
@@ -1798,7 +1798,7 @@ footer {
     opacity: 0.75;
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     .theory-grid {
         grid-template-columns: 1fr;
     }
@@ -2345,7 +2345,7 @@ footer {
 }
 
 /* 본문 옆 여백이 좁으면(1480px 이하) 작은 알약 형태로 하단 왼쪽 이동 */
-@media (max-width: 1480px) {
+@media screen and (max-width: 1480px) {
     .visitor-counter {
         top: auto;
         bottom: 16px;
@@ -2371,7 +2371,7 @@ footer {
         100% { opacity: 1; transform: scale(1) translateX(0); }
     }
 }
-@media (max-width: 520px) {
+@media screen and (max-width: 520px) {
     .visitor-counter .vc-label { font-size: 0.58rem; }
     .visitor-counter .vc-num { font-size: 1.05rem; }
     .visitor-counter .vc-num-total { font-size: 0.95rem; }
@@ -2609,7 +2609,7 @@ footer {
     display: grid; grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr)); gap: 20px;
 }
 #topic-grid { display: block; max-width: none; }
-@media (max-width: 640px) {
+@media screen and (max-width: 640px) {
     .topic-group-grid { grid-template-columns: 1fr; }
 }
 
@@ -2654,7 +2654,7 @@ footer {
 .td-tag { font-size: 0.75rem; background: var(--bg-secondary); color: var(--text-secondary); padding: 3px 10px; border-radius: 20px; }
 .td-book-btn { margin-top: 12px; padding: 7px 16px; font-size: 0.82rem; }
 
-@media (max-width: 640px) {
+@media screen and (max-width: 640px) {
     .topic-grid { grid-template-columns: 1fr; }
     .topic-sides { grid-template-columns: 1fr; }
     .topic-count { margin-left: 0; }
@@ -2801,7 +2801,7 @@ body.class-mode-open { overflow: hidden; }
     font-variant-numeric: tabular-nums;
 }
 .cm-time-end { color: var(--accent-coral); }
-@media (max-width: 640px) {
+@media screen and (max-width: 640px) {
     .cm-bar { justify-content: center; }
     .cm-nav { padding: 12px 18px; }
 }
@@ -2844,8 +2844,8 @@ body.class-mode-open { overflow: hidden; }
     visibility: visible;
 }
 
-@media (max-width: 1240px) {
-    /* 햄버거 버튼 노출 (메뉴가 10개라 1240px 아래에서는 서랍으로) */
+@media screen and (max-width: 900px) {
+    /* 햄버거 버튼 노출 (태블릿 세로·휴대폰에서는 메뉴를 서랍으로) */
     .nav-toggle { display: inline-flex; }
     .header-container { padding: 14px 18px; }
     .actions { gap: 8px; }
@@ -2900,7 +2900,7 @@ body.class-mode-open { overflow: hidden; }
     .logo i { font-size: 1.1rem; }
 }
 
-@media (max-width: 600px) {
+@media screen and (max-width: 600px) {
     /* 아주 좁은 화면: 로고 위 작은 부제 숨겨 공간 확보 */
     .logo > span { display: none; }
 }
@@ -3203,7 +3203,7 @@ body.class-mode-open { overflow: hidden; }
     margin: 2px 0 0;
     word-break: keep-all;
 }
-@media (max-width: 560px) {
+@media screen and (max-width: 560px) {
     .reading-grid { grid-template-columns: 1fr; }
     .reading-card { flex-direction: column; }
     .reading-cover { width: 100px; margin: 0 auto; }
@@ -3385,7 +3385,7 @@ footer { padding: 56px 24px 44px; }
 /* ── 텍스트 선택 색 ─────────────────────────────────────── */
 ::selection { background: rgba(224, 122, 95, 0.22); }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .hero-section { padding: 120px 20px 64px; }
     .section-title-wrapper { margin-bottom: 40px; }
     .technique-card { padding: 22px; }
@@ -3561,7 +3561,7 @@ footer { padding: 56px 24px 44px; }
 .stat-howto li:last-child { margin-bottom: 0; }
 .stat-howto em { font-style: normal; color: var(--accent-coral); font-weight: 700; }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .stat-block, .stat-warn { padding: 20px 18px; border-radius: 16px; }
     .stat-steps { grid-template-columns: 1fr; }
     .stat-search { flex-direction: column; }
@@ -3644,7 +3644,7 @@ footer { padding: 56px 24px 44px; }
     .ws-topic-box, .ws-score { border-color: #111 !important; }
     .ws-scale-item { border-color: #555 !important; }
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .ws-mode-btn { font-size: 0.84rem; padding: 10px 6px; }
     .ws-scale { gap: 3px; }
     .ws-scale-item { font-size: 0.68rem; padding: 6px 2px; }
@@ -3664,7 +3664,7 @@ footer { padding: 56px 24px 44px; }
     line-height: 1.6;
     margin: 10px 0 12px;
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .search-topic-grid { grid-template-columns: 1fr; }
 }
 
@@ -3716,7 +3716,7 @@ footer { padding: 56px 24px 44px; }
 .lit-topic-btn:hover { border-color: var(--accent-coral); transform: translateX(2px); }
 .lit-topic-claim { flex: 1; font-size: 0.85rem; font-weight: 600; color: var(--text-primary); line-height: 1.5; }
 .lit-topic-btn > i { color: var(--accent-coral); font-size: 0.85rem; flex-shrink: 0; }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .lit-grid { grid-template-columns: 1fr; }
     .lit-card { padding: 20px 18px; }
 }
@@ -3755,7 +3755,7 @@ footer { padding: 56px 24px 44px; }
 .lit-tab-btn:hover { color: var(--accent-coral); border-color: var(--accent-coral); }
 .lit-tab-btn.active { background: var(--accent-coral); border-color: var(--accent-coral); color: #fff; }
 .lit-genre[data-genre="고전문학"] { background: #6b8fa8; }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .lit-tabs { gap: 6px; }
     .lit-tab-btn { padding: 9px 14px; font-size: 0.84rem; }
 }
@@ -3790,7 +3790,7 @@ footer { padding: 56px 24px 44px; }
 .ws-check5 li:last-child { border-bottom: none; }
 .ws-check5 input { margin-top: 4px; width: 15px; height: 15px; flex-shrink: 0; }
 .ws-side-pick small { font-weight: 500; color: #555; }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .ws-flow5 { grid-template-columns: 1fr 1fr; }
 }
 @media print {
@@ -3846,7 +3846,7 @@ footer { padding: 56px 24px 44px; }
 .hero-art-video.is-on { opacity: 1; }
 
 /* 폰에서는 가로형으로 잘라 버튼이 첫 화면에 들어오게 */
-@media (max-width: 992px) {
+@media screen and (max-width: 992px) {
     .hero-art { aspect-ratio: 4 / 3; max-width: 560px; }
     .hero-art img,
     .hero-art video { position: absolute; top: -9%; left: 0; }
@@ -3950,7 +3950,7 @@ footer { padding: 56px 24px 44px; }
     border-color: var(--accent-coral);
     box-shadow: 0 0 0 3px rgba(224, 122, 95, 0.25), var(--shadow-hover);
 }
-@media (max-width: 768px) { .search-lit-grid { grid-template-columns: 1fr; } }
+@media screen and (max-width: 768px) { .search-lit-grid { grid-template-columns: 1fr; } }
 
 /* ── 어떤 화면에서도 가로로 밀려나지 않게 ─────────────────── */
 /* 그리드·플렉스 칸은 내용물의 최소 너비에 밀려 상자를 넘지 않는다 */
@@ -3974,7 +3974,7 @@ select { max-width: 100%; }
 html, body { max-width: 100%; overflow-x: hidden; }
 
 /* 아주 좁은 화면(320px 안팎)에서 여백을 줄여 글이 시원하게 보이도록 */
-@media (max-width: 360px) {
+@media screen and (max-width: 360px) {
     section { padding-left: 16px !important; padding-right: 16px !important; }
     .helper-card-container { padding: 24px 18px; }
     .container { padding-left: 0; padding-right: 0; }
@@ -4169,7 +4169,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .training-total { font-size: 0.82rem; color: var(--text-secondary); margin: 22px 0 0; }
 .training-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .subject-section, .training-section { padding: 80px 16px; }
     .subject-card, .training-sheet { padding: 22px 18px; }
     .training-body { grid-template-columns: minmax(0, 1fr); }
@@ -4211,15 +4211,15 @@ html, body { max-width: 100%; overflow-x: hidden; }
     body.print-training .training-flow p { font-size: 0.84rem; line-height: 1.55; }
     body.print-training .training-memo { margin-top: 16px; break-inside: avoid; }
     body.print-training .training-memo td { height: 32px; }
-    body.print-training .training-memo .training-memo-tall { height: 92px; }
-    body.print-training .training-memo .training-memo-mid { height: 50px; }
+    body.print-training .training-memo .training-memo-tall { height: 74px; }
+    body.print-training .training-memo .training-memo-mid { height: 42px; }
     body.print-training .training-total { margin-top: 12px; }
 }
 
 /* 메뉴가 늘어나도 글자가 두 줄로 쪼개지지 않게 */
 /* 가로 메뉴: 글자만 한 줄로 (아이콘은 서랍 메뉴에서만 보인다).
    1240.02px 로 적은 것은 화면 배율 때문에 폭이 1240.5px 처럼 잡혀도 두 규칙 사이에 틈이 없게 하려는 것 */
-@media (min-width: 1240.02px) {
+@media screen and (min-width: 900.02px) {
     .nav-links { gap: 14px; }
     .nav-links a { white-space: nowrap; font-size: 0.88rem; }
     .nav-links a i { display: none; }
@@ -4318,7 +4318,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 .subject-topic-group:first-child { margin-top: 0; }
 /* 휴대폰에서는 루브릭 표를 기준별 카드로 쌓는다 */
-@media (max-width: 560px) {
+@media screen and (max-width: 560px) {
     .tech-rubric { min-width: 0; }
     .tech-rubric thead { display: none; }
     .tech-rubric, .tech-rubric tbody, .tech-rubric tr, .tech-rubric th, .tech-rubric td { display: block; width: 100%; }
@@ -4358,7 +4358,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-scale-3 { grid-template-columns: repeat(3, 1fr); }
 .ws-scale-11 { grid-template-columns: repeat(11, 1fr); gap: 4px; }
 .ws-scale-11 .ws-scale-item { padding: 6px 0; font-size: 0.8rem; font-weight: 700; }
-@media (max-width: 560px) {
+@media screen and (max-width: 560px) {
     .ws-scale-11 { grid-template-columns: repeat(6, 1fr); }
 }
 .subject-topic-techsel {
@@ -4402,7 +4402,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-guide-box ul { margin: 0; padding-left: 18px; font-size: 0.82rem; line-height: 1.6; color: #333; }
 .ws-guide-box li { margin-bottom: 4px; }
 .ws-guide-seat { display: flex; justify-content: center; padding: 4px 0; }
-@media (max-width: 700px) { .ws-guide-grid { grid-template-columns: 1fr; } }
+@media screen and (max-width: 700px) { .ws-guide-grid { grid-template-columns: 1fr; } }
 @media print { .ws-guide-easy { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
 .seat-pano { position: relative; width: 220px; height: 170px; }
 .seat-pano-seat {
@@ -4443,9 +4443,29 @@ html, body { max-width: 100%; overflow-x: hidden; }
     content: "A4 용지 · 배율 '기본값(100%)'으로 인쇄하면 화면과 같게 나옵니다.";
     font-size: 0.8rem; color: var(--text-secondary);
 }
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     #worksheet-paper > .worksheet-paper { padding: 20px 16px; }
 }
 @media print {
     #worksheet-paper > .worksheet-paper { width: auto; max-width: none; padding: 0 !important; margin: 0 !important; border: none !important; }
 }
+
+/* ── v5.6.5 인쇄 배율이 100%보다 크게 잡혀 있어도 학습지가 100% 크기로 나오게 한다 ──
+   인쇄 배율을 키우면 A4 한 쪽의 폭(CSS 픽셀)이 그만큼 좁아진다(100%≈703px, 200%≈352px).
+   폭으로 배율을 알아내 문서 전체를 거꾸로 줄여, 화면에서 보던 크기로 되돌린다. */
+@media print and (max-width: 380px) { html { zoom: 0.5; } }
+@media print and (min-width: 380.01px) and (max-width: 430px) { html { zoom: 0.57; } }
+@media print and (min-width: 430.01px) and (max-width: 500px) { html { zoom: 0.667; } }
+@media print and (min-width: 500.01px) and (max-width: 600px) { html { zoom: 0.8; } }
+@media print and (min-width: 600.01px) and (max-width: 680px) { html { zoom: 0.9; } }
+
+/* ── v5.6.5 노트북(900~1240px)에서도 모든 메뉴를 상단에 보이게: 로고 아래 둘째 줄에 펼친다 ── */
+@media screen and (min-width: 900.02px) and (max-width: 1240px) {
+    .header-container { flex-wrap: wrap; row-gap: 4px; padding: 10px 20px 6px; }
+    .nav-links { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 2px 16px; padding-top: 4px; border-top: 1px solid var(--border-color); }
+    .nav-links a { font-size: 0.86rem; padding-top: 4px; padding-bottom: 6px; }
+    .main-container { padding-top: 38px; }
+}
+/* 메인 버튼 글자가 중간에서 끊기지 않게: 버튼째 다음 줄로 넘긴다 */
+.hero-buttons { flex-wrap: wrap; gap: 12px; }
+.hero-buttons .btn { white-space: nowrap; }

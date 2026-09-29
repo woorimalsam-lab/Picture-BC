@@ -4796,7 +4796,7 @@ function initMobileNav() {
 
     // 데스크톱 크기로 돌아가면 강제로 닫기(스크롤 잠금 해제)
     window.addEventListener("resize", () => {
-        if (window.innerWidth > 1240 && nav.classList.contains("open")) setOpen(false);
+        if (window.innerWidth > 900 && nav.classList.contains("open")) setOpen(false);
     });
 }
 
@@ -5018,7 +5018,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.6.4";
+    return "5.6.6";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
