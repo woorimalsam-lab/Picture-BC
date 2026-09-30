@@ -4547,3 +4547,14 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .generated-guide-output { padding: 12px 8px; }
     .generated-guide-output > div { padding: 18px 14px !important; }
 }
+
+/* ── 파노라마 학습지 보강(선생님 PPT): 핵심어, 예시 질문, 자리별 묻기, 맺음말 ── */
+.pano-keys { margin-left: 8px; font-size: 0.74rem; font-weight: 500; color: #8a5a44; letter-spacing: 0.02em; }
+.pano-table .pano-th-sub { display: inline-block; margin-top: 2px; line-height: 1.35; }
+.pano-ex { display: block; font-size: 0.78rem; color: #7a7a7a; line-height: 1.4; margin: 0 0 4px; }
+.pano-who small { display: block; margin-top: 4px; font-size: 0.72rem; font-weight: 400; color: #666; line-height: 1.35; }
+.pano-closing { margin: 8px 0 0; padding-top: 6px; border-top: 1px dashed #d9c9b8; text-align: center; font-family: var(--font-serif, serif); font-size: 0.98rem; color: #8a5a44; }
+.ws-guide-story { background: #faf6ef; border: 1px solid #e8e0d4; border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; font-size: 0.86rem; line-height: 1.55; }
+.ws-guide-story strong { display: block; color: #8a5a44; margin-bottom: 4px; }
+.ws-guide-story ol { margin: 0 0 4px; padding-left: 20px; }
+.ws-guide-story p { margin: 0; color: #555; font-size: 0.8rem; }

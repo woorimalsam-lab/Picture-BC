@@ -64,7 +64,32 @@
                 "도입에서 '내 마음이 머문 장면'을 하나씩 고르게 한 뒤, 그 장면에서 책 속 질문과 책 밖 질문을 만듭니다.",
                 "'마트'처럼 인물을 그렇게 만든 사회에 한 자리를 주면, 아이를 성능으로 줄 세우는 일이 누구 한 사람의 잘못만은 아니라는 점이 드러납니다.",
                 "서로 묻기를 마친 뒤, 세 자리가 모두 받아들일 수 있는 '완벽함 대신 필요한 것'을 한 문장으로 모아 말해 봅니다."
-            ]
+            ],
+            "story": [
+                "뒤프레 부부가 '완벽한' 아이 바티스트를 골라 집으로 데려옵니다.",
+                "부모의 실수로 마음이 상한 바티스트가 화를 내자, 실망한 부모가 마트에 반품하러 갑니다.",
+                "바티스트는 그 자리에서 마트 점원에게 되묻습니다."
+            ],
+            "storyNote": "줄거리를 짧게 확인합니다. 아이를 상품처럼 다루는 설정이 왜 불편한지, 그리고 바티스트가 왜 되묻는지에 귀 기울이게 합니다.",
+            "examples": {
+                "inQ": "부모는 왜 아이를 마트에서 골라 왔을까?",
+                "outQ": "부모가 자기를 반품하러 왔을 때 아이의 진짜 속마음은 무엇이었을까?"
+            },
+            "ask": [
+                [
+                    "완벽함을 바랐던 이유와 부모의 처지·마음",
+                    "바티스트를 처음 골라 집으로 데려올 때 어떤 기대를 품으셨나요?"
+                ],
+                [
+                    "있는 그대로 사랑받고 싶었던 아이의 속마음",
+                    "부모님이 마트에 반품하러 왔을 때 마음속으로 가장 외치고 싶었던 말은?"
+                ],
+                [
+                    "아이를 등급 매겨 진열하는 사회의 시선",
+                    "'완벽한 아이'의 기준은 누구의 것이며, 팔리지 않은 아이들은 어떻게 되나요?"
+                ]
+            ],
+            "closing": "완벽하지 않아도 있는 그대로 사랑하는 것, 그것이 파노라마 공존의 시작입니다."
         },
         "script": {
             "book": "완벽한 아이 팔아요",
@@ -4781,8 +4806,8 @@ function techClassGuideHTML(techId) {
 // 제목·시간은 여기서 고치면 화면과 인쇄물에 함께 반영된다.
 const TRAINING = {
     title: "함께 만드는 수업 속 토론",
-    tagline: "가볍게 시작해 깊이 남는 — 교과를 넘어 함께 짓는 토론 수업",
-    subtitle: "고등학교 전교사 연수 · 100분(1시간 40분)",
+    tagline: "가볍게 시작해 깊이 남는 — 교과를 넘어 함께 만들어 가는 토론 수업",
+    subtitle: "부천여자고등학교 전교사 연수 · 100분(1시간 40분)",
     url: "https://woorimalsam-lab.github.io/Picture-BC/#subject-section",
     flow: [
         { min: 15, title: "토론이란 무엇인가 · 토론의 개념", desc: "토론은 이기고 지는 말싸움이 아니라, 근거를 들어 생각을 나누며 더 나은 판단에 이르는 과정입니다. 사실·가치·정책 논제의 차이와, 경쟁 토론과 비경쟁 토론의 차이를 짧게 살핍니다.", links: [{ label: "토론 이론", go: "#theory-section", icon: "fa-graduation-cap" }, { label: "토론 논제", go: "#topic-section", icon: "fa-scale-balanced" }] },
@@ -5144,7 +5169,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.8.4";
+    return "5.8.5";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
@@ -14239,12 +14264,13 @@ function setupWorksheetGenerator() {
         // 기법에 그림책 적용 예(apply)가 있으면 그 자리 이름과 예시를 쓴다
         const pApply = ((techniques.find(x => x.id === "panorama") || {}).apply) || {};
         const pRoles = pApply.book === book.title && pApply.roles ? pApply.roles : null;
+        const pEx = pRoles && pApply.examples ? pApply.examples : { inQ: "인물은 왜 그런 선택을 했을까?", outQ: "그 인물이 끝내 말하지 못한 속마음은 무엇일까?" };
         worksheetHTML += panoramaSheetHTML({
             source: "book",
             roles: pRoles,
-            ex: pRoles
-                ? { inQ: "예: 부모는 왜 아이를 마트에서 골라 왔을까?", outQ: "예: 부모가 자기를 반품하러 왔을 때 아이의 진짜 속마음은?" }
-                : { inQ: "예: 인물은 왜 그런 선택을 했을까?", outQ: "예: 그 인물이 끝내 말하지 못한 속마음은 무엇일까?" }
+            ex: { inQ: "예: " + pEx.inQ, outQ: "예: " + pEx.outQ },
+            ask: pRoles ? pApply.ask : null,
+            closing: pRoles ? pApply.closing : ""
         });
         } else if (type === "fan") {
         worksheetHTML += `
@@ -14519,6 +14545,7 @@ function setupWorksheetGenerator() {
                         <div class="ws-guide-grid">
                             <section>
                                 <h4>수업 흐름과 발문</h4>
+                                ${gApply && gApply.story ? `<div class="ws-guide-story"><strong>줄거리 세 장면으로 확인하기</strong><ol>${gApply.story.map(x => `<li>${x}</li>`).join("")}</ol>${gApply.storyNote ? `<p>${gApply.storyNote}</p>` : ""}</div>` : ""}
                                 <div class="ws-guide-say"><strong>도입 발문</strong>${dynScenario.intro}</div>
                                 ${dynScenario.dialog && dynScenario.dialog.length ? `
                                 <p class="ws-guide-sub">모둠 대화 예시</p>
@@ -15210,47 +15237,64 @@ techniques.forEach(tech => {
 // ── 파노라마 학습지 공용 틀 (선생님 양식) ─────────────────────────
 // 학생용 2쪽: 1쪽 = 1·2단계, 2쪽 = 3·4·5단계. 그림책이면 책 속·책 밖 질문, 논제면 자료 속·자료 밖 질문.
 // roles: [[자리 이름, 설명]] 3개가 있으면 미리 채우고, 없으면 빈 자리 칸을 둔다.
-function panoramaSheetHTML({ source = "book", roles = null, ex = {} } = {}) {
+function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null, closing = "" } = {}) {
     const isBook = source === "book";
     const src = isBook ? "책" : "자료";
-    const h1 = isBook ? 120 : 84, h2 = isBook ? 100 : 70;   // 1쪽 칸 높이
+    const h1 = isBook ? 92 : 48, h2 = isBook ? 70 : 40;   // 1쪽 칸 높이
     const cells = (n, h) => Array.from({ length: n }, () => `<td><textarea style="height: ${h}px;"></textarea></td>`).join("");
+    const sub = (t) => `<br><span class="pano-th-sub">${t}</span>`;
+    const keys = (t) => `<span class="pano-keys">${t}</span>`;
+    const exLine = (t) => t ? `<span class="pano-ex">${t}</span>` : "";
     const roleRow = roles
         ? roles.map(([r, d]) => `<td><label class="pano-role"><input type="radio" name="pano-role" value="${r}"><strong>${r}</strong><span>${d}</span></label></td>`).join("")
         : [1, 2, 3].map(n => `<td><label class="pano-role"><input type="radio" name="pano-role" value="${n}"><strong>자리 ${n}</strong><input class="ws-line" type="text" placeholder="예: 당사자 · 주변 사람 · 제도(사회)"></label></td>`).join("");
+    // ask: [[무엇을 묻는지, 예시 질문]] — 자리마다 묻고 들을 거리 (없으면 빈 칸)
     const askRows = (roles ? roles.map(r => r[0]) : [null, null, null])
-        .map(r => `<tr><td class="pano-who">${r ? `<strong>${r}</strong>에게` : `<input class="ws-line" type="text" style="width: 70%;">에게`}</td><td><textarea style="height: 54px;"></textarea></td></tr>`).join("");
+        .map((r, i) => {
+            const a = ask && ask[i];
+            return `<tr><td class="pano-who">${r ? `<strong>${r}</strong>에게` : `<input class="ws-line" type="text" style="width: 70%;">에게`}${a ? `<small>${a[0]}</small>` : ""}</td><td>${a ? exLine("예: " + a[1]) : ""}<textarea style="height: ${a ? 32 : 50}px;"></textarea></td></tr>`;
+        }).join("");
     return `
         <div class="ws-section ws-keep">
-            <h4>1단계 · 내 마음이 머문 장면</h4>
+            <h4>1단계 · 내 마음이 머문 장면 ${keys("장면 포착 · 인상 깊은 순간 · 감정 기록")}</h4>
             <p class="ws-prompt">토론에 앞서, ${isBook ? "책을 읽으며" : "자료(기사·영상·사례)를 보며"} 마음에 걸린 장면부터 붙잡습니다.</p>
             <table class="ws-table pano-table">
-                <tr><th style="width: 50%;">가장 마음에 남은 장면 (글 또는 그림)</th><th style="width: 50%;">왜 이 장면이 내 마음을 붙잡았나요?</th></tr>
+                <tr>
+                    <th style="width: 50%;">${isBook ? "가장 마음에 남은 장면 (글 또는 그림)" : "가장 마음에 남은 대목"}${sub(`유독 눈길이 멈추거나 오래 남은 ${isBook ? "글·그림" : "대목"}`)}</th>
+                    <th style="width: 50%;">왜 이 장면이 내 마음을 붙잡았나요?${sub("그 장면이 건드린 내 생각·감정·기억")}</th>
+                </tr>
                 <tr>${cells(2, h1)}</tr>
             </table>
         </div>
         <div class="ws-section ws-keep">
-            <h4>2단계 · ${isBook ? "이야기" : "생각"} 문을 여는 질문 만들기</h4>
+            <h4>2단계 · ${isBook ? "이야기" : "생각"} 문을 여는 질문 만들기 ${keys(`사실 질문 · 상상 질문 · ${isBook ? "이야기" : "생각"} 문 열기`)}</h4>
             <p class="ws-prompt">${src}에 답이 있는 질문과, 답이 나와 있지 않은 질문을 나누어 만들어 봅시다.</p>
             <table class="ws-table pano-table">
-                <tr><th style="width: 50%;">${src} 속 질문 — ${src}에 답이 있는 것</th><th style="width: 50%;">${src} 밖 질문 — 답이 나와 있지 않은 것</th></tr>
                 <tr>
-                    <td><textarea style="height: ${h2}px;" placeholder="${ex.inQ || ""}"></textarea></td>
-                    <td><textarea style="height: ${h2}px;" placeholder="${ex.outQ || ""}"></textarea></td>
+                    <th style="width: 50%;">${src} 속 질문 — ${src}에 답이 있는 것${sub(`${isBook ? "본문" : "자료"}에서 바로 찾아낼 수 있는 질문`)}</th>
+                    <th style="width: 50%;">${src} 밖 질문 — 답이 나와 있지 않은 것${sub(`${isBook ? "인물의 마음" : "자료 너머의 사정"}을 상상하며 나누는 질문`)}</th>
+                </tr>
+                <tr>
+                    <td>${exLine(ex.inQ)}<textarea style="height: ${h2}px;"></textarea></td>
+                    <td>${exLine(ex.outQ)}<textarea style="height: ${h2}px;"></textarea></td>
                 </tr>
             </table>
         </div>
         <div class="ws-section ws-keep ws-page-break">
-            <h4>3단계 · 자리 정하고 그 마음에 들어가 입장 말하기</h4>
-            <p class="ws-prompt">세 명이 한 모둠이 되어 서로 다른 자리를 하나씩 맡습니다. 내가 맡은 자리에 동그라미를 하세요.</p>
+            <h4>3단계 · 자리 정하고 그 마음에 들어가 입장 말하기 ${keys("역할 공감 · 입장 정리 · 주장과 근거")}</h4>
+            <p class="ws-prompt">세 명이 서로 다른 자리를 하나씩 맡아 입장을 정리합니다. 내가 맡은 자리에 동그라미를 하세요.</p>
             <table class="ws-table pano-table pano-roles"><tr>${roleRow}</tr></table>
             <table class="ws-table pano-table">
-                <tr><th style="width: 34%;">이 자리에 선 나의 심정, 속마음</th><th style="width: 33%;">주장 — 나는 ~라고 생각합니다</th><th style="width: 33%;">근거 — 왜냐하면 ~</th></tr>
-                <tr>${cells(3, 96)}</tr>
+                <tr>
+                    <th style="width: 34%;">이 자리에 선 나의 심정, 속마음${sub(`${isBook ? "인물" : "그 자리"}의 처지에서 느낀 감정·속생각`)}</th>
+                    <th style="width: 33%;">주장 — 나는 ~라고 생각합니다${sub("꼭 전하고 싶은 핵심 주장 한 문장")}</th>
+                    <th style="width: 33%;">근거 — 왜냐하면 ~${sub(`${isBook ? "책 내용" : "자료"}이나 삶의 경험을 든 까닭`)}</th>
+                </tr>
+                <tr>${cells(3, 64)}</tr>
             </table>
         </div>
         <div class="ws-section ws-keep">
-            <h4>4단계 · 파노라마 펼치기</h4>
+            <h4>4단계 · 파노라마 펼치기 ${keys("상호 이해 · 경청과 질문 · 파노라마 공존")}</h4>
             <p class="pano-round">각자의 자리에서 서로 묻기 <span>상대를 꺾는 질문이 아니라, 상대를 더 알고 싶은 질문만 던집니다.</span></p>
             <table class="ws-table pano-table">
                 <tr><th style="width: 26%;">누구에게</th><th>내가 던진 질문과 그 자리에서 들은 답</th></tr>
@@ -15261,12 +15305,13 @@ function panoramaSheetHTML({ source = "book", roles = null, ex = {} } = {}) {
             <h4>5단계 · 토론을 마치며</h4>
             <table class="ws-table pano-table">
                 <tr>
-                    <th style="width: 34%;">생각의 변화<br><span class="pano-th-sub">토론 전과 후, 내 생각은 어떻게 달라졌나요?</span></th>
-                    <th style="width: 33%;">타인의 발견<br><span class="pano-th-sub">가장 인상 깊었던 다른 자리의 말은?</span></th>
-                    <th style="width: 33%;">삶으로의 연결<br><span class="pano-th-sub">${isBook ? "이야기" : "이 논제"}를 내 삶과 우리 사회에 연결시킨 것은?</span></th>
+                    <th style="width: 34%;">생각의 변화${sub("토론 전과 후, 내 생각과 마음은 어떻게 달라졌나요?")}</th>
+                    <th style="width: 33%;">타인의 발견${sub(`다른 자리${roles ? `(${roles.map(r => r[0]).join("·")})` : ""}의 말 중 가장 마음을 울린 말은?`)}</th>
+                    <th style="width: 33%;">삶으로의 연결${sub(`${isBook ? "이야기 속 질문" : "이 논제"}을 나의 삶과 우리 사회에 어떻게 이어 볼까요?`)}</th>
                 </tr>
-                <tr>${cells(3, 92)}</tr>
+                <tr>${cells(3, closing ? 58 : 68)}</tr>
             </table>
+            ${closing ? `<p class="pano-closing">“${closing}”</p>` : ""}
         </div>`;
 }
 
