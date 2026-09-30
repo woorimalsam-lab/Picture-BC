@@ -4558,3 +4558,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-guide-story strong { display: block; color: #8a5a44; margin-bottom: 4px; }
 .ws-guide-story ol { margin: 0 0 4px; padding-left: 20px; }
 .ws-guide-story p { margin: 0; color: #555; font-size: 0.8rem; }
+
+/* 파노라마 자리 배치: 자리 이름이 길면 원이 알약 모양으로 늘어난다 */
+.seat-pano-seat { width: auto; height: auto; min-width: 56px; min-height: 56px; max-width: 104px; padding: 4px 10px; border-radius: 999px; font-size: 0.74rem; line-height: 1.25; word-break: keep-all; }
+.seat-a { left: 50%; transform: translateX(-50%); }
+.pano-who { word-break: keep-all; }
