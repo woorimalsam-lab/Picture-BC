@@ -148,11 +148,6 @@ h1, h2, h3, h4 {
     font-weight: 700;
     border-bottom: 2.5px solid var(--accent-coral);
 }
-.highlight-link {
-    border-bottom: 2.5px solid var(--accent-coral);
-    padding-bottom: 2px;
-    color: var(--accent-coral) !important;
-}
 
 .btn-icon {
     background: none;
@@ -2886,10 +2881,6 @@ body.class-mode-open { overflow: hidden; }
         transform: none;
     }
     .nav-links a.active { border-bottom: none; }
-    .highlight-link {
-        border-bottom: none !important;
-        background: rgba(224, 122, 95, 0.12);
-    }
 
     /* 메뉴 열렸을 때 뒤 배경 스크롤 잠금 */
     body.nav-open { overflow: hidden; }
