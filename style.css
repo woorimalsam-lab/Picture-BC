@@ -4519,3 +4519,31 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .tech-setuk-3 p:last-child { margin-bottom: 0; }
 .tech-setuk-alt { font-size: 0.8rem; font-weight: 700; color: var(--text-secondary); margin: 12px 0 0; }
 .ws-std-code { white-space: nowrap; }
+
+/* ── 추천가이드: 더 볼 만한 그림책과 학교급에 맞는 논제 ── */
+.helper-more, .helper-topics { margin-top: 28px; }
+.helper-more-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 12px; }
+.helper-more-head h4 { margin: 0; font-size: 1.05rem; color: var(--text-primary); }
+.helper-more-head h4 i { color: var(--accent-coral); margin-right: 4px; }
+.helper-more-head h4 small { font-size: 0.8rem; font-weight: 400; color: var(--text-secondary); margin-left: 6px; }
+.helper-more-books { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
+.helper-more-book { display: flex; flex-direction: column; gap: 4px; text-align: left; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 12px; padding: 12px 14px; cursor: pointer; font-family: inherit; color: var(--text-primary); transition: border-color 0.2s, transform 0.2s; }
+.helper-more-book:hover { border-color: var(--accent-coral); transform: translateY(-2px); }
+.helper-more-book strong { font-size: 0.98rem; }
+.helper-more-author { font-size: 0.78rem; color: var(--text-secondary); }
+.helper-more-tags { font-size: 0.78rem; color: var(--accent-sage); }
+.helper-more-q { font-size: 0.82rem; line-height: 1.5; color: var(--text-primary); margin-top: 4px; }
+.helper-topics-next { padding: 6px 12px; font-size: 0.82rem; }
+.helper-topic-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.helper-topic { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 12px; padding: 10px 14px; }
+.helper-topic-claim { flex: 1 1 260px; font-size: 0.92rem; line-height: 1.5; color: var(--text-primary); word-break: keep-all; }
+.helper-topic-claim small { display: block; font-size: 0.76rem; color: var(--text-secondary); }
+.helper-topic-actions { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; margin-left: auto; }
+.helper-topic-book, .helper-topic-ws { border: 1px solid var(--border-color); background: var(--bg-card); color: var(--text-primary); border-radius: 999px; padding: 4px 10px; font-size: 0.78rem; cursor: pointer; font-family: inherit; }
+.helper-topic-ws { border-color: var(--accent-coral); color: var(--accent-coral); font-weight: 700; }
+.helper-topic-book:hover, .helper-topic-ws:hover { background: rgba(224, 122, 95, 0.1); }
+/* 좁은 화면: 추천 결과 상자의 겹친 여백을 줄여 글 폭을 넓힌다 */
+@media screen and (max-width: 600px) {
+    .generated-guide-output { padding: 12px 8px; }
+    .generated-guide-output > div { padding: 18px 14px !important; }
+}

@@ -4181,6 +4181,103 @@ function topicFitsLevel(t, lv) {
 // 학교급을 골라 두었으면 논제 목록도 그 수준부터 보여 준다
 function defaultTopicLevel() { return getSchoolLevel() === "all" ? "all" : "pref"; }
 
+// ── 추천가이드: 학년·목표에 맞춰 서재 전체와 논제 모음에서 더 골라 보여 준다 ──
+// 손으로 고른 3권 뒤에, 태그·논제·줄거리의 낱말로 책을 더 고르고, 학교급에 맞는 논제를 8개씩 넘겨 보게 한다.
+const HELPER_LEVEL = { low: "초등", mid: "초등", middle: "중학", high: "고등" };
+const HELPER_TARGET_LABEL = { low: "초등 저학년", mid: "초등 중고학년", middle: "중학생", high: "고등학생" };
+const HELPER_GOAL_WORDS = {
+    empathy: ["공감", "관계", "위로", "감정", "자존감", "자아", "나다움", "가족", "우정", "사랑", "이별", "상실", "애도", "불안", "두려움", "용기", "치유", "경청", "소통", "마음", "자기"],
+    logical: ["정의", "공정", "책임", "정직", "진실", "판단", "선택", "딜레마", "윤리", "소유", "규칙", "신뢰", "지혜", "인과", "협상", "권리", "방관", "가치판단"],
+    social: ["차별", "인권", "환경", "생태", "기후", "동물권", "전쟁", "평화", "불평등", "노동", "소비", "공동체", "세계시민", "자본주의", "분단", "역사", "장애", "이주", "편견", "생명"],
+    fun: ["상상", "유머", "반전", "놀이", "모험", "풍자", "관점", "꿈", "지혜"]
+};
+const HELPER_GOAL_TOPIC = {
+    empathy: (t) => ["관계", "감정", "성장", "자아", "인식", "행복", "실존", "인성", "용기", "진로", "성공"].includes(t.field),
+    logical: (t) => t.type === "fact" || ["정의", "윤리"].includes(t.field),
+    social: (t) => ["사회", "환경", "인권", "노동", "복지", "정치", "평화", "공동체", "역사", "정의", "생명", "안전"].includes(t.field),
+    fun: (t) => ["미디어", "문화", "기술", "건강", "행복"].includes(t.field)
+};
+// 중·고등학생 추천에서는 뒤로 미루는, 어린 독자에게 맞춘 책
+const HELPER_YOUNG_BOOKS = ["구름빵", "괜찮아", "곰아, 놀자!", "우리는 언제나 다시 만나", "겁쟁이 빌리", "고함쟁이 엄마", "누가 내 머리에 똥 쌌어?", "장수탕 선녀님", "틀려도 괜찮아", "가만히 들어주었어", "무지개 물고기"];
+
+function helperBookPicks(target, goal, exclude, n = 6) {
+    const words = HELPER_GOAL_WORDS[goal] || [];
+    const older = target === "middle" || target === "high";
+    const hit = (text) => words.reduce((k, w) => k + (String(text).includes(w) ? 1 : 0), 0);
+    return books
+        .filter(b => !exclude.includes(b.title))
+        .map(b => {
+            let sc = hit((b.tags || []).join(" ")) * 3 + hit([...(b.debateTopics || []), ...(b.debatePropositions || [])].join(" ")) + hit(b.summary || "") * 0.5;
+            if (older && HELPER_YOUNG_BOOKS.includes(b.title)) sc -= 6;
+            return { b, sc };
+        })
+        .filter(x => x.sc > 0)
+        .sort((x, y) => y.sc - x.sc || x.b.title.localeCompare(y.b.title, "ko"))
+        .slice(0, n).map(x => x.b);
+}
+
+function helperTopicPicks(target, goal) {
+    const lv = HELPER_LEVEL[target] || "all";
+    const fits = HELPER_GOAL_TOPIC[goal] || (() => true);
+    const inLib = (t) => (t.books || []).some(x => books.some(b => b.title === x)) ? 1 : 0;
+    return debateTopicsDB
+        .filter(t => topicFitsLevel(t, lv) && fits(t))
+        .sort((a, b) => (inLib(b) - inLib(a)) || a.claim.localeCompare(b.claim, "ko"));
+}
+
+function helperMoreBooksHTML(target, goal, exclude) {
+    const picks = helperBookPicks(target, goal, exclude);
+    if (!picks.length) return "";
+    return `
+        <div class="helper-more">
+            <div class="helper-more-head"><h4><i class="fa-solid fa-book-open"></i> 함께 쓰기 좋은 그림책 <small>서재 ${books.length}권에서 목표에 맞춰 골랐습니다</small></h4></div>
+            <div class="helper-more-books">${picks.map(b => `
+                <button type="button" class="helper-more-book" onclick="openModal('book', ${books.indexOf(b)})">
+                    <strong>${b.title}</strong>
+                    <span class="helper-more-author">${b.author}</span>
+                    <span class="helper-more-tags">${(b.tags || []).slice(0, 3).join(" ")}</span>
+                    ${b.debateTopics && b.debateTopics[0] ? `<span class="helper-more-q">Q. ${b.debateTopics[0]}</span>` : ""}
+                </button>`).join("")}
+            </div>
+        </div>`;
+}
+
+function helperTopicsHTML(target, goal, page = 0) {
+    const all = helperTopicPicks(target, goal);
+    if (!all.length) return "";
+    const per = 8;
+    const pages = Math.ceil(all.length / per);
+    const p = ((page % pages) + pages) % pages;
+    const list = all.slice(p * per, p * per + per);
+    const rows = list.map(t => {
+        const idx = debateTopicsDB.indexOf(t);
+        const meta = TOPIC_TYPE_INFO[t.type] || {};
+        const bk = (t.books || []).map(x => books.findIndex(b => b.title === x)).filter(i => i >= 0);
+        return `
+                <li class="helper-topic">
+                    <span class="topic-chip topic-chip-${t.type}">${meta.label || ""}</span>
+                    <span class="helper-topic-claim">${t.claim}<small>${t.unit || t.field || ""} · ${t.level}</small></span>
+                    <span class="helper-topic-actions">${bk.map(i => `<button type="button" class="helper-topic-book" onclick="openModal('book', ${i})"><i class="fa-solid fa-book"></i> ${books[i].title}</button>`).join("")}<button type="button" class="helper-topic-ws" onclick="openTopicWorksheet(${idx})"><i class="fa-solid fa-file-pen"></i> 학습지</button></span>
+                </li>`;
+    }).join("");
+    return `
+        <div class="helper-topics" data-target="${target}" data-goal="${goal}" data-page="${p}">
+            <div class="helper-more-head">
+                <h4><i class="fa-solid fa-scale-balanced"></i> ${HELPER_TARGET_LABEL[target] || ""}에게 맞는 논제 <small>${all.length}개 가운데 ${p * per + 1}–${p * per + list.length}번째</small></h4>
+                ${pages > 1 ? `<button type="button" class="btn btn-secondary helper-topics-next" onclick="helperTopicsNext(this)"><i class="fa-solid fa-rotate"></i> 다른 논제 보기</button>` : ""}
+            </div>
+            <ul class="helper-topic-list">${rows}
+            </ul>
+        </div>`;
+}
+window.helperTopicsNext = function (btn) {
+    const box = btn.closest(".helper-topics");
+    if (box) box.outerHTML = helperTopicsHTML(box.dataset.target, box.dataset.goal, Number(box.dataset.page) + 1);
+};
+function helperMoreHTML(target, goal, exclude) {
+    return helperMoreBooksHTML(target, goal, exclude) + helperTopicsHTML(target, goal);
+}
+
 // ── 기법별 수업 활용 안내 ─────────────────────────────────────────
 // quick   : 가장 짧게 쓸 때 걸리는 시간(분), 한 차시 안에서 넣기 좋은 자리, 짧게 하는 방법
 // observe : 활동 중에 교사가 눈여겨볼 점
@@ -4689,7 +4786,7 @@ const TRAINING = {
     url: "https://woorimalsam-lab.github.io/Picture-BC/#subject-section",
     flow: [
         { min: 15, title: "토론이란 무엇인가 · 토론의 개념", desc: "토론은 이기고 지는 말싸움이 아니라, 근거를 들어 생각을 나누며 더 나은 판단에 이르는 과정입니다. 사실·가치·정책 논제의 차이와, 경쟁 토론과 비경쟁 토론의 차이를 짧게 살핍니다.", links: [{ label: "토론 이론", go: "#theory-section", icon: "fa-graduation-cap" }, { label: "토론 논제", go: "#topic-section", icon: "fa-scale-balanced" }] },
-        { min: 15, title: "가치수직선 토론 체험", desc: "선생님들이 학생이 되어 '수업 시간에 토론할 여유는 없다'에 0~10 눈금으로 서 봅니다. 양 끝과 가운데에 선 분들의 까닭을 듣고 다시 서며, 토론이 '생각이 움직이는 경험'임을 몸으로 느낍니다.", techs: ["valuebar"] },
+        { min: 15, title: "가치수직선 토론 기법 안내", desc: "찬반 둘로 가르지 않고 0~10 눈금 위에 생각의 정도를 보여 주는 가치수직선 토론의 원리와 진행 순서(자리 고르기 → 까닭 나누기 → 자리 옮기기)를 안내하고, 수업에 넣는 방법을 살펴봅니다.", techs: ["valuebar"] },
         { min: 15, title: "파노라마 토론 기법 안내", desc: "한 사건을 세 자리에서 나란히 보는 파노라마 토론의 원리와 3라운드(입장 말하기 → 서로 묻기 → 함께 살 길 찾기)를 안내합니다. 이기기보다 서로를 이해하는 토론이 교과 수업에서 어떻게 쓰이는지 사례로 봅니다.", techs: ["panorama"] },
         { min: 40, title: "파노라마 토론 실습", desc: "세 명씩 모둠을 지어 그림책 「완벽한 아이 팔아요」를 읽고, 부모·아이·마트의 자리를 하나씩 맡아 파노라마 토론을 직접 해 봅니다. 실습 학습지에 질문 만들기부터 라운드별 기록, 성찰까지 남깁니다.", book: "완벽한 아이 팔아요", worksheet: "panorama" },
         { min: 15, title: "토론 홈페이지 활용 안내", desc: "QR을 찍어 홈페이지에 들어가, '교과별 토론'에서 내 교과의 논제와 성취기준을 찾고 원하는 토론 기법으로 학습지를 바로 만들어 봅니다. 그림책 서재, 토론 기법, 자료실도 함께 둘러봅니다.", links: [{ label: "교과별 토론", go: "#subject-section", icon: "fa-chalkboard-user" }, { label: "학습지 만들기", go: "#worksheet-section", icon: "fa-file-pen" }, { label: "자료실", go: "#archive-section", icon: "fa-folder-open" }] }
@@ -5047,7 +5144,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.8.2";
+    return "5.8.3";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
@@ -12549,7 +12646,7 @@ function setupHelper() {
                         secondaryData.books = [
                             { title: "세 강도", author: "토미 웅거러 글/그림", topic: "도덕적 딜레마, 수단의 정당성 (의적 행위)", desc: "훔친 보물로 불우한 아이들을 구휼한 세 강도의 행위를 두고, 수단의 도덕성과 목적의 정당성을 쉬운 찬반 구도로 나눕니다." },
                             { title: "으르렁 이발소", author: "염혜원 글/그림", topic: "자녀의 결정권, 부모의 통제와 개성", desc: "갈기를 자르러 이발소에 가자는 아빠 사자와 버티는 아기 사자의 대립을 통해, 부모의 양육적 강요와 아동의 자기결정권 충돌을 재미있게 다룹니다." },
-                            { title: "터널", author: "앤서니 브라운", topic: "형제 갈등과 관계 회복, 가족애", desc: "영리한 오빠 잭과 무서움 많은 동생 로즈의 티김태김 충돌에서 시작하여, 동생이 오빠를 구하려 어둠과 위험 속으로 뒤어드는 이야기를 통해, 형제 갈등이 외면의 대립이 아닌 내면의 사랑임을 논바합니다." }
+                            { title: "터널", author: "앤서니 브라운", topic: "형제 갈등과 관계 회복, 가족애", desc: "영리한 오빠 잭과 무서움 많은 동생 로즈의 티격태격 부딪치다가, 동생이 돌로 변한 오빠를 구하려 어둡고 무서운 터널 속으로 뛰어드는 이야기를 통해, 형제 갈등 밑에 숨은 사랑을 보여 줍니다." }
                         ];
                     }
                 } else { // high
@@ -12571,7 +12668,7 @@ function setupHelper() {
                         secondaryData.books = [
                             { title: "낱말공장 나라", author: "아녜스 드 레스트라드", topic: "언어의 계급화, 자본주의와 불평등", desc: "돈으로 단어를 사서 삼켜야 말을 할 수 있는 디스토피아적 가상 국가를 통해, 자본주의의 소유 구조와 언어마저 양극화되는 불평등을 고발하고 비판적으로 사유합니다." },
                             { title: "지각대장 존", author: "존 버닝햄 글/그림", topic: "권위주의 비판, 교육의 본질과 신뢰", desc: "학생의 진실한 해명을 한낱 거짓말로 치부하는 교사의 편견을 다루어, 교육 제도의 모순과 권위자가 저지르는 독단적인 권력 남용의 논리적 오류를 분석합니다." },
-                            { title: "원숭이 꽃신", author: "소설/동화 원작", topic: "종속적 관계, 자본과 기술적 지배", desc: "오소리에게 꽃신을 길들여 자유를 빼앗고 지배하는 원숭이의 계략을 통해, 현대 자본주의 플랫폼 비즈니스나 대기업-중소기업의 종속 구조를 논박합니다." }
+                            { title: "원숭이 꽃신", author: "정휘창 글, 송아 그림", topic: "종속적 관계, 자본과 기술적 지배", desc: "오소리가 공짜로 건넨 꽃신에 길들여진 원숭이가 끝내 오소리의 종처럼 지내게 되는 이야기를 통해, 현대 자본주의 플랫폼 비즈니스나 대기업-중소기업의 종속 구조를 논박합니다." }
                         ];
                     } else if (goal === 'social') {
                         secondaryData.books = [
@@ -12583,7 +12680,7 @@ function setupHelper() {
                         secondaryData.books = [
                             { title: "돼지책", author: "앤서니 브라운 글/그림", topic: "가족 내 독박 노동, 양성평등과 공정", desc: "가사 분담을 당연시하던 세 남자가 돼지로 변하는 풍자를 통해, 가족 내 성평등과 공정, 그리고 배려의 가치를 사회학적으로 탐색합니다." },
                             { title: "슈퍼 거북", author: "유설화 글/그림", topic: "타인의 시선과 기대, 참된 자아의 속도", desc: "억지로 빠른 삶에 맞추느라 고통받는 거북이 꾸물이의 이야기를 통해, 주변의 영웅 대우나 사회적 성공 지표에 자신을 우겨넣는 강박에서 벗어나 진짜 내 속도를 찾는 과정을 유쾌하게 성찰합니다." },
-                            { title: "원숭이 꽃신", author: "정휘창 글, 송아 그림", topic: "종속적 관계, 자본과 기술적 지배", desc: "오소리에게 꽃신을 길들여 자유를 빼앗고 지배하는 원숭이의 계략을 통해, 현대 자본주의 플랫폼 비즈니스나 대기업-중소기업의 종속 구조를 논박합니다." }
+                            { title: "원숭이 꽃신", author: "정휘창 글, 송아 그림", topic: "종속적 관계, 자본과 기술적 지배", desc: "오소리가 공짜로 건넨 꽃신에 길들여진 원숭이가 끝내 오소리의 종처럼 지내게 되는 이야기를 통해, 현대 자본주의 플랫폼 비즈니스나 대기업-중소기업의 종속 구조를 논박합니다." }
                         ];
                     }
                 }
@@ -12622,6 +12719,7 @@ function setupHelper() {
                         <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:20px;">
                             ${booksHTML}
                         </div>
+                        ${helperMoreHTML(target, goal, secondaryData.books.map(b => b.title))}
                     </div>
                 `;
             } else {
@@ -12678,6 +12776,7 @@ function setupHelper() {
                         <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:20px;">
                             ${booksHTML}
                         </div>
+                        ${helperMoreHTML(target, goal, recBooks)}
                     </div>
                 `;
             }
