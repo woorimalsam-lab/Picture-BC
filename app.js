@@ -5144,7 +5144,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.8.3";
+    return "5.8.4";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
