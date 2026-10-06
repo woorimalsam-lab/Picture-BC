@@ -5093,6 +5093,24 @@ function initMobileNav() {
     });
 }
 
+// 방문자 카운터는 화면을 확대해도 커지지 않게 한다 (확대한 만큼 거꾸로 줄인다).
+//  - 브라우저 확대(Ctrl +): 창 바깥 폭(확대와 무관)과 안쪽 폭(확대만큼 줄어듦)의 비율
+//  - 손가락·터치패드 확대: visualViewport.scale
+//  축소할 때는 그대로 둔다.
+function keepVisitorCounterSize() {
+    const el = document.getElementById("visitor-counter");
+    if (!el) return;
+    let z = 1;
+    const finePointer = window.matchMedia && window.matchMedia("(pointer: fine)").matches;
+    if (finePointer && window.outerWidth && window.innerWidth) {
+        const r = window.outerWidth / window.innerWidth;
+        if (r > 1.06) z = r;   // 창 테두리만큼의 차이는 무시
+    }
+    if (window.visualViewport && window.visualViewport.scale > 1.01) z *= window.visualViewport.scale;
+    z = Math.min(z, 5);
+    el.style.zoom = z > 1 ? String(1 / z) : "";
+}
+
 // 방문자 카운터 (abacus 공유 집계 API, 가입·키 불필요)
 //  - 오늘의 방문자: 날짜별 키(visits-YYYY-MM-DD)로 매일 0부터 시작
 //  - 누적 방문자: 고정 키(visits-total)로 계속 누적
@@ -5101,6 +5119,10 @@ function initVisitorCounter() {
     const numEl = document.getElementById("vc-num");
     const totalEl = document.getElementById("vc-total");
     if (!numEl && !totalEl) return;
+
+    keepVisitorCounterSize();
+    window.addEventListener("resize", keepVisitorCounterSize);
+    if (window.visualViewport) window.visualViewport.addEventListener("resize", keepVisitorCounterSize);
 
     const now = new Date();
     const dayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")}`;
@@ -5311,7 +5333,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.9.2";
+    return "5.9.3";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
