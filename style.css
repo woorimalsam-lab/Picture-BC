@@ -4563,3 +4563,31 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .seat-pano-seat { width: auto; height: auto; min-width: 56px; min-height: 56px; max-width: 104px; padding: 4px 10px; border-radius: 999px; font-size: 0.74rem; line-height: 1.25; word-break: keep-all; }
 .seat-a { left: 50%; transform: translateX(-50%); }
 .pano-who { word-break: keep-all; }
+
+/* ── 함께 가꾸기: 의견 양식 ── */
+.garden-section { padding-bottom: 60px; }
+.garden-panel { max-width: 860px; margin: 0 auto; padding: 0 16px; }
+.garden-form { background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 20px; padding: 24px; box-shadow: var(--shadow-soft); }
+.garden-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.garden-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 14px; }
+.garden-field > span { font-size: 0.88rem; font-weight: 700; color: var(--text-primary); }
+.garden-field em { font-style: normal; font-size: 0.72rem; font-weight: 600; color: var(--accent-coral); margin-left: 4px; }
+.garden-field em.garden-opt { color: var(--text-secondary); }
+.garden-field select, .garden-field textarea, .garden-field input { width: 100%; font: inherit; font-size: 0.92rem; color: var(--text-primary); background: var(--bg-primary); border: 1px solid var(--border-color); border-radius: 10px; padding: 10px 12px; }
+.garden-field select:disabled { opacity: 0.6; }
+.garden-field textarea { resize: vertical; min-height: 150px; line-height: 1.6; }
+.garden-field-short { max-width: 320px; }
+.garden-kind-help { font-size: 0.8rem; line-height: 1.6; color: var(--text-secondary); margin: -4px 0 14px; word-break: keep-all; }
+.garden-kind-help b { color: var(--text-primary); }
+.garden-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.garden-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.garden-status { font-size: 0.86rem; color: var(--text-secondary); }
+.garden-status.ok { color: var(--accent-sage); font-weight: 700; }
+.garden-status.warn { color: var(--accent-coral); font-weight: 700; }
+.garden-note { font-size: 0.82rem; color: var(--text-secondary); margin: 16px 0 0; line-height: 1.6; }
+.garden-note i { color: var(--accent-coral); margin-right: 4px; }
+@media screen and (max-width: 760px) {
+    .garden-row { grid-template-columns: minmax(0, 1fr); gap: 0; }
+    .garden-form { padding: 18px 14px; }
+    .garden-field-short { max-width: none; }
+}

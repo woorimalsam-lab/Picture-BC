@@ -3726,6 +3726,16 @@ const worksheets = [
 // 파일까지 보호하려면 저장소에서 파일을 내리고 비공개 저장소나 드라이브로 옮겨야 합니다.
 
 // ▼ 구글 클라우드 콘솔에서 발급한 OAuth 클라이언트 ID를 따옴표 안에 넣으세요.
+// '함께 가꾸기' 의견을 받을 구글 설문지. 설문지의 '미리 채워진 링크'에서 formResponse 주소와 문항 번호(entry.…)를 옮겨 적는다.
+// action 이 비어 있으면 양식은 보이지만 보내지 않는다.
+const FEEDBACK_FORM = {
+    action: "https://docs.google.com/forms/d/e/1FAIpQLSdJlT1vmkwWimRthYgprQnMkBq711mKELe4RAhUBVSE54N23g/formResponse",
+    // 문항 번호: 구분, 하위 구분, 의견 종류, 내용, 학교·교과. 비어 있는 칸은 '내용' 앞머리에 한 줄씩 붙여 보낸다.
+    fields: { area: "entry.1236242466", detail: "", kind: "", text: "entry.49753807", school: "" },
+    // 설문지의 '상위 탭' 문항이 객관식이라 이 보기에 있는 값만 그 칸에 넣는다 (없는 값은 '내용' 앞머리에만)
+    areaChoices: ["검색/추천", "교과별 토론", "그림책 서재", "토론 이론", "토론 기법", "토론 논제", "토론 학습지", "추천가이드"]
+};
+
 const GOOGLE_CLIENT_ID = "488196268358-jfu1jrku5tp0ik9nv739nf8p8ptbk2kq.apps.googleusercontent.com";
 const ARCHIVE_OWNER_EMAIL = "woorimalsam@gmail.com";
 const OWNER_KEY = "pbc-owner-email";
@@ -3742,17 +3752,20 @@ function isArchiveOwner() {
 function applyArchiveVisibility() {
     const owner = isArchiveOwner();
     if (!owner) {
-        const link = document.querySelector('.nav-links a[href="#archive-section"]');
-        const section = document.getElementById("archive-section");
-        if (link) link.remove();
-        if (section) section.remove();
-        if (location.hash === "#archive-section") location.hash = "#search-section";
+        // 관리자만 보는 메뉴: 수업 자료실, 연수 안내
+        ["archive-section", "training-section"].forEach(id => {
+            const link = document.querySelector(`.nav-links a[href="#${id}"]`);
+            const section = document.getElementById(id);
+            if (link) link.remove();
+            if (section) section.remove();
+            if (location.hash === "#" + id) location.hash = "#search-section";
+        });
     }
     const btn = document.getElementById("owner-toggle");
     if (btn) {
         btn.classList.toggle("owner-on", owner);
-        btn.setAttribute("aria-label", owner ? "수업 자료실 감추기" : "수업 자료실 열기");
-        btn.setAttribute("title", owner ? "수업 자료실 감추기" : "수업 자료실 열기 (관리자)");
+        btn.setAttribute("aria-label", owner ? "관리자 메뉴 감추기" : "관리자 메뉴 열기");
+        btn.setAttribute("title", owner ? "관리자 메뉴(수업 자료실·연수 안내) 감추기" : "관리자 메뉴(수업 자료실·연수 안내) 열기");
         btn.innerHTML = `<i class="fa-solid ${owner ? "fa-lock-open" : "fa-lock"}"></i>`;
     }
 }
@@ -3886,6 +3899,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initTopicSection();
     renderSubjectSection();
     renderTrainingSection();
+    renderGardenSection();
     initPolish();
 });
 
@@ -4535,7 +4549,7 @@ const TECH_SETUK_FRAME = {
     hexadebate: ["환경 단원에서 개발이 곧 환경 파괴로 이어진다는 설명에 의문을 품고, 두 개념 사이에 어떤 조건이 놓여 있는지 밝혀 보고자 함.", "흩어진 개념을 이어 보면 단원의 핵심 구조가 드러난다는 것을 깨닫고, 이후 다른 단원의 개념도 헥사 카드로 정리하는 학습 방법으로 활용함."]
 };
 
-// ── 학교급 고르기 칩 (교과별 토론·논제 목록이 함께 쓴다) ──────────────
+// ── 학교급 고르기 칩 (논제 목록에서 쓴다) ──────────────
 function levelChipsHTML() {
     const cur = getSchoolLevel();
     return `<div class="level-pref" role="group" aria-label="우리 학교급">
@@ -4559,7 +4573,7 @@ function subjectTopics(sub, lv) {
         : debateTopicsDB.filter(t => (sub.fields || []).includes(t.field));
     const order = { "고등": 0, "중학·고등": 1, "초등·중학": 2 };
     const rest = base.filter(t => !mine(t) && topicFitsLevel(t, lv));
-    if (lv === "고등") rest.sort((a, b) => order[a.level] - order[b.level]);
+    if (lv === "고등" || lv === "all") rest.sort((a, b) => order[a.level] - order[b.level]);
     return { own: debateTopicsDB.filter(t => mine(t) && topicFitsLevel(t, lv)), rest };
 }
 
@@ -4582,7 +4596,6 @@ function subjectCurriculumHTML(sub, lv) {
     const courses = Object.keys(CURRICULUM_COURSES).filter(ab => CURRICULUM_COURSES[ab][1] === sub.key);
     if (!courses.length) return "";
     const head = `<h4 class="subject-sub"><i class="fa-solid fa-book-bookmark"></i> 교육과정에서 찾은 토론 거리`;
-    if (lv === "초등" || lv === "중학") return `${head}</h4><p class="cur-note">2022 개정 <strong>고등학교</strong> 교육과정의 과목과 성취기준입니다. 위 학교급을 '고등'이나 '전체'로 바꾸면 보입니다.</p>`;
     const byCode = curTopicsByCode(sub);
     const codesOf = (ab) => Object.keys(byCode).filter(c => curAbbr(c) === ab).sort();
     const topicN = new Set(Object.values(byCode).flat()).size;
@@ -4653,7 +4666,7 @@ function renderSubjectSection() {
         subjectKey = (SUBJECT_GUIDE.find(s => s.key === saved) || SUBJECT_GUIDE[0]).key;
     }
     const sub = SUBJECT_GUIDE.find(s => s.key === subjectKey) || SUBJECT_GUIDE[0];
-    const lv = getSchoolLevel();
+    const lv = "all";   // 교과별 토론은 학교급을 거르지 않는다 (교과 논제는 모두 고등학교 교육과정)
     const tp = subjectTopics(sub, lv);
     const restShown = tp.rest.slice(0, tp.own.length ? 4 : 8);
     const shownN = tp.own.length + restShown.length;
@@ -4710,7 +4723,6 @@ function renderSubjectSection() {
         .map(s => `<a class="subject-src" href="${s.url}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${s.name}</a>`).join("");
 
     box.innerHTML = `
-        ${levelChipsHTML()}
         <div class="subject-tabs" role="tablist" aria-label="교과 고르기">
             ${SUBJECT_GUIDE.map(s => `<button type="button" role="tab" class="subject-tab ${s.key === sub.key ? "active" : ""}" data-subject="${s.key}" aria-selected="${s.key === sub.key}"><i class="fa-solid ${s.icon}"></i> ${s.label}</button>`).join("")}
         </div>
@@ -4736,7 +4748,7 @@ function renderSubjectSection() {
             ${(sub.tips || []).length ? `<ul class="subject-tips">${sub.tips.map(t => `<li><i class="fa-solid fa-lightbulb"></i> ${t}</li>`).join("")}</ul>` : ""}
 
             <h4 class="subject-sub"><i class="fa-solid fa-scale-balanced"></i> 이 교과의 논제 <small>${totalN}개 가운데 ${shownN}개 · 누르면 학습지가 만들어집니다</small></h4>
-            <ul class="subject-topics">${topicRows || `<li class="subject-empty">이 학교급에 맞는 논제가 없습니다. 학교급을 '전체'로 바꿔 보세요.</li>`}</ul>
+            <ul class="subject-topics">${topicRows || `<li class="subject-empty">이 교과의 논제를 준비하고 있습니다.</li>`}</ul>
 
             ${subjectCurriculumHTML(sub, lv)}
 
@@ -4749,7 +4761,6 @@ function renderSubjectSection() {
         try { localStorage.setItem("pbc-subject", subjectKey); } catch (e) {}
         renderSubjectSection();
     }));
-    bindLevelChips(box, renderSubjectSection);
     bindCurriculumAll(box, sub);
 }
 
@@ -4826,6 +4837,137 @@ function loadQrLib() {
         sc.onload = () => res(!!window.QRCode);
         sc.onerror = () => res(false);
         document.head.appendChild(sc);
+    });
+}
+
+// ── 함께 가꾸기: 홈페이지 개선 의견 ─────────────────────────────────
+// 구분 → 하위 구분(구분에 따라 바뀜) → 의견 종류를 고르고 내용을 적어 보내면, 구글 설문지(formResponse)로 들어간다.
+function gardenAreas() {
+    const titles = (arr) => arr.slice().sort((a, b) => a.localeCompare(b, "ko"));
+    return [
+        ["검색/추천", ["메인 화면", "통합 검색"]],
+        ["교과별 토론", SUBJECT_GUIDE.map(s => s.label)],
+        ["그림책 서재", titles(books.map(b => b.title))],
+        ["토론 이론", (typeof debateTheory !== "undefined" ? debateTheory.sections.map(x => x.title) : [])],
+        ["토론 기법", techniques.map(t => techShortName(t))],
+        ["토론 논제", ["사실 논제", "가치 논제", "정책 논제", "문학 작품 논제", "통계·근거 자료"]],
+        ["토론 학습지", ["그림책 학습지", "논제 학습지", "교사용 가이드", "인쇄"]],
+        ["추천가이드", ["상황별 맞춤 가이드", "열두 달 커리큘럼"]],
+        ["참고 도서", []],
+        ["사이트 전체", ["화면·디자인", "휴대폰·태블릿 화면", "인쇄", "속도·오류"]],
+        ["기타", []]
+    ];
+}
+const GARDEN_KINDS = [
+    ["바로잡을 내용", "줄거리·지은이, 논제·통계·성취기준에서 틀리거나 오래된 내용"],
+    ["불편한 점", "찾기 어려운 메뉴, 어긋나는 인쇄, 보기 힘든 화면"],
+    ["더 있었으면 하는 것", "더 필요한 논제·그림책·토론 기법이나 기능"],
+    ["기타", "그 밖의 의견이나 응원"]
+];
+function gardenFormReady() {
+    const f = FEEDBACK_FORM.fields || {};
+    return /^https:\/\/docs\.google\.com\/forms\/d\/e\/[^/?#]+\/formResponse$/.test(FEEDBACK_FORM.action || "") && !!f.text;
+}
+
+function renderGardenSection() {
+    const box = document.getElementById("garden-panel");
+    if (!box) return;
+    const areas = gardenAreas();
+    const opt = (v, label) => `<option value="${String(v).replace(/"/g, "&quot;")}">${label || v}</option>`;
+    const ready = gardenFormReady();
+    box.innerHTML = `
+        <form class="garden-form" id="garden-form" novalidate>
+            <div class="garden-row">
+                <label class="garden-field">
+                    <span>구분 <em>필수</em></span>
+                    <select name="area" required>
+                        <option value="">메뉴를 고르세요</option>
+                        ${areas.map(([a]) => opt(a)).join("")}
+                    </select>
+                </label>
+                <label class="garden-field" id="garden-detail-wrap">
+                    <span>하위 구분</span>
+                    <select name="detail" disabled><option value="">먼저 구분을 고르세요</option></select>
+                </label>
+                <label class="garden-field">
+                    <span>의견 종류 <em>필수</em></span>
+                    <select name="kind" required>
+                        <option value="">종류를 고르세요</option>
+                        ${GARDEN_KINDS.map(([k]) => opt(k)).join("")}
+                    </select>
+                </label>
+            </div>
+            <p class="garden-kind-help" id="garden-kind-help">${GARDEN_KINDS.map(([k, d]) => `<b>${k}</b> ${d}`).join(" · ")}</p>
+            <label class="garden-field">
+                <span>내용 <em>필수</em></span>
+                <textarea name="text" rows="7" required placeholder="어느 화면에서 무엇을 보셨는지, 어떻게 바뀌면 좋을지 자유롭게 적어 주세요."></textarea>
+            </label>
+            <label class="garden-field garden-field-short">
+                <span>학교·교과 <em class="garden-opt">선택</em></span>
+                <input name="school" type="text" placeholder="예: ○○고 국어">
+            </label>
+            <input class="garden-hp" name="website" type="text" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <div class="garden-actions">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i> 의견 보내기</button>
+                <span class="garden-status" id="garden-status" role="status">${ready ? "" : "의견을 받을 설문지를 연결하고 있습니다. 연결되면 바로 보낼 수 있습니다."}</span>
+            </div>
+            <p class="garden-note"><i class="fa-solid fa-circle-info"></i> 이름이나 연락처는 적지 않으셔도 됩니다. 남겨 주신 의견은 사이트를 고치는 데에만 씁니다.</p>
+        </form>`;
+
+    const form = box.querySelector("#garden-form");
+    const areaSel = form.elements.area, detailSel = form.elements.detail, status = box.querySelector("#garden-status");
+    areaSel.addEventListener("change", () => {
+        const subs = (areas.find(([a]) => a === areaSel.value) || [, []])[1];
+        detailSel.innerHTML = subs.length
+            ? `<option value="">전체 또는 고르지 않음</option>` + subs.map(x => opt(x)).join("")
+            : `<option value="">${areaSel.value ? "고를 하위 구분이 없습니다" : "먼저 구분을 고르세요"}</option>`;
+        detailSel.disabled = !subs.length;
+    });
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const v = (n) => String(form.elements[n].value || "").trim();
+        if (!v("area") || !v("kind") || v("text").length < 5) {
+            status.textContent = "구분, 의견 종류, 내용(다섯 글자 이상)을 채워 주세요.";
+            status.className = "garden-status warn";
+            return;
+        }
+        if (v("website")) return;   // 자동 입력 막기
+        if (!gardenFormReady()) {
+            status.textContent = "아직 설문지가 연결되지 않아 보낼 수 없습니다. 조금만 기다려 주세요.";
+            status.className = "garden-status warn";
+            return;
+        }
+        const f = FEEDBACK_FORM.fields;
+        const choices = FEEDBACK_FORM.areaChoices;
+        const areaOwn = !!f.area && (!choices || choices.includes(v("area")));
+        // 따로 받을 문항이 없는 값은 '내용' 앞머리에 [이름] 값 꼴로 붙인다
+        const head = [];
+        if (!areaOwn || !f.detail) head.push(`[구분] ${v("area")}${!f.detail && v("detail") ? " > " + v("detail") : ""}`);
+        if (!f.kind) head.push(`[의견 종류] ${v("kind")}`);
+        if (!f.school && v("school")) head.push(`[학교·교과] ${v("school")}`);
+        const data = new FormData();
+        if (areaOwn) data.append(f.area, v("area"));
+        if (f.detail && v("detail")) data.append(f.detail, v("detail"));
+        if (f.kind) data.append(f.kind, v("kind"));
+        data.append(f.text, (head.length ? head.join("\n") + "\n\n" : "") + v("text"));
+        if (f.school && v("school")) data.append(f.school, v("school"));
+        const btn = form.querySelector('button[type="submit"]');
+        btn.disabled = true;
+        status.textContent = "보내는 중…";
+        status.className = "garden-status";
+        try {
+            // 구글 설문지는 다른 사이트의 요청에 답을 돌려주지 않으므로(no-cors) 보낸 것으로 본다
+            await fetch(FEEDBACK_FORM.action, { method: "POST", mode: "no-cors", body: data });
+            form.reset();
+            areaSel.dispatchEvent(new Event("change"));
+            status.textContent = "고맙습니다. 의견이 잘 전달되었습니다.";
+            status.className = "garden-status ok";
+        } catch (err) {
+            status.textContent = "보내지 못했습니다. 인터넷 연결을 확인한 뒤 다시 눌러 주세요.";
+            status.className = "garden-status warn";
+        } finally {
+            btn.disabled = false;
+        }
     });
 }
 
@@ -5169,7 +5311,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.8.6";
+    return "5.9.0";
 })();
 
 function fetchRealCover(bookTitle, domElement) {
