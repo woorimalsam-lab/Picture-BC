@@ -5749,7 +5749,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.1.0";
+    return "6.2.0";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100];
@@ -6965,19 +6965,36 @@ const CURRICULUM_COURSES = {
 };
 // 논제의 std에 적힌 성취기준 문장
 const CURRICULUM = {
+    "10공국1-01-01": "대화의 원리를 고려하여 대화하고 자신의 듣기·말하기 과정과 공동체의 담화 관습을 성찰한다.",
     "10공국1-01-02": "논제의 필수 쟁점별로 논증을 구성하고 논증이 타당한지 평가하며 토론한다.",
     "10공국1-02-01": "다양한 글이나 자료를 읽으며 논증의 타당성을 평가하고 자신의 관점을 바탕으로 논증을 재구성한다.",
+    "10공국1-04-01": "언어 공동체가 다변화함에 따라 다양해진 언어 실천 양상을 분석하고 언어 주체로서 책임감을 가지며 국어생활을 한다.",
+    "10공국2-01-01": "청중의 관심과 요구에 맞게 내용을 구성하여 발표하고 청중의 질문에 효과적으로 답변한다.",
+    "10공국2-01-02": "쟁점과 이해관계를 고려하여 문제를 해결할 수 있는 대안을 탐색하며 협상한다.",
+    "10공국2-01-03": "사회적 소통 과정에서 말의 영향력을 고려하여 책임감 있게 듣고 말한다.",
     "10공국2-03-01": "언어 공동체가 공유하는 작문 관습의 특성을 이해하고 쓰기 과정과 전략을 점검하며 책임감 있게 글을 쓴다.",
     "10공국2-05-01": "한국 문학사의 흐름을 고려하여 작품을 수용한다.",
     "10공국2-05-02": "주체적인 관점에서 작품을 해석하고 평가하며 문학을 생활화하는 태도를 지닌다.",
     "10공국2-06-02": "매체의 변화가 소통 문화에 끼치는 영향을 탐구한다.",
+    "12화언01-01": "언어를 인간의 삶과 관련지어 이해하고, 국어와 국어생활이 시간의 흐름에 따라 변화하는 양상을 분석한다.",
+    "12화언01-04": "단어의 짜임과 의미, 단어 간의 의미 관계를 중심으로 어휘를 이해하고 담화에 적절히 활용한다.",
+    "12화언01-05": "담화의 맥락에 적절한 어휘와 문법 요소를 선택하여 화자의 태도를 드러낸다.",
     "12화언01-07": "다양한 유형의 담화와 매체를 대상으로 언어의 공공성을 이해하고 평가한다.",
+    "12화언01-08": "자아 개념이 의사소통 방식에 미치는 영향을 인식하고 협력적인 관계 형성에 적절한 방식으로 대화한다.",
+    "12화언01-09": "정제된 언어적 표현 전략 및 적절한 준언어적·비언어적 표현 전략을 활용하여 발표한다.",
+    "12화언01-10": "화자의 공신력을 이해하고 효과적인 설득 전략을 활용하여 연설한다.",
+    "12화언01-11": "토의에서 주제와 관련된 다양한 자료를 통해 공동체의 문제를 분석하고 합리적으로 해결한다.",
     "12화언01-12": "주장, 이유, 근거를 비판적으로 검토하여 논증의 타당성, 신뢰성, 공정성에 대해 반대 신문하며 토론한다.",
+    "12화언01-13": "상황에 맞는 협상 전략을 사용하여 서로 만족할 수 있는 대안을 찾아 의사 결정을 한다.",
+    "12화언01-14": "기호를 활용한 사회적 행위로서의 국어생활을 성찰하고 문제점을 개선하는 태도를 지닌다.",
+    "12화언01-15": "언어 공동체의 담화 관습을 이해하고, 다양성을 존중하는 의사소통 문화 형성에 기여하는 태도를 지닌다.",
     "12독작01-03": "글에 드러난 정보를 바탕으로 글의 내용을 파악하고 글에 드러나지 않은 정보를 추론하며 읽는다.",
     "12독작01-15": "독서와 작문의 관습과 소통 문화를 이해하고 공동체의 소통 문화 및 담론 형성에 책임감 있게 참여한다.",
+    "12문학01-04": "한국 문학에 반영된 시대 상황을 이해하고 문학과 역사의 상호 영향 관계를 탐구한다.",
     "12문학01-06": "문학 작품에서는 내용과 형식이 긴밀하게 연관됨을 이해하며 작품을 수용한다.",
     "12문학01-07": "작품을 공감적, 비판적, 창의적으로 감상하며, 다양한 방식으로 작품에 대해 비평한다.",
     "12주탐01-04": "주제와 관련된 책이나 자료를 탐색하면서 신뢰할 수 있고 가치 있는 정보를 선정하여 분석하며 읽는다.",
+    "12주탐01-05": "주제에 관련된 책과 자료를 종합하여 읽으며 자신의 관점과 견해를 형성한다.",
     "12주탐01-07": "주제 탐구 독서를 생활화하여 주도적으로 삶을 성찰하고 계발한다.",
     "12문영01-02": "양식과 매체에 따른 특성과 효과를 고려하여 문학 작품과 영상물을 해석하고 비평한다.",
     "12문영01-03": "문학 작품과 영상물 간의 영향 관계와 상호 작용의 효과를 파악한다.",
@@ -6992,6 +7009,7 @@ const CURRICULUM = {
     "12매의01-04": "디지털 매체 환경에서 매체 생산자의 관점을 파악하고 매체 자료의 신뢰성을 판단한다.",
     "12매의01-05": "사회적 규범과 규제가 매체 자료의 생산과 소통에 미치는 영향을 조사하고 그 의미를 탐구한다.",
     "12매의01-07": "매체 자료의 생산자이자 수용자로서 권리와 책임을 인식하고 사회적 가치와 문제에 대해 소통한다.",
+    "12언탐01-04": "가정, 학교, 사회의 언어 사용에 나타난 정체성의 실현 양상과 관계 형성의 양상을 탐구한다.",
     "12언탐01-06": "품격 있는 언어생활의 특성을 이해하고 공공 언어 사용의 실제를 탐구한다.",
     "12문이01-04": "문예 창작이 문학 공동체에 관한 관심을 바탕으로 공동체가 추구하는 가치를 인식하는 과정임을 이해한다.",
     "12문장01-05": "개성적 문장 표현과 미적인 문장 표현에 대한 독자의 반응을 통해 문장 표현의 가치를 이해한다.",
@@ -7088,10 +7106,16 @@ const CURRICULUM = {
     "12중문01-06": "중국 문화와 자신의 관심 분야를 연계하여 조사·정리한 내용을 설명한다.",
     "10통사1-02-01": "시대와 지역에 따라 다르게 나타나는 행복의 기준을 사례를 통해 비교하여 평가하고, 삶의 목적으로서 행복의 의미를 성찰한다.",
     "10통사1-02-02": "행복한 삶을 실현하기 위한 조건으로 질 높은 정주 환경의 조성, 경제적 안정, 민주주의 발전 및 도덕적 실천의 필요성에 관해 탐구한다.",
+    "10통사1-04-03": "문화적 차이에 대한 상대주의적 태도의 필요성을 이해하고, 보편 윤리의 차원에서 자문화와 타문화를 평가한다.",
+    "10통사1-04-04": "다문화 사회의 현황을 조사하고, 문화적 다양성을 존중하는 태도를 바탕으로 갈등 해결 방안을 모색한다.",
+    "10통사1-05-02": "교통·통신 및 과학기술의 발달과 함께 나타난 생활공간과 생활양식의 변화 양상을 조사하고, 이에 따른 문제점의 해결 방안을 제안한다.",
     "10통사1-05-03": "자신이 거주하는 지역을 사례로 공간 변화가 초래한 양상 및 문제점을 탐구하고, 공동체의 구성원으로서 지역사회의 변화를 위한 방안을 모색하고 이를 실천한다.",
+    "10통사2-01-02": "인간 존엄성 실현과 인권 보장을 위한 헌법의 역할을 파악하고, 시민의 권익을 보호하기 위한 다양한 시민 참여의 방안을 탐구하고 이를 실천한다.",
     "10통사2-01-03": "사회적 소수자 차별, 청소년의 노동권 등 국내 인권 문제와 인권지수를 통해 확인할 수 있는 세계 인권 문제의 양상을 조사하고, 이에 대한 해결 방안을 모색한다.",
     "10통사2-02-02": "개인과 공동체의 관계를 기준으로 다양한 정의관을 비교하고, 이를 구체적인 사례에 적용하여 설명한다.",
     "10통사2-02-03": "사회 및 공간 불평등 현상의 사례를 조사하고, 정의로운 사회를 만들기 위한 다양한 제도와 시민으로서의 실천 방안을 제안한다.",
+    "10통사2-03-04": "자원, 노동, 자본의 지역 분포에 따른 국제 분업과 무역의 필요성을 이해하고, 지속가능발전에 기여하는 국제무역의 방안을 탐색한다.",
+    "10통사2-05-01": "세계의 인구 분포와 구조 등에 대한 이해를 토대로 현재와 미래의 인구 문제 양상을 파악하고, 그 해결 방안을 제안한다.",
     "12세지02-04": "세계의 다양한 음식과 축제를 지리적으로 설명하고, 문화 다양성을 보존하기 위한 방법을 모색한다.",
     "12세지03-01": "세계 인구 분포 및 구조를 통해 세계 인구 문제를 이해하고, 국제적 이주가 인구 유출 지역과 유입 지역에 미치는 영향을 탐구한다.",
     "12세지03-02": "주요 식량 자원의 생산과 소비 양상을 통해 세계 식량 문제가 발생하는 구조적 원인을 파악하고, 식량의 안정적인 생산과 공급을 위한 각국의 대응 전략을 비교·분석한다.",
@@ -7131,6 +7155,8 @@ const CURRICULUM = {
     "12금융03-03": "저축과 투자의 장단점을 고려하여 자기 책임의 원칙에 따라 저축과 투자를 결정하며, 활용할 수 있는 예금자 보호 제도와 투자자 보호 제도를 탐색한다.",
     "12금융04-03": "고령 사회에서 노후 설계의 필요성을 이해하고, 연금의 종류와 특징을 파악하여 안정적인 노후 대비 계획을 설계한다.",
     "12기지02-01": "세계 여러 지역에서 발생하고 있는 기후재난의 실제를 파악하고, 이를 둘러싼 쟁점을 다양한 자료를 통하여 분석한다.",
+    "12기지02-03": "기후정의의 관점에서 기후변화에 따른 불평등 문제의 해결 방안을 모색하고, 기후변화에 대한 인간의 책임과 의무에 대해 성찰한다.",
+    "12기지03-01": "기후변화 대응을 위한 국제 사회의 협력과 시민사회의 노력 사례를 조사하고 기후변화를 둘러싼 이해당사자들의 서로 다른 입장과 가치를 비교한다.",
     "10한사1-01-01": "고대 국가의 형성과 성장 과정을 파악한다.",
     "10한사1-01-03": "조선의 성립과 정치 운영의 변화를 파악한다.",
     "10한사1-02-03": "근대 이전 사회 구조를 신분제를 중심으로 분석한다.",
@@ -7174,18 +7200,24 @@ const CURRICULUM = {
     "12윤탐04-01": "반려동물과 관련한 윤리문제, 동물 복지를 둘러싼 논쟁 등을 윤리적 관점에서 탐구하여 생명에 대한 감수성을 길러 책임 있게 행동할 수 있다.",
     "12윤탐04-02": "기후위기를 인류의 책임이라는 측면에서 분석하고, 에너지 전환과 탄소 중립을 둘러싼 다양한 입장에 대해 토론하여 기후위기 극복 방안을 제시할 수 있다.",
     "10통과1-03-02": "지권의 변화를 판구조론 관점에서 해석하고, 에너지 흐름의 결과로 발생하는 지권의 변화가 지구시스템에 미치는 영향을 추론할 수 있다.",
+    "10통과1-03-04": "상호작용이 없을 때 물체가 가속되지 않음을 알고, 충격량과 운동량의 관계를 충돌 관련 안전장치와 스포츠에 적용할 수 있다.",
     "10통과1-03-06": "생명 시스템의 유지에 필요한 세포 내 정보의 흐름을 유전자로부터 단백질이 만들어지는 과정을 중심으로 설명할 수 있다.",
     "10통과2-02-03": "온실효과 강화로 인한 지구온난화의 메커니즘을 이해하고, 엘니뇨, 사막화 등과 같은 현상이 지구 환경과 인간 생활에 미치는 영향과 대처 방안을 분석할 수 있다.",
+    "10통과2-02-05": "발전기에서 운동 에너지가 전기 에너지로 전환되는 과정을 이해하고, 열원으로서 화석 연료, 핵에너지를 이용하는 발전소가 인간 생활에 미치는 영향을 조사·발표할 수 있다.",
+    "10통과2-03-01": "감염병의 진단, 추적 등을 사례로 과학의 유용성을 설명하고, 미래 사회 문제 해결에서 과학의 필요성에 대해 논증할 수 있다.",
+    "10통과2-03-02": "빅데이터를 과학기술사회에서 사용하고 있는 사례를 조사하고, 빅데이터 활용의 장점과 문제점을 추론할 수 있다.",
     "10통과2-03-03": "인공지능 로봇, 사물인터넷 등과 같이 과학기술의 발전을 인간 삶과 환경 개선에 활용하는 사례를 찾고, 이러한 과학기술의 발전이 미래 사회에 미치는 유용성과 한계를 예측할 수 있다.",
     "10과탐1-02-02": "가설 설정을 포함한 과학사의 대표적인 탐구실험을 수행하고, 연역적 탐구 방법의 특징을 예증할 수 있다.",
     "10과탐1-02-04": "흥미와 호기심을 갖고 과학 탐구에 참여하고, 분야 간 협동 연구 등을 통해 협력적 탐구 활동을 수행하며, 도출한 결과를 증거에 근거하여 해석하고 평가할 수 있다.",
     "10과탐2-02-03": "탐구 활동 과정에서 지켜야 할 생명 존중, 연구 진실성, 지식 재산권 존중 등과 같은 연구 윤리와 함께, 과학기술 이용과 관련된 과학 윤리 및 안전 사항을 준수할 수 있다.",
     "12물리01-02": "뉴턴 운동 법칙으로 등가속도 운동을 설명하고, 교통안전 사고 예방에 적용할 수 있다.",
+    "12물리01-03": "작용과 반작용 관계와 운동량 보존 법칙을 알고, 스포츠, 교통수단, 발사체 등에 적용할 수 있다.",
     "12물리01-04": "일과 운동 에너지의 관계를 이해하고, 위치 에너지와 역학적 에너지 보존 법칙을 설명할 수 있다.",
     "12물리02-06": "전자기 유도 현상이 센서, 무선통신, 무선충전 등 에너지 전달 기술에 적용되어 현대 문명에 미친 영향을 인식할 수 있다.",
     "12화학01-01": "화학이 현대 과학·기술·사회의 발전에 기여한 사례를 조사·발표하며 화학에 흥미와 호기심을 가질 수 있다.",
     "12화학02-04": "물질의 물리적, 화학적 성질을 분자의 구조와 연관 짓고, 이에 대한 호기심을 가질 수 있다.",
     "12화학04-04": "중화 적정 실험을 계획하고 수행하여 미지 시료의 농도를 찾을 수 있다.",
+    "12생과01-07": "개체군과 군집의 특성을 이해하고 이들의 상호작용의 예를 조사하여 발표할 수 있다.",
     "12생과02-05": "병원체의 종류와 특징을 이해하고 우리 몸의 방어 작용을 선천적 면역과 후천적 면역으로 구분하여 설명할 수 있다.",
     "12생과02-07": "백신의 종류와 작용 원리를 조사하고 질병의 예방 측면에서 백신의 필요성을 인식하여 협력적으로 소통할 수 있다.",
     "12생과03-03": "생물 진화의 원리를 이해하고, 생물 진화 연구의 다양한 사례를 조사하여 협력적으로 소통할 수 있다.",
@@ -7235,6 +7267,7 @@ const CURRICULUM = {
     "12기가01-03": "식생활문화에 반영된 미래 변화의 요소를 발견하고 이를 비판적으로 수용하여 식생활 문제를 개선하고 건강한 식생활 문화를 실천한다.",
     "12기가02-01": "저출생·고령사회에서 생활 설계의 필요성을 인식하고, 전 생애에 걸친 안정적인 삶을 준비하기 위한 생활을 설계한다.",
     "12기가02-05": "개인 및 가족의 생애 주기에 따른 맞춤형 스마트 복지 현황을 파악하고 자신이 설정한 삶의 목표 실현에 적용할 수 있는 복지서비스 정책을 제안한다.",
+    "12기가03-02": "부모됨의 의미를 성찰하고 건강한 임신과 출산의 방안을 탐색하여 책임 있는 부모가 되기 위해 필요한 역량을 탐색한다.",
     "12기가03-04": "후반기 인생 설계의 중요성과 웰다잉의 의미 탐색을 위하여 노년기의 발달 특성을 이해하며 노년기 삶의 존중 및 나이듦에 대한 긍정적 인식을 함양하고, 유니버설디자인의 배경과 맥락을 파악하여 노년기 생활에 적용할 수 있는 방안을 탐구한다.",
     "12기가04-01": "공학이 발달해 온 역사와 공학의 세계를 탐구하는 과정에서 공학의 가치를 인식하고, 미래 사회를 예측한다.",
     "12로봇01-03": "로봇의 활용 분야를 이해하고 생활 속 다양한 로봇 활용 분야를 탐구하여 로봇 개발과 활용에 대한 긍정적인 사고를 함양한다.",
@@ -7245,12 +7278,14 @@ const CURRICULUM = {
     "12생활02-02": "식품 가공의 원리를 이해하고 올바른 정보 분별 능력을 길러 가공식품을 건강하고 안전하게 이용하는 방안을 탐색하며, 관련된 분야의 진로를 탐색한다.",
     "12생활02-04": "패션디자인의 기본 개념과 유행하는 스타일을 파악하여 패션 산업의 동향을 탐색하며, 관련된 분야의 진로를 탐색한다.",
     "12창공01-02": "공학의 발달이 인류 문명에 미친 영향을 파악하고, 인류가 공존할 수 있는 지속가능한 미래공학을 전망한다.",
+    "12지재01-03": "신지식재산권의 종류와 특징을 이해하고, 사례를 분석한다.",
     "12지재01-05": "발명과 지식재산권의 관계를 파악하고, 지식재산권의 사회·경제·문화적 영향을 평가하여 지식재산권에 대한 관심과 흥미를 키운다.",
     "12지재02-01": "지식재산권의 종류에 따른 침해와 분쟁 사례 분석을 통하여 지식재산권 보호 개념과 중요성을 이해한다.",
     "12지재02-03": "지식재산권 보호 제도를 탐구하고 지식재산권 보호와 활용의 윤리적 실천 방안을 탐색한다.",
     "12자립02-01": "경제적 자립을 위해 목표를 설정하고 다양한 수입 창출 방법을 비교 분석하여 자신의 생활양식에 맞는 방안을 설계한다.",
     "12자립03-01": "자신만의 인생 음식을 만들 수 있는 능력을 기르고, 건강을 유지하는 1인 식사의 선택 방안을 탐색하여 실천한다.",
     "12자립03-05": "행복을 추구하기 위해 나만의 삶의 가치를 반영한 독립적 생활을 설계한다.",
+    "12아동01-04": "현대 사회의 결혼과 가족에 대한 변화된 인식을 반영하여 부모됨의 의미를 추론하고 건강한 부모됨의 중요성을 인식한다.",
     "12아동02-02": "부모가 자녀를 대하는 양육 태도가 자녀에게 미치는 영향을 인식하고 양육 태도를 비교 분석하여 바람직한 양육 태도를 선택한다.",
     "12아동02-09": "아동의 건강한 성장을 지원하는 사회적 부모로서의 역할 수행의 의미를 인식하고 지역사회 돌봄 방안 및 부모 지원 정책을 탐색하여 사회적 돌봄 방안을 제안한다.",
     "12정02-02": "암호화의 개념을 이해하고, 암호화를 활용하여 데이터를 안전하게 관리하는 사례를 비교·분석한다.",
@@ -7338,6 +7373,7 @@ const CURRICULUM = {
     "12미전01-03": "재료 및 기법, 사용 방법의 폭넓은 활용과 적용의 가치를 이해하고 이를 적극적으로 활용할 수 있다.",
     "12조형01-05": "매체를 통해 구현되는 조형의 기초적인 원리와 의미를 창작에 활용할 수 있다.",
     "12미탐01-01": "미술에서 매체의 의미를 이해하고 미술과 매체의 관계를 탐색할 수 있다.",
+    "12미탐02-04": "미술 저작권 보호의 중요성을 이해하고 매체 활용 과정에서 타인의 저작물을 올바르게 사용할 수 있다.",
     "12미회01-01": "사회 속에서 미술의 기능을 발견하며 다양한 관점에서 미술의 역할을 설명할 수 있다.",
     "12미회01-02": "미술과 사회의 관계를 통합적인 관점에서 탐색하고 분석할 수 있다.",
     "12사이01-02": "사진의 역할과 오늘날 사진이 가지고 있는 가치를 조사하여, 디지털화된 시대의 변천을 이해한다.",
@@ -7346,6 +7382,7 @@ const CURRICULUM = {
     "12영제01-01": "영상의 요소와 원리를 이해하여 영상 매체별 특성을 설명한다.",
     "12사감01-03": "사진의 주제를 파악하여 의견을 제시하고, 다른 사람들과 의견을 공유하며, 토론한다.",
     "12사삶02-01": "자기 삶에서 사진의 역할을 탐색하고, 기록된 사진으로 자신을 분석한다.",
+    "12연극01-02": "일상적으로 사용하는 자기 말을 확인하고, 생각과 느낌을 효과적으로 표현한다.",
     "12연극03-02": "연극에 대한 다양한 자료와 정보를 통해 일상에서 접할 수 있는 연극 작품이 시대적, 사회·문화적 배경을 반영하고 있음을 추론한다.",
     "12연극03-03": "연극의 긍정적 가치와 연극적 경험을 자신의 진로에 활용할 수 있는 방안을 탐색한다.",
     "12연몸01-01": "몸의 구조와 동작의 작동 원리를 이해하고, 자기 몸을 통해 적극적으로 탐색한다.",
@@ -7356,6 +7393,8 @@ const CURRICULUM = {
     "12연감01-02": "다양한 관점에서 연극 감상과 비평의 의의를 탐구하고, 자신의 연극 감상과 비평 태도를 성찰한다.",
     "12연삶02-01": "삶과 연계하여 타 예술과 비교해가며 연극의 특성을 파악한다.",
     "12영이01-01": "다양한 측면에서 영화를 탐구하고 정의함으로써 영화의 의미를 탐색한다.",
+    "12영이01-03": "산업적 측면과 대중 예술적 측면에서 영화의 특성과 의의를 고루 이해한다.",
+    "12영이01-05": "디지털 기술의 발전이 영화에 끼친 영향을 살펴보고 다양한 영상 매체에 관해 탐구한다.",
     "12영이02-01": "숏과 앵글의 의미와 종류를 살펴보고 이것을 통해 드러나는 영상의 의미를 이해한다.",
     "12촬조02-01": "빛의 특성과 종류를 이해하고 영화에서 조명의 역할을 탐구한다.",
     "12편사01-03": "주제나 의미 전달을 위한 편집 문법을 탐구하고, 장면을 의미 있게 조합한다.",
@@ -7393,6 +7432,7 @@ const CURRICULUM = {
     "12교이03-01": "교육 제도가 형성되고 변화해 온 역사적 배경과 사회적 맥락에 비추어 현대 교육 제도의 특징과 문제점을 분석하고 미래 발전 방향을 탐색한다.",
     "12교이03-02": "현대 사회의 교육은 사회 통합과 평등의 실현에 기여하기도 하지만, 사회적 불평등을 재생산하기도 함을 이해하고, 그 원인을 분석하고 대안을 탐색한다.",
     "12교이04-02": "디지털 정보 기술과 인공지능 기술로 인한 미래 학습 환경과 교육 방법의 변화를 예측해 보고 미래 교수·학습의 주체에게 요구되는 역량이 무엇인지 탐색한다.",
+    "12삶종01-01": "다양한 인간의 삶에서 종교의 의미와 역할, 종교성과 영성을 이해한다.",
     "12삶종04-01": "다양한 종교의 핵심 가치와 덕목을 탐구하고 포용성과 상호 존중이라는 공통점을 발견한다.",
     "12삶종04-03": "현대 사회의 문제에 대해 종교계가 제시하는 여러 해법을 이해함으로써 공동체의 문제 해결에 필요한 연대감과 책임감을 기른다.",
     "12보건02-02": "물질 및 행위 중독의 특성, 위험과 영향요인을 분석하고, 개인적, 사회적 측면에서 중독 예방과 지지체계를 탐색하여 제시한다.",
@@ -9600,6 +9640,51 @@ const debateTopicsDB = [
       con: ["여러 지역 사람이 정확히 알아들어야 하는 공적인 말에는 표준어가 알맞다.", "말투에 관심이 쏠려 전하려는 내용이 묻힐 수 있다."],
       std: ["12화언01-15", "12언탐01-04", "10공국1-04-01"],
       books: ["나는 강물처럼 말해요", "이파라파냐무냐무"] },
+    { subject: "korean", unit: "화법과 언어 · 높임 표현", type: "value", field: "관계", level: "고등", claim: "교사와 학생은 서로 높임말을 써야 한다.",
+      background: "높임 표현에는 말하는 사람이 듣는 사람을 어떻게 대하는지가 드러납니다. 교사가 학생에게도 높임말을 쓰는 교실이 있는가 하면, 반말이 더 친근하다는 의견도 있습니다. 서로 높임말을 쓰는 것이 존중을 키우는지 거리감을 만드는지 따집니다.",
+      pro: ["서로 높임말을 쓰면 나이와 지위를 넘어 상대를 존중하는 태도가 몸에 밴다.", "말이 정중해지면 갈등 상황에서도 감정이 덜 격해진다."],
+      con: ["높임말이 거리감을 만들어 마음을 터놓고 이야기하기 어렵게 한다.", "존중은 말의 형식보다 말의 내용과 태도에서 나온다."],
+      std: ["12화언01-05", "12화언01-08"],
+      books: [] },
+    { subject: "korean", unit: "화법과 언어 · 발표", type: "policy", field: "성장", level: "고등", claim: "발표 수행평가는 말하는 태도를 빼고 내용으로만 점수를 매겨야 한다.",
+      now: "발표 수행평가의 채점 기준은 학교와 교사가 정하며, 흔히 내용과 함께 목소리·시선·몸짓 같은 전달 태도도 평가한다.",
+      background: "화법과 언어에서는 준언어·비언어 표현도 발표 능력의 일부로 배웁니다. 그러나 말을 더듬거나 긴장을 많이 하는 학생에게는 전달 태도 점수가 불리하다는 지적도 있습니다. 발표 평가에서 무엇을 평가해야 공정한지 따집니다.",
+      pro: ["말더듬이나 불안처럼 노력으로 바로 고치기 어려운 특성 때문에 점수가 깎이는 것은 불공정하다.", "태도 점수에는 채점하는 사람의 주관이 끼어들기 쉽다."],
+      con: ["목소리·시선·몸짓으로 내용을 잘 전하는 것도 발표 능력의 중요한 부분이다.", "전달까지 평가해야 학생이 청중을 생각하며 말하는 연습을 한다."],
+      std: ["12화언01-09", "10공국2-01-01"],
+      books: ["나는 강물처럼 말해요", "틀려도 괜찮아"] },
+    { subject: "korean", unit: "화법과 언어 · 연설", type: "value", field: "기술", level: "고등", claim: "학생회 선거 연설문을 생성형 AI로 써도 된다.",
+      background: "연설은 말하는 사람의 공신력이 설득력을 크게 좌우합니다. 학생회 선거에서 후보가 생성형 AI로 연설문을 쓰거나 다듬는 일이 생기면서, 그것이 정당한 도움인지 유권자를 속이는 일인지 따집니다.",
+      pro: ["유권자가 판단할 것은 공약과 실천 의지이고, 문장을 다듬는 데는 어떤 도구든 쓸 수 있다.", "말솜씨가 부족한 학생도 자기 생각을 또렷하게 전할 기회를 얻는다."],
+      con: ["연설은 후보의 생각과 말하는 능력을 보여 주는 자리여서, AI가 쓴 글은 유권자를 오해하게 만든다.", "누구나 비슷하게 매끄러운 연설을 하게 되어 후보의 진짜 모습을 알기 어려워진다."],
+      std: ["12화언01-10", "10공국2-01-03"],
+      books: ["나는 강물처럼 말해요"] },
+    { subject: "korean", unit: "화법과 언어 · 토의", type: "value", field: "공동체", level: "고등", claim: "학급의 중요한 일은 다수결보다 합의로 정해야 한다.",
+      background: "토의는 여럿이 함께 공동체의 문제를 풀어 가는 말하기입니다. 시간이 걸리더라도 모두가 받아들일 수 있을 때까지 이야기해 정하는 합의와, 빠르고 분명한 다수결 가운데 무엇이 학급의 중요한 결정에 알맞은지 따집니다.",
+      pro: ["소수의 의견까지 반영되어 결정에 모두가 책임감을 갖는다.", "이야기를 나누는 과정에서 더 나은 제3의 대안이 나오기도 한다."],
+      con: ["몇 사람만 반대해도 결정을 내리지 못해 일이 늦어진다.", "합의하라는 분위기 때문에 반대 의견을 말하기 어려워질 수 있다."],
+      std: ["12화언01-11"],
+      books: ["벌집이 너무 좁아"] },
+    { subject: "korean", unit: "화법과 언어 · 토론", type: "value", field: "인식", level: "고등", claim: "토론의 승패는 청중의 반응보다 논증의 타당성으로 가려야 한다.",
+      background: "토론은 청중을 설득하는 말하기이지만, 교육 토론에서는 주장·이유·근거가 타당하고 믿을 만한지를 반대 신문으로 따지는 과정이 중요합니다. 말솜씨와 호감으로 청중의 마음을 얻은 쪽과 논증이 더 탄탄한 쪽이 다를 때 무엇으로 승패를 가려야 하는지 따집니다.",
+      pro: ["말솜씨나 인기에 휩쓸리지 않아야 근거를 따져 말하는 힘이 길러진다.", "논증의 타당성·신뢰성·공정성은 기준을 세워 공정하게 평가할 수 있다."],
+      con: ["토론은 결국 청중을 설득하려는 말하기이므로 청중의 판단이 가장 중요한 기준이다.", "실제 사회에서는 논리만큼 공감과 신뢰를 얻는 능력이 결과를 좌우한다."],
+      std: ["12화언01-12", "10공국1-01-02", "12독토01-02"],
+      books: ["문 밖에 사자가 있다"] },
+    { subject: "korean", unit: "화법과 언어 · 토론", type: "policy", field: "미디어", level: "고등", claim: "방송 토론 프로그램은 출연자 발언의 사실 여부를 확인해 함께 알려야 한다.",
+      now: "방송사가 따로 팩트체크 코너를 두기도 하지만, 토론 프로그램에서 출연자 발언의 사실 여부를 함께 알리도록 정한 규정은 없다.",
+      background: "시사 토론 프로그램에서는 출연자가 내세운 통계나 사례가 사실과 다를 때가 있습니다. 근거의 신뢰성을 따지는 일을 방송사가 맡아 시청자에게 알려야 하는지, 그것이 토론을 더 공정하게 만드는지 따집니다.",
+      pro: ["틀린 근거가 그대로 방송되면 시청자가 잘못된 정보를 사실로 받아들인다.", "사실 확인이 뒤따른다는 것을 알면 출연자가 근거를 더 신중하게 고른다."],
+      con: ["방송사가 어떤 발언을 골라 확인하느냐에 따라 오히려 한쪽에 치우칠 수 있다.", "해석이 갈리는 주장까지 사실과 거짓으로 가르면 토론이 위축된다."],
+      std: ["12화언01-12", "12화언01-07", "12매의01-04"],
+      books: ["감기 걸린 물고기"] },
+    { subject: "korean", unit: "화법과 언어 · 협상", type: "fact", field: "관계", level: "고등", claim: "협상에서는 먼저 조건을 내놓는 쪽이 유리하다.",
+      background: "협상에서 처음 나온 숫자가 이후 논의의 기준이 되는 '기준점 효과(앵커링)'가 있다는 연구가 있습니다. 반면 먼저 패를 보이면 상대가 그에 맞춰 대응할 수 있다는 반론도 있습니다. 연구와 사례를 근거로 따지는 사실 논제입니다.",
+      pro: ["처음 제시된 조건이 기준점이 되어 이후 양보의 폭을 정하게 된다는 연구가 있다.", "먼저 제안하면 논의의 틀과 쟁점을 내 쪽에서 정할 수 있다."],
+      con: ["상대의 기대를 모르고 먼저 말하면 필요 이상으로 양보한 조건을 내놓게 된다.", "정보가 부족할 때는 상대의 제안을 듣고 대응하는 편이 안전하다."],
+      stats: [{src: "riss",label: "협상과 기준점 효과(앵커링) 연구"}],
+      std: ["12화언01-13", "10공국2-01-02"],
+      books: ["탁탁, 톡톡, 음매~ 젖소가 편지를 쓴대요"] },
     { subject: "math", unit: "수학 전반 · 평가", type: "policy", field: "인식", level: "고등", claim: "고등학교 수학 시험에서 공학용 계산기 사용을 허용해야 한다.",
       now: "대학수학능력시험과 대부분의 학교 시험에서는 계산기를 쓸 수 없다.",
       background: "계산 과정보다 개념과 해석을 평가하려면 시험에서 계산기를 허용해야 하는지 따집니다.",
@@ -14481,6 +14566,7 @@ function setupWorksheetGenerator() {
             worksheetHTML += `
                 <div class="worksheet-print-header no-print" style="text-align: right; margin-bottom: 20px;">
                     <button onclick="window.print()" class="btn btn-secondary"><i class="fa-solid fa-print"></i> 활동지 인쇄하기</button>
+            ${WS_EXPORT_BTNS}
                 </div>
                 <div class="worksheet-paper ws-book-paper">
                     <div style="text-align: center; margin-bottom: 24px;">
@@ -20763,6 +20849,7 @@ function buildTopicWorksheet(t, form, hints, audience = "both") {
     const top = `
         <div class="worksheet-print-header no-print" style="text-align: right; margin-bottom: 20px;">
             <button onclick="window.print()" class="btn btn-secondary"><i class="fa-solid fa-print"></i> 활동지 인쇄하기</button>
+            ${WS_EXPORT_BTNS}
         </div>`;
     const student = audience === "teacher" ? "" : pages.map((p, i) => `
         <div class="worksheet-paper ws-topic-page${i ? " ws-topic-break" : ""}">
@@ -20862,6 +20949,520 @@ window.openTopicWorksheet = function (idx, form) {
 
 // 학습지 작성 내용 자동 저장 (같은 그림책·유형으로 다시 열면 복원)
 const WS_LAYOUT_REV = { "panorama": 3, "topic-tech-panorama": 3 };
+// ── 학습지를 파일로 받기 ─────────────────────────────────────────────
+// PDF: 인쇄와 같은 쪽 나눔(단계는 통째로, 표는 줄 단위로, 교사용은 새 쪽)으로 A4에 담는다. html2canvas·jsPDF는 누를 때 한 번만 불러온다.
+// 한글: 화면에 그려진 글자 크기·굵기·색과 표의 칸 너비·높이를 읽어 HWPX(한글 2014 이후에서 열림)로 옮긴다. 한글에서 고쳐 쓸 수 있다.
+const WS_EXPORT_W = 703, WS_EXPORT_PAGE_H = 1030;
+
+// 한글 문서 만들기: 문단·표 모형 → OWPML XML → zip
+// 모형 { blocks: [ {t:"p", runs:[{text,b,u,color,shade,size}], align, before, after, lineSpacing, bar, fill, indent, keepNext, pageBreak},
+//                 {t:"table", widths:[px], rows:[[{col, cs, rs, h, fill, header, valign, blocks}]], border, borderColor, after, pageBreak} ] }
+// 길이는 화면 px(1px = 75 HWPUNIT), 글자 크기도 px(1px = 0.75pt)로 받는다.
+const HWPX = (() => {
+    const U = 75;
+    const NS = 'xmlns:ha="http://www.hancom.co.kr/hwpml/2011/app" xmlns:hp="http://www.hancom.co.kr/hwpml/2011/paragraph" xmlns:hp10="http://www.hancom.co.kr/hwpml/2016/paragraph" xmlns:hs="http://www.hancom.co.kr/hwpml/2011/section" xmlns:hc="http://www.hancom.co.kr/hwpml/2011/core" xmlns:hh="http://www.hancom.co.kr/hwpml/2011/head" xmlns:hhs="http://www.hancom.co.kr/hwpml/2011/history" xmlns:hm="http://www.hancom.co.kr/hwpml/2011/master-page" xmlns:hpf="http://www.hancom.co.kr/schema/2011/hpf" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:opf="http://www.idpf.org/2007/opf/" xmlns:ooxmlchart="http://www.hancom.co.kr/hwpml/2016/ooxmlchart" xmlns:hwpunitchar="http://www.hancom.co.kr/hwpml/2016/HwpUnitChar" xmlns:epub="http://www.idpf.org/2007/ops" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0"';
+    const XML = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>';
+    const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+    const all = (v) => `hangul="${v}" latin="${v}" hanja="${v}" japanese="${v}" other="${v}" symbol="${v}" user="${v}"`;
+    // A4, 여백 12mm → 본문 폭 186mm(= 화면 703px)
+    const PAGE = { w: 59528, h: 84186, side: 3401, top: 3401, bottom: 2834 };
+    const BODY_W = PAGE.w - PAGE.side * 2;
+
+    function build(model) {
+        const bf = [], bfKey = {};
+        const borderFill = (k, xml) => { if (bfKey[k] == null) { bfKey[k] = bf.length + 1; bf.push(xml(bf.length + 1)); } return bfKey[k]; };
+        const line = (side, type, w, c) => `<hh:${side}Border type="${type}" width="${w}" color="${c}"/>`;
+        const bfXml = (sides, fill) => (id) => `<hh:borderFill id="${id}" threeD="0" shadow="0" centerLine="NONE" breakCellSeparateLine="0"><hh:slash type="NONE" Crooked="0" isCounter="0"/><hh:backSlash type="NONE" Crooked="0" isCounter="0"/>${sides}<hh:diagonal type="SOLID" width="0.1 mm" color="#000000"/>${fill ? `<hc:fillBrush><hc:winBrush faceColor="${fill}" hatchColor="#999999" alpha="0"/></hc:fillBrush>` : ""}</hh:borderFill>`;
+        const none4 = ["left", "right", "top", "bottom"].map(s => line(s, "NONE", "0.1 mm", "#000000")).join("");
+        borderFill("page", bfXml(none4, null));     // 1: 쪽 테두리
+        borderFill("char", bfXml(none4, "none"));   // 2: 글자 기본
+        const cellBf = (fill, border, color) => borderFill(`cell|${fill || ""}|${border ? 1 : 0}|${color || ""}`, bfXml(
+            ["left", "right", "top", "bottom"].map(s => border ? line(s, "SOLID", "0.12 mm", color || "#555555") : line(s, "NONE", "0.1 mm", "#000000")).join(""), fill || null));
+        const paraBf = (bar, fill) => borderFill(`para|${bar || ""}|${fill || ""}`, bfXml(
+            line("left", bar ? "SOLID" : "NONE", bar ? "1.0 mm" : "0.1 mm", bar || "#000000") + ["right", "top", "bottom"].map(s => line(s, "NONE", "0.1 mm", "#000000")).join(""), fill || null));
+        // 얇은 색 막대(눈금선 등)는 빈 문단의 밑줄로
+        const ruleBf = (c) => borderFill(`rule|${c}`, bfXml(["left", "right", "top"].map(s => line(s, "NONE", "0.1 mm", "#000000")).join("") + line("bottom", "SOLID", "0.7 mm", c), null));
+
+        const cp = [], cpKey = {};
+        const charPr = (r) => {
+            const size = Math.max(600, Math.round((r.size || 13.3) * U / 10) * 10), color = (r.color || "#000000").toUpperCase(), shade = r.shade || "none";
+            const k = `${size}|${r.b ? 1 : 0}|${color}|${r.u ? 1 : 0}|${shade}`;
+            if (cpKey[k] == null) {
+                cpKey[k] = cp.length;
+                cp.push(`<hh:charPr id="${cp.length}" height="${size}" textColor="${color}" shadeColor="${shade}" useFontSpace="0" useKerning="0" symMark="NONE" borderFillIDRef="2"><hh:fontRef ${all(0)}/><hh:ratio ${all(100)}/><hh:spacing ${all(0)}/><hh:relSz ${all(100)}/><hh:offset ${all(0)}/>${r.b ? "<hh:bold/>" : ""}<hh:underline type="${r.u ? "BOTTOM" : "NONE"}" shape="SOLID" color="${color}"/><hh:strikeout shape="NONE" color="#000000"/><hh:outline type="NONE"/><hh:shadow type="NONE" color="#C0C0C0" offsetX="10" offsetY="10"/></hh:charPr>`);
+            }
+            return cpKey[k];
+        };
+        charPr({});   // 0: 기본 10pt
+
+        const pp = [], ppKey = {};
+        const paraPr = (p) => {
+            const align = p.align || "LEFT", before = Math.round((p.before || 0) * U), after = Math.round((p.after || 0) * U);
+            const ls = p.lineSpacing || 150, left = Math.round((p.indent || 0) * U);
+            const bfid = p.rule ? ruleBf(p.rule) : (p.bar || p.fill) ? paraBf(p.bar, p.fill) : 2;
+            const k = `${align}|${before}|${after}|${ls}|${left}|${bfid}|${p.keepNext ? 1 : 0}`;
+            if (ppKey[k] == null) {
+                ppKey[k] = pp.length;
+                const m = `<hh:margin><hc:intent value="0" unit="HWPUNIT"/><hc:left value="${left}" unit="HWPUNIT"/><hc:right value="0" unit="HWPUNIT"/><hc:prev value="${before}" unit="HWPUNIT"/><hc:next value="${after}" unit="HWPUNIT"/></hh:margin><hh:lineSpacing type="PERCENT" value="${ls}" unit="HWPUNIT"/>`;
+                const off = bfid === 2 || p.rule ? 'offsetLeft="0" offsetRight="0" offsetTop="0" offsetBottom="0"' : `offsetLeft="${p.bar ? 700 : 400}" offsetRight="400" offsetTop="250" offsetBottom="250"`;
+                pp.push(`<hh:paraPr id="${pp.length}" tabPrIDRef="0" condense="0" fontLineHeight="0" snapToGrid="1" suppressLineNumbers="0" checked="0" textDir="LTR"><hh:align horizontal="${align}" vertical="BASELINE"/><hh:heading type="NONE" idRef="0" level="0"/><hh:breakSetting breakLatinWord="KEEP_WORD" breakNonLatinWord="KEEP_WORD" widowOrphan="0" keepWithNext="${p.keepNext ? 1 : 0}" keepLines="0" pageBreakBefore="0" lineWrap="BREAK"/><hh:autoSpacing eAsianEng="0" eAsianNum="0"/><hp:switch><hp:case hp:required-namespace="http://www.hancom.co.kr/hwpml/2016/HwpUnitChar">${m}</hp:case><hp:default>${m}</hp:default></hp:switch><hh:border borderFillIDRef="${bfid}" ${off} connect="0" ignoreMargin="0"/></hh:paraPr>`);
+            }
+            return ppKey[k];
+        };
+        paraPr({});   // 0: 기본
+
+        let objId = 1000000;
+        // 줄바꿈은 글자(hp:t) 안에 hp:lineBreak로 넣는다
+        const runXml = (runs) => (runs && runs.length ? runs : [{ text: "" }]).map(r => {
+            const t = String(r.text || "");
+            return `<hp:run charPrIDRef="${charPr(r)}">${t ? `<hp:t>${t.split("\n").map(esc).join("<hp:lineBreak/>")}</hp:t>` : "<hp:t/>"}</hp:run>`;
+        }).join("");
+        const pXml = (b, lead = "") => `<hp:p id="2147483648" paraPrIDRef="${paraPr(b)}" styleIDRef="0" pageBreak="${b.pageBreak ? 1 : 0}" columnBreak="0" merged="0">${lead}${runXml(b.runs)}</hp:p>`;
+
+        function tableXml(tb, maxW) {
+            const nC = tb.widths.length;
+            const sumPx = tb.widths.reduce((a, b) => a + b, 0) || 1;
+            const total = Math.max(1000, Math.min(maxW, Math.round(sumPx * U)));
+            const cw = tb.widths.map(w => Math.round(w / sumPx * total));
+            cw[nC - 1] += total - cw.reduce((a, b) => a + b, 0);
+            const mL = 400, mT = 200;
+            const rowH = tb.rows.map(r => Math.max(900, ...r.filter(c => c && (c.rs || 1) === 1).map(c => Math.round((c.h || 24) * U))));
+            const rowsXml = tb.rows.map((r, ri) => `<hp:tr>${r.filter(Boolean).map(c => {
+                const cs = c.cs || 1, rs = c.rs || 1;
+                const w = cw.slice(c.col, c.col + cs).reduce((a, b) => a + b, 0);
+                const h = rowH.slice(ri, ri + rs).reduce((a, b) => a + b, 0);
+                const inner = (c.blocks && c.blocks.length ? c.blocks : [{ t: "p", runs: [] }]).map(x => x.t === "table"
+                    ? `<hp:p id="2147483648" paraPrIDRef="${paraPr({ lineSpacing: 100 })}" styleIDRef="0" pageBreak="0" columnBreak="0" merged="0"><hp:run charPrIDRef="0">${tableXml(x, w - mL * 2)}<hp:t/></hp:run></hp:p>`
+                    : pXml(Object.assign({}, x, { pageBreak: false }))).join("");
+                return `<hp:tc name="" header="${c.header ? 1 : 0}" hasMargin="0" protect="0" editable="0" dirty="0" borderFillIDRef="${cellBf(c.fill, tb.border !== false, tb.borderColor)}"><hp:subList id="" textDirection="HORIZONTAL" lineWrap="BREAK" vertAlign="${c.valign || "TOP"}" linkListIDRef="0" linkListNextIDRef="0" textWidth="0" textHeight="0" hasTextRef="0" hasNumRef="0">${inner}</hp:subList><hp:cellAddr colAddr="${c.col}" rowAddr="${ri}"/><hp:cellSpan colSpan="${cs}" rowSpan="${rs}"/><hp:cellSz width="${w}" height="${h}"/><hp:cellMargin left="${mL}" right="${mL}" top="${mT}" bottom="${mT}"/></hp:tc>`;
+            }).join("")}</hp:tr>`).join("");
+            const id = objId++;
+            return `<hp:tbl id="${id}" zOrder="${id - 1000000}" numberingType="TABLE" textWrap="TOP_AND_BOTTOM" textFlow="BOTH_SIDES" lock="0" dropcapstyle="None" pageBreak="CELL" repeatHeader="0" rowCnt="${tb.rows.length}" colCnt="${nC}" cellSpacing="0" borderFillIDRef="${cellBf(null, tb.border !== false, tb.borderColor)}" noAdjust="0"><hp:sz width="${total}" widthRelTo="ABSOLUTE" height="${rowH.reduce((a, b) => a + b, 0)}" heightRelTo="ABSOLUTE" protect="0"/><hp:pos treatAsChar="1" affectLSpacing="0" flowWithText="1" allowOverlap="0" holdAnchorAndSO="0" vertRelTo="PARA" horzRelTo="PARA" vertAlign="TOP" horzAlign="LEFT" vertOffset="0" horzOffset="0"/><hp:outMargin left="0" right="0" top="0" bottom="${Math.round((tb.after == null ? 8 : tb.after) * U)}"/><hp:inMargin left="${mL}" right="${mL}" top="${mT}" bottom="${mT}"/>${rowsXml}</hp:tbl>`;
+        }
+
+        const secPr = `<hp:secPr id="" textDirection="HORIZONTAL" spaceColumns="1134" tabStop="8000" tabStopVal="4000" tabStopUnit="HWPUNIT" outlineShapeIDRef="0" memoShapeIDRef="0" textVerticalWidthHead="0" masterPageCnt="0"><hp:grid lineGrid="0" charGrid="0" wonggojiFormat="0"/><hp:startNum pageStartsOn="BOTH" page="0" pic="0" tbl="0" equation="0"/><hp:visibility hideFirstHeader="0" hideFirstFooter="0" hideFirstMasterPage="0" border="SHOW_ALL" fill="SHOW_ALL" hideFirstPageNum="0" hideFirstEmptyLine="0" showLineNumber="0"/><hp:lineNumberShape restartType="0" countBy="0" distance="0" startNumber="0"/><hp:pagePr landscape="WIDELY" width="${PAGE.w}" height="${PAGE.h}" gutterType="LEFT_ONLY"><hp:margin header="0" footer="0" gutter="0" left="${PAGE.side}" right="${PAGE.side}" top="${PAGE.top}" bottom="${PAGE.bottom}"/></hp:pagePr><hp:footNotePr><hp:autoNumFormat type="DIGIT" userChar="" prefixChar="" suffixChar=")" supscript="0"/><hp:noteLine length="-1" type="SOLID" width="0.12 mm" color="#000000"/><hp:noteSpacing betweenNotes="283" belowLine="567" aboveLine="850"/><hp:numbering type="CONTINUOUS" newNum="1"/><hp:placement place="EACH_COLUMN" beneathText="0"/></hp:footNotePr><hp:endNotePr><hp:autoNumFormat type="DIGIT" userChar="" prefixChar="" suffixChar=")" supscript="0"/><hp:noteLine length="14692344" type="SOLID" width="0.12 mm" color="#000000"/><hp:noteSpacing betweenNotes="0" belowLine="567" aboveLine="850"/><hp:numbering type="CONTINUOUS" newNum="1"/><hp:placement place="END_OF_DOCUMENT" beneathText="0"/></hp:endNotePr>${["BOTH", "EVEN", "ODD"].map(t => `<hp:pageBorderFill type="${t}" borderFillIDRef="1" textBorder="PAPER" headerInside="0" footerInside="0" fillArea="PAPER"><hp:offset left="1417" right="1417" top="1417" bottom="1417"/></hp:pageBorderFill>`).join("")}</hp:secPr><hp:ctrl><hp:colPr id="" type="NEWSPAPER" layout="LEFT" colCount="1" sameSz="1" sameGap="0"/></hp:ctrl>`;
+
+        const blocks = model.blocks.length ? model.blocks : [{ t: "p", runs: [] }];
+        const body = blocks.map((b, i) => {
+            const lead = i === 0 ? `<hp:run charPrIDRef="0">${secPr}</hp:run>` : "";
+            if (b.t === "table") return `<hp:p id="2147483648" paraPrIDRef="${paraPr({ lineSpacing: 100 })}" styleIDRef="0" pageBreak="${b.pageBreak ? 1 : 0}" columnBreak="0" merged="0">${lead}<hp:run charPrIDRef="0">${tableXml(b, BODY_W)}<hp:t/></hp:run></hp:p>`;
+            return pXml(b, lead);
+        }).join("");
+
+        const fonts = `<hh:fontfaces itemCnt="7">${["HANGUL", "LATIN", "HANJA", "JAPANESE", "OTHER", "SYMBOL", "USER"].map(l => `<hh:fontface lang="${l}" fontCnt="1"><hh:font id="0" face="함초롬돋움" type="TTF" isEmbedded="0"><hh:typeInfo familyType="FCAT_GOTHIC" weight="6" proportion="4" contrast="0" strokeVariation="1" armStyle="1" letterform="1" midline="1" xHeight="1"/></hh:font></hh:fontface>`).join("")}</hh:fontfaces>`;
+        const header = `${XML}<hh:head ${NS} version="1.5" secCnt="1"><hh:beginNum page="1" footnote="1" endnote="1" pic="1" tbl="1" equation="1"/><hh:refList>${fonts}<hh:borderFills itemCnt="${bf.length}">${bf.join("")}</hh:borderFills><hh:charProperties itemCnt="${cp.length}">${cp.join("")}</hh:charProperties><hh:tabProperties itemCnt="1"><hh:tabPr id="0" autoTabLeft="0" autoTabRight="0"/></hh:tabProperties><hh:paraProperties itemCnt="${pp.length}">${pp.join("")}</hh:paraProperties><hh:styles itemCnt="1"><hh:style id="0" type="PARA" name="바탕글" engName="Normal" paraPrIDRef="0" charPrIDRef="0" nextStyleIDRef="0" langID="1042" lockForm="0"/></hh:styles></hh:refList><hh:compatibleDocument targetProgram="HWP201X"><hh:layoutCompatibility/></hh:compatibleDocument><hh:docOption><hh:linkinfo path="" pageInherit="0" footnoteInherit="0"/></hh:docOption><hh:trackchageConfig flags="56"/></hh:head>`;
+        const now = new Date().toISOString().replace(/\.\d+Z$/, "Z");
+        const hpf = `${XML}<opf:package ${NS} version="" unique-identifier="" id=""><opf:metadata><opf:title>${esc(model.title || "학습지")}</opf:title><opf:language>ko</opf:language><opf:meta name="creator" content="text">그림책 토론 학습지</opf:meta><opf:meta name="CreatedDate" content="text">${now}</opf:meta><opf:meta name="ModifiedDate" content="text">${now}</opf:meta></opf:metadata><opf:manifest><opf:item id="header" href="Contents/header.xml" media-type="application/xml"/><opf:item id="section0" href="Contents/section0.xml" media-type="application/xml"/><opf:item id="settings" href="settings.xml" media-type="application/xml"/></opf:manifest><opf:spine><opf:itemref idref="header" linear="yes"/><opf:itemref idref="section0" linear="yes"/></opf:spine></opf:package>`;
+        const prv = blocks.filter(b => b.t === "p").map(b => (b.runs || []).map(r => r.text).join("")).join("\r\n").slice(0, 1000);
+        return [
+            ["mimetype", "application/hwp+zip"],
+            ["version.xml", `${XML}<hv:HCFVersion xmlns:hv="http://www.hancom.co.kr/hwpml/2011/version" tagetApplication="WORDPROCESSOR" major="5" minor="1" micro="1" buildNumber="0" os="1" xmlVersion="1.5" application="Hancom Office Hangul" appVersion="13, 0, 0, 532 WIN32LEWindows_10"/>`],
+            ["Contents/header.xml", header],
+            ["Contents/section0.xml", `${XML}<hs:sec ${NS}>${body}</hs:sec>`],
+            ["Preview/PrvText.txt", prv],
+            ["settings.xml", `${XML}<ha:HWPApplicationSetting xmlns:ha="http://www.hancom.co.kr/hwpml/2011/app" xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0"><ha:CaretPosition listIDRef="0" paraIDRef="0" pos="0"/></ha:HWPApplicationSetting>`],
+            ["META-INF/container.rdf", `${XML}<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about=""><ns0:hasPart xmlns:ns0="http://www.hancom.co.kr/hwpml/2016/meta/pkg#" rdf:resource="Contents/header.xml"/></rdf:Description><rdf:Description rdf:about="Contents/header.xml"><rdf:type rdf:resource="http://www.hancom.co.kr/hwpml/2016/meta/pkg#HeaderFile"/></rdf:Description><rdf:Description rdf:about=""><ns0:hasPart xmlns:ns0="http://www.hancom.co.kr/hwpml/2016/meta/pkg#" rdf:resource="Contents/section0.xml"/></rdf:Description><rdf:Description rdf:about="Contents/section0.xml"><rdf:type rdf:resource="http://www.hancom.co.kr/hwpml/2016/meta/pkg#SectionFile"/></rdf:Description><rdf:Description rdf:about=""><rdf:type rdf:resource="http://www.hancom.co.kr/hwpml/2016/meta/pkg#Document"/></rdf:Description></rdf:RDF>`],
+            ["Contents/content.hpf", hpf],
+            ["META-INF/container.xml", `${XML}<ocf:container xmlns:ocf="urn:oasis:names:tc:opendocument:xmlns:container" xmlns:hpf="http://www.hancom.co.kr/schema/2011/hpf"><ocf:rootfiles><ocf:rootfile full-path="Contents/content.hpf" media-type="application/hwpml-package+xml"/><ocf:rootfile full-path="Preview/PrvText.txt" media-type="text/plain"/><ocf:rootfile full-path="META-INF/container.rdf" media-type="application/rdf+xml"/></ocf:rootfiles></ocf:container>`],
+            ["META-INF/manifest.xml", `${XML}<odf:manifest xmlns:odf="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0"/>`]
+        ];
+    }
+
+    // 압축하지 않는(STORE) zip. mimetype은 맨 앞에, 압축 없이 둔다
+    const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++) { let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
+    const crc32 = (u8) => { let c = 0xFFFFFFFF; for (let i = 0; i < u8.length; i++) c = CRC[(c ^ u8[i]) & 0xFF] ^ (c >>> 8); return (c ^ 0xFFFFFFFF) >>> 0; };
+    function zip(files) {
+        const enc = new TextEncoder(), parts = [], central = [];
+        let off = 0;
+        const d = new Date(), dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF, dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+        for (const [name, text] of files) {
+            const nm = enc.encode(name), data = enc.encode(text), crc = crc32(data);
+            const h = new DataView(new ArrayBuffer(30));
+            h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true);
+            h.setUint16(10, dt, true); h.setUint16(12, dd, true); h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true);
+            parts.push(new Uint8Array(h.buffer), nm, data);
+            const c = new DataView(new ArrayBuffer(46));
+            c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true);
+            c.setUint16(12, dt, true); c.setUint16(14, dd, true); c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true);
+            c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+            central.push(new Uint8Array(c.buffer), nm);
+            off += 30 + nm.length + data.length;
+        }
+        const cdLen = central.reduce((a, b) => a + b.length, 0);
+        const e = new DataView(new ArrayBuffer(22));
+        e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cdLen, true); e.setUint32(16, off, true);
+        const out = new Uint8Array(off + cdLen + 22);
+        let p = 0; for (const a of [...parts, ...central, new Uint8Array(e.buffer)]) { out.set(a, p); p += a.length; }
+        return out;
+    }
+    return { build, zip };
+})();
+
+// 화면의 학습지(#worksheet-paper)를 한글 문서 모형으로 옮긴다. 인쇄 폭(703px)으로 펼친 상태에서 읽는다.
+const WS_EMOJI = /[\p{Extended_Pictographic}\u{FE0F}\u{20E3}\u{200D}]/gu;
+function wsShown(el) {
+    if (!el || el.nodeType !== 1 || el.classList.contains("no-print")) return false;
+    const cs = getComputedStyle(el);
+    return cs.display !== "none" && cs.visibility !== "hidden";
+}
+function wsHex(c, fallback = null) {
+    const m = String(c || "").match(/rgba?\(([^)]+)\)/);
+    if (!m) return fallback;
+    const v = m[1].split(/[\s,/]+/).filter(Boolean).map(Number);
+    const a = v.length > 3 ? v[3] : 1;
+    if (!a) return fallback;
+    return "#" + v.slice(0, 3).map(x => Math.round(x * a + 255 * (1 - a)).toString(16).padStart(2, "0")).join("").toUpperCase();
+}
+function wsBg(cs) {
+    let c = wsHex(cs.backgroundColor);
+    if (!c && /gradient/.test(cs.backgroundImage)) { const m = cs.backgroundImage.match(/rgba?\([^)]+\)/); c = m ? wsHex(m[0]) : null; }
+    return c && c !== "#FFFFFF" ? c : null;
+}
+function wsLight(hex) { const n = parseInt((hex || "#000000").slice(1), 16); return ((n >> 16) * 0.299 + ((n >> 8) & 255) * 0.587 + (n & 255) * 0.114) > 225; }
+function wsRun(el, text, extra) {
+    const cs = getComputedStyle(el);
+    const r = { text, size: parseFloat(cs.fontSize) || 15, b: (parseInt(cs.fontWeight, 10) || 400) >= 600, color: wsHex(cs.color, "#000000"), u: /underline/.test(cs.textDecorationLine) };
+    Object.assign(r, extra);
+    if (wsLight(r.color) && !r.shade) r.color = "#222222";   // 바탕색이 빠지면 흰 글자는 보이지 않으므로
+    return r;
+}
+function wsControlRun(el) {
+    const host = el.parentElement || el;
+    if (el.tagName === "SELECT") return wsRun(host, ((el.options[el.selectedIndex] || {}).text || "") + " ");
+    const t = (el.type || "text").toLowerCase();
+    if (t === "checkbox") return wsRun(host, (el.checked ? "■" : "□") + " ");
+    if (t === "radio") return wsRun(host, (el.checked ? "●" : "○") + " ");
+    if (/^(button|submit|reset|hidden|image|file|range|color)$/.test(t)) return null;
+    const v = (el.value || "").trim();
+    return v ? wsRun(host, v, { u: true }) : wsRun(host, "_".repeat(Math.max(4, Math.min(40, Math.round(el.getBoundingClientRect().width / 8)))));
+}
+const wsIsBlock = (el, cs) => /^(block|flex|grid|list-item|table|flow-root)$/.test(cs.display) || /^(TABLE|UL|OL)$/.test(el.tagName);
+function wsBoxOf(cs) {
+    const side = (s) => {
+        const w = parseFloat(cs[`border${s}Width`]) || 0, st = cs[`border${s}Style`], c = wsHex(cs[`border${s}Color`]);
+        return w > 0.4 && st !== "none" && st !== "hidden" && c && c !== "#FFFFFF" ? c : null;
+    };
+    const sides = { t: side("Top"), r: side("Right"), b: side("Bottom"), l: side("Left") };
+    const n = Object.values(sides).filter(Boolean).length, fill = wsBg(cs);
+    if (n === 1 && sides.l && (parseFloat(cs.borderLeftWidth) || 0) >= 2) return { bar: sides.l, fill };
+    if (n >= 3 || fill) return { border: n >= 3, color: sides.t || sides.l, fill };
+    return null;
+}
+// 덩어리 하나 안의 글을 문단들로: 줄 안 요소는 이어 붙이고, 블록 요소를 만나면 문단을 끊는다
+// 화면에서 여백·간격으로 띄워 보이던 곳(번호 뒤 margin, flex의 gap)은 빈칸으로 옮긴다
+function wsGapAfter(cs) { return (parseFloat(cs.marginRight) || 0) + (parseFloat(cs.paddingRight) || 0) >= 3; }
+function wsInline(el, runs, shade) {
+    const gap = /flex|grid/.test(getComputedStyle(el).display);
+    for (const n of el.childNodes) {
+        if (n.nodeType === 3) { const t = n.textContent.replace(WS_EMOJI, "").replace(/\s+/g, " "); if (t) runs.push(wsRun(el, t, shade ? { shade } : null)); continue; }
+        if (!wsShown(n) || n.tagName === "BUTTON" || (n.tagName === "I" && /\bfa-/.test(n.className))) continue;
+        if (n.tagName === "BR") { runs.push(wsRun(el, "\n")); continue; }
+        if (gap && runs.length) runs.push(wsRun(el, " "));
+        if (n.tagName === "INPUT" || n.tagName === "SELECT") { const r = wsControlRun(n); if (r) runs.push(r); continue; }
+        if (n.tagName === "TEXTAREA") { if (n.value.trim()) runs.push(wsRun(n, n.value.trim())); continue; }
+        const cs = getComputedStyle(n);
+        wsInline(n, runs, (/inline/.test(cs.display) && wsBg(cs)) || shade);
+        if (wsGapAfter(cs)) runs.push(wsRun(el, " "));
+    }
+}
+function wsPara(el, runs, ctx) {
+    let rs = runs.filter(r => r.text);
+    for (let i = 0; i < rs.length; i++) {
+        const prev = i ? rs[i - 1].text : "\n";
+        if (/[\s]$/.test(prev) || prev.endsWith("\n")) rs[i].text = rs[i].text.replace(/^ +/, "");
+        rs[i].text = rs[i].text.replace(/ *\n */g, "\n");
+    }
+    if (rs.length) rs[rs.length - 1].text = rs[rs.length - 1].text.replace(/\s+$/, "");
+    rs = rs.filter(r => r.text);
+    if (!rs.some(r => r.text.trim())) return null;
+    const cs = getComputedStyle(el), fs = parseFloat(cs.fontSize) || 15, lh = parseFloat(cs.lineHeight);
+    const align = { center: "CENTER", right: "RIGHT", end: "RIGHT", justify: "JUSTIFY" }[cs.textAlign] || "LEFT";
+    return { t: "p", runs: rs, align, before: 0, after: 0, lineSpacing: isNaN(lh) ? 150 : Math.round(Math.max(110, Math.min(190, lh / fs * 100))),
+             bar: ctx.bar || null, fill: ctx.fill || null, indent: ctx.indent || 0, keepNext: /^H[1-6]$/.test(el.tagName) };
+}
+function wsFlow(el, ctx) {
+    const out = [];
+    let runs = [];
+    const flush = () => { const p = wsPara(el, runs, ctx); if (p) out.push(p); runs = []; };
+    for (const n of el.childNodes) {
+        if (n.nodeType === 3) { const t = n.textContent.replace(WS_EMOJI, "").replace(/\s+/g, " "); if (t) runs.push(wsRun(el, t)); continue; }
+        if (!wsShown(n) || n.tagName === "BUTTON" || (n.tagName === "I" && /\bfa-/.test(n.className))) continue;
+        if (n.tagName === "BR") { runs.push(wsRun(el, "\n")); continue; }
+        if (n.tagName === "INPUT" || n.tagName === "SELECT") { const r = wsControlRun(n); if (r) runs.push(r); continue; }
+        if (n.tagName === "TEXTAREA") {
+            flush();
+            if (ctx.cell) { if (n.value.trim()) out.push(wsPara(n, [wsRun(n, n.value.trim())], ctx)); }
+            else out.push(wsWriteBox(n));
+            continue;
+        }
+        const cs = getComputedStyle(n);
+        if (wsIsBlock(n, cs)) { flush(); out.push(...wsBlock(n, ctx)); continue; }
+        wsInline(n, runs, /inline/.test(cs.display) ? wsBg(cs) : null);
+        if (wsGapAfter(cs)) runs.push(wsRun(el, " "));
+    }
+    flush();
+    return out;
+}
+// 학생이 쓰는 칸(표 밖의 textarea)은 테두리 있는 한 칸 표로
+function wsWriteBox(ta) {
+    const r = ta.getBoundingClientRect();
+    return { t: "table", widths: [r.width], border: true, borderColor: "#555555", after: 8,
+             rows: [[{ col: 0, h: r.height, blocks: ta.value.trim() ? [wsPara(ta, [wsRun(ta, ta.value.trim())], {})] : [] }]] };
+}
+// 블록 요소 하나 → 문단·표
+function wsBlock(el, ctx) {
+    const cs = getComputedStyle(el);
+    const mt = Math.min(24, parseFloat(cs.marginTop) || 0), mb = Math.min(24, (parseFloat(cs.marginBottom) || 0));
+    const brk = el.matches(".ws-page-break, .ws-topic-break");
+    const space = (res) => {
+        if (!res.length) return res;
+        if (brk) res[0].pageBreak = true;
+        const a = res[0], z = res[res.length - 1];
+        if (a.t === "p") a.before = Math.max(a.before || 0, mt);
+        if (z.t === "p") z.after = Math.max(z.after || 0, mb); else z.after = Math.max(z.after == null ? 8 : z.after, mb);
+        return res;
+    };
+    if (el.tagName === "TABLE") return space([wsTable(el, ctx)]);
+    if (el.tagName === "UL" || el.tagName === "OL") {
+        let k = 0;
+        return space([...el.children].filter(wsShown).flatMap(li => {
+            const bs = wsFlow(li, Object.assign({}, ctx, { indent: (ctx.indent || 0) + 12 }));
+            k++;
+            if (bs[0] && bs[0].t === "p") bs[0].runs.unshift(wsRun(li, el.tagName === "OL" ? `${k}. ` : "• "));
+            return bs;
+        }));
+    }
+    const kids = [...el.children].filter(k => wsShown(k) && k.tagName !== "BR");
+    // 옆으로 나란한 덩어리: 짧은 글들은 한 줄로, 큰 덩어리들은 테두리 없는 표로
+    if (kids.length >= 2 && /flex|grid/.test(cs.display)) {
+        const r0 = kids[0].getBoundingClientRect(), r1 = kids[1].getBoundingClientRect();
+        if (Math.abs(r1.top - r0.top) < Math.max(6, r0.height / 2) && r1.left > r0.left + 4) {
+            const simple = !el.querySelector("table, textarea, p, h1, h2, h3, h4, h5, h6, ul, ol, div, section");
+            const spread = /space-(between|around|evenly)/.test(cs.justifyContent);   // 양 끝으로 벌린 줄(눈금 라벨 등)
+            if (simple && !spread) {
+                const runs = [];
+                kids.forEach((k, i) => { if (i) runs.push(wsRun(el, "   ")); const kc = getComputedStyle(k); if (k.tagName === "INPUT" || k.tagName === "SELECT") { const r = wsControlRun(k); if (r) runs.push(r); } else wsInline(k, runs, wsBg(kc)); });
+                const p = wsPara(el, runs, ctx);
+                return space(p ? [p] : []);
+            }
+            const rowsByTop = [];
+            kids.forEach(k => { const t = Math.round(k.getBoundingClientRect().top); const row = rowsByTop.find(r => Math.abs(r.top - t) < 6); if (row) row.kids.push(k); else rowsByTop.push({ top: t, kids: [k] }); });
+            const nC = Math.max(...rowsByTop.map(r => r.kids.length));
+            // 칸 폭은 요소 자기 폭이 아니라 다음 요소까지의 거리(사이 간격 포함)로 — 화면에서 벌어져 있던 자리를 그대로
+            const er = el.getBoundingClientRect();
+            const lefts = rowsByTop.find(r => r.kids.length === nC).kids.map(k => k.getBoundingClientRect().left).sort((a, b) => a - b);
+            const widths = spread ? lefts.map(() => er.width / nC)   // 양 끝으로 벌린 줄은 고르게 나눠야 끝 칸이 좁아지지 않는다
+                : lefts.map((l, i) => Math.max(8, (i + 1 < nC ? lefts[i + 1] : er.right) - (i ? l : er.left)));
+            const cellOf = (k, i, n) => {
+                if (wsIsBlock(k, getComputedStyle(k)) && !(simple && spread)) return wsBlock(k, Object.assign({}, ctx, { cell: false }));
+                const runs = [];
+                if (k.tagName === "INPUT" || k.tagName === "SELECT") { const r = wsControlRun(k); if (r) runs.push(r); } else wsInline(k, runs, wsBg(getComputedStyle(k)));
+                const p = wsPara(k, runs, ctx);
+                if (p && spread) p.align = i === 0 ? "LEFT" : i === n - 1 ? "RIGHT" : "CENTER";
+                return p ? [p] : [];
+            };
+            const rows = rowsByTop.map(r => r.kids.map((k, i) => ({ col: i, cs: i === r.kids.length - 1 ? nC - i : 1, h: 20, blocks: cellOf(k, i, r.kids.length) })));
+            return space([{ t: "table", widths, rows, border: false, after: 6 }]);
+        }
+    }
+    const box = el.matches("#worksheet-paper > .worksheet-paper") ? null : wsBoxOf(cs);
+    if (box && box.fill && !box.bar && el.getBoundingClientRect().height <= 8)   // 가치수직선 눈금선처럼 얇은 막대: 선 하나 + 안의 글은 그 아래에
+        return space([{ t: "p", runs: [{ text: "", size: 8 }], rule: box.fill, lineSpacing: 100, after: 4 }, ...wsFlow(el, ctx)]);
+    if (box && box.bar) return space(wsFlow(el, Object.assign({}, ctx, { bar: box.bar, fill: box.fill || ctx.fill })));
+    if (box) {
+        const textOnly = !kids.some(k => wsIsBlock(k, getComputedStyle(k)) || k.tagName === "TEXTAREA");
+        if (textOnly) return space(wsFlow(el, Object.assign({}, ctx, { fill: box.fill })));
+        const r = el.getBoundingClientRect();
+        return space([{ t: "table", widths: [r.width], border: box.border, borderColor: box.color, after: 8,
+                        rows: [[{ col: 0, h: 20, fill: box.fill, blocks: wsFlow(el, Object.assign({}, ctx, { bar: null, fill: null, cell: false })) }]] }]);
+    }
+    return space(wsFlow(el, ctx));
+}
+function wsTable(tbl, ctx) {
+    const rows = [...tbl.rows].filter(wsShown), occ = [], widths = [];
+    const out = rows.map((tr, ri) => {
+        occ[ri] = occ[ri] || [];
+        let c = 0;
+        return [...tr.cells].filter(wsShown).map(td => {
+            while (occ[ri][c]) c++;
+            const cs = td.colSpan || 1, rs = td.rowSpan || 1, col = c;
+            for (let y = 0; y < rs; y++) { occ[ri + y] = occ[ri + y] || []; for (let x = 0; x < cs; x++) occ[ri + y][col + x] = true; }
+            c += cs;
+            const r = td.getBoundingClientRect(), st = getComputedStyle(td);
+            if (cs === 1) widths[col] = Math.max(widths[col] || 0, r.width);
+            return { col, cs, rs, h: r.height, header: td.tagName === "TH", fill: wsBg(st) || wsBg(getComputedStyle(tr)),
+                     valign: { middle: "CENTER", bottom: "BOTTOM" }[st.verticalAlign] || "TOP",
+                     blocks: wsFlow(td, { cell: true }) };
+        });
+    });
+    const nC = Math.max(...occ.map(r => r.length), 1);
+    const tw = tbl.getBoundingClientRect().width;
+    const known = widths.filter(Boolean).reduce((a, b) => a + b, 0), unknown = [...Array(nC).keys()].filter(i => !widths[i]).length;
+    for (let i = 0; i < nC; i++) if (!widths[i]) widths[i] = Math.max(30, (tw - known) / Math.max(1, unknown));
+    const st = getComputedStyle(tbl.rows[0] && tbl.rows[0].cells[0] || tbl);
+    const border = (parseFloat(st.borderTopWidth) || 0) > 0.4 && st.borderTopStyle !== "none";
+    return { t: "table", widths: widths.slice(0, nC), rows: out, border, borderColor: "#555555", after: 8 };
+}
+function wsHwpxModel(root) {
+    const blocks = [];
+    [...root.children].filter(wsShown).forEach((paper, i) => {
+        const res = wsBlock(paper, {});
+        // 둘째 종이(교사용·다음 학습지)는 새 쪽에서 (ws-page-break 덩어리는 wsBlock이 표시)
+        if (i && res[0]) res[0].pageBreak = true;
+        blocks.push(...res);
+    });
+    return blocks;
+}
+// 학습지를 인쇄 폭으로 잠시 펼쳐 놓고 일을 한 뒤 되돌린다 (그리는 사이에 화면이 바뀌지 않도록 한 번에)
+// (.worksheet-paper에 transition이 걸려 있어, 끄지 않으면 여백이 바뀌는 도중의 값으로 재게 된다)
+function wsWithExportLayout(root, fn) {
+    root.classList.add("ws-notrans", "ws-exporting");
+    try { return fn(); } finally {
+        root.classList.remove("ws-exporting");
+        void root.offsetHeight;
+        setTimeout(() => root.classList.remove("ws-notrans"), 60);
+    }
+}
+function wsExportName(root) {
+    const paper = root.querySelector(":scope > .worksheet-paper");
+    const head = paper && paper.querySelector("h3");
+    const kind = paper && paper.querySelector("p");
+    const clean = (s) => String(s || "").replace(WS_EMOJI, "").replace(/[《》「」"'\\/:*?<>|]/g, "").replace(/\s+/g, " ").trim();
+    const title = clean(head && head.textContent).replace(/[.。]$/, "").slice(0, 40), form = clean(kind && kind.textContent).split("·").pop().trim().slice(0, 30);
+    return [title, form].filter(Boolean).join("_") || "토론 학습지";
+}
+function wsMakeHwpx() {
+    const root = document.getElementById("worksheet-paper");
+    return wsWithExportLayout(root, () => {
+        const name = wsExportName(root);
+        return { name, bytes: HWPX.zip(HWPX.build({ title: name, blocks: wsHwpxModel(root) })) };
+    });
+}
+
+// PDF: 인쇄처럼 쪽을 나눌 위치를 잰다 — 단계(ws-section)는 통째로, 표가 있는 단계는 줄 단위로, 제목은 다음 내용과 함께
+function wsPageStarts(root) {
+    const top0 = root.getBoundingClientRect().top, H = WS_EXPORT_PAGE_H, atoms = [];
+    let force = false;
+    const add = (els) => {
+        const rs = els.map(e => e.getBoundingClientRect()).filter(r => r.height > 0);
+        if (!rs.length) return;
+        atoms.push({ t: Math.min(...rs.map(r => r.top)) - top0, b: Math.max(...rs.map(r => r.bottom)) - top0, f: force });
+        force = false;
+    };
+    const split = (box, depth) => {
+        let glue = [];
+        for (const ch of box.children) {
+            if (!wsShown(ch) || !ch.offsetHeight) continue;
+            if (ch.matches(".ws-page-break, .ws-topic-break")) { if (glue.length) { add(glue); glue = []; } force = true; }
+            if (ch.tagName === "TABLE") {
+                const rows = [...ch.rows];
+                rows.forEach((tr, i) => {
+                    if (i === 0 && rows.length > 1 && [...tr.cells].every(c => c.tagName === "TH")) { glue.push(tr); return; }
+                    add([...glue, tr]); glue = [];
+                });
+                continue;
+            }
+            const big = ch.getBoundingClientRect().height > H * 0.95;
+            const tableSec = ch.classList.contains("ws-section") && !ch.classList.contains("ws-keep") && [...ch.children].some(c => c.tagName === "TABLE");
+            if ((big || tableSec) && depth < 4 && ch.children.length) { split(ch, depth + 1); continue; }
+            if (depth > 0 && !ch.querySelector("table, textarea") && ch.tagName !== "TEXTAREA" && ch !== box.lastElementChild) { glue.push(ch); continue; }
+            add([...glue, ch]); glue = [];
+        }
+        if (glue.length) add(glue);
+    };
+    [...root.children].filter(wsShown).forEach((paper, i) => { if (i) force = true; split(paper, 0); });
+    const starts = [0];
+    let start = 0;
+    for (const a of atoms) {
+        if (a.t > start + 1 && (a.f || a.b - start > H)) { starts.push(a.t); start = a.t; }
+        while (a.b - start > H + 1) { start += H; starts.push(start); }
+    }
+    return { starts, height: root.getBoundingClientRect().height };
+}
+function wsLoadScript(src, ready) {
+    if (ready()) return Promise.resolve(true);
+    return new Promise(res => {
+        const sc = document.createElement("script");
+        sc.src = src;
+        sc.onload = () => res(!!ready());
+        sc.onerror = () => res(false);
+        document.head.appendChild(sc);
+    });
+}
+async function wsMakePdf() {
+    const ok = await wsLoadScript("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js", () => window.html2canvas)
+        && await wsLoadScript("https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js", () => window.jspdf && window.jspdf.jsPDF);
+    if (!ok) throw new Error("PDF 도구를 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.");
+    const root = document.getElementById("worksheet-paper");
+    const name = wsExportName(root);
+    const { starts, height } = wsWithExportLayout(root, () => wsPageStarts(root));
+    const SCALE = 2;
+    const canvas = await window.html2canvas(root, {
+        scale: SCALE, backgroundColor: "#ffffff", useCORS: true, logging: false, windowWidth: document.documentElement.clientWidth,
+        onclone: (doc) => {
+            const r = doc.getElementById("worksheet-paper");
+            if (!r) return;
+            r.classList.add("ws-exporting");
+            // html2canvas는 textarea 글을 한 줄로만 그려 잘리므로, 글이 있는 칸은 같은 모양의 상자로 바꿔 줄이 넘어가게 한다
+            const win = doc.defaultView;
+            r.querySelectorAll("textarea").forEach(ta => {
+                if (!ta.value.trim()) return;
+                const cs = win.getComputedStyle(ta), d = doc.createElement("div");
+                ["boxSizing", "width", "height", "minHeight", "paddingTop", "paddingRight", "paddingBottom", "paddingLeft", "borderTop", "borderRight", "borderBottom", "borderLeft", "borderRadius",
+                 "fontFamily", "fontSize", "lineHeight", "color", "backgroundColor", "marginTop", "marginBottom"].forEach(k => { d.style[k] = cs[k]; });
+                d.style.height = ta.offsetHeight + "px";
+                d.style.whiteSpace = "pre-wrap"; d.style.wordBreak = "keep-all"; d.style.overflow = "hidden"; d.style.display = "block"; d.style.textAlign = "left";
+                d.textContent = ta.value;
+                ta.replaceWith(d);
+            });
+        }
+    });
+    const pdf = new window.jspdf.jsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
+    const mm = 186 / WS_EXPORT_W;   // 화면 1px → 186mm 폭
+    starts.forEach((y0, i) => {
+        const y1 = Math.min(i + 1 < starts.length ? starts[i + 1] : height, y0 + WS_EXPORT_PAGE_H);
+        const h = Math.max(1, Math.round((y1 - y0) * SCALE));
+        const c = document.createElement("canvas");
+        c.width = canvas.width; c.height = h;
+        const g = c.getContext("2d");
+        g.fillStyle = "#ffffff"; g.fillRect(0, 0, c.width, h);
+        g.drawImage(canvas, 0, Math.round(y0 * SCALE), canvas.width, h, 0, 0, c.width, h);
+        if (i) pdf.addPage();
+        pdf.addImage(c.toDataURL("image/jpeg", 0.92), "JPEG", 12, 12, 186, (y1 - y0) * mm, undefined, "FAST");
+    });
+    pdf.setProperties({ title: name, creator: "그림책 토론 학습지" });
+    return { name, pdf };
+}
+function wsSave(blob, filename) {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+}
+window.wsExport = async function (kind, btn) {
+    const root = document.getElementById("worksheet-paper");
+    if (!root || !root.querySelector(":scope > .worksheet-paper")) { alert("먼저 '학습지 생성하기'로 학습지를 만들어 주세요."); return; }
+    const label = btn ? btn.innerHTML : "";
+    if (btn) { btn.disabled = true; btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> 만드는 중…`; }
+    try {
+        if (kind === "hwpx") {
+            const { name, bytes } = wsMakeHwpx();
+            wsSave(new Blob([bytes], { type: "application/hwp+zip" }), name + ".hwpx");
+        } else {
+            const { name, pdf } = await wsMakePdf();
+            wsSave(pdf.output("blob"), name + ".pdf");
+        }
+    } catch (e) {
+        alert((e && e.message) || "파일을 만들지 못했습니다.");
+    } finally {
+        if (btn) { btn.disabled = false; btn.innerHTML = label; }
+    }
+};
+const WS_EXPORT_BTNS = `<button type="button" onclick="wsExport('pdf', this)" class="btn btn-secondary ws-export-btn"><i class="fa-solid fa-file-pdf"></i> PDF로 받기</button>
+            <button type="button" onclick="wsExport('hwpx', this)" class="btn btn-secondary ws-export-btn" title="한글 2014 이후에서 열리는 HWPX 파일"><i class="fa-solid fa-file-lines"></i> 한글로 받기</button>`;
+
 function setupWorksheetAutosave(bookTitle, type) {
     const output = document.getElementById("worksheet-paper");
     if (!output) return;

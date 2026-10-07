@@ -4651,3 +4651,26 @@ html, body { max-width: 100%; overflow-x: hidden; }
 #worksheet-paper .ws-table-compact th, #worksheet-paper .ws-table-compact td { padding: 6px 10px; }
 #worksheet-paper .ws-book-info-box { margin-bottom: 16px; }
 #worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-hint { font-size: 0.88rem; line-height: 1.5; }
+
+/* 학습지 파일로 받기(PDF·한글): 인쇄와 같은 폭(본문 703px)과 모양으로 잠시 펼쳐 읽고 그린다 */
+#worksheet-paper.ws-exporting { width: 703px !important; max-width: none !important; min-width: 0 !important; padding: 0 !important; margin: 0 !important; border: none !important; box-shadow: none !important; background: #fff !important; box-sizing: content-box !important; }
+#worksheet-paper.ws-exporting .no-print { display: none !important; }
+#worksheet-paper.ws-exporting > .worksheet-paper { width: auto !important; max-width: none !important; min-height: 0 !important; padding: 0 !important; margin: 0 !important; border: none !important; box-shadow: none !important; background: #fff !important; }
+#worksheet-paper.ws-exporting .ws-page-break,
+#worksheet-paper.ws-exporting .ws-topic-break { margin-top: 0 !important; padding-top: 0 !important; border-top: none !important; }
+#worksheet-paper.ws-exporting .ws-table th,
+#worksheet-paper.ws-exporting .ws-table td { border-color: #111 !important; }
+#worksheet-paper.ws-exporting textarea,
+#worksheet-paper.ws-exporting input { background: transparent !important; resize: none !important; }
+.ws-export-btn { border-color: var(--accent-sage); color: var(--accent-sage); }
+.ws-export-btn:disabled { opacity: 0.6; cursor: wait; }
+#worksheet-paper.ws-notrans,
+#worksheet-paper.ws-notrans * { transition: none !important; animation: none !important; }
+/* 학습지 버튼이 넷이 되어, 좁은 화면에서는 다음 줄로 넘기고 글자는 쪼개지지 않게 */
+.form-row-buttons { flex-wrap: wrap; }
+.form-row-buttons .btn, .worksheet-print-header .btn { white-space: nowrap; }
+@media screen and (max-width: 600px) {
+    .form-row-buttons { justify-content: stretch; }
+    .form-row-buttons .btn { flex: 1 1 calc(50% - 6px); justify-content: center; }
+}
+.worksheet-print-header::before { flex-basis: 100%; text-align: right; }
