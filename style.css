@@ -4593,3 +4593,61 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .garden-form { padding: 18px 14px; }
     .garden-field-short { max-width: none; }
 }
+
+/* 그림책 학습지 '더 깊이' 활동 (필요하면 2쪽으로 넘어감) */
+.ws-more-scene { font-size: 0.82rem; line-height: 1.5; color: #222; vertical-align: top; word-break: keep-all; }
+.ws-more-scene b { color: var(--accent-coral); margin-right: 6px; }
+.ws-more-pick { display: flex; flex-direction: column; gap: 3px; font-size: 0.85rem; line-height: 1.5; color: #222; margin: 0 0 8px; word-break: keep-all; }
+.ws-more-pick label { display: flex; gap: 6px; align-items: flex-start; }
+.ws-more-pick input { margin-top: 4px; flex: none; }
+.ws-more-check { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 16px; font-size: 0.83rem; color: #333; margin: 8px 0 0; }
+.ws-more-check strong { font-size: 0.84rem; color: #54704f; margin-right: 4px; }
+.ws-more-check label { display: inline-flex; gap: 4px; align-items: center; }
+.ws-more .ws-table th, .ws-more .ws-table td { padding: 6px 8px; }
+
+/* ── v6.0 학습지 가독성과 색감 (학생용 쪽): 글씨는 너무 작지 않게, 단계마다 다른 색으로 ── */
+#worksheet-paper > .worksheet-paper:not(.ws-guide)::before {
+    content: ""; display: block; height: 6px; border-radius: 3px; margin: 0 0 12px;
+    background: linear-gradient(90deg, #E07A5F, #D9A23E, #708A6F, #5B8DB8, #9B6B9E);
+}
+#worksheet-paper .ws-section:nth-of-type(5n+1) { --ws-c: #E07A5F; --ws-bg: #fdeee8; --ws-ink: #9c4a33; }
+#worksheet-paper .ws-section:nth-of-type(5n+2) { --ws-c: #5B8DB8; --ws-bg: #eaf2fa; --ws-ink: #2f5d85; }
+#worksheet-paper .ws-section:nth-of-type(5n+3) { --ws-c: #708A6F; --ws-bg: #edf4eb; --ws-ink: #45633f; }
+#worksheet-paper .ws-section:nth-of-type(5n+4) { --ws-c: #D9A23E; --ws-bg: #fbf3e2; --ws-ink: #8a6416; }
+#worksheet-paper .ws-section:nth-of-type(5n+5) { --ws-c: #9B6B9E; --ws-bg: #f4ecf5; --ws-ink: #6b4170; }
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-section h4 {
+    font-size: 1.12rem; color: #1f2933; padding: 5px 10px; border-left: 6px solid var(--ws-c, #E07A5F);
+    border-radius: 0 8px 8px 0; background: linear-gradient(90deg, var(--ws-bg, #fdeee8), rgba(255, 255, 255, 0) 85%);
+}
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-table th { background-color: var(--ws-bg, #f5f5f5); color: var(--ws-ink, #111); }
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .pano-keys { color: var(--ws-ink, #8a5a44); font-size: 0.8rem; }
+/* 글씨 크기: 본문 약 15px, 보조 글씨도 13.5px 아래로 내려가지 않게 */
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-table th,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-table td,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-table textarea,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-textarea-box,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-line { font-size: 0.95rem; }
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-prompt,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-more-scene,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-more-pick,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-more-check,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-an-body { font-size: 0.92rem; }
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .pano-th-sub,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .pano-ex,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-an-author,
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-an-tag { font-size: 0.84rem; }
+/* 기법마다 글 안에 적힌 작은 글씨(0.7~0.8rem대)도 끌어올린다 */
+#worksheet-paper > .worksheet-paper:not(.ws-guide) [style*="font-size: 0.7"] { font-size: 0.86rem !important; }
+#worksheet-paper > .worksheet-paper:not(.ws-guide) [style*="font-size: 0.8"] { font-size: 0.92rem !important; }
+
+/* 그림책 학습지 인쇄: 표는 줄 단위로 나뉘게 하고(칸 머리마다 걸린 '나누지 않기'를 풂), 단계 제목은 내용과 함께 */
+@media print {
+    .ws-book-paper .ws-table th { break-after: auto; page-break-after: auto; }
+    .ws-book-paper .ws-table tr { break-inside: avoid; page-break-inside: avoid; }
+    .ws-book-paper .ws-section > :not(table) { break-after: avoid; page-break-after: avoid; }
+    .ws-book-paper .ws-section:not(:has(table)) { break-inside: avoid; page-break-inside: avoid; }
+}
+/* 촘촘한 표는 뒤에 오는 일반 표 여백 규칙에 덮이지 않게, 논제 안내 상자는 여백을 줄이고 힌트 글씨는 키운다 */
+#worksheet-paper .ws-table-compact th, #worksheet-paper .ws-table-compact td { padding: 6px 10px; }
+#worksheet-paper .ws-book-info-box { margin-bottom: 16px; }
+#worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-hint { font-size: 0.88rem; line-height: 1.5; }

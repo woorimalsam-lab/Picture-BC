@@ -4301,7 +4301,13 @@ const SUBJECT_GUIDE = [
             { id: "valuebar", why: "인물의 선택이 옳았는지 0~10 눈금 위에 서 보며 해석의 폭을 확인합니다." },
             { id: "reasoning", why: "'왜 그랬을까'의 근거를 작품 속 문장에서 찾게 합니다." }
         ],
-        scene: { unit: "소설 단원 · 「오발탄」", tech: "가치수직선 토론", min: 15, flow: "'철호처럼 양심을 지키며 사는 것이 옳다'를 칠판에 적고 0~10 자리에 서게 한 뒤, 양 끝과 가운데에서 한 명씩 까닭을 듣고 다시 자리를 고르게 합니다." },
+        scenes: [
+            { unit: "소설 단원 · 「오발탄」", tech: "가치수직선 토론", min: 15, flow: "'철호처럼 양심을 지키며 사는 것이 옳다'를 칠판에 적고 0~10 자리에 서게 한 뒤, 양 끝과 가운데에서 한 명씩 까닭을 듣고 다시 자리를 고르게 합니다." },
+            { unit: "공통국어2 · 협상", tech: "쌍 피라미드 토론", min: 20, flow: "'학생회 예산은 동아리 수보다 참여 학생 수에 따라 나누어야 한다'를 두고 찬성·반대 모둠이 각자 대표 안을 만든 뒤, 두 안의 쟁점과 이해관계를 표로 정리해 모두가 받아들일 절충안을 협상합니다." },
+            { unit: "매체 의사소통 · 댓글과 여론", tech: "신호등 토론", min: 10, flow: "같은 기사에 서로 다른 댓글을 붙인 화면 두 개를 모둠마다 하나씩 보여 주고, 기사 내용에 대한 판단을 카드로 들게 합니다. 두 모둠의 결과를 견주며 '기사에 달린 댓글은 독자가 기사 내용을 판단하는 데 영향을 준다'를 따집니다." }
+        ],
+        frames: { title: "국어 토론 말 틀", items: ["작품의 ○○ 장면에서 인물은 …라고 말합니다. 이것으로 보아 …", "제가 이해한 상대의 주장은 …입니다. 맞나요?", "상대 주장의 근거 ○○은 …라는 점에서 충분하지 않습니다.", "이 논제의 쟁점은 ○○입니다. 이에 대해 저는 …"] },
+        tips: ["문학 토론에서는 '작품 속 문장'을 근거로 들게 하면 감상이 근거 있는 해석으로 바뀝니다.", "공통국어의 토론·협상 성취기준은 논제 학습지의 쟁점 분석·사례 분석 활동과 그대로 이어집니다."],
         sources: ["bigkinds", "mcst", "kpf"],
         literature: true
     },
@@ -4325,7 +4331,7 @@ const SUBJECT_GUIDE = [
             title: "수학 토론 말하기 틀",
             items: ["내 풀이는 ~에서 시작했어. 왜냐하면 ~", "네 풀이와 내 풀이는 ~에서 달라.", "이 경우에도 성립할까? 예를 들어 ~이면?", "이 자료만으로 ~라고 말하기엔 ~가 부족해.", "반례를 하나 찾아볼게. ~"]
         },
-        tips: ["학생이 틀린 답을 내놓아도 곧바로 고치지 말고 '왜 그렇게 생각했어?'부터 묻게 하세요. 오개념이 드러나는 순간이 가장 좋은 토론거리입니다.", "논제 목록에는 통계 자료로 판가름할 수 있는 사실 논제만 모아 두었습니다. 자료 해석 수행평가에 그대로 쓸 수 있습니다."],
+        tips: ["학생이 틀린 답을 내놓아도 곧바로 고치지 말고 '왜 그렇게 생각했어?'부터 묻게 하세요. 오개념이 드러나는 순간이 가장 좋은 토론거리입니다.", "'다른 분야에서 함께 쓸 만한 논제'에는 통계 자료로 판가름할 수 있는 사실 논제를 모아 두었습니다. 자료 해석 수행평가에 그대로 쓸 수 있습니다."],
         sources: ["kosis", "edu", "index", "sgis"]
     },
     {
@@ -4408,7 +4414,7 @@ const SUBJECT_GUIDE = [
         scenes: [
             { unit: "정치 · 민주주의와 선거", tech: "프로콘 토론", min: 20, flow: "'선거권 연령을 만 16세로 낮춰야 한다'를 두고 짝끼리 찬성 2분 → 반대 2분 → 편을 바꿔 2분씩. 마지막 5분은 '둘 다 겪어 보니 어느 쪽 근거가 더 무거웠나'를 적습니다." },
             { unit: "한국사1 · 개항과 근대 국가", tech: "핫시팅", min: 15, flow: "흥선 대원군과 개화파 지식인을 맡은 학생을 앞에 앉히고, 나머지 학생이 '왜 문을 닫았나요 / 왜 열자고 했나요'를 묻습니다. 답을 들은 뒤 '통상 수교 거부 정책은 당시로서는 합리적인 선택이었다'에 대한 생각을 한 문장으로 씁니다." },
-            { unit: "윤리와 사상 · 공리주의와 의무론", tech: "가치수직선 토론", min: 15, flow: "'다수를 위해 한 사람이 손해를 보는 것은 정당하다'에 0~10으로 서게 합니다. 공리주의·의무론으로 각 자리의 까닭을 설명해 보게 하고 자리를 다시 고르게 합니다." },
+            { unit: "윤리와 사상 · 공리주의와 의무론", tech: "가치수직선 토론", min: 15, flow: "'다수의 이익을 위해 소수가 희생하는 것은 정당하다'에 0~10으로 서게 합니다. 공리주의·의무론으로 각 자리의 까닭을 설명해 보게 하고 자리를 다시 고르게 합니다." },
             { unit: "역사로 탐구하는 현대 세계 · 전쟁과 기억", tech: "소크라틱 세미나", min: 20, flow: "서로 다른 나라의 전쟁 기념관 안내문 두 편을 나눠 읽고 '무엇을 기억하게 하고 무엇을 빼놓았는가'를 질문으로 나눕니다. 마지막에 '전쟁 기념관은 승리보다 희생을 기억하는 곳이어야 한다'에 대한 자기 생각을 씁니다." }
         ],
         frames: { title: "사회 토론 말 틀", items: ["통계(자료) ○○에 따르면 …", "그때 사람의 눈으로 보면 … / 오늘의 기준으로 보면 …", "○○의 자리에 서 보면 이 문제는 …로 보입니다.", "제 판단의 기준은 ○○(자유·평등·공익)입니다. 왜냐하면 …"] },
@@ -4434,10 +4440,11 @@ const SUBJECT_GUIDE = [
         scenes: [
             { unit: "물리학 · 힘과 운동", tech: "이유찾기 토론", min: 10, flow: "속도별 제동 거리 자료를 보여 주고 '어린이 보호구역은 밤에도 시속 30km 제한을 유지해야 한다'에 대한 찬반 근거를 운동 에너지 식에서 찾게 합니다. 속도가 두 배면 무엇이 몇 배가 되는지가 핵심 근거가 됩니다." },
             { unit: "화학 · 물질의 구조와 성질", tech: "신호등 토론", min: 10, flow: "'무(無)화학', '천연 성분 100%' 같은 광고 문구를 보여 주고 '합성 화학 물질은 천연 물질보다 몸에 해롭다'에 카드를 들게 합니다. 천연 독성 물질의 예와 분자 구조를 본 뒤 한 번 더 듭니다." },
-            { unit: "생명과학 · 생명공학", tech: "PMI 토론", min: 10, flow: "'유전자 가위로 질병을 미리 고쳐야 한다'를 두고 좋은 점·아쉬운 점·흥미로운 점을 붙임쪽지 한 장씩 붙입니다. 흥미로운 점에서 나온 질문 하나로 다음 차시를 엽니다." },
+            { unit: "생명과학 · 생명공학", tech: "PMI 토론", min: 10, flow: "'유전병을 막기 위한 배아 유전자 편집을 허용해야 한다'를 두고 좋은 점·아쉬운 점·흥미로운 점을 붙임쪽지 한 장씩 붙입니다. 흥미로운 점에서 나온 질문 하나로 다음 차시를 엽니다." },
             { unit: "지구과학 · 행성우주과학", tech: "프로콘 토론", min: 20, flow: "외계 행성 탐사 자료를 나눠 읽고 '우리 은하 어딘가에는 지구 밖 생명체가 있다'를 두고 찬반 근거를 자료에서 찾아 맞섭니다. 증거가 '없다'는 것과 '없다는 증거'의 차이를 짚으며 마무리합니다." }
         ],
         groups: [
+            { label: "통합과학", units: ["통합과학1", "통합과학2"] },
             { label: "물리학", units: ["물리학", "역학과 에너지", "전자기와 양자"] },
             { label: "화학", units: ["화학", "물질과 에너지", "화학 반응의 세계"] },
             { label: "생명과학", units: ["생명과학", "세포와 물질대사", "생물의 유전"] },
@@ -4455,7 +4462,11 @@ const SUBJECT_GUIDE = [
             { id: "procon", why: "알고리즘·개인정보 규제를 양쪽에서 따져 봅니다." },
             { id: "pmi", why: "새 서비스를 설계하기 전에 좋은 점·아쉬운 점·흥미로운 점을 먼저 따집니다." }
         ],
-        scene: { unit: "인공지능과 윤리", tech: "디지털/AI 보조 토론", min: 20, flow: "'AI가 만든 콘텐츠에는 반드시 표시를 달아야 한다'에 대한 내 주장을 쓰고, AI에게 반론 세 가지를 받아 그중 하나를 모둠이 함께 반박합니다." },
+        scenes: [
+            { unit: "인공지능과 윤리", tech: "디지털/AI 보조 토론", min: 20, flow: "'생성형 AI의 학습 데이터 출처를 공개하도록 의무화해야 한다'에 대한 내 주장을 쓰고, AI에게 반론 세 가지를 받아 그중 하나를 모둠이 함께 반박합니다." },
+            { unit: "정보 · 개인정보", tech: "PMI 토론", min: 15, flow: "자주 쓰는 앱 하나의 개인정보 수집 항목을 함께 읽고, '편리함을 위해 개인정보를 내주는 것은 합리적인 선택이다'를 두고 좋은 점·아쉬운 점·흥미로운 점을 나눕니다. 흥미로운 점에서 나온 질문으로 내가 직접 끌 수 있는 설정을 찾아봅니다." }
+        ],
+        tips: ["AI의 답을 토론 근거로 쓸 때는 출처를 다시 확인하게 하세요. AI의 답을 검증하는 과정 자체가 정보 교과의 좋은 학습이 됩니다."],
         sources: ["iapc", "kpf", "bigkinds"]
     },
     {
@@ -4486,7 +4497,7 @@ const SUBJECT_GUIDE = [
             { id: "socratic", why: "'노래 가사는 시인가'처럼 정답 없는 질문을 가사를 근거로 오래 이야기합니다." }
         ],
         scenes: [
-            { unit: "음악 감상과 비평", tech: "신호등 토론", min: 10, flow: "원곡과 그 곡을 샘플링한 곡을 차례로 들려주고 '샘플링도 창작이다'에 카드를 들게 합니다. 두 곡에서 무엇이 달라졌는지를 까닭으로 말하게 합니다." },
+            { unit: "음악 감상과 비평", tech: "신호등 토론", min: 10, flow: "원곡과 그 곡을 샘플링한 곡을 차례로 들려주고 '샘플링으로 다른 곡의 일부를 쓰는 것도 창작이다'에 카드를 들게 합니다. 두 곡에서 무엇이 달라졌는지를 까닭으로 말하게 합니다." },
             { unit: "음악과 미디어", tech: "프로콘 토론", min: 20, flow: "'인공지능이 작곡한 곡도 사람이 만든 곡만큼 감동을 줄 수 있다'를 두고 짝끼리 찬성과 반대를 번갈아 맡은 뒤, 마지막에 두 곡을 들려주고 어느 쪽이 인공지능 곡인지 맞혀 봅니다." }
         ],
         tips: ["감상 토론 전에 곡을 한 번 더 들려주세요. 두 번째 들을 때 근거로 쓸 소리를 찾는 학생이 크게 늘어납니다."],
@@ -4574,7 +4585,11 @@ const SUBJECT_GUIDE = [
             { id: "doublepyramid", why: "학급 규칙을 정할 때 찬반 대표 안을 모아 합의안을 만듭니다." },
             { id: "brainwriting", why: "학급 문제의 해결책을 말없이 적어 돌리며 모두의 생각을 모읍니다." }
         ],
-        scene: { unit: "진로 탐색", tech: "가치수직선 토론", min: 10, flow: "'남들이 부러워하는 일보다 내가 의미를 느끼는 일을 골라야 한다'에 0~10으로 서게 하고, 비슷한 자리에 선 친구끼리 까닭을 나눈 뒤 전체에 한 줄씩 말하게 합니다." },
+        scenes: [
+            { unit: "진로 탐색", tech: "가치수직선 토론", min: 10, flow: "'남들이 부러워하는 일보다 내가 의미를 느끼는 일을 골라야 한다'에 0~10으로 서게 하고, 비슷한 자리에 선 친구끼리 까닭을 나눈 뒤 전체에 한 줄씩 말하게 합니다." },
+            { unit: "창의적 체험활동 · 학급 회의", tech: "쌍 피라미드 토론", min: 20, flow: "'학급 규칙은 학생들이 직접 정하고 스스로 지키게 해야 한다'를 두고 학급 회의를 엽니다. 찬성·반대 대표 안을 짝에서 모둠으로 모은 뒤, 두 안을 합쳐 이번 달 학급 규칙 한 가지를 실제로 정합니다." }
+        ],
+        tips: ["진로 토론에는 정답이 없다는 것을 먼저 말해 주세요. 친구의 선택을 평가하기보다 그 선택의 까닭을 묻게 하면 서로의 진로 가치관을 존중하게 됩니다."],
         sources: ["kess", "tong", "kosis"]
     }
 ];
@@ -4727,7 +4742,7 @@ const TECH_CLASS_GUIDE = {
             { k: "경청", hi: "다른 자리의 근거를 요약해 되짚음", mid: "듣기는 하나 반응이 없음", lo: "듣지 않고 자기 말만 함" },
             { k: "생각의 변화", hi: "자리를 옮기거나 지킨 까닭을 성찰적으로 설명함", mid: "변화만 말하고 까닭이 약함", lo: "변화를 돌아보지 않음" }
         ],
-        setuk: ["'다수를 위해 한 사람이 손해를 보는 것은 정당하다'를 두고 한 가치수직선 토론에서 처음 3에 섰다가, 친구가 든 의무론의 근거를 듣고 5로 자리를 옮기며 '결과만으로 옳고 그름을 판단하기 어렵다'고 까닭을 밝힘.", "양 끝에 선 친구들의 주장을 각각 한 문장으로 요약한 뒤 자신은 가운데에 선 까닭을 설명하여, 대립된 입장 사이의 조건을 찾는 모습을 보임."]
+        setuk: ["'다수의 이익을 위해 소수가 희생하는 것은 정당하다'를 두고 한 가치수직선 토론에서 처음 3에 섰다가, 친구가 든 의무론의 근거를 듣고 5로 자리를 옮기며 '결과만으로 옳고 그름을 판단하기 어렵다'고 까닭을 밝힘.", "양 끝에 선 친구들의 주장을 각각 한 문장으로 요약한 뒤 자신은 가운데에 선 까닭을 설명하여, 대립된 입장 사이의 조건을 찾는 모습을 보임."]
     },
     brainwriting: {
         quick: { min: 15, slots: ["전개"], how: "3~4명이 종이를 한 바퀴만 돌리고, 한 칸에 한 줄씩만 씁니다. 마지막에 모둠이 가장 좋은 생각 하나를 고릅니다." },
@@ -5724,7 +5739,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "5.9.8";
+    return "6.0.0";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100];
@@ -7819,7 +7834,7 @@ const debateTopicsDB = [
       books: ["밴드 브레멘"] },
     { subject: "social", unit: "통합사회2 · 인권과 시민 참여", type: "policy", field: "정치", level: "고등", claim: "선거권 연령을 만 16세로 낮춰야 한다.",
       now: "선거권은 2019년 법 개정으로 만 18세부터 있고, 정당 가입은 2022년부터 만 16세부터 할 수 있다.",
-      background: "우리나라 선거권은 만 18세입니다. 오스트리아 등 일부 국가는 16세부터 투표할 수 있습니다.",
+      background: "선거권 연령은 2019년 법 개정으로 만 19세에서 만 18세로 낮아졌고, 오스트리아처럼 16세부터 투표할 수 있는 나라도 있습니다. 정책의 영향을 받는 청소년이 더 일찍 투표해야 하는지, 판단에 필요한 경험과 교실의 정치화를 걱정해야 하는지 따집니다.",
       pro: ["교육·환경 정책은 청소년에게 직접 영향을 준다.", "일찍 참여할수록 시민의식이 자란다."],
       con: ["충분한 판단 능력과 경험이 필요하다.", "학교가 정치적 갈등의 장이 될 수 있다."],
       std: ["12정치02-02", "10통사2-01-02", "12정치02-04"],
@@ -7920,8 +7935,8 @@ const debateTopicsDB = [
       pro: ["사람을 위해 만든 것이 사람을 힘들게 하면 바꿔야 한다.", "변해야 살아남는다."],
       con: ["쉽게 바꾸면 정체성의 뿌리를 잃는다.", "불편함 속에 담긴 의미가 있다."],
       books: ["장수탕 선녀님", "오누이 이야기"] },
-    { type: "value", field: "정의", level: "고등", claim: "다수의 이익을 위해 소수가 희생하는 것은 정당하다.",
-      background: "공익 사업과 개인의 권리가 부딪칠 때 반복되는 물음입니다.",
+    { subject: "social", unit: "윤리와 사상 · 공리주의와 의무론", type: "value", field: "정의", level: "고등", claim: "다수의 이익을 위해 소수가 희생하는 것은 정당하다.",
+      background: "결과로 옳고 그름을 판단하는 공리주의는 더 많은 사람의 행복을 앞세우고, 의무론은 누구도 수단으로만 대해서는 안 된다고 말합니다. 공익 사업이나 방역처럼 다수와 소수의 이익이 부딪치는 사례로 따집니다.",
       pro: ["더 많은 사람의 이익이 사회 전체를 이롭게 한다.", "모두를 만족시키는 선택은 없다."],
       con: ["소수의 권리는 다수결로 정할 수 없다.", "희생을 요구받는 쪽은 늘 약자다."],
       std: ["10통사2-02-02", "12윤사03-04"],
@@ -8667,9 +8682,9 @@ const debateTopicsDB = [
       con: ["화면으로 읽으면 이해가 얕아진다는 연구가 있다.", "기기 생산과 폐기도 환경에 부담을 준다."],
       books: ["플라스틱 섬", "낱말공장 나라", "나의 를리외르 아저씨"] },
 
-    { type: "policy", field: "건강", level: "중학·고등", claim: "모든 학교 급식에 채식 선택권을 두어야 한다.",
+    { subject: "techhome", unit: "기술·가정 · 식생활 문화", type: "policy", field: "건강", level: "중학·고등", claim: "모든 학교 급식에 채식 선택권을 두어야 한다.",
       now: "일부 교육청이 채식 선택 급식을 시범 운영할 뿐, 대부분의 학교에는 채식 선택권이 없다.",
-      background: "신념이나 종교, 건강을 이유로 채식을 택하는 학생이 늘고 있습니다.",
+      background: "신념이나 종교, 건강, 환경을 이유로 채식을 택하는 학생이 늘고 있습니다. 모든 학생이 먹을 수 있는 급식을 위해 채식 선택권을 제도로 보장해야 하는지, 영양과 비용 문제와 함께 따집니다.",
       pro: ["먹을 수 있는 것이 없어 굶는 학생이 생기지 않는다.", "선택은 개인의 신념에 속한다."],
       con: ["조리 인력과 비용이 더 든다.", "성장기에 필요한 영양을 갖추기 어려울 수 있다."],
       std: ["12기가01-03"],
@@ -8794,12 +8809,12 @@ const debateTopicsDB = [
       books: ["플라스틱 섬", "30번 곰"] },
 
     // ═════════ 2026년 쟁점 · 정책 논제 ═════════
-    { type: "policy", field: "미디어", level: "중학·고등", claim: "16세 미만은 SNS 계정을 만들지 못하게 해야 한다.",
+    { subject: "info", unit: "정보 · 디지털 문화", type: "policy", field: "미디어", level: "중학·고등", claim: "16세 미만은 SNS 계정을 만들지 못하게 해야 한다.",
       now: "만 14세 미만은 보호자 동의가 있어야 가입할 수 있지만, 16세 미만의 가입을 막는 법은 없다.",
       background: "호주가 2025년 12월 세계 처음으로 시행했고 프랑스·그리스·영국·UAE 등이 뒤따르고 있습니다. 우리나라 도입 여부에도 관심이 쏠립니다.",
       pro: ["어린 나이일수록 비교와 중독에 취약하다.", "플랫폼이 스스로 지키지 않으니 법으로 정해야 한다."],
       con: ["우회하는 방법이 많아 실제로 막기 어렵다.", "정보와 관계에서 배제되는 아이가 생긴다."],
-      std: ["12매의01-02", "12매의01-05"],
+      std: ["12매의01-02", "12매의01-05", "12정05-02", "12사탐02-02"],
       books: ["미어캣의 스카프", "줄무늬가 생겼어요"] },
 
     { type: "policy", field: "미디어", level: "고등", claim: "허위정보 징벌적 손해배상을 언론사와 유튜버뿐 아니라 개인 이용자에게도 적용해야 한다.",
@@ -8855,11 +8870,12 @@ const debateTopicsDB = [
       std: ["12도탐02-01"],
       books: ["우리, 집", "할머니의 여름휴가"] },
 
-    { type: "policy", field: "기술", level: "중학·고등", claim: "내 얼굴과 목소리를 AI가 쓰지 못하게 할 권리를 법으로 보장해야 한다.",
+    { subject: ["music","perform"], unit: "음악과 미디어 · 인공지능과 창작", type: "policy", field: "기술", level: "중학·고등", claim: "내 얼굴과 목소리를 AI가 쓰지 못하게 할 권리를 법으로 보장해야 한다.",
       now: "널리 알려진 사람의 이름·얼굴·목소리를 무단으로 쓰는 것은 부정경쟁방지법으로 막지만, 일반인에게는 이런 권리가 따로 없다.",
-      background: "생성형 AI로 특정인의 얼굴과 목소리를 흉내 내기 쉬워지면서 보호 장치가 논의되고 있습니다.",
+      background: "생성형 AI로 특정인의 얼굴과 목소리를 흉내 내기 쉬워지면서, 가수의 목소리로 다른 노래를 부르게 한 'AI 커버'나 배우의 얼굴을 합성한 영상이 널리 퍼지고 있습니다. 누구나 자기 얼굴과 목소리를 지킬 권리를 법으로 보장해야 하는지 따집니다.",
       pro: ["얼굴과 목소리는 그 사람 자체에 가깝다.", "동의 없이 쓰이면 되돌릴 방법이 없다."],
       con: ["패러디와 풍자까지 막힐 수 있다.", "이미 퍼진 자료를 어떻게 걷어낼지 어렵다."],
+      std: ["12음미02-04", "12영이01-05"],
       books: ["고양이는 나만 따라 해", "완벽한 아이 팔아요"] },
 
     { type: "policy", field: "복지", level: "중학·고등", claim: "지방에 사는 사람에게 교통비를 더 지원해야 한다.",
@@ -8974,12 +8990,12 @@ const debateTopicsDB = [
       con: ["직접 보지 않으면 놓치는 증상이 있다.", "처방 약이 잘못 쓰일 위험이 커진다."],
       books: ["치과의사 드소토 선생님", "미어캣의 스카프"] },
 
-    { type: "policy", field: "노동", level: "고등", claim: "로봇으로 사람을 대신하는 기업에 세금을 매겨야 한다.",
+    { subject: ["career","liberal"], unit: "진로와 직업 · 일의 미래", type: "policy", field: "노동", level: "고등", claim: "로봇으로 사람을 대신하는 기업에 세금을 매겨야 한다.",
       now: "로봇에 따로 매기는 세금은 없고, 오히려 자동화 설비 투자에 세금 혜택을 준다.",
       background: "휴머노이드 로봇이 2026년 산업 현장 검증에 들어갔습니다. 로봇세가 일자리를 지키는 방법인지, 기술 발전을 막는 일인지 의견이 갈립니다.",
       pro: ["일자리를 잃은 사람을 도울 재원이 필요하다.", "사람이 내던 세금이 줄어드는 만큼 메워야 한다."],
       con: ["기술 도입이 늦어져 다른 나라에 뒤처진다.", "무엇을 로봇으로 볼지 가르기 어렵다."],
-      std: ["12진로02-01", "12과사02-06", "12로봇01-04"],
+      std: ["12진로02-01", "12과사02-06", "12로봇01-04", "12인경04-01", "12인기03-01"],
       books: ["원숭이 꽃신", "행복한 청소부"] },
 
     { type: "policy", field: "환경", level: "고등", claim: "도심에 남은 큰 녹지에는 집을 짓지 말아야 한다.",
@@ -9422,10 +9438,11 @@ const debateTopicsDB = [
       pro: ["미리 알리면 누구나 좋은 모습만 보이려 한다.", "중요한 자리를 맡길 사람이라면 진짜 모습을 확인해야 한다."],
       con: ["사람을 속여서 사람의 정직을 시험하는 것은 모순이다.", "몰래 시험당했다는 것을 알면 믿음이 무너진다."],
       books: ["빈 화분", "지각대장 존"] },
-    { type: "value", field: "진로", level: "중학·고등", claim: "남들이 부러워하는 일보다 내가 의미를 느끼는 일을 골라야 한다.",
+    { subject: "career", unit: "진로와 직업 · 진로 의사결정", type: "value", field: "진로", level: "중학·고등", claim: "남들이 부러워하는 일보다 내가 의미를 느끼는 일을 골라야 한다.",
       background: "직업을 고를 때 사회적 평판과 안정을 따를지, 스스로 의미를 느끼는 일을 따를지 따집니다.",
       pro: ["의미를 느껴야 어려울 때도 오래 버틸 수 있다.", "남의 시선에 맞춘 선택은 나중에 후회로 남는다."],
       con: ["의미만으로는 생활을 꾸리기 어렵다.", "평판이 좋은 일에는 그만한 까닭이 있다."],
+      std: ["12진로03-01", "12진로01-01"],
       books: ["행복한 청소부", "꽃들에게 희망을"] },
     { type: "policy", field: "진로", level: "중학·고등", claim: "진로를 정하지 못한 졸업생에게 탐색 기간을 지원해야 한다.",
       now: "진로를 정하지 못한 졸업생을 위한 지원은 일부 지자체의 청년 사업에 그친다.",
@@ -9652,7 +9669,7 @@ const debateTopicsDB = [
       std: ["12일어05-03", "12중어05-03"],
       books: [] },
     { subject: "japanese", unit: "일본 문화 · 일본의 사회", type: "value", field: "복지", level: "고등", claim: "일본의 초고령 사회 대응은 한국이 배울 만하다.",
-      background: "일본은 한국보다 먼저 초고령 사회에 들어섰습니다. 돌봄·고용·지역 정책에서 일본의 경험을 참고할 만한지 따집니다.",
+      background: "일본은 2000년대 중반에 초고령 사회에 들어섰고, 한국도 2024년 12월 65세 이상 인구가 전체의 20%를 넘어 초고령 사회가 되었습니다. 돌봄·고용·지역 정책에서 먼저 겪은 일본의 경험을 참고할 만한지 따집니다.",
       pro: ["먼저 겪은 나라의 성공과 실패는 시행착오를 줄여 준다.","고령자 고용과 지역 돌봄에서 오래 쌓아 온 제도가 있다."],
       con: ["인구 구조와 복지 제도가 달라 그대로 옮기기 어렵다.","일본도 저출생과 고령화 문제를 풀지 못해 모범으로 보기 어렵다."],
       stats: [{src: "kosis",label: "장래인구추계 – 고령인구 비율"}],
@@ -9763,7 +9780,7 @@ const debateTopicsDB = [
       std: ["12윤사03-04"],
       books: ["나는 사실대로 말했을 뿐이야!", "빈 화분"] },
     { subject: "social", unit: "현대사회와 윤리 · 생명 윤리", type: "value", field: "생명", level: "고등", claim: "인간의 수명을 크게 늘리는 기술은 바람직하다.",
-      background: "노화를 늦추고 수명을 크게 늘리는 기술이 인류에게 바람직한지 따집니다.",
+      background: "노화의 원리를 밝히고 늦추려는 연구가 빠르게 늘면서, 수명을 크게 늘리는 기술이 실제 논의 대상이 되었습니다. 더 오래 사는 것이 인류에게 좋은 일인지, 불평등과 인구·자원 문제와 함께 따집니다.",
       pro: ["더 오래 건강하게 사는 것은 인류의 오랜 바람이다.","질병과 노화로 인한 고통을 줄인다."],
       con: ["기술을 누릴 수 있는 사람과 없는 사람의 격차가 커진다.","인구와 자원 문제가 더 심각해진다."],
       std: ["12현윤02-01"],
@@ -9938,7 +9955,7 @@ const debateTopicsDB = [
       std: ["12음02-05", "12음문01-01", "12음공01-01"],
       books: ["밴드 브레멘", "토끼와 거북이, 두 번째 경주"] },
     { subject: "music", unit: "음악 · 음악과 삶", type: "fact", field: "건강", level: "고등", claim: "음악 활동은 스트레스를 줄이는 데 효과가 있다.",
-      background: "노래하거나 악기를 연주하는 활동이 실제로 스트레스를 줄이는지 따집니다.",
+      background: "노래하거나 악기를 연주하는 활동이 실제로 스트레스를 줄이는지 따지는 사실 논제입니다. 병원과 상담 현장에서 쓰이는 음악 치료의 근거와, 사람과 상황마다 다른 효과를 함께 살펴봅니다.",
       pro: ["노래와 연주는 긴장을 풀고 감정을 표현하게 한다.","음악 치료가 병원과 상담 현장에서 쓰이고 있다."],
       con: ["사람마다 효과가 달라 모두에게 도움이 된다고 보기 어렵다.","평가나 경연이 걸린 음악 활동은 오히려 스트레스를 준다."],
       stats: [{src: "kdca",label: "청소년건강행태조사 – 스트레스 인지율"}],
@@ -9966,7 +9983,7 @@ const debateTopicsDB = [
       books: [] },
     { subject: "pe", unit: "체육 · 운동과 건강", type: "policy", field: "건강", level: "고등", claim: "고등학교 체육 수업 시간을 지금보다 늘려야 한다.",
       now: "고등학교는 체육을 학기마다 편성하지만, 입시를 앞둔 학년일수록 수업 시간이 적은 경우가 많다.",
-      background: "입시 부담이 큰 고등학생에게 체육 수업을 더 늘려야 하는지 따집니다.",
+      background: "우리나라 청소년은 세계적으로 신체 활동이 부족한 편이라는 조사 결과가 있습니다. 입시 부담이 큰 고등학생에게 체육 수업을 더 늘려야 하는지, 다른 방법이 나은지 따집니다.",
       pro: ["공부 부담이 큰 시기일수록 규칙적인 신체 활동이 필요하다.","운동 습관은 청소년기에 만들어져 평생 건강으로 이어진다."],
       con: ["다른 과목 시간이 줄어 학업 부담이 커진다.","시간을 늘리기보다 수업의 질과 활동 내용을 바꾸는 것이 먼저이다."],
       stats: [{src: "kdca",label: "청소년건강행태조사 – 신체활동 실천율"}],
@@ -9974,7 +9991,7 @@ const debateTopicsDB = [
       books: ["축구 선수 윌리"] },
     { subject: "pe", unit: "스포츠 문화 · 스포츠 윤리", type: "policy", field: "정의", level: "고등", claim: "금지 약물을 쓴 선수는 영구히 출전을 막아야 한다.",
       now: "금지 약물을 처음 쓰다 적발되면 보통 최대 4년 동안 출전을 막는다.",
-      background: "도핑 적발 선수에게 어느 정도의 징계가 알맞은지 따집니다.",
+      background: "경기력을 높이는 금지 약물 사용(도핑)은 공정한 경쟁을 무너뜨립니다. 적발된 선수에게 몇 년 동안 출전을 막는 지금의 징계가 충분한지, 한 번만 걸려도 영구히 막아야 하는지 따집니다.",
       pro: ["강한 처벌이 있어야 약물 사용을 막을 수 있다.","깨끗하게 경쟁한 선수들의 노력을 지켜야 한다."],
       con: ["실수나 오염으로 인한 경우까지 영구 징계하는 것은 지나치다.","처벌을 받은 뒤 다시 기회를 주는 것도 스포츠 정신이다."],
       std: ["12스문01-02", "12스생2-01-01", "12스의01-01"],
@@ -9994,7 +10011,7 @@ const debateTopicsDB = [
       books: ["축구 선수 윌리", "치킨 마스크"] },
     { subject: "pe", unit: "운동과 건강 · 안전", type: "policy", field: "안전", level: "고등", claim: "폭염 경보 날의 야외 체육 금지를 학교 재량이 아닌 의무로 해야 한다.",
       now: "폭염 특보 때 야외 활동을 줄이도록 권고하지만, 체육 수업을 밖에서 할지는 학교가 정한다.",
-      background: "여름이 더워지면서 학교 야외 체육 활동의 기준을 어디에 둘지 따집니다.",
+      background: "여름 폭염이 잦아지면서 학생의 온열질환에 대한 걱정이 커졌습니다. 폭염 특보가 내린 날 야외 체육을 학교가 판단하게 둘지, 반드시 금지하도록 정할지 따집니다.",
       pro: ["온열질환은 청소년에게도 생명을 위협할 수 있다.","기준이 분명해야 학교마다 판단이 흔들리지 않는다."],
       con: ["실내 공간이 부족한 학교는 체육 수업을 하기 어려워진다.","시간대와 강도를 조절하면 안전하게 활동할 수 있다."],
       stats: [{src: "kdca",label: "온열질환 감시 현황"}],
@@ -10027,13 +10044,13 @@ const debateTopicsDB = [
       books: ["행복한 청소부", "나의 를리외르 아저씨"] },
     { subject: "career", unit: "창의적 체험활동 · 자치 활동", type: "policy", field: "공동체", level: "고등", claim: "학급 규칙은 학생들이 직접 정하고 스스로 지키게 해야 한다.",
       now: "학급 규칙을 정하는 방식은 학교와 담임교사마다 다르다.",
-      background: "학급 규칙을 교사가 정할지, 학생 자치로 정할지 따집니다.",
+      background: "학급 규칙을 교사가 정해 알려 주는 방식과 학생들이 학급 회의로 정하는 방식이 함께 쓰입니다. 학생 자치로 정한 규칙이 더 잘 지켜지는지, 안전과 공정을 지킬 수 있는지 따집니다.",
       pro: ["스스로 정한 규칙은 더 잘 지킨다.","민주적인 의사 결정을 직접 경험할 수 있다."],
       con: ["다수결로 정하면 소수 학생이 불리해질 수 있다.","안전과 관련된 규칙은 학교가 책임지고 정해야 한다."],
       std: ["12인윤04-01"],
       books: ["탁탁, 톡톡, 음매~ 젖소가 편지를 쓴대요", "고슴도치 엑스", "빨간 벽"] },
     { subject: "career", unit: "창의적 체험활동 · 봉사활동", type: "value", field: "공동체", level: "고등", claim: "봉사활동은 대가가 없어야 진정한 봉사이다.",
-      background: "봉사 시간 인정이나 보상이 봉사의 의미를 해치는지 따집니다.",
+      background: "봉사 시간 인정이나 장학금·포상처럼 봉사에 대가가 따르는 경우가 많습니다. 대가가 봉사의 의미를 해치는지, 더 많은 사람을 봉사로 이끄는 계기가 되는지 따집니다.",
       pro: ["대가를 바라면 남을 돕는 마음보다 이익이 앞선다.","대가 없이 할 때 봉사의 의미를 깊이 느낀다."],
       con: ["기록이나 보상이 계기가 되어 봉사를 시작하는 사람도 많다.","동기와 상관없이 도움을 받는 사람에게는 똑같이 소중하다."],
       std: ["12현윤04-02"],
@@ -10336,7 +10353,7 @@ const debateTopicsDB = [
       std: ["12연극03-03", "12연기01-02", "12연몸01-01", "12연말02-05"],
       books: ["나는 강물처럼 말해요", "치킨 마스크"] },
     { subject: "perform", unit: "영화 · 영화의 이해", type: "fact", field: "문화", level: "고등", claim: "개봉 영화를 OTT에 빨리 공개하면 영화관이 무너진다.",
-      background: "개봉한 지 얼마 되지 않은 영화가 OTT에 올라오는 일이 늘면서 영화관 관객이 줄었다는 말이 나옵니다. 둘의 관계를 자료로 따집니다.",
+      background: "개봉한 지 얼마 되지 않은 영화가 OTT에 올라오는 일이 늘면서 영화관 관객이 줄었다는 말이 나옵니다. 정부와 업계는 개봉 뒤 일정 기간 OTT 공개를 미루는 '홀드백'을 논의하고 있습니다. 둘의 관계를 자료로 따집니다.",
       pro: ["곧 집에서 볼 수 있다고 생각하면 굳이 영화관에 가지 않는다.", "관객이 줄면 영화관이 문을 닫고 영화 제작 투자도 줄어든다."],
       con: ["영화관 관객이 줄어든 까닭은 비싼 관람료와 달라진 여가 문화에 더 있다.", "OTT로 영화를 접한 사람이 오히려 영화관을 찾기도 한다."],
       stats: [{src: "kobis",label: "연도별 영화관 관객 수"}],
@@ -10349,7 +10366,7 @@ const debateTopicsDB = [
       std: ["12안무02-04", "12무매01-03"],
       books: ["고양이는 나만 따라 해", "미술관에 간 윌리"] },
     { subject: "perform", unit: "무용 · 무용의 이해", type: "value", field: "문화", level: "고등", claim: "스트리트 댄스 같은 대중 무용도 순수 무용과 같은 예술로 대우해야 한다.",
-      background: "스트리트 댄스의 한 갈래인 브레이킹은 2024년 파리 올림픽에서 정식 종목으로 치러졌습니다. 대중 무용과 순수 무용을 나누는 기준을 따집니다.",
+      background: "스트리트 댄스의 한 갈래인 브레이킹은 2024년 파리 올림픽에서 처음 정식 종목으로 치러졌지만, 2028년 LA 올림픽에서는 빠졌습니다. 대중 무용과 순수 무용을 나누는 기준을 따집니다.",
       pro: ["몸으로 감정과 생각을 표현한다는 점에서 대중 무용과 순수 무용은 다르지 않다.", "많은 사람이 즐기고 공감하는 춤일수록 시대의 예술을 보여 준다."],
       con: ["오랜 훈련과 이론 체계를 갖춘 순수 무용과는 추구하는 목적이 다르다.", "상업성이 강한 춤은 예술보다 오락에 가깝다."],
       std: ["12무이01-02", "12무전02-03", "12무기02-03", "12무몸02-03", "12무감01-03"],
@@ -10567,6 +10584,38 @@ const debateTopicsDB = [
       con: ["가정의 양육 방식에 국가가 지나치게 끼어드는 것이다.","의무 교육이 형식적인 출석으로 끝나 실제 효과가 적을 수 있다."],
       std: ["12아동01-04", "12기가03-02"],
       books: ["고함쟁이 엄마", "완벽한 아이 팔아요"] },
+    { subject: ["info","art"], unit: "인공지능 기초 · 인공지능과 저작권", type: "value", field: "기술", level: "고등", claim: "생성형 AI로 만든 결과물의 저작권은 AI를 쓴 사람에게 주어야 한다.",
+      background: "우리나라의 생성형 AI 저작권 안내서와 미국 저작권청은 사람의 창작적 기여 없이 AI가 만든 결과물은 저작물로 보기 어렵다는 입장입니다. 명령어를 쓰고 결과를 고른 사람을 저작자로 볼 수 있는지 따집니다.",
+      pro: ["어떤 명령어를 쓰고 무엇을 고를지에 사람의 창의성이 들어간다.","권리를 인정해야 AI를 쓰는 창작 산업이 자랄 수 있다."],
+      con: ["명령어 몇 줄로 만든 결과물을 사람의 창작물로 보기 어렵다.","AI가 배운 수많은 원작자의 몫은 빠진 채 권리가 한 사람에게 몰린다."],
+      std: ["12인기03-04", "12지재01-03", "12미탐02-04"],
+      books: ["미술관에 간 윌리", "샌지와 빵집 주인"] },
+    { subject: "perform", unit: "영화 · 영화 산업", type: "policy", field: "문화", level: "고등", claim: "극장에서 개봉한 영화는 일정 기간이 지나야 OTT에 공개하도록 법으로 정해야 한다.",
+      now: "극장 개봉 뒤 OTT 공개까지의 기간(홀드백)을 정한 규칙이 없어 영화마다 다르다. 정부와 영화 업계가 150일 안팎을 기본으로 하는 자율 협약을 논의했지만 2026년 10월 초까지 체결되지 않았고, 6개월을 법으로 정하자는 법안도 국회에 나와 있다.",
+      background: "개봉한 지 몇 주 만에 OTT로 공개되는 영화가 늘면서 극장 관객이 줄었다는 걱정이 커졌습니다. 극장을 지키기 위해 공개 시점을 법으로 묶어야 하는지, 관객의 선택권을 제한하는 규제인지 따집니다.",
+      pro: ["극장 상영 기간이 보장되어야 영화관과 영화 제작 투자가 유지된다.","곧 집에서 볼 수 있다는 생각이 줄어 극장을 찾는 관객이 늘 수 있다."],
+      con: ["언제 어디서 볼지는 관객이 고를 문제이다.","관객이 줄어든 까닭은 관람료와 작품에 더 있다는 조사가 있다."],
+      std: ["12영이01-03", "12영이01-05"],
+      books: [] },
+    { subject: "perform", unit: "영화 · 영화와 기술", type: "value", field: "문화", level: "고등", claim: "세상을 떠난 배우를 AI로 되살려 새 영화에 출연시키는 것은 정당하지 않다.",
+      background: "AI로 얼굴과 목소리를 되살리는 기술이 발전하면서 세상을 떠난 배우를 새 작품에 출연시키는 일이 가능해졌습니다. 2023년 할리우드 배우 노조 파업에서도 AI가 배우를 대신하는 문제가 큰 쟁점이었습니다. 고인의 뜻과 유족의 동의, 관객의 감동 사이에서 따집니다.",
+      pro: ["본인이 동의하지 않은 연기를 만들어 내는 것은 고인의 인격을 해친다.","살아 있는 배우의 일자리와 연기의 가치를 위협한다."],
+      con: ["유족이 동의하고 고인을 기리는 뜻이라면 관객에게 큰 선물이 된다.","이미 특수 효과와 대역으로 비슷한 일을 해 왔다."],
+      std: ["12영이01-05", "12인기03-04"],
+      books: ["엄마가 유령이 되었어!"] },
+    { subject: "japanese", unit: "일본 문화 · 일본의 사회", type: "value", field: "문화", level: "고등", claim: "외국인 관광객에게 더 비싼 요금을 받는 이중 가격제는 정당하다.",
+      background: "관광객이 크게 늘어난 일본에서는 히메지성이 2026년 3월부터 시민은 1,000엔, 시민이 아닌 관람객은 2,500엔을 받는 등 요금을 달리 받는 곳이 늘고, 박물관·미술관에 외국인 요금을 따로 두는 방안도 검토되고 있습니다. 늘어난 관광 부담을 누가 질지와 차별의 경계를 따집니다.",
+      pro: ["세금으로 시설을 유지해 온 주민과 한 번 찾는 관광객의 부담을 나누는 것이 공정하다.","관광객이 늘어 드는 관리 비용은 관광객이 지는 것이 맞다."],
+      con: ["국적이나 사는 곳으로 값을 달리 매기는 것은 차별이다.","관광객이 줄어 지역 상권과 문화 교류가 위축될 수 있다."],
+      std: ["12일문01-03", "12여지03-04"],
+      books: ["부리 동물 출입 금지!"] },
+    { subject: "techhome", unit: "창의 공학 설계 · 지속가능한 공학", type: "policy", field: "환경", level: "고등", claim: "제조사가 수리용 부품과 설명서를 내놓도록 '수리할 권리'를 법으로 보장해야 한다.",
+      now: "제품마다 부품을 갖춰 둘 기간은 정해져 있지만, 소비자나 수리점이 직접 고치도록 부품과 설명서를 내놓을 의무는 없다. 유럽연합은 2024년 '수리할 권리' 지침을 만들었다.",
+      background: "고장 난 제품을 고치기보다 새로 사는 일이 늘면서 전자 폐기물이 크게 늘고 있습니다. 설계 단계부터 고쳐 쓸 수 있게 만들고, 소비자가 직접 고칠 수 있도록 제도로 보장해야 하는지 따집니다.",
+      pro: ["고쳐 쓰는 기간이 늘어 폐기물과 자원 낭비가 줄어든다.","수리를 제조사만 독점하지 않아 소비자 부담이 줄어든다."],
+      con: ["설계와 부품을 공개하면 기업의 비용과 기술 유출 부담이 커진다.","전문가가 아닌 사람이 고치다 안전사고가 날 수 있다."],
+      std: ["12창공01-02", "12생활01-04"],
+      books: ["나의 를리외르 아저씨", "원숭이 꽃신"] },
 ];
 
 // ───────── 논제별 근거 통계 연결 ─────────
@@ -14385,7 +14434,7 @@ function setupWorksheetGenerator() {
         const lens = wsTechLens(book, type);
         const tags = (book.tags || []).map(x => `<span class="ws-an-tag">${x.replace(/^#/, "")}</span>`).join("");
         // 파노라마는 선생님 양식대로 위아래로, 나머지 기법은 좌우로 나란히 두어 첫 쪽을 아낀다
-        const pairCls = type === "panorama" ? "ws-an-pair ws-an-stack" : "ws-an-pair";
+        const pairCls = "ws-an-pair";   // 글씨를 키운 뒤로는 파노라마도 나란히 두어 첫 쪽에 들어가게 한다
         return `
             <div class="ws-analysis">
                 <div class="ws-an-head">
@@ -14417,7 +14466,7 @@ function setupWorksheetGenerator() {
                 <div class="worksheet-print-header no-print" style="text-align: right; margin-bottom: 20px;">
                     <button onclick="window.print()" class="btn btn-secondary"><i class="fa-solid fa-print"></i> 활동지 인쇄하기</button>
                 </div>
-                <div class="worksheet-paper">
+                <div class="worksheet-paper ws-book-paper">
                     <div style="text-align: center; margin-bottom: 24px;">
                         <p style="font-size: 0.82rem; color: #8a5a44; letter-spacing: 0.06em; margin: 0 0 6px;">${(l => l + (/(활동지|학습지)$/.test(l) ? "" : " 학습지"))(((typeSelect.options[typeSelect.selectedIndex] || {}).text || "토론").replace(/\s*\([A-Za-z0-9 \-]+\)/g, ""))}</p>
                         <h3 style="font-size: 1.6rem; color: #111; margin: 0 0 10px;">《${book.title}》</h3>
@@ -15133,6 +15182,9 @@ function setupWorksheetGenerator() {
         `;
     }
 
+            // 파노라마는 자기 양식(2쪽)을 쓰고, 나머지 유형은 기법에 맞춘 '더 깊이' 활동을 이어 붙인다 (필요하면 2쪽으로 넘어감)
+            if (type !== "panorama") worksheetHTML += bookWsMoreHTML(book, type);
+
             const typeToTechId = {
                 "basic": null,
                 "brainwriting": "brainwriting",
@@ -15204,6 +15256,7 @@ function setupWorksheetGenerator() {
 
             output.innerHTML = worksheetHTML;
             output.classList.remove("hidden");
+            fitBookWorksheet(output);
             setupWorksheetAutosave(book.title, type);
         });
     }
@@ -20205,12 +20258,154 @@ function panoramaTopicData(t) {
 }
 
 // ── 파노라마 학습지 공용 틀 (선생님 양식) ─────────────────────────
+// ── 그림책 학습지 더 깊이 (파노라마 밖의 17개 유형) ──────────────────
+// 1쪽 분량에 맞추느라 빠졌던 활동을 기법에 맞게 골라 붙인다. 쪽을 억지로 나누지 않고,
+// 부분마다 쪽 사이에서 잘리지 않게(ws-keep) 이어 붙여 필요한 만큼만 2쪽으로 넘어간다.
+//  기본: 이야기 다시 짚기 → 논제를 두 쪽에서 따져 보기(1쪽이 이미 찬반을 다루면 '책 밖으로 넓히기') → 토론을 마치며
+//  이유찾기 토론은 1쪽에서 이미 장면 근거를 찾으므로 '이야기 다시 짚기' 대신 '경청 기록'을 넣는다.
+//  듣고 나누는 활동은 '토론을 마치며'의 '마음을 움직인 말' 칸이 이어받는다.
+const BOOK_WS_ARGUE = ["procon", "argument", "traffic", "valueline", "doublepyramid", "angeldevil"];   // 1쪽이 이미 찬반을 다룸
+const BOOK_WS_NO_RECALL = ["reason"];                                                              // 1쪽이 이미 장면 근거를 찾음
+const BOOK_WS_MORE_H = { scene: 40, side: 42, extend: 56, listen: 38, ask: 50, close: 48 };      // 칸 높이(px)
+function bookWsMoreHTML(book, type) {
+    const p = panoramaBookData(book.title) || {};
+    const story = (p.story && p.story.length) ? p.story : (book.summary || "").split(/(?<=다\.)\s+/).slice(0, 3);
+    const H = BOOK_WS_MORE_H;
+    const sub = (t) => `<br><span class="pano-th-sub">${t}</span>`;
+    const keys = (t) => `<span class="pano-keys">${t}</span>`;
+    const ta = (h) => `<textarea style="height: ${h}px;"></textarea>`;
+    const exLine = (t) => t ? `<span class="pano-ex">예: ${t}</span>` : "";
+    const props = book.debatePropositions || [];
+    const nm = `more-${type}`;
+    const parts = [];
+
+    if (!BOOK_WS_NO_RECALL.includes(type)) parts.push(`
+        <div class="ws-section ws-keep ws-more" data-more="recall">
+            <h4>이야기 다시 짚기 · 세 장면과 인물의 마음 ${keys("내용 확인 · 인물 이해 · 근거 찾기")}</h4>
+            <p class="ws-prompt">토론의 근거가 될 장면을 다시 짚어 봅니다. 장면마다 인물이 무엇을 느꼈고 왜 그렇게 했는지 적어 보세요.</p>
+            <table class="ws-table pano-table">
+                <tr><th style="width: 50%;">장면</th><th>인물의 마음과 그렇게 한 까닭</th></tr>
+                ${story.map((x, i) => `<tr><td class="ws-more-scene"><b>${i + 1}</b>${x}</td><td>${ta(H.scene)}</td></tr>`).join("")}
+            </table>
+        </div>`);
+
+    if (BOOK_WS_ARGUE.includes(type)) {
+        const linked = debateTopicsDB.filter(t => (t.books || []).includes(book.title) && !props.includes(t.claim))
+            .sort((a, b) => (b.subject ? 1 : 0) - (a.subject ? 1 : 0));
+        const picks = linked.slice(0, 2).map(t => t.claim);
+        if (!picks.length && props[1]) picks.push(props[1]);
+        parts.push(`
+        <div class="ws-section ws-keep ws-more" data-more="extend">
+            <h4>책 밖으로 넓히기 · 교과와 사회의 논제로 ${keys("확장 · 적용 · 근거 잇기")}</h4>
+            <p class="ws-prompt">이 그림책과 이어지는 논제입니다. 하나를 골라 표시하고, 그림책 장면과 삶 속 사례를 함께 근거로 들어 봅시다.</p>
+            <div class="ws-more-pick">${picks.map(c => `<label><input type="radio" name="${nm}-pick"> ${c}</label>`).join("")}</div>
+            <table class="ws-table pano-table">
+                <tr><th style="width: 34%;">나의 주장</th><th style="width: 33%;">그림책 속 근거</th><th style="width: 33%;">삶과 사회 속 근거</th></tr>
+                <tr><td>${ta(H.extend)}</td><td>${ta(H.extend)}</td><td>${ta(H.extend)}</td></tr>
+            </table>
+        </div>`);
+    } else {
+        parts.push(`
+        <div class="ws-section ws-keep ws-more" data-more="argue">
+            <h4>논제를 두 쪽에서 따져 보기 ${keys("찬반 근거 · 균형 잡힌 판단")}</h4>
+            <p class="ws-prompt">이 책의 논제 가운데 하나를 골라 표시하고, 내 입장과 상관없이 양쪽의 근거를 모두 찾아봅시다.</p>
+            <div class="ws-more-pick">${props.map(c => `<label><input type="radio" name="${nm}-pick"> ${c}</label>`).join("")}</div>
+            <table class="ws-table pano-table">
+                <tr><th style="width: 22%;"></th><th style="width: 39%;">찬성 쪽 근거</th><th style="width: 39%;">반대 쪽 근거</th></tr>
+                <tr><th>그림책 속</th><td>${ta(H.side)}</td><td>${ta(H.side)}</td></tr>
+                <tr><th>삶과 사회 속</th><td>${ta(H.side)}</td><td>${ta(H.side)}</td></tr>
+            </table>
+        </div>`);
+    }
+
+    if (BOOK_WS_NO_RECALL.includes(type)) {
+        parts.push(`
+        <div class="ws-section ws-keep ws-more" data-more="listen">
+            <h4>들으며 생각 넓히기 · 경청 기록 ${keys("요약하며 듣기 · 반응하기")}</h4>
+            <p class="ws-prompt">친구의 말을 한 줄로 요약하고, 그 말에 대한 내 반응(동의·보탬·질문·반박)을 적어 봅시다.</p>
+            <table class="ws-table pano-table">
+                <tr><th style="width: 18%;">친구</th><th style="width: 41%;">친구의 말 (한 줄 요약)</th><th style="width: 41%;">나의 반응</th></tr>
+                ${[1, 2].map(() => `<tr><td><input class="ws-line" type="text"></td><td>${ta(H.listen)}</td><td>${ta(H.listen)}</td></tr>`).join("")}
+            </table>
+        </div>`);
+    }
+
+    parts.push(`
+        <div class="ws-section ws-keep ws-more" data-more="close">
+            <h4>토론을 마치며 ${keys("생각의 변화 · 성찰 · 삶과 잇기")}</h4>
+            <table class="ws-table pano-table">
+                <tr><th style="width: 34%;">생각의 변화${sub("토론 전과 후, 무엇이 달라졌나요?")}</th><th style="width: 33%;">마음을 움직인 말${sub("가장 설득력 있던 말과 그 까닭")}</th><th style="width: 33%;">삶으로의 연결${sub("내 생활과 사회에 어떻게 이을까요?")}</th></tr>
+                <tr><td>${ta(H.close)}</td><td>${ta(H.close)}</td><td>${ta(H.close)}</td></tr>
+            </table>
+            <div class="ws-more-check"><strong>스스로 돌아보기</strong>${["책 속 근거를 들어 말했다", "친구의 말을 끝까지 들었다", "나와 다른 생각을 존중했다", "토론하며 내 생각을 다듬었다"].map(c => `<label><input type="checkbox"> ${c}</label>`).join("")}</div>
+            ${p.closing ? `<p class="pano-closing">“${p.closing}”</p>` : ""}
+        </div>`);
+
+    return parts.join("");
+}
+
+// 그림책 학습지가 인쇄(A4, 여백 12mm → 한 쪽 약 1030px)에서 몇 쪽이 되는지 센다.
+// 덧붙인 활동(ws-keep)과 표 없는 단계는 통째로, 표가 있는 단계는 표의 줄 단위로 넘어간다고 본다.
+// 표 앞의 제목·안내·논제 상자는 표 첫 줄과 함께, 표 뒤에 남은 글은 한 덩어리로 센다(인쇄 규칙과 같게).
+const BOOK_WS_PAGE_H = 1030;
+function bookWsPageCount(paper) {
+    const atoms = [];
+    for (const sec of paper.children) {
+        if (!sec.offsetHeight) continue;
+        const hasTable = [...sec.children].some(ch => ch.tagName === "TABLE");
+        if (sec.classList.contains("ws-keep") || !sec.classList.contains("ws-section") || !hasTable) { atoms.push([sec]); continue; }
+        let glue = [];
+        for (const ch of sec.children) {
+            if (!ch.offsetHeight) continue;
+            if (ch.tagName === "TABLE") {
+                const rows = [...ch.rows];
+                rows.forEach((tr, i) => {
+                    const headOnly = i === 0 && rows.length > 1 && [...tr.cells].every(c => c.tagName === "TH");
+                    if (headOnly) { glue.push(tr); return; }
+                    atoms.push([...glue, tr]); glue = [];
+                });
+                continue;
+            }
+            glue.push(ch);
+        }
+        if (glue.length) atoms.push(glue);
+    }
+    let pages = 1, start = paper.getBoundingClientRect().top;
+    for (const a of atoms) {
+        const t = Math.min(...a.map(e => e.getBoundingClientRect().top));
+        const b = Math.max(...a.map(e => e.getBoundingClientRect().bottom));
+        if (b - start > BOOK_WS_PAGE_H && t > start) { pages++; start = t; }
+    }
+    return pages;
+}
+// 2쪽을 넘으면 덧붙인 활동을 정한 차례대로 덜어 낸다 (그림책·기법마다 분량이 달라 만들 때마다 잰다)
+const BOOK_WS_DROP_ORDER = ["recall", "listen", "argue", "extend"];
+function fitBookWorksheet(out) {
+    const paper = out && out.querySelector(":scope > .worksheet-paper.ws-book-paper");
+    if (!paper) return 0;
+    const keep = paper.getAttribute("style");
+    // 화면 폭과 상관없이 인쇄 폭(본문 703px)으로 재고 되돌린다
+    paper.style.width = "703px"; paper.style.maxWidth = "none"; paper.style.padding = "0"; paper.style.boxSizing = "content-box";
+    // 인쇄에서 숨는 것(추천 논제 단추 상자 등)은 재는 동안 감춘다
+    const hidden = [...paper.querySelectorAll(".no-print")].map(el => [el, el.style.display]);
+    hidden.forEach(([el]) => { el.style.display = "none"; });
+    let n = bookWsPageCount(paper);
+    for (const k of BOOK_WS_DROP_ORDER) {
+        if (n <= 2) break;
+        const el = paper.querySelector(`.ws-more[data-more="${k}"]`);
+        if (el) { el.remove(); n = bookWsPageCount(paper); }
+    }
+    hidden.forEach(([el, d]) => { el.style.display = d; });
+    if (keep === null) paper.removeAttribute("style"); else paper.setAttribute("style", keep);
+    return n;
+}
+
 // 학생용 2쪽: 1쪽 = 1·2단계, 2쪽 = 3·4·5단계. 그림책이면 책 속·책 밖 질문, 논제면 자료 속·자료 밖 질문.
 // roles: [[자리 이름, 설명]] 3개가 있으면 미리 채우고, 없으면 빈 자리 칸을 둔다.
 function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null, closing = "" } = {}) {
     const isBook = source === "book";
     const src = isBook ? "책" : "자료";
-    const h1 = isBook ? 92 : 48, h2 = isBook ? 70 : 40;   // 1쪽 칸 높이
+    const h1 = isBook ? 78 : 32, h2 = isBook ? 58 : 28;   // 1쪽 칸 높이 (글씨를 키운 만큼 칸을 조금 줄여 2쪽에 맞춘다)
     const cells = (n, h) => Array.from({ length: n }, () => `<td><textarea style="height: ${h}px;"></textarea></td>`).join("");
     const sub = (t) => `<br><span class="pano-th-sub">${t}</span>`;
     const keys = (t) => `<span class="pano-keys">${t}</span>`;
@@ -20222,7 +20417,7 @@ function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null,
     const askRows = (roles ? roles.map(r => r[0]) : [null, null, null])
         .map((r, i) => {
             const a = ask && ask[i];
-            return `<tr><td class="pano-who">${r ? `<strong>${r}</strong>에게` : `<input class="ws-line" type="text" style="width: 70%;">에게`}${a ? `<small>${a[0]}</small>` : ""}</td><td>${a ? exLine("예: " + a[1]) : ""}<textarea style="height: ${a ? 32 : 50}px;"></textarea></td></tr>`;
+            return `<tr><td class="pano-who">${r ? `<strong>${r}</strong>에게` : `<input class="ws-line" type="text" style="width: 70%;">에게`}${a ? `<small>${a[0]}</small>` : ""}</td><td>${a ? exLine("예: " + a[1]) : ""}<textarea style="height: ${a ? 26 : 44}px;"></textarea></td></tr>`;
         }).join("");
     return `
         <div class="ws-section ws-keep">
@@ -20260,14 +20455,14 @@ function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null,
                     <th style="width: 33%;">주장 — 나는 ~라고 생각합니다${sub("꼭 전하고 싶은 핵심 주장 한 문장")}</th>
                     <th style="width: 33%;">근거 — 왜냐하면 ~${sub(`${isBook ? "책 내용" : "자료"}이나 삶의 경험을 든 까닭`)}</th>
                 </tr>
-                <tr>${cells(3, 64)}</tr>
+                <tr>${cells(3, 52)}</tr>
             </table>
         </div>
         <div class="ws-section ws-keep">
             <h4>4단계 · 파노라마 펼치기 ${keys("상호 이해 · 경청과 질문 · 파노라마 공존")}</h4>
             <p class="pano-round">각자의 자리에서 서로 묻기 <span>상대를 꺾는 질문이 아니라, 상대를 더 알고 싶은 질문만 던집니다.</span></p>
             <table class="ws-table pano-table">
-                <tr><th style="width: 26%;">누구에게</th><th>내가 던진 질문과 그 자리에서 들은 답</th></tr>
+                <tr><th style="width: 32%;">누구에게</th><th>내가 던진 질문과 그 자리에서 들은 답</th></tr>
                 ${askRows}
             </table>
         </div>
@@ -20279,7 +20474,7 @@ function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null,
                     <th style="width: 33%;">타인의 발견${sub(`다른 자리${roles && roles.map(r => r[0]).join("·").length <= 14 ? `(${roles.map(r => r[0]).join("·")})` : ""}의 말 중 가장 마음을 울린 말은?`)}</th>
                     <th style="width: 33%;">삶으로의 연결${sub(`${isBook ? "이야기 속 질문" : "이 논제"}을 나의 삶과 우리 사회에 어떻게 이어 볼까요?`)}</th>
                 </tr>
-                <tr>${cells(3, closing ? 58 : 68)}</tr>
+                <tr>${cells(3, closing ? 48 : 58)}</tr>
             </table>
             ${closing ? `<p class="pano-closing">“${closing}”</p>` : ""}
         </div>`;
