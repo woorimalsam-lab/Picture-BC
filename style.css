@@ -4674,3 +4674,33 @@ html, body { max-width: 100%; overflow-x: hidden; }
     .form-row-buttons .btn { flex: 1 1 calc(50% - 6px); justify-content: center; }
 }
 .worksheet-print-header::before { flex-basis: 100%; text-align: right; }
+
+/* 논제 한눈에 보기: 배경 한 줄 · 근거 자료 찾기 · 찬반 쟁점 (v6.3.0) */
+.subject-topic-bg { display: block; margin-top: 3px; font-size: 0.78rem; font-weight: 400; line-height: 1.55; color: var(--text-secondary); word-break: keep-all; }
+.subject-topic-bg b, .topic-bg-short b { color: var(--accent-sage); margin-right: 4px; }
+.topic-bg-short { font-size: 0.82rem; line-height: 1.6; color: var(--text-secondary); margin: 6px 0 0; word-break: keep-all; }
+.topic-research { display: block; margin-top: 8px; font-weight: 400; }
+.topic-research-label { display: block; font-size: 0.74rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 5px; }
+.topic-research-label i { color: var(--accent-sage); margin-right: 4px; }
+.topic-research-label em { font-style: normal; font-weight: 600; color: var(--text-primary); background: var(--bg-secondary); border-radius: 6px; padding: 1px 7px; margin-left: 4px; }
+.topic-research .topic-stat-list { margin-bottom: 6px; }
+.topic-src-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.topic-src {
+    display: inline-flex; align-items: center; gap: 5px; padding: 3px 10px; border-radius: 999px;
+    border: 1px solid var(--border-color); background: var(--bg-primary);
+    font-size: 0.74rem; font-weight: 600; line-height: 1.5; color: var(--text-primary); text-decoration: none;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+.topic-src i { font-size: 0.85em; color: var(--accent-sage); }
+.topic-src-news i { color: var(--accent-coral); }
+.topic-src-law i, .topic-src-stat i { color: var(--accent-gold); }
+.topic-src:hover { border-color: var(--accent-sage); color: var(--accent-sage); }
+.subject-topic-sides { display: block; margin-top: 6px; font-weight: 400; }
+.subject-topic-sides summary { cursor: pointer; list-style: none; font-size: 0.76rem; font-weight: 700; color: var(--text-secondary); }
+.subject-topic-sides summary::-webkit-details-marker { display: none; }
+.subject-topic-sides summary::before { content: "▸ "; }
+.subject-topic-sides[open] summary::before { content: "▾ "; }
+.subject-topic-sides .topic-sides { display: grid; margin-top: 6px; }
+.subject-topic-sides .topic-side { display: block; }
+.subject-topic-sides .topic-side-list { display: flex; flex-direction: column; gap: 3px; font-size: 0.8rem; line-height: 1.55; color: var(--text-primary); word-break: keep-all; }
+@media screen and (max-width: 700px) { .subject-topic-sides .topic-sides { grid-template-columns: 1fr; } }
