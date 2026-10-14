@@ -6038,7 +6038,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.5.1";
+    return "6.5.2";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108];
@@ -6216,7 +6216,7 @@ function renderBooks() {
         infoDiv.innerHTML = `
             <h4>${book.title}</h4>
             <p>${book.author}</p>
-            <div style="margin-top:8px;">
+            <div class="book-tags">
                 ${(book.tags || []).map(t => `<span class="tech-tag">${t}</span>`).join("")}
             </div>
         `;
@@ -14795,7 +14795,7 @@ function setupMainSearch() {
                         <div class="book-info">
                             <h4>${book.title}</h4>
                             <p>${book.author}</p>
-                            <div style="margin-top:8px;">
+                            <div class="book-tags">
                                 ${(book.tags || []).map(t => `<span class="tech-tag">${t}</span>`).join("")}
                             </div>
                         </div>
