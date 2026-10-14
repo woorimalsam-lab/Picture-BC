@@ -37,7 +37,8 @@
         ],
         "books": [
             "완벽한 아이 팔아요",
-            "플라스틱 섬"
+            "플라스틱 섬",
+            "벽 속에 사는 아이"
         ],
         "tags": [
             "역할극",
@@ -206,7 +207,10 @@
             "슈퍼 거북",
             "미어캣의 스카프",
             "구름빵",
-            "호두와 사람"
+            "호두와 사람",
+            "슈퍼 토끼",
+            "아름다운 실수",
+            "겁쟁이 빌리"
         ],
         "tags": [
             "협동학습",
@@ -268,7 +272,9 @@
         "books": [
             "지각대장 존",
             "치킨 마스크",
-            "나는 안내견이야"
+            "나는 안내견이야",
+            "내 탓이 아니야",
+            "빈 화분"
         ],
         "tags": [
             "논리강화",
@@ -338,7 +344,13 @@
             "줄무늬가 생겼어요",
             "점",
             "오누이 이야기",
-            "늑대의 선거"
+            "늑대의 선거",
+            "나는 강물처럼 말해요",
+            "우리, 집",
+            "우리는 친구",
+            "으르렁 이발소",
+            "내겐 너무 무거운",
+            "고함쟁이 엄마"
         ],
         "tags": [
             "역할극",
@@ -401,7 +413,8 @@
             "괜찮아",
             "터널",
             "강냉이",
-            "타오 씨 이야기"
+            "타오 씨 이야기",
+            "곰아, 놀자!"
         ],
         "tags": [
             "협동학습",
@@ -468,7 +481,13 @@
             "알사탕",
             "적",
             "꽃들에게 희망을",
-            "엄마가 유령이 되었어!"
+            "엄마가 유령이 되었어!",
+            "100만 번 산 고양이",
+            "나는 기다립니다",
+            "낱말공장 나라",
+            "틀려도 괜찮아",
+            "할머니의 여름휴가",
+            "꽃할머니"
         ],
         "tags": [
             "비경쟁",
@@ -528,7 +547,10 @@
             "단물고개",
             "시애틀 추장",
             "엄마의 의자",
-            "멋진 민주 단어"
+            "멋진 민주 단어",
+            "돌멩이 국",
+            "프레드릭",
+            "무릎딱지"
         ],
         "tags": [
             "협동학습",
@@ -589,7 +611,9 @@
         ],
         "books": [
             "완벽한 아이 팔아요",
-            "미술관에 간 윌리"
+            "미술관에 간 윌리",
+            "난 황금알을 낳을 거야!",
+            "여섯 사람"
         ],
         "tags": [
             "논리강화",
@@ -649,7 +673,8 @@
             "감기 걸린 물고기",
             "무지개 물고기",
             "축구 선수 윌리",
-            "두 점 이야기"
+            "두 점 이야기",
+            "더 이상 아이를 먹을 수는 없어!"
         ],
         "tags": [
             "비경쟁",
@@ -712,7 +737,8 @@
             "나는 사실대로 말했을 뿐이야!",
             "나쁜 일이 있어도 나쁜 날은 아니야",
             "세상에서 제일 힘센 수탉",
-            "바나나가 더 일찍 오려면"
+            "바나나가 더 일찍 오려면",
+            "돼지책"
         ],
         "tags": [
             "비경쟁",
@@ -776,7 +802,8 @@
             "완벽한 아이 팔아요",
             "탁탁, 톡톡, 음매~ 젖소가 편지를 쓴대요",
             "수학에 빠진 아이",
-            "건축물의 기억"
+            "건축물의 기억",
+            "내가 라면을 먹을 때"
         ],
         "tags": [
             "협동학습",
@@ -833,7 +860,8 @@
         ],
         "books": [
             "원숭이 꽃신",
-            "여름이 온다"
+            "여름이 온다",
+            "까마귀 소년"
         ],
         "tags": [
             "비경쟁",
@@ -896,7 +924,10 @@
             "빨간 벽",
             "고슴도치 엑스",
             "단물고개",
-            "이파라파냐무냐무"
+            "이파라파냐무냐무",
+            "블랙 독",
+            "빨간 나무",
+            "스갱 아저씨의 염소"
         ],
         "tags": [
             "논리강화",
@@ -960,7 +991,11 @@
             "까마귀 소년",
             "세 가지 질문",
             "장수탕 선녀님",
-            "우리는 언제나 다시 만나"
+            "우리는 언제나 다시 만나",
+            "고양이는 나만 따라 해",
+            "착한 달걀",
+            "초코곰과 젤리곰",
+            "가만히 들어주었어"
         ],
         "tags": [
             "비경쟁",
@@ -1018,7 +1053,8 @@
         "books": [
             "샌지와 빵집 주인",
             "잃어버린 영혼",
-            "당신을 측정해 드립니다"
+            "당신을 측정해 드립니다",
+            "부리 동물 출입 금지!"
         ],
         "tags": [
             "놀이형",
@@ -1197,7 +1233,8 @@
             "문 밖에 사자가 있다",
             "발레리나 벨린다",
             "아무도 지나가지 마!",
-            "휘슬이 두 번 울릴 때까지"
+            "휘슬이 두 번 울릴 때까지",
+            "행복한 청소부"
         ],
         "tags": [
             "역할극",
@@ -1254,7 +1291,8 @@
         ],
         "books": [
             "벌집이 너무 좁아",
-            "평화란 어떤 걸까?"
+            "평화란 어떤 걸까?",
+            "줌, 그림 속 그림 여행"
         ],
         "tags": [
             "협동학습",
@@ -2612,6 +2650,7 @@ const books = [
             "죽음이 있기 때문에 삶이 의미를 가진다.",
             "인간의 수명을 크게 늘리는 기술은 바람직하다."
         ],
+        "easyQ": "영원히 늙지도 죽지도 않는 샘물이 있다면, 나는 마실까?",
         "coverId": 25
     },
     {
@@ -2786,7 +2825,7 @@ const books = [
         "title": "줄무늬가 생겼어요",
         "author": "데이비드 섀넌 글·그림",
         "summary": "카밀라는 아욱콩(리마콩)을 무척 좋아하지만, 친구들이 싫어한다는 이유로 좋아하는 마음을 꼭꼭 숨깁니다. 그러던 어느 날 온몸에 알록달록한 줄무늬가 돋아나고, 사람들이 '별 모양!', '체크무늬!'라고 말할 때마다 몸이 그 말대로 변해 버립니다. 남의 시선에 자신을 끼워 맞추던 카밀라는, 결국 자신이 진짜 좋아하는 것을 솔직하게 인정하고 나서야 본래 모습을 되찾습니다. 또래의 시선과 '나다움' 사이에서 고민하는 마음을 유쾌하게 그린 그림책입니다.",
-        "technique": "핫시팅",
+        "technique": "핫시팅 (Hot-seating)",
         "tags": [
             "#자기다움",
             "#또래압력",
@@ -2810,7 +2849,7 @@ const books = [
         "title": "세 가지 질문",
         "author": "존 J. 무스 글·그림 (톨스토이 원작)",
         "summary": "소년 니콜라이는 '가장 중요한 때는 언제이고, 가장 중요한 사람은 누구이며, 가장 중요한 일은 무엇인가'라는 세 가지 질문의 답을 찾고 싶어 합니다. 현명한 거북이 레오를 찾아가 도움을 청하고, 폭풍 속에서 다친 판다와 아기를 돕는 과정에서 스스로 답을 깨닫습니다. 가장 중요한 때는 '바로 지금', 가장 중요한 사람은 '지금 함께 있는 사람', 가장 중요한 일은 '그 사람에게 선을 베푸는 것'이라는 톨스토이의 지혜를 그림책으로 풀어냈습니다.",
-        "technique": "하브루타",
+        "technique": "하브루타 (Havruta)",
         "tags": [
             "#삶의지혜",
             "#현재",
@@ -2858,7 +2897,7 @@ const books = [
         "title": "구름빵",
         "author": "백희나 글·그림",
         "summary": "비 오는 아침, 고양이 남매는 나뭇가지에 걸린 작은 구름을 가져와 엄마에게 건넵니다. 엄마가 그 구름으로 빵을 구워 주자, 빵을 먹은 남매는 두둥실 하늘로 떠오릅니다. 남매는 아침도 거른 채 만원 버스에 시달리며 바삐 출근한 아빠에게 구름빵을 가져다주고, 아빠도 빵을 먹고 힘차게 하늘을 날지요. 백희나 특유의 입체 사진 작업으로 빚어낸, 평범한 일상에 스며든 상상과 가족의 온기를 담은 베스트셀러·스테디셀러 그림책입니다.",
-        "technique": "브레인라이팅",
+        "technique": "브레인라이팅 (Brainwriting)",
         "tags": [
             "#상상력",
             "#가족",
@@ -2882,7 +2921,7 @@ const books = [
         "title": "점",
         "author": "피터 H. 레이놀즈 글·그림",
         "summary": "미술 시간이 끝나도록 베티의 도화지는 텅 비어 있습니다. \"난 그림을 못 그려요\"라고 버티는 베티에게 선생님은 \"그냥 점이라도 하나 찍어 봐\"라고 말합니다. 화가 난 베티가 종이에 콕 찍은 점 하나를, 선생님은 액자에 넣어 걸어 줍니다. 그 점에서 자신감을 얻은 베티는 온갖 색과 크기의 점을 그려 전시회를 열고, 마침내 \"나도 못 그린다\"는 다른 아이에게 용기를 건넵니다. 작은 시도와 따뜻한 격려가 어떻게 한 사람을 바꾸는지 보여 주는 스테디셀러입니다.",
-        "technique": "핫시팅",
+        "technique": "핫시팅 (Hot-seating)",
         "tags": [
             "#용기",
             "#자기표현",
@@ -2930,7 +2969,7 @@ const books = [
         "title": "장수탕 선녀님",
         "author": "백희나 글·그림",
         "summary": "덕지는 엄마 손에 이끌려 낡고 오래된 목욕탕 '장수탕'에 갑니다. 그곳에서 덕지는 하늘로 올라가지 못한 채 목욕탕에 눌러앉은 진짜 선녀 할머니를 만납니다. 함께 냉탕에서 물놀이를 하고 요구르트를 나눠 먹으며 정을 쌓은 덕지는, 그날 밤 감기에 걸려 끙끙 앓습니다. 그러자 선녀님이 찾아와 이마를 짚어 주지요. 오래된 것과 보이지 않는 것에 깃든 따뜻함, 세대를 넘는 정과 믿음을 그린 백희나의 스테디셀러입니다.",
-        "technique": "하브루타",
+        "technique": "하브루타 (Havruta)",
         "tags": [
             "#세대공감",
             "#믿음",
@@ -2978,7 +3017,7 @@ const books = [
         "title": "오누이 이야기",
         "author": "이억배 글·그림",
         "summary": "옛날 옛적, 떡을 팔고 고개를 넘어 집으로 돌아오던 어머니가 호랑이에게 잡아먹히고, 호랑이는 어머니인 척 오누이마저 노립니다. 위기를 알아챈 오누이는 나무 위로 도망쳐 하늘에 동아줄을 내려 달라 빌고, 튼튼한 동아줄을 타고 올라가 해와 달이 됩니다. 호랑이는 썩은 동아줄을 잡았다가 떨어지고 말지요. 우리에게 익숙한 '해와 달이 된 오누이'를 이억배 특유의 힘찬 그림으로 되살린, 2026년 볼로냐 라가치상 특별 부문(우화와 옛이야기) 대상 수상작입니다.",
-        "technique": "핫시팅",
+        "technique": "핫시팅 (Hot-seating)",
         "tags": [
             "#전래동화",
             "#위기대처",
@@ -3074,7 +3113,7 @@ const books = [
         "title": "우리는 언제나 다시 만나",
         "author": "윤여림 글, 안녕달 그림",
         "summary": "엄마와 한순간도 떨어지기 싫어하던 아이는 자라면서 조금씩 세상으로 나아갑니다. 어린이집에 가고, 친구를 사귀고, 혼자 잠드는 밤을 견디며 헤어짐을 배우지요. 그러나 헤어짐의 끝에는 언제나 다시 만나는 기쁨이 있고, 그 믿음이 아이를 한 뼘씩 자라게 합니다. 분리불안을 겪는 아이와 부모 모두에게 깊은 위로를 전하는 YES24 스테디셀러입니다.",
-        "technique": "하브루타",
+        "technique": "하브루타 (Havruta)",
         "tags": [
             "#애착과독립",
             "#성장",
@@ -3098,7 +3137,7 @@ const books = [
         "title": "괜찮아",
         "author": "최숙희 글·그림",
         "summary": "아이가 개미에게는 너무 작다고, 고슴도치에게는 따끔거린다고, 뱀에게는 다리가 없다고 놀립니다. 하지만 동물들은 저마다 '괜찮아!'라고 대답합니다. 개미는 작아도 힘이 세고, 고슴도치는 가시 덕분에 사자가 와도 무섭지 않고, 뱀은 다리가 없어도 어디든 기어갈 수 있으니까요. 이번에는 동물들이 '그럼 너는?' 하고 묻자, 아이는 세상에서 가장 크게 웃을 수 있다고 대답합니다. 서로 다른 모습 그대로가 충분히 괜찮다고 토닥여 주는 자존감 그림책입니다.",
-        "technique": "회전목마 토론",
+        "technique": "회전목마 토론 (Carousel)",
         "tags": [
             "#자존감",
             "#다름의인정",
@@ -5999,7 +6038,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.5.0";
+    return "6.5.1";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108];
@@ -9960,7 +9999,7 @@ const debateTopicsDB = [
       pro: ["억누른 슬픔은 나중에 더 크게 되돌아온다.", "충분히 슬퍼해야 떠난 것을 제대로 떠나보낼 수 있다."],
       con: ["슬픔에 오래 머물면 일상을 되찾기 어렵다.", "어떤 슬픔은 잊는 것이 스스로를 지키는 길이다."],
       std: ["12심리02-05", "12보건02-05"],
-      books: ["무릎딱지", "엄마가 유령이 되었어!", "내겐 너무 무거운"] },
+      books: ["무릎딱지", "엄마가 유령이 되었어!", "내겐 너무 무거운", "가만히 들어주었어"] },
     { type: "fact", field: "감정", level: "중학·고등", claim: "소리를 지르는 훈육은 아이의 마음에 오래 상처를 남긴다.", kw: "소리 지르는 훈육 영향",
       background: "큰 소리로 꾸짖는 일이 한때의 훈육으로 끝나는지, 아이의 마음에 오래 남는 상처가 되는지 따집니다.",
       pro: ["겁을 먹은 아이는 무엇을 잘못했는지보다 두려움을 기억한다.", "소리 지르기가 되풀이되면 아이는 자신이 사랑받지 못한다고 느낀다."],
@@ -14476,7 +14515,7 @@ function setupMainSearch() {
         const query = mainSearchInput.value.toLowerCase().trim();
         const qList = expandSearchQuery(query);
         // 같은 뜻의 다른 표기까지 함께 살펴본다 ('인공지능'으로 찾아도 'AI' 논제가 걸리도록)
-        const qHit = (v) => { if (!v) return false; const x = String(v).toLowerCase(); return qList.some(q => x.includes(q)); };
+        const qHit = (v) => { if (!v) return false; const x = String(v).toLowerCase(), xs = x.replace(/\s+/g, ""); return qList.some(q => x.includes(q) || (/\s/.test(q) && xs.includes(q.replace(/\s+/g, "")))); };
         
         // Show/hide clear button
         if (clearMainSearchBtn) {
@@ -21935,6 +21974,8 @@ const WS_LAYOUT_REV = { "panorama": 3, "topic-tech-panorama": 3 };
 // PDF: 인쇄와 같은 쪽 나눔(단계는 통째로, 표는 줄 단위로, 교사용은 새 쪽)으로 A4에 담는다. html2canvas·jsPDF는 누를 때 한 번만 불러온다.
 // 한글: 화면에 그려진 글자 크기·굵기·색과 표의 칸 너비·높이를 읽어 HWPX(한글 2014 이후에서 열림)로 옮긴다. 한글에서 고쳐 쓸 수 있다.
 const WS_EXPORT_W = 703, WS_EXPORT_PAGE_H = 1030;
+// 한 쪽을 이만큼(약 2%) 넘는 것은 새 쪽으로 넘기지 않고 PDF에서 그 쪽만 살짝 줄여 담는다(거의 빈 쪽이 생기지 않게).
+const WS_EXPORT_PAGE_TOL = 20;
 
 // 한글 문서 만들기: 문단·표 모형 → OWPML XML → zip
 // 모형 { blocks: [ {t:"p", runs:[{text,b,u,color,shade,size}], align, before, after, lineSpacing, bar, fill, indent, keepNext, pageBreak},
@@ -22323,7 +22364,7 @@ function wsMakeHwpx() {
 
 // PDF: 인쇄처럼 쪽을 나눌 위치를 잰다 — 단계(ws-section)는 통째로, 표가 있는 단계는 줄 단위로, 제목은 다음 내용과 함께
 function wsPageStarts(root) {
-    const top0 = root.getBoundingClientRect().top, H = WS_EXPORT_PAGE_H, atoms = [];
+    const top0 = root.getBoundingClientRect().top, H = WS_EXPORT_PAGE_H, TOL = WS_EXPORT_PAGE_TOL, atoms = [];
     let force = false;
     const add = (els) => {
         const rs = els.map(e => e.getBoundingClientRect()).filter(r => r.height > 0);
@@ -22356,8 +22397,8 @@ function wsPageStarts(root) {
     const starts = [0];
     let start = 0;
     for (const a of atoms) {
-        if (a.t > start + 1 && (a.f || a.b - start > H)) { starts.push(a.t); start = a.t; }
-        while (a.b - start > H + 1) { start += H; starts.push(start); }
+        if (a.t > start + 1 && (a.f || a.b - start > H + TOL)) { starts.push(a.t); start = a.t; }
+        while (a.b - start > H + TOL + 1) { start += H; starts.push(start); }
     }
     return { starts, height: root.getBoundingClientRect().height };
 }
@@ -22402,7 +22443,7 @@ async function wsMakePdf() {
     const pdf = new window.jspdf.jsPDF({ unit: "mm", format: "a4", orientation: "portrait", compress: true });
     const mm = 186 / WS_EXPORT_W;   // 화면 1px → 186mm 폭
     starts.forEach((y0, i) => {
-        const y1 = Math.min(i + 1 < starts.length ? starts[i + 1] : height, y0 + WS_EXPORT_PAGE_H);
+        const y1 = Math.min(i + 1 < starts.length ? starts[i + 1] : height, y0 + WS_EXPORT_PAGE_H + WS_EXPORT_PAGE_TOL);
         const h = Math.max(1, Math.round((y1 - y0) * SCALE));
         const c = document.createElement("canvas");
         c.width = canvas.width; c.height = h;
@@ -22410,7 +22451,8 @@ async function wsMakePdf() {
         g.fillStyle = "#ffffff"; g.fillRect(0, 0, c.width, h);
         g.drawImage(canvas, 0, Math.round(y0 * SCALE), canvas.width, h, 0, 0, c.width, h);
         if (i) pdf.addPage();
-        pdf.addImage(c.toDataURL("image/jpeg", 0.92), "JPEG", 12, 12, 186, (y1 - y0) * mm, undefined, "FAST");
+        const fit = Math.min(1, WS_EXPORT_PAGE_H / (y1 - y0));   // 한 쪽보다 조금 긴 쪽은 가운데 맞춰 줄인다
+        pdf.addImage(c.toDataURL("image/jpeg", 0.92), "JPEG", 12 + 186 * (1 - fit) / 2, 12, 186 * fit, (y1 - y0) * mm * fit, undefined, "FAST");
     });
     pdf.setProperties({ title: name, creator: "그림책 토론 학습지" });
     return { name, pdf };
