@@ -4048,11 +4048,28 @@ html, body { max-width: 100%; overflow-x: hidden; }
     margin-top: 6px; background: rgba(112, 138, 111, 0.08); border: 1px dashed var(--accent-sage);
     border-radius: 14px; padding: 4px 20px 14px;
 }
-.subject-frames ul { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; padding: 0; margin: 0; }
-.subject-frames li {
-    background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 10px;
-    padding: 7px 12px; font-size: 0.9rem; font-weight: 600; color: var(--text-primary);
+.subject-frames-basis { font-size: 0.8rem; color: var(--text-secondary); margin: -4px 0 10px; line-height: 1.5; word-break: keep-all; }
+.subject-frames-basis i { color: var(--accent-sage); margin-right: 4px; }
+.subject-frames-list {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 10px;
+    list-style: none; padding: 0; margin: 0; counter-reset: frame;
 }
+.subject-frames-list li {
+    counter-increment: frame; position: relative;
+    background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 12px;
+    padding: 10px 14px 11px; color: var(--text-primary); word-break: keep-all; overflow-wrap: anywhere;
+}
+.subject-frames-list li::before {
+    content: counter(frame); position: absolute; top: 10px; right: 12px;
+    font-size: 0.75rem; font-weight: 700; color: var(--text-secondary);
+}
+.frame-tag {
+    display: inline-block; font-size: 0.72rem; font-weight: 700; color: var(--accent-sage);
+    background: rgba(112, 138, 111, 0.12); border-radius: 999px; padding: 2px 9px; margin-bottom: 6px;
+}
+.frame-q { font-size: 0.92rem; font-weight: 700; line-height: 1.55; margin: 0; padding-right: 14px; }
+.frame-say { font-size: 0.84rem; line-height: 1.55; color: var(--text-secondary); margin: 6px 0 0; }
+.frame-say i { color: var(--accent-sage); margin-right: 3px; }
 .subject-frames-note { font-size: 0.8rem; color: var(--text-secondary); margin: 10px 0 0; }
 .subject-techs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 10px; }
 .subject-tech {
