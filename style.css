@@ -4481,8 +4481,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @media print and (min-width: 500.01px) and (max-width: 600px) { html { zoom: 0.8; } }
 @media print and (min-width: 600.01px) and (max-width: 680px) { html { zoom: 0.9; } }
 
-/* ── v5.6.5 노트북(900~1240px)에서도 모든 메뉴를 상단에 보이게: 로고 아래 둘째 줄에 펼친다 ── */
-@media screen and (min-width: 900.02px) and (max-width: 1240px) {
+/* ── v5.6.5 노트북(900~1360px)에서도 모든 메뉴를 상단에 보이게: 로고 아래 둘째 줄에 펼친다 ── */
+@media screen and (min-width: 900.02px) and (max-width: 1360px) {
     .header-container { flex-wrap: wrap; row-gap: 4px; padding: 10px 20px 6px; }
     .nav-links { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; gap: 2px 16px; padding-top: 4px; border-top: 1px solid var(--border-color); }
     .nav-links a { font-size: 0.86rem; padding-top: 4px; padding-bottom: 6px; }
@@ -4784,3 +4784,22 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .frame-say { font-family: var(--font-pen); font-size: 0.86rem; }
 .hero-content .badge { font-size: 0.95rem; }
 .frame-say { font-size: 0.92rem; }
+
+/* ── 상단 메뉴 글씨: 2pt 크게, 진하게 (v6.5.8) ── */
+.nav-links a { color: var(--text-primary); font-weight: 700; }
+@media screen and (min-width: 900.02px) {
+    .nav-links a { font-size: 1.05rem; }
+}
+@media screen and (min-width: 900.02px) and (max-width: 1360px) {
+    .nav-links a { font-size: 1.03rem; }
+}
+@media screen and (max-width: 900px) {
+    .nav-links a { font-size: 1.19rem; }
+}
+
+/* ── 메인 화면 소개 문구·버튼 글씨 진하게 (v6.5.8) ── */
+.hero-content p { color: var(--text-primary); font-weight: 700; }
+.hero-buttons .btn { font-weight: 700; }
+.hero-buttons .btn-secondary { color: var(--text-primary); border-color: var(--text-secondary); }
+.hero-buttons .btn-secondary:hover { color: #fff; border-color: var(--accent-sage); }
+.hero-buttons .btn { gap: 7px; }
