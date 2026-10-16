@@ -1,3 +1,12 @@
+/* --- 글꼴: 강원특별자치도교육청 배포 글꼴 (사이트에 쓰는 글자와 한글 2,350자만 남긴 woff2) ---
+   모두체는 한글 폭이 좁고(0.8em) 새음·현옥샘체는 글자가 작게 그려져 있어 size-adjust로 다른 글꼴과 눈에 보이는 크기를 맞춘다.
+   남긴 글자에 없는 글자(한자 등)는 다음 글꼴(Noto Sans KR)로 넘어간다. */
+@font-face { font-family: 'GangwonEduAll'; src: url('fonts/GangwonEduAll-Light.woff2') format('woff2'); font-weight: 100 500; font-display: swap; size-adjust: 108%; }
+@font-face { font-family: 'GangwonEduAll'; src: url('fonts/GangwonEduAll-Bold.woff2') format('woff2'); font-weight: 600 900; font-display: swap; size-adjust: 108%; }
+@font-face { font-family: 'GangwonEduPower'; src: url('fonts/GangwonEduPower.woff2') format('woff2'); font-weight: 100 900; font-display: swap; size-adjust: 104%; }
+@font-face { font-family: 'GangwonEduSaeeum'; src: url('fonts/GangwonEduSaeeum.woff2') format('woff2'); font-weight: 100 900; font-display: swap; size-adjust: 135%; }
+@font-face { font-family: 'GangwonEduHyeonokT'; src: url('fonts/GangwonEduHyeonokT.woff2') format('woff2'); font-weight: 100 900; font-display: swap; size-adjust: 132%; }
+
 /* --- 디자인 시스템 및 변수 선언 --- */
 :root {
     /* 라이트 모드 (Warm Ivory & Sage Green) */
@@ -16,8 +25,11 @@
     --glass-blur: blur(15px);
     
     /* 폰트 정의 */
-    --font-serif: 'Gowun Batang', Georgia, serif;
-    --font-sans: 'Noto Sans KR', sans-serif;
+    --font-sans: 'GangwonEduAll', 'Noto Sans KR', sans-serif;       /* 본문·화면 글자: 모두체 */
+    --font-serif: 'GangwonEduAll', 'Noto Sans KR', sans-serif;      /* 제목·책 이름: 모두체 굵게 */
+    --font-display: 'GangwonEduPower', 'GangwonEduAll', 'Noto Sans KR', sans-serif;  /* 큰 제목: 튼튼체 */
+    --font-hand: 'GangwonEduSaeeum', 'GangwonEduAll', 'Noto Sans KR', sans-serif;    /* 손글씨 꾸밈: 새음체 */
+    --font-pen: 'GangwonEduHyeonokT', 'GangwonEduAll', 'Noto Sans KR', sans-serif;   /* 학생 말문: 현옥샘체 */
 }
 
 .dark-mode {
@@ -2100,7 +2112,7 @@ footer {
 .spine-text {
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    font-family: 'Gowun Batang', serif;
+    font-family: var(--font-hand);
     font-size: 0.72rem;
     font-weight: 700;
     color: #fff;
@@ -4762,3 +4774,13 @@ html, body { max-width: 100%; overflow-x: hidden; }
     overflow: hidden;
     text-overflow: ellipsis;
 }
+
+/* ── 강원교육 글꼴 자리 (v6.5.7) ── */
+.hero-content h1, .section-title-wrapper h2 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+.hero-content h1 span { font-family: var(--font-display); }
+.hero-content .badge, .section-title-wrapper .sub-title { font-family: var(--font-hand); font-weight: 400; }
+.section-title-wrapper .sub-title { letter-spacing: 0.06em; font-size: 0.86rem; }
+.logo-tagline { font-family: var(--font-hand); }
+.frame-say { font-family: var(--font-pen); font-size: 0.86rem; }
+.hero-content .badge { font-size: 0.95rem; }
+.frame-say { font-size: 0.92rem; }
