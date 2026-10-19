@@ -4803,3 +4803,85 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .hero-buttons .btn-secondary { color: var(--text-primary); border-color: var(--text-secondary); }
 .hero-buttons .btn-secondary:hover { color: #fff; border-color: var(--accent-sage); }
 .hero-buttons .btn { gap: 7px; }
+
+/* ── 휴대폰(600px 이하): 여백을 줄여 한 화면에 더 많이, 글자는 또렷하게 (v6.5.9) ── */
+@media screen and (max-width: 600px) {
+    body:not(.dark-mode) { --text-secondary: #4B5C48; }   /* 흐린 설명 글씨를 조금 진하게 */
+
+    /* 헤더: 아이콘 세 개를 한 줄로 → 헤더 높이 153px → 약 56px */
+    .header-container { padding: 8px 12px; }
+    .actions { display: flex; align-items: center; gap: 6px; }
+    .btn-icon, .nav-toggle { width: 36px; height: 36px; }
+    .logo { font-size: 0.9rem; gap: 6px; }
+    .logo > div { gap: 6px !important; }
+    .logo > div > span { white-space: nowrap; }
+    .btn-icon, .nav-toggle { width: 34px; height: 34px; }
+    .actions { gap: 4px; }
+
+    /* 섹션 위아래 여백: 100px → 고정 헤더만 피할 만큼 */
+    #main-content > section[id$="-section"] { padding: 64px 10px 28px; }
+    #main-content > #search-section { padding-top: 22px; }
+    .hero-section { padding: 66px 14px 10px; }
+
+    /* 첫 화면 */
+    .hero-content .badge { margin-bottom: 10px; padding: 4px 12px; }
+    .hero-content h1 { font-size: 2rem; line-height: 1.2; margin-bottom: 12px; }
+    .hero-content p { font-size: 0.98rem; line-height: 1.65; margin-bottom: 16px; }
+    .hero-buttons { gap: 8px; }
+    .hero-buttons .btn { flex: 1 1 calc(50% - 8px); padding: 10px 12px; font-size: 0.92rem; }
+    .hero-buttons .btn-primary { flex-basis: 100%; }
+    .hero-image-container { margin-top: 14px; }
+    .hero-art { max-width: 280px; border-radius: 18px; }
+
+    /* 섹션 제목 */
+    .section-title-wrapper { margin-bottom: 16px; padding: 0 4px; }
+    .section-title-wrapper .sub-title { margin-bottom: 2px; font-size: 0.8rem; }
+    .section-title-wrapper h2 { font-size: 1.6rem; margin-bottom: 8px; }
+    .section-title-wrapper p { font-size: 0.92rem; line-height: 1.6; }
+
+    /* 검색: 탭이 한 글자씩 꺾이지 않게 옆으로 밀어 보기 */
+    .search-container { padding: 0; }
+    .search-tabs { flex-wrap: nowrap; overflow-x: auto; gap: 4px; scrollbar-width: none; }
+    .search-tabs::-webkit-scrollbar { display: none; }
+    .search-tab-btn { flex: 0 0 auto; white-space: nowrap; padding: 6px 10px; font-size: 0.85rem; }
+    #search-input { padding: 14px 40px 14px 48px; font-size: 0.95rem; }
+    .search-icon { left: 18px; font-size: 1.1rem; }
+    .clear-btn { right: 14px; }
+    .subject-tab { padding: 8px 12px; font-size: 0.9rem; border-radius: 12px; }
+    #results-panel { padding: 14px; }
+
+    /* 카드 안쪽 여백 */
+    .subject-card { padding: 14px 12px; }
+    .subject-scene { padding: 12px; }
+    .subject-frames { padding: 2px 10px 10px; }
+    .subject-tech { padding: 10px 12px; }
+    .theory-card, .technique-card, .topic-card { padding: 14px; }
+    .tech-filter-container { padding: 12px; margin-bottom: 14px; }
+    .topic-typeinfo { padding: 14px; margin-bottom: 14px; }
+    .topic-steps { padding: 12px; margin-bottom: 14px; }
+    .topic-tab-btn { padding: 8px 14px; }
+    .worksheet-selector-card, .helper-card-container { padding: 14px; }
+    .worksheet-selector-card select, .helper-card-container select { padding: 10px 12px; }
+    .worksheet-selector-card .btn, .helper-card-container .btn { padding: 10px 14px; }
+    .print-instruction { padding: 14px; }
+    .book-card-info { padding: 14px; }
+    .modal-content { padding: 22px 14px; border-radius: 20px; max-height: 90vh; }
+
+    /* 그림책 서재: 한 줄에 두 권 */
+    .books-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .book-design { height: 150px; padding: 12px 0; }
+    .book-design-inner { width: 90px !important; height: 122px !important; padding: 8px; }
+    .book-card > .book-info { padding: 10px 10px 12px; }
+    .book-card > .book-info h4 { font-size: 0.95rem; }
+    .book-card > .book-info p { font-size: 0.76rem; }
+    .book-card > .book-info .book-tags { gap: 4px; padding-top: 8px; }
+    .book-card > .book-info .tech-tag { font-size: 0.7rem; padding: 2px 7px; }
+
+    /* 방문자 수: 본문 위에 떠서 글을 가리지 않게 맨 아래에 둔다 */
+    .visitor-counter { position: static; transform: none; margin: 8px auto 14px; width: fit-content; animation: none; }
+    .visitor-counter:hover { transform: none; }
+}
+@media screen and (max-width: 380px) {
+    .logo { font-size: 0.82rem; }
+    .header-container { padding: 8px 10px; }
+}
