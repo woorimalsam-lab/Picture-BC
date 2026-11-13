@@ -4730,9 +4730,11 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .subject-topic-sides summary::-webkit-details-marker { display: none; }
 .subject-topic-sides summary::before { content: "▸ "; }
 .subject-topic-sides[open] summary::before { content: "▾ "; }
-.subject-topic-sides .topic-sides { display: grid; margin-top: 6px; }
+/* 쟁점마다 근거 문장이 길어 좁은 두 칸보다 위아래로 쌓아 읽기 쉽게 한다 */
+.subject-topic-sides .topic-sides { display: grid; grid-template-columns: 1fr; margin-top: 6px; }
 .subject-topic-sides .topic-side { display: block; }
-.subject-topic-sides .topic-side-list { display: flex; flex-direction: column; gap: 3px; font-size: 0.8rem; line-height: 1.55; color: var(--text-primary); word-break: keep-all; }
+.subject-topic-sides .topic-side-list { display: flex; flex-direction: column; gap: 6px; font-size: 0.8rem; line-height: 1.6; color: var(--text-primary); word-break: keep-all; }
+.subject-topic-sides .topic-side-list b, .topic-side li b { font-weight: 700; }
 @media screen and (max-width: 700px) { .subject-topic-sides .topic-sides { grid-template-columns: 1fr; } }
 
 /* 그림책 카드(서재·검색 결과): 글 부분 안쪽 여백, 제목·지은이 구분, 해시태그 줄 맞춤 (v6.5.2) */
