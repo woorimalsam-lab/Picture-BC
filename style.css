@@ -4444,6 +4444,23 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-guide-box { padding: 10px 12px; margin-bottom: 12px; }
 .ws-guide-box ul { font-size: 0.8rem; line-height: 1.55; }
 .ws-guide-easy { font-size: 0.83rem; margin-bottom: 12px; }
+/* PMI 대상 잡기 (교사용 가이드 아래 전체 폭) */
+.ws-guide-pmi { break-inside: avoid; page-break-inside: avoid; }
+.ws-pmi-why { font-size: 0.8rem; line-height: 1.55; color: #333; margin: 0 0 8px; word-break: keep-all; }
+.ws-pmi-why strong { display: block; color: #8a5a44; margin-bottom: 2px; }
+.ws-pmi-warn { font-size: 0.8rem; line-height: 1.55; color: #7a2e1f; background: #fdf1ec; border-left: 3px solid #E07A5F; border-radius: 4px; padding: 6px 10px; margin: 0 0 8px; word-break: keep-all; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ws-pmi-sub { font-size: 0.82rem; font-weight: 700; color: #555; margin: 4px 0 6px; }
+.ws-pmi-targets { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 8px; }
+.ws-pmi-t { border: 1px solid #eadfd3; border-radius: 6px; padding: 8px 10px; }
+.ws-pmi-d { font-size: 0.82rem; font-weight: 700; color: #222; margin: 0 0 4px; line-height: 1.45; word-break: keep-all; }
+.ws-pmi-d span { font-weight: 400; color: #888; font-size: 0.74rem; }
+.ws-guide-pmi .ws-pmi-t ul { padding-left: 0; list-style: none; font-size: 0.78rem; line-height: 1.5; word-break: keep-all; }
+.ws-guide-pmi .ws-pmi-t li { margin-bottom: 2px; }
+.ws-pmi-k { display: inline-block; min-width: 16px; margin-right: 4px; font-weight: 800; }
+.ws-pmi-p { color: #2f7d4f; }
+.ws-pmi-m { color: #b4442c; }
+.ws-pmi-i { color: #3f6f9a; }
+.ws-pmi-tip { font-size: 0.76rem; color: #555; margin: 4px 0 0; line-height: 1.45; word-break: keep-all; }
 .seat-pano { height: 150px; }
 .seat-pano-seat { width: 56px; height: 56px; }
 .seat-a { left: 82px; }
