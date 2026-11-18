@@ -6296,7 +6296,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.6.14";
+    return "6.6.15";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -22449,13 +22449,17 @@ const TWS = {
     sideStance: (t, side) => t.type === "fact"
         ? (side === 0 ? "이 논제는 사실이다" : "이 논제는 사실이 아니다")
         : (side === 0 ? "이 논제에 찬성한다" : "이 논제에 반대한다"),
-    // 자료 칸은 통계 또는 기사로만 채운다 (그림책은 '그림책으로 생각 열기'에서 다룸)
+    // 자료 칸은 통계·연구·기사로 채운다 (그림책은 '그림책으로 생각 열기'에서 다룸)
     // slots: 표의 자료 칸 수. 마지막 칸은 언제나 기사로 채워 통계와 기사를 함께 보여 준다.
+    // 통계가 칸 수보다 모자라면 남은 칸은 논문·연구 보고서로 채워, 같은 기사 안내가 두 칸에 겹치지 않게 한다.
     evidence: (t, i, slots = 1) => {
         const list = topicWsSources(t);
         const news = list.find(s => s.src === "bigkinds");
         const stats = list.filter(s => s.src !== "bigkinds");
-        const st = (slots > 1 && i === slots - 1) ? news : (stats[i] || news);
+        const pool = [...stats, { src: "paper" }, { src: "anystat" }];
+        const st = (slots > 1 && i === slots - 1) ? news : slots === 1 ? (stats[0] || news) : (pool[i] || news);
+        if (st.src === "paper") return `[연구] '${topicKeyword(t)}' 관련 논문·연구 보고서 — RISS에서 찾아 연구자와 발표 연도를 적는다.`;
+        if (st.src === "anystat") return `[통계] 논제와 이어지는 공식 통계 — KOSIS 국가통계포털이나 e-나라지표에서 가장 최근 수치를 찾아 기관과 연도를 함께 적는다.`;
         const org = ((STAT_SOURCES[st.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
         if (st.src === "bigkinds") return `[기사] ${st.label} — 빅카인즈에서 찾아 언론사와 보도 날짜를 적는다. (예: ○○일보, 2026. ○. ○.)`;
         if (st.src === "tong") return `[설문] ${st.label} — 학급 설문으로 조사해 응답 수와 조사 날짜를 적는다.`;
