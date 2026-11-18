@@ -4664,7 +4664,6 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-cafe-head { text-align: center; margin-bottom: 12px; }
 .ws-cafe-head h3 { font-size: 1.45rem; color: #111; margin: 4px 0 6px; }
 .ws-cafe-head p { font-size: 0.86rem; color: #555; margin: 0; line-height: 1.5; word-break: keep-all; }
-.ws-cafe-head .ws-ext-name { margin-top: 6px; font-size: 0.92rem; }
 .ws-cafe-badge { display: inline-block; font-size: 0.78rem !important; color: #fff !important; background: #5B8DB8; border-radius: 20px; padding: 2px 12px; margin: 0 0 4px !important; letter-spacing: 0.04em; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .ws-cafe-how { font-size: 0.84rem; color: #444; background: #f4f7fb; border-left: 4px solid #5B8DB8; border-radius: 4px; padding: 6px 10px; margin: 8px 0 0; line-height: 1.55; word-break: keep-all; }
 .ws-cafe-pen { font-size: 0.8rem; font-weight: 400; color: #777; margin-left: 8px; }
@@ -4693,17 +4692,39 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-cafe-gap { margin-left: 14px; }
 #worksheet-paper > .worksheet-paper .ws-cafe-tables { font-size: 0.86rem; }
 #worksheet-paper > .worksheet-paper .ws-cafe-tables li { padding: 4px 8px; }
-/* ── 책 밖으로 넓히기 · 교과와 사회의 논제로 (맨 뒤 별도 쪽) ── */
-.ws-ext-cards { display: grid; gap: 6px; }
-.ws-ext-card { display: grid; gap: 2px; padding: 8px 12px; border: 1px solid #e5dccf; border-radius: 8px; background: #fbf8f3; font-size: 0.86rem; line-height: 1.5; color: #333; word-break: keep-all; }
-.ws-ext-claim { font-size: 0.95rem; font-weight: 700; color: #1f2933; }
-.ws-ext-meta { font-size: 0.8rem; color: #8a5a44; }
-.ws-ext-std { font-size: 0.8rem; color: #555; }
-.ws-ext-std code { font-size: 0.78rem; color: #45633f; margin-right: 2px; }
-.ws-ext-src { font-size: 0.78rem; color: #777; }
-.ws-ext-claimbox { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; font-size: 0.9rem; }
-.ws-ext-claimbox b { flex: none; padding-top: 6px; }
-.ws-ext-claimbox textarea { flex: 1; min-width: 0; width: auto; }
+/* ── 두 버전 학습지: 버전 B(교과와 잇기) 학생 쪽과 교사용 가이드 ── */
+#ws-curr-group { grid-column: 1 / -1; }
+.ws-ver-head { text-align: center; margin-bottom: 8px; }
+.ws-ver-label { font-size: 0.82rem; color: #3f6f9a; letter-spacing: 0.06em; margin: 0 0 4px; }
+.ws-ver-head h3 { font-size: 1.3rem; color: #111; margin: 0 0 6px; line-height: 1.4; word-break: keep-all; }
+.ws-ver-from { font-size: 0.9rem; color: #444; margin: 0 0 4px; word-break: keep-all; }
+.ws-ver-from b { color: #3f6f9a; }
+.ws-ver-name { font-size: 0.95rem; color: #555; margin: 0; }
+.ws-curr-box { border-left-color: #5B8DB8 !important; }
+.ws-curr-box p { margin: 0 0 2px; line-height: 1.45; word-break: keep-all; }
+#worksheet-paper > .worksheet-paper .ws-curr-box { padding-top: 10px; padding-bottom: 10px; margin-bottom: 10px; }
+#worksheet-paper > .worksheet-paper .ws-curr-box h4 { margin-bottom: 6px; }
+.ws-curr-box p:last-child { margin-bottom: 0; }
+.ws-curr-box b { color: #3f6f9a; margin-right: 4px; }
+.ws-curr-std { font-size: 0.86rem; color: #444; }
+.ws-curr-std code { font-size: 0.8rem; color: #45633f; margin-right: 2px; }
+.ws-guide-versions { border-color: #b9cde0; background: #f6f9fc; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ws-guide-versions h4 { border-left-color: #5B8DB8 !important; }
+.ws-ver-lead { font-size: 0.82rem; line-height: 1.55; color: #333; margin: 0 0 8px; word-break: keep-all; }
+.ws-ver-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; line-height: 1.5; margin-bottom: 8px; background: #fff; }
+.ws-ver-table th, .ws-ver-table td { border: 1px solid #d6e0ea; padding: 5px 8px; vertical-align: top; text-align: left; word-break: keep-all; }
+.ws-ver-table tr:first-child th { background: #eaf1f8; color: #2d4f6e; text-align: center; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ws-ver-table th:first-child { width: 14%; color: #555; }
+.ws-ver-where { display: block; font-size: 0.74rem; color: #888; }
+.ws-guide-part { font-size: 0.86rem; font-weight: 800; color: #8a5a44; margin: 4px 0 8px; padding-bottom: 4px; border-bottom: 1px dashed #e2d8cc; }
+.ws-guide-flow { margin: 0 0 10px; padding-left: 18px; font-size: 0.8rem; line-height: 1.55; color: #333; word-break: keep-all; }
+.ws-guide-flow li { margin-bottom: 4px; }
+.ws-guide-flow b { color: #8a5a44; margin-right: 4px; }
+.ws-guide-note { font-size: 0.8rem; line-height: 1.55; color: #333; margin: 0 0 6px; word-break: keep-all; }
+.ws-guide-b .ws-guide-box code { font-size: 0.76rem; color: #45633f; }
+.ws-guide-issues td { font-size: 0.78rem; line-height: 1.5; }
+.ws-guide-issues ul { margin: 0; padding-left: 16px; }
+#worksheet-paper > .ws-ver-b textarea { overflow: hidden; }
 .ws-more-pick { display: flex; flex-direction: column; gap: 3px; font-size: 0.85rem; line-height: 1.5; color: #222; margin: 0 0 8px; word-break: keep-all; }
 .ws-more-pick label { display: flex; gap: 6px; align-items: flex-start; }
 .ws-more-pick input { margin-top: 4px; flex: none; }

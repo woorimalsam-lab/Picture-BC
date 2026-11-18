@@ -6298,7 +6298,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.6.18";
+    return "6.7.0";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -15842,6 +15842,9 @@ function setupWorksheetGenerator() {
             option.innerText = book.title;
             bookSelect.appendChild(option);
         });
+        // 그림책을 바꾸면 버전 B(교과와 잇기) 논제 목록도 그 책에 맞게 바꾼다
+        bookSelect.addEventListener("change", refreshBookCurrSelect);
+        refreshBookCurrSelect();
     }
 
     // ── 그림책 내용 분석 블록: 책 데이터(줄거리·질문·논제·주제)를 기법별 관점으로 풀어 학습지 상단에 노출 ──
@@ -15913,6 +15916,12 @@ function setupWorksheetGenerator() {
             const bookIdx = bookSelect.value;
             const type = typeSelect.value;
             const book = books[bookIdx];
+            // 버전 B(교과와 잇기)에 쓸 논제: 고르기 칸에서 고른 것, 없으면 이 책과 이어진 첫 교과 논제
+            const currPick = bookCurrPick(book, bookIdx);
+            const versionB = currPick.t ? bookVersionBHTML(book, type, currPick.t)
+                + (type === "worldcafe" ? `<div class="worksheet-paper ws-book-paper ws-cafe-sheet ws-ver-b-cafe" ${PAPER_BREAK}>${cafeTableSheetHTML(cafeTopicTables(currPick.t), currPick.t.claim)}</div>` : "") : "";
+            const versionsGuide = currPick.t ? bookVersionsGuideHTML(book, currPick.t, currPick.list) : "";
+            const versionBGuide = currPick.t ? bookVersionBGuideHTML(book, type, currPick.t, currPick.list) : "";
             let worksheetHTML = "";
 
             // --- INJECT NEW_WORKSHEETS.JS LOGIC HERE ---
@@ -15923,7 +15932,7 @@ function setupWorksheetGenerator() {
                 </div>
                 <div class="worksheet-paper ws-book-paper">
                     <div style="text-align: center; margin-bottom: 12px;">
-                        <p style="font-size: 0.82rem; color: #8a5a44; letter-spacing: 0.06em; margin: 0 0 6px;">${(l => l + (/(활동지|학습지)$/.test(l) ? "" : " 학습지"))(((typeSelect.options[typeSelect.selectedIndex] || {}).text || "토론").replace(/\s*\([A-Za-z0-9 \-]+\)/g, ""))}</p>
+                        <p style="font-size: 0.82rem; color: #8a5a44; letter-spacing: 0.06em; margin: 0 0 6px;">${currPick.t ? "버전 A · 그림책 속으로 · " : ""}${(l => l + (/(활동지|학습지)$/.test(l) ? "" : " 학습지"))(((typeSelect.options[typeSelect.selectedIndex] || {}).text || "토론").replace(/\s*\([A-Za-z0-9 \-]+\)/g, ""))}</p>
                         <h3 style="font-size: 1.6rem; color: #111; margin: 0 0 10px;">《${book.title}》</h3>
                         <p style="font-size: 0.95rem; color: #555;">학년: ______ 반: ______ 모둠: ______ 이름: ____________</p>
                     </div>
@@ -16629,28 +16638,7 @@ function setupWorksheetGenerator() {
             // 파노라마는 자기 양식(2쪽)을 쓰고, 나머지 유형은 기법에 맞춘 '더 깊이' 활동을 이어 붙인다 (필요하면 2쪽으로 넘어감)
             if (type !== "panorama") worksheetHTML += bookWsMoreHTML(book, type);
 
-            const typeToTechId = {
-                "basic": null,
-                "brainwriting": "brainwriting",
-                "procon": "procon",
-                "hotseating": "hotseating",
-                "carousel": "carousel",
-                "socratic": "socratic",
-                "worldcafe": "worldcafe",
-                "argument": "argumentgame",
-                "doublepyramid": "doublepyramid",
-                "angeldevil": "angeldevil",
-                "hexadebate": "hexadebate",
-                "traffic": "trafficlight",
-                "pmi": "pmi",
-                "twostray": "2stay2stray",
-                "panorama": "panorama",
-                "fan": "fan",
-                "reason": "reasoning",
-                "valueline": "valuebar"
-            };
-
-            const techId = typeToTechId[type];
+            const techId = BOOK_TYPE_TECH[type];
             const tech = (typeof techniques !== 'undefined' && techId) ? techniques.find(t => t.id === techId) : null;
 
             if (tech) {
@@ -16662,6 +16650,7 @@ function setupWorksheetGenerator() {
                 worksheetHTML += `
                     </div> <!-- Close 1st Page .worksheet-paper -->
                     ${type === "worldcafe" ? `<div class="worksheet-paper ws-book-paper ws-cafe-sheet" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">${cafeTableSheetHTML(cafeBookTables(book), `《${book.title}》`)}</div>` : ""}
+                    ${versionB}
 
                     <div class="worksheet-paper worksheet-page-2 ws-guide" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
                         <div class="ws-guide-head">
@@ -16670,6 +16659,8 @@ function setupWorksheetGenerator() {
                             <p>그림책 《${book.title}》${josa(book.title, "으로", "로")} 수업할 때 참고하세요.</p>
                         </div>
                         ${tech.easy ? `<p class="ws-guide-easy"><strong>이 기법은</strong> ${tech.easy}</p>` : ""}
+                        ${versionsGuide}
+                        ${versionsGuide ? `<p class="ws-guide-part">버전 A · 그림책 속으로</p>` : ""}
                         <div class="ws-guide-grid">
                             <section>
                                 <h4>수업 흐름과 발문</h4>
@@ -16690,33 +16681,35 @@ function setupWorksheetGenerator() {
                                     <h4>지도 팁</h4>
                                     <ul>${(tech.tips || []).map(tip => `<li>${tip}</li>`).join("")}</ul>
                                 </div>
-                                ${BOOK_WS_ARGUE.includes(type) ? bookExtendGuideHTML(book) : ""}
                             </aside>
                         </div>
                         ${type === "pmi" ? bookPmiGuideHTML(book) : ""}
                     </div>
+                    ${versionBGuide}
                 `;
             } else {
                 // 기법 가이드가 없는 기본 활동지: '이야기 다시 짚기' 예시만 담은 교사용 쪽을 붙인다
                 const recall = bookRecallGuideHTML(book);
-                worksheetHTML += `</div>` + (recall ? `
+                worksheetHTML += `</div>` + versionB + (recall || versionsGuide ? `
                     <div class="worksheet-paper worksheet-page-2 ws-guide" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
                         <div class="ws-guide-head">
                             <p class="ws-teacher-badge">교사용 · 수업 가이드</p>
                             <h3>독서 전-중-후 활동 가이드</h3>
                             <p>그림책 《${book.title}》${josa(book.title, "으로", "로")} 수업할 때 참고하세요.</p>
                         </div>
+                        ${versionsGuide}
+                        ${versionsGuide && recall ? `<p class="ws-guide-part">버전 A · 그림책 속으로</p>` : ""}
                         ${recall}
-                    </div>` : "");
+                    </div>` : "") + versionBGuide;
             }
             // --- 2ND PAGE INJECTION END ---
-            // 찬반 기법은 '책 밖으로 넓히기 · 교과와 사회의 논제로'를 학습지 맨 뒤 별도 쪽에 자세히 붙인다
-            if (BOOK_WS_ARGUE.includes(type)) worksheetHTML += bookExtendPageHTML(book);
 
             output.innerHTML = worksheetHTML;
             output.classList.remove("hidden");
             fitBookWorksheet(output, type);
-            setupWorksheetAutosave(book.title, type);
+            fitVersionB(output, type);
+            // 버전 B 칸은 논제마다 따로 저장한다 (논제를 바꿔도 버전 A의 답은 그대로)
+            setupWorksheetAutosave(book.title, type, currPick.t ? currPick.t.claim : "");
         });
     }
 }
@@ -22204,7 +22197,7 @@ function panoramaTopicData(t) {
 // ── 그림책 학습지 더 깊이 (파노라마 밖의 17개 유형) ──────────────────
 // 1쪽 분량에 맞추느라 빠졌던 활동을 기법에 맞게 골라 붙인다. 쪽을 억지로 나누지 않고,
 // 부분마다 쪽 사이에서 잘리지 않게(ws-keep) 이어 붙여 필요한 만큼만 2쪽으로 넘어간다.
-//  기본: 이야기 다시 짚기 → 논제를 두 쪽에서 따져 보기(1쪽이 이미 찬반을 다루면 '책 밖으로 넓히기') → 토론을 마치며
+//  기본: 이야기 다시 짚기 → 논제를 두 쪽에서 따져 보기(1쪽이 이미 찬반을 다루면 생략 — 교과·사회로 넓히기는 버전 B) → 토론을 마치며
 //  이유찾기 토론은 1쪽에서 이미 장면 근거를 찾으므로 '이야기 다시 짚기' 대신 '경청 기록'을 넣는다.
 //  듣고 나누는 활동은 '토론을 마치며'의 '마음을 움직인 말' 칸이 이어받는다.
 const BOOK_WS_ARGUE = ["procon", "argument", "traffic", "valueline", "doublepyramid", "angeldevil"];   // 1쪽이 이미 찬반을 다룸
@@ -22281,70 +22274,231 @@ function cafeTableSheetHTML(tables, subject) {
             <textarea class="ws-textarea-box ws-cafe-sum" style="height: 44px;"></textarea>
         </div>`;
 }
-// ── 책 밖으로 넓히기 · 교과와 사회의 논제로 (학습지 맨 뒤 별도 쪽) ─────────────
-// 1쪽이 이미 찬반을 다루는 기법에서, 그림책과 이어지는 교과·사회 논제 한두 개를 골라
-// 교육과정 개념(과목·단원·성취기준)과 근거까지 한 쪽에 자세히 다룬다.
-function bookExtendTopics(book) {
-    const props = book.debatePropositions || [];
-    return debateTopicsDB.filter(t => (t.books || []).includes(book.title) && !props.includes(t.claim))
-        .sort((a, b) => (b.subject ? 1 : 0) - (a.subject ? 1 : 0)).slice(0, 2);
-}
+// ── 두 버전 학습지: 버전 A(그림책 속으로) · 버전 B(교과와 잇기) ─────────────
+// 그림책과 기법을 고르면 두 버전을 함께 만든다.
+//  버전 A: 그림책 자체의 장면·인물·추천 논제에 집중한 학생 학습지
+//  버전 B: 그림책에서 출발해, 그 책과 이어진 교과(2022 개정 교육과정) 논제를 같은 기법으로 따지는 학생 학습지
+// 교사용 가이드는 첫머리에 두 버전의 차이와 운영 방법을 싣고, 버전 B 진행 가이드를 따로 붙인다.
+const BOOK_TYPE_TECH = { basic: null, brainwriting: "brainwriting", procon: "procon", hotseating: "hotseating", carousel: "carousel", socratic: "socratic", worldcafe: "worldcafe", argument: "argumentgame", doublepyramid: "doublepyramid", angeldevil: "angeldevil", hexadebate: "hexadebate", traffic: "trafficlight", pmi: "pmi", twostray: "2stay2stray", panorama: "panorama", fan: "fan", reason: "reasoning", valueline: "valuebar" };
 const topicSubjectName = (t) => [].concat(t.subject || []).map(k => (SUBJECT_GUIDE.find(g => g.key === k) || {}).label).filter(Boolean).join("·");
-const sideGist = (x) => { const m = String(x || "").match(/^([^—]{2,30}?) — /); return m ? m[1] : TWS.plain(x); };
-function bookExtendPageHTML(book) {
-    const topics = bookExtendTopics(book);
+const topicWhere = (t) => t.subject ? [topicSubjectName(t), t.unit].filter(Boolean).join(" · ") : "사회 논제";
+const PAPER_BREAK = `style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);"`;
+// 버전 B 논제 후보: 이 책과 이어진 교과 논제 → 이 책의 추천 논제 가운데 교과 논제 → 이어진 사회 논제 → 추천 논제 가운데 사회 논제
+function bookCurrTopics(book) {
     const props = book.debatePropositions || [];
-    if (!topics.length && !props[1]) return "";
+    const linked = debateTopicsDB.filter(t => (t.books || []).includes(book.title));
+    const own = props.map(p => debateTopicsDB.find(t => t.claim === p)).filter(Boolean);
+    const out = [];
+    const add = (arr) => arr.forEach(t => { if (!out.includes(t)) out.push(t); });
+    add(linked.filter(t => t.subject && !props.includes(t.claim)));
+    add(own.filter(t => t.subject));
+    add(linked.filter(t => !t.subject && !props.includes(t.claim)));
+    add(own.filter(t => !t.subject));
+    return out;
+}
+// 학습지 메이커의 '버전 B · 교과 연계 논제' 고르기 칸을 그림책에 맞게 채운다
+function refreshBookCurrSelect() {
+    const bs = document.getElementById("worksheet-book-select");
+    const sel = document.getElementById("worksheet-curr-select");
+    if (!bs || !sel || typeof books === "undefined") return;
+    const book = books[bs.value];
+    const list = book ? bookCurrTopics(book) : [];
+    sel.innerHTML = list.length
+        ? list.map(t => `<option value="${debateTopicsDB.indexOf(t)}">[${topicWhere(t)}] ${t.claim}</option>`).join("")
+        : `<option value="">이 그림책과 이어진 논제가 아직 없습니다</option>`;
+    sel.disabled = !list.length;
+    sel.dataset.book = bs.value;
+}
+function bookCurrPick(book, bookIdx) {
+    const sel = document.getElementById("worksheet-curr-select");
+    if (sel && sel.dataset.book !== String(bookIdx)) refreshBookCurrSelect();
+    const list = bookCurrTopics(book);
+    const t = sel && sel.value !== "" ? debateTopicsDB[Number(sel.value)] : null;
+    return { list, t: list.includes(t) ? t : (list[0] || null) };
+}
+
+// 버전 B 학생 학습지 (그림책에서 출발해 교과 논제를 같은 기법으로)
+function bookVersionBHTML(book, type, t) {
+    const techId = BOOK_TYPE_TECH[type];
+    const tech = techId ? techniques.find(x => x.id === techId) : null;
+    const core = techId ? TOPIC_TECH_CORE[techId] : null;
+    const form = tech ? techShortName(tech) + " 학습지" : "논제 분석 활동지";
+    const subj = !!t.subject;
+    const std = (t.std || []).filter(c => CURRICULUM[c]).slice(0, 2);
+    const srcs = [...(subj ? ["교과서"] : []), ...(t.bg || []).map(k => (BG_SOURCES[k] || {}).label).filter(Boolean), "빅카인즈(뉴스)"];
     const ta = (h) => `<textarea style="height: ${h}px;"></textarea>`;
     const line = () => `<input class="ws-line" type="text">`;
-    const cards = topics.length ? topics.map(t => {
-        const std = (t.std || []).filter(c => CURRICULUM[c]).slice(0, 2);
-        const where = [topicSubjectName(t), t.unit].filter(Boolean).join(" · ");
-        const srcs = [...(t.bg || []).map(k => (BG_SOURCES[k] || {}).label).filter(Boolean), "빅카인즈(뉴스)", "RISS(논문)"];
-        return `<label class="ws-ext-card">
-                <span class="ws-ext-claim"><input type="radio" name="ext-pick"> ${t.claim}</span>
-                <span class="ws-ext-meta">${(TOPIC_TYPE_INFO[t.type] || {}).label || "논제"} · ${where || "사회 논제"}</span>
-                ${std.map(c => `<span class="ws-ext-std"><code>[${c}]</code> ${CURRICULUM[c]}</span>`).join("")}
-                <span class="ws-ext-src">찾아볼 곳 · 교과서, ${srcs.join(", ")}</span>
-            </label>`;
-    }).join("") : `<label class="ws-ext-card"><span class="ws-ext-claim"><input type="radio" name="ext-pick"> ${props[1]}</span></label>`;
-    // 두 쪽 구성: 1쪽은 이해와 연결(논제 고르기·그림책과 잇기·개념 짚기), 2쪽은 쓰기(근거·반론·한 문단)
-    let n = 0;
-    const sec = (title, lead, body, cls = "") => `
-        <div class="ws-section ws-keep${cls}">
-            <h4>${++n}. ${title}</h4>
+    // 버전 B만의 칸(그림책과 잇기·개념·근거·다시 그림책으로)은 번호 없이, 기법 활동은 번호를 붙인다
+    const extra = (key, title, lead, body) => `
+        <div class="ws-section ws-keep ws-b-extra" data-b="${key}">
+            <h4>${title}</h4>
             ${lead ? `<p class="ws-prompt">${lead}</p>` : ""}
             ${body}
         </div>`;
+    // 번호는 fitVersionB가 덜어 낸 뒤 다시 매긴다 (ws-b-num)
+    const sec = (title, lead, body, key = "") => `
+        <div class="ws-section ws-keep${key ? " ws-b-extra" : ""}"${key ? ` data-b="${key}"` : ""}>
+            <h4><span class="ws-b-num"></span>${title}</h4>
+            ${lead ? `<p class="ws-prompt">${lead}</p>` : ""}
+            ${body}
+        </div>`;
+    const bridge = extra("bridge", "🌱 그림책에서 논제로", `《${book.title}》의 어떤 장면이나 인물이 이 논제와 닮았고, 어디가 다른가요?`,
+        `<table class="ws-table pano-table"><tr><th style="width: 34%;">그림책 속 장면·인물</th><th style="width: 33%;">논제와 닮은 점</th><th>다른 점</th></tr><tr><td>${ta(44)}</td><td>${ta(44)}</td><td>${ta(44)}</td></tr></table>`);
+    const concept = extra("concept", subj ? "📘 교과 개념 짚기" : "📘 핵심 낱말 짚기",
+        subj ? "논제를 따지는 데 필요한 교과 개념 두 가지를 교과서·사전에서 찾아 뜻을 적으세요." : "논제를 따지는 데 필요한 핵심 낱말 두 가지를 사전과 배경 지식에서 찾아 뜻을 적으세요.",
+        `<table class="ws-table pano-table"><tr><th style="width: 22%;">${subj ? "교과 개념(낱말)" : "핵심 낱말"}</th><th style="width: 40%;">뜻 (어디에서 찾았는지 함께)</th><th>이 논제와 어떻게 이어지나</th></tr>${[1, 2].map(() => `<tr><td>${line()}</td><td>${ta(34)}</td><td>${ta(34)}</td></tr>`).join("")}</table>`);
+    const evidence = extra("evidence", "🧾 근거 모으기", "갈래마다 근거를 하나씩 적고, 자료는 기관과 연도, 기사는 언론사와 날짜를 함께 적습니다.",
+        `<table class="ws-table pano-table"><tr><th style="width: 33%;">그림책 속 근거</th><th style="width: 33%;">${subj ? "교과 개념·이론" : "개념·이론"}</th><th>자료·통계·기사 (출처)</th></tr><tr><td>${ta(62)}</td><td>${ta(62)}</td><td>${ta(62)}</td></tr></table>`);
+    const back = extra("back", "🌱 다시 그림책으로", `토론을 마치고 《${book.title}》${josa(book.title, "을", "를")} 다시 떠올려 보세요. 처음 읽을 때와 무엇이 달리 보이나요?`, ta(48));
+    let body;
+    if (techId === "panorama") {
+        body = bridge + panoramaSheetHTML(Object.assign({ source: "topic", ex: { inQ: "예: 이 제도는 지금 어떻게 운영되고 있을까?", outQ: "예: 이 논제로 가장 크게 달라지는 사람은 누구일까?" } }, panoramaTopicData(t)));
+    } else if (!core) {
+        body = bridge + concept + TOPIC_WS_BUILDERS.analysis(t, false) + back;
+    } else {
+        // 토론 뒤 칸이 '다시 그림책으로'를 함께 묻는다 (앞뒤 척도가 없는 기법은 따로 둔다)
+        const prepost = core.prepost !== false;
+        body = bridge + concept + evidence +
+            (prepost ? sec("토론 전, 나의 첫 생각", "", topicWsScale(t, "b-pre") + tws.box(40, "그렇게 생각한 까닭"), "pre") : "") +
+            core.secs(t).map(([title, lead, html]) => sec(title, lead, html)).join("") +
+            (prepost ? sec("토론 뒤, 달라진 생각", `처음과 달라진 점을 적고, 《${book.title}》${josa(book.title, "을", "를")} 다시 떠올리면 무엇이 달리 보이는지도 적어 보세요.`, topicWsScale(t, "b-post") + tws.box(48, "처음과 달라진 점 · 다시 본 그림책")) : back);
+    }
     return `
-        <div class="worksheet-paper ws-book-paper ws-ext-page" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
-            <div class="ws-cafe-head">
-                <p class="ws-cafe-badge">더 깊이 · 교과와 사회로 넓히기</p>
-                <h3>책 밖으로 넓히기 · 교과와 사회의 논제로</h3>
-                <p>《${book.title}》에서 나눈 생각을 교과에서 배우는 개념과 우리 사회의 논제로 이어 봅니다.</p>
-                <p class="ws-ext-name">학년: ______ 반: ______ 이름: ____________</p>
+        <div class="worksheet-paper ws-book-paper ws-ver-b" ${PAPER_BREAK}>
+            <div class="ws-ver-head">
+                <p class="ws-ver-label">버전 B · 교과와 잇기 · ${form}</p>
+                <h3>${t.claim}</h3>
+                <p class="ws-ver-from">《${book.title}》에서 출발해 ${subj ? `<b>${topicWhere(t)}</b>의 개념으로` : "우리 사회의 논제로"} 따져 봅니다.</p>
+                <p class="ws-ver-name">학년: ______ 반: ______ 모둠: ______ 이름: ____________</p>
             </div>
-            ${sec("논제 고르기", "그림책과 이어지는 교과·사회 논제입니다. 하나를 골라 표시하세요. 과목과 단원, 성취기준을 보면 어떤 개념을 쓰게 될지 알 수 있습니다.", `<div class="ws-ext-cards">${cards}</div>`)}
-            ${sec("그림책과 논제 잇기", "그림책의 어떤 장면이나 인물이 이 논제와 닮았는지, 또 어디가 다른지 적으세요.",
-                `<table class="ws-table pano-table"><tr><th style="width: 34%;">그림책 속 장면·인물</th><th style="width: 33%;">논제와 닮은 점</th><th>다른 점</th></tr><tr><td>${ta(64)}</td><td>${ta(64)}</td><td>${ta(64)}</td></tr></table>`)}
-            ${sec("개념 짚기", "이 논제를 따지는 데 필요한 교과 개념(낱말)을 두 가지 골라, 교과서·사전·배경 지식에서 뜻을 찾아 적으세요.",
-                `<table class="ws-table pano-table"><tr><th style="width: 22%;">교과 개념(낱말)</th><th style="width: 40%;">뜻 (어디에서 찾았는지 함께)</th><th>이 논제와 어떻게 이어지나</th></tr>${[1, 2].map(() => `<tr><td>${line()}</td><td>${ta(48)}</td><td>${ta(48)}</td></tr>`).join("")}</table>`)}
-            ${sec("근거 모으기", "나의 주장을 한 문장으로 적고, 그림책·교과 개념·자료에서 근거를 하나씩 찾으세요. 자료는 기관과 연도, 기사는 언론사와 날짜를 출처에 적습니다.",
-                `<div class="ws-ext-claimbox"><b>나의 주장</b>${ta(44)}</div>
-                <table class="ws-table pano-table"><tr><th style="width: 20%;">근거의 종류</th><th>내용</th><th style="width: 26%;">출처</th></tr>${["그림책 속 근거", "교과 개념·이론", "자료·통계·기사"].map(k => `<tr><th>${k}</th><td>${ta(64)}</td><td>${line()}</td></tr>`).join("")}</table>`, " ws-page-break")}
-            ${sec("반론 예상하고 답하기", "나와 다른 입장의 친구가 할 말을 미리 적고, 어떻게 답할지 정리하세요.",
-                `<table class="ws-table pano-table"><tr><th style="width: 50%;">예상되는 반론</th><th>나의 답</th></tr><tr><td>${ta(88)}</td><td>${ta(88)}</td></tr></table>`)}
-            ${sec("한 문단으로 정리하기", "주장 → 근거(그림책·교과·자료) → 반론에 대한 답 → 결론의 차례로 한 문단을 씁니다.", `<textarea class="ws-textarea-box" style="height: 200px;"></textarea>`)}
+            <div class="ws-book-info-box ws-curr-box">
+                <h4>${subj ? "📚 교과와 이어지는 곳" : "🌏 사회와 이어지는 곳"}</h4>
+                ${subj ? `<p><b>과목 · 단원</b> ${topicWhere(t)}</p>` : ""}
+                ${std.map(c => `<p class="ws-curr-std"><code>[${c}]</code> ${CURRICULUM[c]}</p>`).join("")}
+                ${t.background ? `<p><b>배경 지식</b> ${t.background.split(/(?<=다\.)\s+/).slice(0, 2).join(" ")}</p>` : ""}
+                <p><b>찾아볼 곳</b> ${srcs.join(", ")}</p>
+            </div>
+            ${body}
         </div>`;
 }
-// 교사용 가이드에 싣는 '맨 뒤 쪽' 안내: 이어지는 논제와 예상 쟁점
-function bookExtendGuideHTML(book) {
-    const topics = bookExtendTopics(book);
-    if (!topics.length) return "";
-    return `<div class="ws-guide-box"><h4>맨 뒤 쪽 · 교과와 사회로 넓히기</h4><ul>${topics.map(t => {
-        const where = [topicSubjectName(t), t.unit].filter(Boolean).join(" · ");
-        return `<li><b>${t.claim}</b>${where ? ` <span class="ws-ext-meta">(${where})</span>` : ""}<br>찬성 쟁점: ${(t.pro || []).slice(0, 2).map(sideGist).join(", ")} / 반대 쟁점: ${(t.con || []).slice(0, 2).map(sideGist).join(", ")}</li>`;
-    }).join("")}</ul></div>`;
+// 버전 B가 2쪽을 넘으면 정한 차례대로 덜어 낸다 (기법 활동과 '근거 모으기'는 되도록 남긴다)
+const BOOK_B_DROP_ORDER = ["pre", "back", "evidence", "concept"];
+function fitVersionB(out, type) {
+    const paper = out && out.querySelector(":scope > .ws-ver-b");
+    if (!paper) return 0;
+    let n = 0;
+    if (type !== "panorama") {
+        // 종이에 걸린 전환 효과(transition) 때문에 폭을 바꾼 직전 값으로 재지 않게, 재는 동안 끈다
+        out.classList.add("ws-notrans");
+        const keep = paper.getAttribute("style");
+        paper.style.width = "703px"; paper.style.maxWidth = "none"; paper.style.padding = "0"; paper.style.boxSizing = "content-box"; paper.style.marginTop = "0"; paper.style.borderTop = "none";
+        const hidden = [...paper.querySelectorAll(".no-print")].map(el => [el, el.style.display]);
+        hidden.forEach(([el]) => { el.style.display = "none"; });
+        n = bookWsPageCount(paper);
+        for (const k of BOOK_B_DROP_ORDER) {
+            if (n <= 2) break;
+            const el = paper.querySelector(`.ws-b-extra[data-b="${k}"]`);
+            if (el) { el.remove(); n = bookWsPageCount(paper); }
+        }
+        hidden.forEach(([el, d]) => { el.style.display = d; });
+        if (keep === null) paper.removeAttribute("style"); else paper.setAttribute("style", keep);
+        void out.offsetHeight;
+        setTimeout(() => out.classList.remove("ws-notrans"), 60);
+    }
+    paper.querySelectorAll(".ws-b-num").forEach((el, i) => { el.textContent = `${i + 1}. `; });
+    // 학생 쪽에서 빠진 칸은 버전 B 가이드의 수업 흐름에서도 뺀다
+    out.querySelectorAll(".ws-guide-b .ws-guide-flow li[data-b]").forEach(li => {
+        if (!paper.querySelector(`.ws-b-extra[data-b="${li.dataset.b}"]`)) li.remove();
+    });
+    return n;
+}
+
+// 교사용 가이드 첫머리: 두 버전의 차이와 운영 방법
+function bookVersionsGuideHTML(book, t, list) {
+    const props = book.debatePropositions || [];
+    const aQ = props[0] || (book.debateTopics || [])[0] || "";
+    const subj = topicSubjectName(t);
+    const std = (t.std || []).filter(c => CURRICULUM[c]);
+    return `
+        <div class="ws-guide-box ws-guide-versions">
+            <h4>두 버전으로 수업하기</h4>
+            <p class="ws-ver-lead">같은 기법으로 학생 학습지를 두 버전 만들었습니다. <b>버전 A</b>는 그림책 자체의 장면과 인물에 집중하고, <b>버전 B</b>는 그림책에서 출발해 ${t.subject ? `${subj} 교과의 논제` : "우리 사회의 논제"}로 넓힙니다.</p>
+            <table class="ws-ver-table">
+                <tr><th></th><th>버전 A · 그림책 속으로</th><th>버전 B · 교과와 잇기</th></tr>
+                <tr><th>논제</th><td>${aQ}<span class="ws-ver-where">《${book.title}》의 추천 논제</span></td><td>${t.claim}<span class="ws-ver-where">${topicWhere(t)}${std.length ? ` · ${std.map(c => `[${c}]`).join(" ")}` : ""}</span></td></tr>
+                <tr><th>근거</th><td>그림책의 장면과 인물의 말·행동</td><td>그림책 장면 + ${t.subject ? "교과 개념" : "핵심 낱말"} + 자료·통계·기사</td></tr>
+                <tr><th>이럴 때</th><td>그림책을 처음 읽고 이야기의 뜻을 깊이 나눌 때</td><td>${t.subject ? `${subj} 단원과 이어 배울 때, ` : "생각을 우리 사회의 문제로 넓힐 때, "}근거와 출처를 갖춰 따지는 연습을 할 때</td></tr>
+            </table>
+            <ul>
+                <li><b>두 차시로</b> 1차시에 버전 A로 이야기를 충분히 나누고, 2차시에 버전 B로 ${t.subject ? "교과 개념" : "핵심 낱말"}과 자료를 더해 넓힙니다. 버전 A에서 찾은 장면이 버전 B '그림책에서 논제로' 칸의 재료가 됩니다.</li>
+                <li><b>한 차시로</b> 버전 A의 '이야기 다시 짚기'만 짧게 한 뒤 버전 B로 넘어갑니다.</li>
+                <li><b>모둠을 나눠</b> 모둠마다 A와 B를 나눠 맡고, 마지막에 서로의 결론을 들려주며 그림책의 물음과 ${t.subject ? "교과" : "사회"}의 물음이 어떻게 이어지는지 견주어 봅니다.</li>
+                <li><b>한 버전만</b> 인쇄할 때 쪽 범위를 골라 필요한 버전만 뽑습니다.${list.length > 1 ? ` 버전 B의 논제는 학습지 메이커의 '버전 B · 교과 연계 논제'에서 바꿀 수 있습니다(이 책은 ${list.length}개).` : ""}</li>
+            </ul>
+        </div>`;
+}
+// 버전 B 진행 가이드 (따로 한 장)
+function bookVersionBGuideHTML(book, type, t, list) {
+    const techId = BOOK_TYPE_TECH[type];
+    const tech = techId ? techniques.find(x => x.id === techId) : null;
+    const name = tech ? techShortName(tech) : "논제 분석";
+    const [A, B] = topicSides(t);
+    const subj = !!t.subject;
+    const q = (book.debateTopics || [])[0] || "";
+    const claim = TWS.plain(t.claim);
+    const std = (t.std || []).filter(c => CURRICULUM[c]);
+    const others = list.filter(x => x !== t).slice(0, 4);
+    const li = (arr) => `<ul>${arr.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    const org = (s) => ((STAT_SOURCES[s.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
+    const stats = topicWsSources(t).filter(s => s.src !== "bigkinds");
+    const bgs = (t.bg || []).map(k => (BG_SOURCES[k] || {}).label).filter(Boolean);
+    const steps = tech ? tech.steps.map(s => s.title.replace(/\s*\([^)]*\)\s*$/, "")).join(" → ") : "낱말 뜻 정하기 → 쟁점 나누기 → 내 입장 정하기";
+    const core = techId ? TOPIC_TECH_CORE[techId] : null;
+    const prepost = !!core && techId !== "panorama" && core.prepost !== false;   // 토론 뒤 칸이 '다시 그림책으로'를 함께 묻는 경우
+    return `
+        <div class="worksheet-paper worksheet-page-2 ws-guide ws-guide-b" ${PAPER_BREAK}>
+            <div class="ws-guide-head">
+                <p class="ws-teacher-badge">교사용 · 버전 B 가이드</p>
+                <h3>버전 B · 교과와 잇기 진행 가이드</h3>
+                <p>《${book.title}》에서 출발해 '${claim}'라는 논제를 ${name}${josa(name, "으로", "로")} 다룰 때 참고하세요.</p>
+            </div>
+            <div class="ws-guide-grid">
+                <section>
+                    <h4>수업 흐름과 발문</h4>
+                    <ol class="ws-guide-flow">
+                        <li data-b="bridge"><b>그림책에서 논제로 (5분)</b> 그림책의 물음을 다시 떠올리고, 그 물음을 ${subj ? "교과와 사회" : "우리 사회"}로 옮기면 이 논제가 된다는 것을 보여 줍니다.</li>
+                        <li data-b="concept"><b>${subj ? "교과 개념" : "핵심 낱말"} 짚기 (5~10분)</b> ${subj ? `교과서의 '${t.unit}' 부분과 사전에서` : "사전과 배경 지식에서"} 논제를 따지는 데 필요한 낱말 두 개를 찾아 뜻을 적게 합니다.</li>
+                        <li data-b="evidence"><b>근거 모으기 (10분)</b> 그림책·${subj ? "교과 개념" : "개념"}·자료에서 근거를 하나씩 찾고, 자료에는 기관과 연도, 기사에는 언론사와 날짜를 적게 합니다.</li>
+                        <li><b>${name} (20분)</b> ${steps}</li>
+                        <li${prepost ? "" : ` data-b="back"`}><b>다시 그림책으로 (5분)</b> 토론을 마친 뒤 그림책을 다시 보면 무엇이 달리 보이는지 나눕니다.${prepost ? " 학생 학습지의 '토론 뒤, 달라진 생각' 칸에 함께 적습니다." : ""}</li>
+                    </ol>
+                    ${q ? `<div class="ws-guide-say"><strong>잇는 발문</strong>"《${book.title}》에서 우리는 '${q}' 하고 물었어요. 이 물음을 ${subj ? "교과와 사회" : "우리 사회"}로 옮기면 '${claim}'라는 논제가 됩니다. 그림책 속 인물이라면 이 논제에 어떻게 답할까요?"</div>` : ""}
+                    <p class="ws-guide-sub">예상 쟁점</p>
+                    <table class="ws-table ws-table-compact ws-guide-issues"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${li(t.pro || [])}</td><td>${li(t.con || [])}</td></tr></table>
+                </section>
+                <aside>
+                    <div class="ws-guide-box">
+                        <h4>${subj ? "교육과정 연결" : "이 논제의 자리"}</h4>
+                        ${subj ? `<p class="ws-guide-note"><b>과목 · 단원</b> ${topicWhere(t)}</p>${std.length ? `<ul>${std.map(c => `<li><code>[${c}]</code> ${CURRICULUM[c]}</li>`).join("")}</ul>` : ""}`
+                            : `<p class="ws-guide-note">특정 교과 단원에 묶이지 않은 사회 논제입니다. 가치와 제도를 다루는 수업이나 창의적 체험활동에서 쓰기 좋습니다.</p>`}
+                    </div>
+                    <div class="ws-guide-box">
+                        <h4>배경 지식과 자료</h4>
+                        <ul>
+                            ${bgs.length ? `<li><b>배경 지식</b> ${bgs.join(", ")}${t.bgq ? ` (검색어: ${t.bgq})` : ""}</li>` : ""}
+                            ${stats.map(s => `<li><b>통계·연구</b> ${s.label}${org(s) ? `(${org(s)})` : ""}</li>`).join("")}
+                            <li><b>기사</b> 빅카인즈에서 논제의 핵심 낱말로 찾아봅니다.</li>
+                        </ul>
+                    </div>
+                    ${others.length ? `<div class="ws-guide-box">
+                        <h4>다른 논제로 바꾸려면</h4>
+                        <p class="ws-guide-note">학습지 메이커의 '버전 B · 교과 연계 논제'에서 고르면 버전 B가 그 논제로 다시 만들어집니다.</p>
+                        <ul>${others.map(x => `<li>${x.claim} <span class="ws-ver-where">${topicWhere(x)}</span></li>`).join("")}</ul>
+                    </div>` : ""}
+                </aside>
+            </div>
+            ${topicSetukHTML(t, techId || "analysis")}
+        </div>`;
 }
 // ── PMI 대상 잡기 (교사용 가이드) ─────────────
 // PMI는 결정이나 제안의 좋은 점·아쉬운 점·흥미로운 점을 따지는 기법이라, 이야기 속 폭력이나 차별 '자체'를 대상으로 삼으면
@@ -22835,8 +22989,8 @@ function bookWsMoreHTML(book, type) {
             </table>
         </div>`);
 
-    // 1쪽이 이미 찬반을 다루는 기법(BOOK_WS_ARGUE)은 '책 밖으로 넓히기 · 교과와 사회의 논제로'를
-    // 학습지 맨 뒤 별도 쪽(bookExtendPageHTML)에 자세히 싣는다. 나머지 기법은 여기서 논제를 두 쪽에서 따져 본다.
+    // 1쪽이 이미 찬반을 다루는 기법(BOOK_WS_ARGUE)은 여기서 다시 따지지 않는다 (교과·사회로 넓히기는 버전 B가 맡는다).
+    // 나머지 기법은 여기서 논제를 두 쪽에서 따져 본다.
     if (!BOOK_WS_ARGUE.includes(type)) {
         parts.push(`
         <div class="ws-section ws-keep ws-more" data-more="argue">
@@ -22921,6 +23075,7 @@ function fitBookWorksheet(out, type) {
     const paper = out && out.querySelector(":scope > .worksheet-paper.ws-book-paper");
     if (!paper) return 0;
     const keep = paper.getAttribute("style");
+    out.classList.add("ws-notrans");   // 전환 효과 때문에 바뀌기 전 폭으로 재지 않게
     // 화면 폭과 상관없이 인쇄 폭(본문 703px)으로 재고 되돌린다
     paper.style.width = "703px"; paper.style.maxWidth = "none"; paper.style.padding = "0"; paper.style.boxSizing = "content-box";
     // 인쇄에서 숨는 것(추천 논제 단추 상자 등)은 재는 동안 감춘다
@@ -22945,6 +23100,8 @@ function fitBookWorksheet(out, type) {
     drop(BOOK_WS_DROP_ORDER.filter(x => !first.includes(x)));
     hidden.forEach(([el, d]) => { el.style.display = d; });
     if (keep === null) paper.removeAttribute("style"); else paper.setAttribute("style", keep);
+    void out.offsetHeight;
+    setTimeout(() => out.classList.remove("ws-notrans"), 60);
     return n;
 }
 
@@ -23411,7 +23568,7 @@ window.openTopicWorksheet = function (idx, form) {
 
 // 학습지 작성 내용 자동 저장 (같은 그림책·유형으로 다시 열면 복원)
 // (그림책 학습지 16개 유형: '이야기 다시 짚기' 장면 칸을 빈칸으로 바꾸면서 칸 순서가 달라져 저장 이름을 바꿈)
-// (월드카페: 테이블 기록지 쪽을 더함 / 찬반 기법 6개: '책 밖으로 넓히기'를 맨 뒤 별도 쪽으로 옮김 → 3)
+// (월드카페: 테이블 기록지 쪽을 더함 / 찬반 기법 6개: '책 밖으로 넓히기'를 학생 학습지에서 뺌(지금은 버전 B가 맡음) → 3)
 const WS_LAYOUT_REV = { "panorama": 3, "topic-tech-panorama": 3, "topic-tech-worldcafe": 2,
     ...Object.fromEntries(["basic", "brainwriting", "hotseating", "carousel", "socratic", "hexadebate", "pmi", "twostray", "fan"].map(t => [t, 2])),
     ...Object.fromEntries(["worldcafe", "procon", "argument", "traffic", "valueline", "doublepyramid", "angeldevil"].map(t => [t, 3])) };
@@ -23933,7 +24090,7 @@ window.wsExport = async function (kind, btn) {
 const WS_EXPORT_BTNS = `<button type="button" onclick="wsExport('pdf', this)" class="btn btn-secondary ws-export-btn"><i class="fa-solid fa-file-pdf"></i> PDF로 받기</button>
             <button type="button" onclick="wsExport('hwpx', this)" class="btn btn-secondary ws-export-btn" title="한글 2014 이후에서 열리는 HWPX 파일"><i class="fa-solid fa-file-lines"></i> 한글로 받기</button>`;
 
-function setupWorksheetAutosave(bookTitle, type) {
+function setupWorksheetAutosave(bookTitle, type, partB = "") {
     const output = document.getElementById("worksheet-paper");
     if (!output) return;
     if (output._wsAutosave) {
@@ -23944,28 +24101,37 @@ function setupWorksheetAutosave(bookTitle, type) {
     // 칸 배치를 바꾼 학습지는 예전 저장본이 엉뚱한 칸에 들어가지 않게 저장 이름을 바꾼다
     const rev = WS_LAYOUT_REV[type];
     const key = `pbc-ws:${bookTitle}:${type}${rev ? "@" + rev : ""}`;
-    const fields = Array.from(output.querySelectorAll("input, textarea, [contenteditable='true']"));
-    if (!fields.length) return;
+    const all = Array.from(output.querySelectorAll("input, textarea, [contenteditable='true']"));
+    if (!all.length) return;
+    // 그림책 학습지의 버전 B(교과와 잇기) 칸은 고른 논제마다 따로 저장한다
+    const inB = (f) => !!f.closest(".ws-ver-b, .ws-ver-b-cafe");
+    const groups = [{ key, fields: all.filter(f => !partB || !inB(f)) }];
+    if (partB) groups.push({ key: `${key}:B:${partB}`, fields: all.filter(inB) });
 
     // 저장된 내용 복원
-    let saved = {};
-    try { saved = JSON.parse(localStorage.getItem(key) || "{}"); } catch (e) { saved = {}; }
-    fields.forEach((f, i) => {
-        const v = saved[i];
-        if (v === undefined) return;
-        if (f.hasAttribute("contenteditable")) f.innerHTML = v;
-        else if (f.type === "checkbox" || f.type === "radio") f.checked = !!v;
-        else f.value = v;
+    groups.forEach(g => {
+        let saved = {};
+        try { saved = JSON.parse(localStorage.getItem(g.key) || "{}"); } catch (e) { saved = {}; }
+        g.fields.forEach((f, i) => {
+            const v = saved[i];
+            if (v === undefined) return;
+            if (f.hasAttribute("contenteditable")) f.innerHTML = v;
+            else if (f.type === "checkbox" || f.type === "radio") f.checked = !!v;
+            else f.value = v;
+        });
     });
 
     const save = () => {
-        const data = {};
-        fields.forEach((f, i) => {
-            if (f.hasAttribute("contenteditable")) data[i] = f.innerHTML;
-            else if (f.type === "checkbox" || f.type === "radio") data[i] = f.checked;
-            else data[i] = f.value;
+        groups.forEach(g => {
+            const data = {};
+            g.fields.forEach((f, i) => {
+                if (f.hasAttribute("contenteditable")) data[i] = f.innerHTML;
+                else if (f.type === "checkbox" || f.type === "radio") data[i] = f.checked;
+                else data[i] = f.value;
+            });
+            try { localStorage.setItem(g.key, JSON.stringify(data)); } catch (e) { /* 용량 초과 등은 무시 */ }
         });
-        try { localStorage.setItem(key, JSON.stringify(data)); showWorksheetSaved(); } catch (e) { /* 용량 초과 등은 무시 */ }
+        showWorksheetSaved();
     };
 
     let t = null;
