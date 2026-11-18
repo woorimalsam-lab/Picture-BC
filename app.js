@@ -6296,7 +6296,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.6.15";
+    return "6.6.16";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -15920,7 +15920,7 @@ function setupWorksheetGenerator() {
             ${WS_EXPORT_BTNS}
                 </div>
                 <div class="worksheet-paper ws-book-paper">
-                    <div style="text-align: center; margin-bottom: 24px;">
+                    <div style="text-align: center; margin-bottom: 12px;">
                         <p style="font-size: 0.82rem; color: #8a5a44; letter-spacing: 0.06em; margin: 0 0 6px;">${(l => l + (/(활동지|학습지)$/.test(l) ? "" : " 학습지"))(((typeSelect.options[typeSelect.selectedIndex] || {}).text || "토론").replace(/\s*\([A-Za-z0-9 \-]+\)/g, ""))}</p>
                         <h3 style="font-size: 1.6rem; color: #111; margin: 0 0 10px;">《${book.title}》</h3>
                         <p style="font-size: 0.95rem; color: #555;">학년: ______ 반: ______ 모둠: ______ 이름: ____________</p>
@@ -16681,7 +16681,7 @@ function setupWorksheetGenerator() {
                         <div class="ws-guide-grid">
                             <section>
                                 <h4>수업 흐름과 발문</h4>
-                                ${gApply && gApply.story ? `<div class="ws-guide-story"><strong>줄거리 세 장면으로 확인하기</strong><ol>${gApply.story.map(x => `<li>${x}</li>`).join("")}</ol>${gApply.storyNote ? `<p>${gApply.storyNote}</p>` : ""}</div>` : ""}
+                                ${gApply && gApply.story ? `<div class="ws-guide-story"><strong>줄거리 세 장면으로 확인하기</strong><ol>${gApply.story.map(x => `<li>${x}</li>`).join("")}</ol>${gApply.storyNote ? `<p>${gApply.storyNote}</p>` : ""}</div>` : (type !== "panorama" && !BOOK_WS_NO_RECALL.includes(type) ? bookRecallGuideHTML(book) : "")}
                                 <div class="ws-guide-say"><strong>도입 발문</strong>${dynScenario.intro}${gSeats}</div>
                                 ${dynScenario.dialog && dynScenario.dialog.length ? `
                                 <p class="ws-guide-sub">모둠 대화 예시</p>
@@ -16703,7 +16703,17 @@ function setupWorksheetGenerator() {
                     </div>
                 `;
             } else {
-                worksheetHTML += `</div>`;
+                // 기법 가이드가 없는 기본 활동지: '이야기 다시 짚기' 예시만 담은 교사용 쪽을 붙인다
+                const recall = bookRecallGuideHTML(book);
+                worksheetHTML += `</div>` + (recall ? `
+                    <div class="worksheet-paper worksheet-page-2 ws-guide" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
+                        <div class="ws-guide-head">
+                            <p class="ws-teacher-badge">교사용 · 수업 가이드</p>
+                            <h3>독서 전-중-후 활동 가이드</h3>
+                            <p>그림책 《${book.title}》${josa(book.title, "으로", "로")} 수업할 때 참고하세요.</p>
+                        </div>
+                        ${recall}
+                    </div>` : "");
             }
             // --- 2ND PAGE INJECTION END ---
 
@@ -22203,10 +22213,21 @@ function panoramaTopicData(t) {
 //  듣고 나누는 활동은 '토론을 마치며'의 '마음을 움직인 말' 칸이 이어받는다.
 const BOOK_WS_ARGUE = ["procon", "argument", "traffic", "valueline", "doublepyramid", "angeldevil"];   // 1쪽이 이미 찬반을 다룸
 const BOOK_WS_NO_RECALL = ["reason"];                                                              // 1쪽이 이미 장면 근거를 찾음
-const BOOK_WS_MORE_H = { scene: 40, side: 42, extend: 56, listen: 38, ask: 50, close: 48 };      // 칸 높이(px)
+const BOOK_WS_MORE_H = { scene: 40, side: 42, extend: 56, listen: 38, ask: 50, close: 120 };     // 칸 높이(px) — '토론을 마치며'는 넉넉하게
+// 줄거리 세 장면: 파노라마 자료가 있으면 그 장면을, 없으면 줄거리 앞 세 문장을 쓴다
+function bookStoryScenes(book) {
+    const p = panoramaBookData(book.title) || {};
+    return (p.story && p.story.length) ? p.story : (book.summary || "").split(/(?<=다\.)\s+/).slice(0, 3);
+}
+// 교사용 가이드에 싣는 '이야기 다시 짚기' 예시 (학생 학습지에는 장면 칸을 비워 둔다)
+function bookRecallGuideHTML(book) {
+    const story = bookStoryScenes(book);
+    if (!story.length) return "";
+    return `<div class="ws-guide-story"><strong>이야기 다시 짚기 · 세 장면 예시</strong><ol>${story.map(x => `<li>${x}</li>`).join("")}</ol>` +
+        `<p>학생 학습지의 '이야기 다시 짚기' 표에는 장면 칸을 비워 두었습니다. 학생이 고른 장면이 이와 달라도 이야기 속 근거가 맞으면 인정하고, 장면마다 인물의 마음과 그렇게 한 까닭을 말하게 해 보세요.</p></div>`;
+}
 function bookWsMoreHTML(book, type) {
     const p = panoramaBookData(book.title) || {};
-    const story = (p.story && p.story.length) ? p.story : (book.summary || "").split(/(?<=다\.)\s+/).slice(0, 3);
     const H = BOOK_WS_MORE_H;
     const sub = (t) => `<br><span class="pano-th-sub">${t}</span>`;
     const keys = (t) => `<span class="pano-keys">${t}</span>`;
@@ -22219,10 +22240,10 @@ function bookWsMoreHTML(book, type) {
     if (!BOOK_WS_NO_RECALL.includes(type)) parts.push(`
         <div class="ws-section ws-keep ws-more" data-more="recall">
             <h4>이야기 다시 짚기 · 세 장면과 인물의 마음 ${keys("내용 확인 · 인물 이해 · 근거 찾기")}</h4>
-            <p class="ws-prompt">토론의 근거가 될 장면을 다시 짚어 봅니다. 장면마다 인물이 무엇을 느꼈고 왜 그렇게 했는지 적어 보세요.</p>
+            <p class="ws-prompt">토론의 근거가 될 장면 세 가지를 골라 적고, 장면마다 인물이 무엇을 느꼈고 왜 그렇게 했는지 적어 보세요.</p>
             <table class="ws-table pano-table">
                 <tr><th style="width: 50%;">장면</th><th>인물의 마음과 그렇게 한 까닭</th></tr>
-                ${story.map((x, i) => `<tr><td class="ws-more-scene"><b>${i + 1}</b>${x}</td><td>${ta(H.scene)}</td></tr>`).join("")}
+                ${[1, 2, 3].map(i => `<tr><td class="ws-more-scene"><div class="ws-more-scene-row"><b>${i}</b>${ta(H.scene)}</div></td><td>${ta(H.scene)}</td></tr>`).join("")}
             </table>
         </div>`);
 
@@ -22315,8 +22336,10 @@ function bookWsPageCount(paper) {
     }
     return pages;
 }
-// 2쪽을 넘으면 덧붙인 활동을 정한 차례대로 덜어 낸다 (그림책·기법마다 분량이 달라 만들 때마다 잰다)
+// 2쪽을 넘으면 먼저 '토론을 마치며' 칸을 조금씩 줄여 보고, 그래도 넘칠 때만 덧붙인 활동을 정한 차례대로 덜어 낸다
+// (그림책·기법마다 분량이 달라 만들 때마다 잰다)
 const BOOK_WS_DROP_ORDER = ["recall", "listen", "argue", "extend"];
+const BOOK_WS_CLOSE_STEPS = [96, 72];
 function fitBookWorksheet(out) {
     const paper = out && out.querySelector(":scope > .worksheet-paper.ws-book-paper");
     if (!paper) return 0;
@@ -22327,6 +22350,12 @@ function fitBookWorksheet(out) {
     const hidden = [...paper.querySelectorAll(".no-print")].map(el => [el, el.style.display]);
     hidden.forEach(([el]) => { el.style.display = "none"; });
     let n = bookWsPageCount(paper);
+    const closeBoxes = paper.querySelectorAll('.ws-more[data-more="close"] textarea');
+    for (const h of BOOK_WS_CLOSE_STEPS) {
+        if (n <= 2 || !closeBoxes.length) break;
+        closeBoxes.forEach(ta => { ta.style.height = h + "px"; });
+        n = bookWsPageCount(paper);
+    }
     for (const k of BOOK_WS_DROP_ORDER) {
         if (n <= 2) break;
         const el = paper.querySelector(`.ws-more[data-more="${k}"]`);
@@ -22798,7 +22827,9 @@ window.openTopicWorksheet = function (idx, form) {
 };
 
 // 학습지 작성 내용 자동 저장 (같은 그림책·유형으로 다시 열면 복원)
-const WS_LAYOUT_REV = { "panorama": 3, "topic-tech-panorama": 3 };
+// (그림책 학습지 16개 유형: '이야기 다시 짚기' 장면 칸을 빈칸으로 바꾸면서 칸 순서가 달라져 저장 이름을 바꿈)
+const WS_LAYOUT_REV = { "panorama": 3, "topic-tech-panorama": 3,
+    ...Object.fromEntries(["basic", "brainwriting", "procon", "hotseating", "carousel", "socratic", "worldcafe", "argument", "doublepyramid", "angeldevil", "hexadebate", "traffic", "pmi", "twostray", "fan", "valueline"].map(t => [t, 2])) };
 // ── 학습지를 파일로 받기 ─────────────────────────────────────────────
 // PDF: 인쇄와 같은 쪽 나눔(단계는 통째로, 표는 줄 단위로, 교사용은 새 쪽)으로 A4에 담는다. html2canvas·jsPDF는 누를 때 한 번만 불러온다.
 // 한글: 화면에 그려진 글자 크기·굵기·색과 표의 칸 너비·높이를 읽어 HWPX(한글 2014 이후에서 열림)로 옮긴다. 한글에서 고쳐 쓸 수 있다.

@@ -4627,6 +4627,10 @@ html, body { max-width: 100%; overflow-x: hidden; }
 /* 그림책 학습지 '더 깊이' 활동 (필요하면 2쪽으로 넘어감) */
 .ws-more-scene { font-size: 0.82rem; line-height: 1.5; color: #222; vertical-align: top; word-break: keep-all; }
 .ws-more-scene b { color: var(--accent-coral); margin-right: 6px; }
+/* 장면 칸: 번호 옆에 학생이 장면을 직접 적는 칸 */
+.ws-more-scene-row { display: flex; align-items: flex-start; gap: 4px; }
+.ws-more-scene-row b { margin: 6px 4px 0 0; }
+.ws-more-scene-row textarea { flex: 1; min-width: 0; width: auto; }
 .ws-more-pick { display: flex; flex-direction: column; gap: 3px; font-size: 0.85rem; line-height: 1.5; color: #222; margin: 0 0 8px; word-break: keep-all; }
 .ws-more-pick label { display: flex; gap: 6px; align-items: flex-start; }
 .ws-more-pick input { margin-top: 4px; flex: none; }
@@ -4666,6 +4670,16 @@ html, body { max-width: 100%; overflow-x: hidden; }
 #worksheet-paper > .worksheet-paper:not(.ws-guide) .pano-ex,
 #worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-an-author,
 #worksheet-paper > .worksheet-paper:not(.ws-guide) .ws-an-tag { font-size: 0.84rem; }
+/* 그림책 학습지(학생용): 다른 여백을 줄여 '토론을 마치며' 쓰기 칸을 넉넉하게 한다 (쪽 수는 그대로) */
+#worksheet-paper > .worksheet-paper.ws-book-paper .ws-section { margin-bottom: 12px; }
+#worksheet-paper > .worksheet-paper.ws-book-paper .ws-section h4 { margin-bottom: 6px; padding-top: 3px; padding-bottom: 3px; }
+#worksheet-paper > .worksheet-paper.ws-book-paper .ws-prompt { margin-bottom: 5px; line-height: 1.45; }
+#worksheet-paper > .worksheet-paper.ws-book-paper .ws-analysis { margin-bottom: 10px; }
+#worksheet-paper > .worksheet-paper.ws-book-paper .ws-an-body { padding: 8px 12px 9px; line-height: 1.5; }
+#worksheet-paper > .worksheet-paper.ws-book-paper .ws-an-sum { margin-bottom: 6px; }
+#worksheet-paper > .worksheet-paper.ws-book-paper .ws-an-pair p { padding: 6px 10px; }
+#worksheet-paper > .worksheet-paper.ws-book-paper .pano-table th,
+#worksheet-paper > .worksheet-paper.ws-book-paper .pano-table td { padding: 6px 8px; }
 /* 기법마다 글 안에 적힌 작은 글씨(0.7~0.8rem대)도 끌어올린다 */
 #worksheet-paper > .worksheet-paper:not(.ws-guide) [style*="font-size: 0.7"] { font-size: 0.86rem !important; }
 #worksheet-paper > .worksheet-paper:not(.ws-guide) [style*="font-size: 0.8"] { font-size: 0.92rem !important; }
