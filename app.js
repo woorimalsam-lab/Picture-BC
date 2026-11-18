@@ -522,24 +522,26 @@
         "effect": "생각이 테이블을 건너다니며 섞입니다. 한 모둠에 머물렀다면 나오지 않았을 해결책이 나오고, 누가 더 잘났는지를 따지지 않는 분위기가 만들어집니다.",
         "tips": [
             "잔잔한 음악과 마실 것을 준비하면 긴장이 풀려 말이 훨씬 부드럽게 오갑니다.",
-            "글씨를 반듯하게 쓰라고 하지 마세요. 그림과 낙서로 어지럽게 적을수록 생각이 잘 굴러갑니다."
+            "글씨를 반듯하게 쓰라고 하지 마세요. 그림과 낙서로 어지럽게 적을수록 생각이 잘 굴러갑니다.",
+            "테이블 기록지는 테이블마다 한 장만 두고 옮기지 않습니다. 라운드마다 펜 색을 바꾸게 하면 생각이 어떻게 쌓였는지 한눈에 보입니다.",
+            "손님에게는 '앞 글을 먼저 읽고 그 아래에 이어 쓰기'를 약속으로 정해 주세요. 남의 글을 지우지 않고 ➕·❓·💡 표시로 잇게 합니다."
         ],
         "steps": [
             {
                 "title": "테이블마다 질문 놓고 주인 정하기 (도입)",
-                "desc": "테이블마다 다른 질문을 놓고, 자리를 지킬 주인 한 명을 정한 뒤 큰 종이를 펼칩니다."
+                "desc": "테이블마다 다른 질문과 테이블 기록지 한 장을 놓고, 자리를 지킬 주인 한 명을 정합니다."
             },
             {
-                "title": "낙서하듯 이야기 적기 (전개)",
-                "desc": "큰 종이에 그림과 낱말로 마음껏 적어 가며 이야기합니다."
+                "title": "기록지에 직접 적으며 이야기하기 (전개)",
+                "desc": "첫 모둠이 테이블 기록지에 그림과 낱말로 마음껏 적어 가며 이야기합니다."
             },
             {
                 "title": "손님은 옮기고 주인은 남기 (전개)",
-                "desc": "주인만 남고 나머지는 다른 테이블로 옮겨, 앞사람 이야기를 듣고 자기 생각을 보탭니다."
+                "desc": "주인만 남고 나머지는 다른 테이블로 옮깁니다. 주인이 앞 라운드의 글을 짚어 가며 들려주면, 손님은 그 아래에 자기 생각을 직접 이어 씁니다."
             },
             {
-                "title": "돌아와 마무리하고 둘러보기 (정리)",
-                "desc": "원래 자리로 돌아와 종이를 정리하고, 교실을 돌며 다른 테이블의 종이를 읽습니다."
+                "title": "돌아와 모으고 둘러보기 (정리)",
+                "desc": "원래 자리로 돌아와 다른 테이블에서 가져온 생각과 주인이 정리한 기록지를 맞춰 결론을 내고, 교실을 돌며 다른 테이블의 기록지를 읽습니다."
             }
         ],
         "books": [
@@ -5338,7 +5340,7 @@ const TECH_CLASS_GUIDE = {
     },
     worldcafe: {
         quick: { min: 25, slots: ["전개"], how: "테이블을 2~3개만 두고, 손님은 한 번만 이동합니다. 자리 주인은 새 손님에게 앞 이야기를 짧게 들려줍니다." },
-        observe: ["자리 주인이 앞 이야기를 정확히 전달하는가", "손님이 기존 생각 위에 새 생각을 보태는가", "종이에 생각이 자유롭게 쌓이는가"],
+        observe: ["자리 주인이 기록지를 짚어 가며 앞 라운드 이야기를 정확히 전달하는가", "손님이 앞 글을 읽고 그 아래에 새 생각을 이어 쓰는가(➕·❓·💡)", "라운드마다 기록지에 생각이 자유롭게 쌓이는가"],
         rubric: [
             { k: "기여", hi: "새로운 관점을 보태 논의를 넓힘", mid: "기존 생각에 동의만 함", lo: "보태지 않음" },
             { k: "전달", hi: "앞 이야기를 요약해 정확히 전함", mid: "일부만 전함", lo: "전하지 못함" },
@@ -6296,7 +6298,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.6.16";
+    return "6.6.17";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -16119,34 +16121,23 @@ function setupWorksheetGenerator() {
             </div>
         `;
     } else if (type === "worldcafe") {
+        // 월드카페: 학생은 '나의 카페 여행 기록'을, 테이블마다 한 장씩 놓는 '테이블 기록지'(다음 쪽)에 돌아가며 직접 이어 쓴다
+        const cafe = cafeStudentParts(cafeBookTables(book));
         worksheetHTML += `
             <div class="ws-section">
-                <h4>☕ 월드카페 생각 모음판</h4>
-                <p style="font-size: 0.85rem; color: #555555; margin-bottom: 12px;">카페처럼 편한 자리에서 낙서하듯 자유롭게 적으며 생각을 섞습니다.</p>
-                <div style="background-color: #f2f6fc; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; border-left: 4px solid var(--accent-sage);">
-                    <p style="font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; color: var(--accent-sage);">📚 권장 토론 논제:</p>
-                    <ul style="padding-left: 20px; font-size: 0.85rem; line-height: 1.6; color: #333333; margin: 0;">
-                        ${book.debatePropositions ? book.debatePropositions.map(t => `<li>${t}</li>`).join("") : '<li>추천 논제 정보가 없습니다.</li>'}
-                    </ul>
-                </div>
-                <table class="ws-table">
-                    <tr>
-                        <th style="width: 50%;">🛋️ 우리 테이블의 원래 세부 논제와 1차 브레인스토밍</th>
-                        <th style="width: 50%;">🧳 우리 방을 스쳐 지나간 다른 모둠 여행자들의 생각 덧붙임</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <textarea style="min-height: 150px;" placeholder="처음에 모둠원들과 큰 종이에 자유롭게 적어 모았던 생각들..."></textarea>
-                        </td>
-                        <td>
-                            <textarea style="min-height: 150px;" placeholder="자리 주인의 설명과, 앞서 다녀간 친구들이 종이에 남긴 생각 정리..."></textarea>
-                        </td>
-                    </tr>
-                </table>
+                <h4>☕ 카페 테이블과 나의 자리</h4>
+                <p class="ws-prompt">테이블마다 다른 질문이 놓여 있습니다. 나의 첫 테이블과 역할을 표시하세요.</p>
+                ${cafe.tables}
             </div>
             <div class="ws-section">
-                <h4>☕ 원래 자리로 돌아와 모둠이 정리한 마지막 해결책</h4>
-                <textarea class="ws-textarea-box" placeholder="다른 테이블을 다녀온 친구들이 모아 온 생각을 자리 주인과 함께 정리해, 마지막 결론을 적으세요..."></textarea>
+                <h4>🧳 라운드별 카페 여행 기록</h4>
+                <p class="ws-prompt">테이블 기록지의 앞 글을 읽고 그 아래에 직접 이어 쓴 뒤, 여기에도 옮겨 적으세요.</p>
+                ${cafe.log}
+            </div>
+            <div class="ws-section">
+                <h4>🏠 처음 테이블로 돌아와 모으기</h4>
+                <p class="ws-prompt">가져온 생각을 자리 주인이 정리한 기록지와 맞춰 보고 결론을 적으세요.</p>
+                ${cafe.harvest}
             </div>
         `;
     } else if (type === "argument") {
@@ -16670,6 +16661,7 @@ function setupWorksheetGenerator() {
                 const gSeats = tech.id === "panorama" && gApply && gApply !== tech.apply ? ` 오늘 나눌 세 자리는 ${gApply.roles.map(r => quoteName(r[0])).join(", ")}입니다.` : "";
                 worksheetHTML += `
                     </div> <!-- Close 1st Page .worksheet-paper -->
+                    ${type === "worldcafe" ? `<div class="worksheet-paper ws-book-paper ws-cafe-sheet" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">${cafeTableSheetHTML(cafeBookTables(book), `《${book.title}》`)}</div>` : ""}
 
                     <div class="worksheet-paper worksheet-page-2 ws-guide" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
                         <div class="ws-guide-head">
@@ -16698,6 +16690,7 @@ function setupWorksheetGenerator() {
                                     <h4>지도 팁</h4>
                                     <ul>${(tech.tips || []).map(tip => `<li>${tip}</li>`).join("")}</ul>
                                 </div>
+                                ${BOOK_WS_ARGUE.includes(type) ? bookExtendGuideHTML(book) : ""}
                             </aside>
                         </div>
                     </div>
@@ -16716,10 +16709,12 @@ function setupWorksheetGenerator() {
                     </div>` : "");
             }
             // --- 2ND PAGE INJECTION END ---
+            // 찬반 기법은 '책 밖으로 넓히기 · 교과와 사회의 논제로'를 학습지 맨 뒤 별도 쪽에 자세히 붙인다
+            if (BOOK_WS_ARGUE.includes(type)) worksheetHTML += bookExtendPageHTML(book);
 
             output.innerHTML = worksheetHTML;
             output.classList.remove("hidden");
-            fitBookWorksheet(output);
+            fitBookWorksheet(output, type);
             setupWorksheetAutosave(book.title, type);
         });
     }
@@ -17124,13 +17119,13 @@ const TOPIC_TECH_CORE = {
         ["대화 기록", "누가 무엇을 말했는지, 그 말에 내가 이어 묻고 싶은 것은 무엇인지 적으세요.", tws.table(["누가", "한 말", "이어 묻고 싶은 것"], 3, 46)],
         ["대화 뒤 새로 생긴 질문", "처음 질문보다 한 걸음 더 들어간 질문을 적으세요.", tws.box(56)]
     ] },
+    // 월드카페: 학생은 '나의 카페 여행 기록'을 쓰고, 테이블마다 한 장 놓는 '테이블 기록지'(다음 쪽)에 돌아가며 직접 이어 쓴다
     worldcafe: { secs: (t) => {
-        const tables = t.type === "policy" ? ["탁자 1 · 지금의 문제", "탁자 2 · 해결 방법", "탁자 3 · 부작용과 대안"]
-            : t.type === "fact" ? ["탁자 1 · 뜻과 범위", "탁자 2 · 근거와 자료", "탁자 3 · 반대 증거"]
-            : ["탁자 1 · 판단 기준", "탁자 2 · 기준에 비춘 사례", "탁자 3 · 맞서는 가치"];
+        const cafe = cafeStudentParts(cafeTopicTables(t));
         return [
-            ["탁자를 옮겨 다니며", "탁자마다 다른 질문을 두고 이야기합니다. 각 탁자에서 나온 생각을 적으세요.", tws.table(["탁자", "나온 생각"], tables, 54)],
-            ["처음 탁자로 돌아와 모은 결론", "여러 탁자의 생각을 모아 우리 모둠의 결론을 적으세요.", tws.box(70)]
+            ["카페 테이블과 나의 자리", "테이블마다 이 논제의 다른 질문이 놓여 있습니다. 나의 첫 테이블과 역할을 표시하세요.", cafe.tables],
+            ["라운드별 카페 여행 기록", "테이블 기록지의 앞 글을 읽고 그 아래에 직접 이어 쓴 뒤, 여기에도 옮겨 적으세요.", cafe.log],
+            ["처음 테이블로 돌아와 모으기", "가져온 생각을 자리 주인이 정리한 기록지와 맞춰 보고 결론을 적으세요.", cafe.harvest]
         ];
     } },
     argumentgame: { secs: (t) => [
@@ -17243,7 +17238,7 @@ const SETUK_PROC = {
     hotseating: (x) => `${x.act}에서 이 논제로 가장 큰 영향을 받는 사람의 역할을 맡아 뜨거운 의자에 앉고, 친구들의 질문에 그 사람의 처지와 속마음을 근거를 들어 답함. ${x.B}의 ${x.C}을 담은 날카로운 질문에도 ${x.ST}를 들어 차분히 답함.`,
     carousel: (x) => `${x.act}에서 짝을 바꿔 가며 자신의 주장을 거듭 설명하고, 짝마다 들은 새로운 근거를 기록함. 특히 ${x.B}의 ${x.C}을 들은 뒤 자신의 주장에 조건을 덧붙여 더 정교하게 다듬음.`,
     socratic: (x) => `${x.act}에서 이 논제를 무엇을 기준으로 판단해야 하는지 묻는 여는 질문을 던지고, 친구들의 답에 이어 묻기를 거듭하며 논의를 깊게 함. ${x.A}의 ${x.P}와 ${x.B}의 ${x.C}이 서로 다른 전제에서 출발함을 짚어 냄.`,
-    worldcafe: (x) => `${x.act}에서 모둠을 옮겨 다니며 이 논제의 쟁점을 나누고, 앞 모둠이 남긴 논의에 자신의 생각을 덧붙임. 테이블마다 모인 ${x.A}의 ${x.P}와 ${x.B}의 ${x.C}을 한 장에 정리해 발표함.`,
+    worldcafe: (x) => `${x.act}에서 테이블을 옮겨 다니며 앞 라운드가 테이블 기록지에 남긴 논의를 읽고, 그 아래에 자신의 생각을 직접 이어 씀. 테이블마다 모인 ${x.A}의 ${x.P}와 ${x.B}의 ${x.C}을 한 장에 정리해 발표함.`,
     argumentgame: (x) => `${x.act}에서 ${x.A}의 입장을 맡아 주장–이유–근거의 순서로 논증을 세우고, ${x.ST}로 근거를 보강함. 상대가 제기한 ${x.C}에 대해 논리의 빈틈을 인정하면서도 조건을 달아 재반박함.`,
     trafficlight: (x) => `${x.act}에서 처음 든 카드의 색과 그 까닭을 밝히고, ${x.ST}를 살핀 뒤 ${x.B}의 ${x.C}까지 고려해 카드를 다시 고르며 판단이 바뀐 까닭을 설명함.`,
     pmi: (x) => `${x.act}에서 이 논제의 좋은 점(P)·나쁜 점(M)·흥미로운 점(I)을 나누어 적음. ${x.A}의 ${x.P}를 좋은 점으로, ${x.B}의 ${x.C}을 나쁜 점으로 정리한 뒤 두 관점 너머의 흥미로운 점을 찾아 발표함.`,
@@ -22226,6 +22221,130 @@ function bookRecallGuideHTML(book) {
     return `<div class="ws-guide-story"><strong>이야기 다시 짚기 · 세 장면 예시</strong><ol>${story.map(x => `<li>${x}</li>`).join("")}</ol>` +
         `<p>학생 학습지의 '이야기 다시 짚기' 표에는 장면 칸을 비워 두었습니다. 학생이 고른 장면이 이와 달라도 이야기 속 근거가 맞으면 인정하고, 장면마다 인물의 마음과 그렇게 한 까닭을 말하게 해 보세요.</p></div>`;
 }
+// ── 월드카페: 테이블을 옮겨 다니며 테이블 기록지에 직접 이어 쓰는 활동 ─────────────
+// 학생 학습지에는 '나의 카페 여행 기록'(첫 테이블·역할 → 라운드별 기록 → 돌아와 모으기)을 싣고,
+// 테이블마다 한 장 놓는 '테이블 기록지'는 따로 한 쪽에 만든다. 라운드마다 찾아온 사람이 앞 글 아래에 직접 이어 쓴다.
+const CAFE_ROUND_ROWS = [4, 3, 3];        // 라운드별 줄 수: 처음 모둠 네 명, 그 뒤로는 찾아온 손님 셋
+function cafeBookTables(book) {
+    const qs = [...(book.debateTopics || []), book.easyQ].filter(Boolean);
+    return qs.slice(0, 3);
+}
+function cafeTopicTables(t) {
+    return {
+        policy: ["지금 무엇이 문제인가?", "어떤 방법으로 풀 수 있는가?", "그 방법의 부작용과 대안은 무엇인가?"],
+        fact: ["논제의 낱말은 어디까지를 뜻하는가?", "그렇다고 볼 근거와 자료는 무엇인가?", "아니라고 볼 증거는 무엇인가?"],
+        value: ["무엇을 기준으로 판단해야 하는가?", "그 기준에 비추어 볼 사례는 무엇인가?", "이 판단과 맞서는 가치는 무엇인가?"]
+    }[t.type] || ["무엇이 문제인가?", "어떻게 볼 수 있는가?", "다르게 볼 수는 없는가?"];
+}
+function cafeStudentParts(tables) {
+    const ta = (h) => `<textarea style="height: ${h}px;"></textarea>`;
+    const sub = (x) => `<span class="pano-th-sub">${x}</span>`;
+    return {
+        tables: `<ol class="ws-cafe-tables">${tables.map((q, i) => `<li><b>테이블 ${i + 1}</b>${q}</li>`).join("")}</ol>
+            <div class="ws-cafe-role">
+                <div><b>나의 첫 테이블</b>${tables.map((_, i) => `<label><input type="radio" name="cafe-home"> ${i + 1}</label>`).join("")}<b class="ws-cafe-gap">나의 역할</b><label><input type="radio" name="cafe-role"> 자리 주인 (남아서 들려줌)</label><label><input type="radio" name="cafe-role"> 손님 (옮겨 다님)</label></div>
+            </div>`,
+        log: `<table class="ws-table pano-table ws-cafe-log">
+                <tr><th style="width: 12%;">라운드</th><th style="width: 12%;">간 테이블</th><th style="width: 37%;">앞 라운드가 남긴 생각<br>${sub("기록지에서 읽거나 주인에게 들은 것")}</th><th>내가 기록지에 이어 쓴 생각<br>${sub("➕ 보태기 · ❓ 묻기 · 💡 새 생각")}</th></tr>
+                <tr><td><b>1라운드</b></td><td><input class="ws-line" type="text"></td><td class="ws-cafe-first">첫 라운드 — 우리 모둠이 처음 씁니다</td><td>${ta(44)}</td></tr>
+                ${[2, 3].map(r => `<tr><td><b>${r}라운드</b></td><td><input class="ws-line" type="text"></td><td>${ta(44)}</td><td>${ta(44)}</td></tr>`).join("")}
+            </table>
+            <p class="ws-cafe-note">자리 주인은 '간 테이블'에 내 테이블 번호를, '앞 라운드가 남긴 생각'에 손님에게 들려준 요약을 적습니다.</p>`,
+        harvest: `<table class="ws-table pano-table">
+                <tr><th style="width: 50%;">다른 테이블에서 가져온 가장 좋은 생각</th><th>우리 테이블의 마지막 결론</th></tr>
+                <tr><td>${ta(56)}</td><td>${ta(56)}</td></tr>
+            </table>`
+    };
+}
+// 테이블 기록지 한 쪽: 테이블에 놓아 두고, 라운드마다 찾아온 사람이 앞 글 아래에 직접 이어 쓴다
+function cafeTableSheetHTML(tables, subject) {
+    const row = () => `<tr><td><input class="ws-line" type="text"></td><td><textarea style="height: 24px;"></textarea></td></tr>`;
+    return `
+        <div class="ws-cafe-head">
+            <p class="ws-cafe-badge">테이블마다 한 장 · 돌아가며 직접 쓰기</p>
+            <h3>☕ 월드카페 테이블 기록지</h3>
+            <p>${subject} · 테이블에 놓아 두고, 찾아온 사람이 앞 글 아래에 이어 씁니다.</p>
+        </div>
+        <div class="ws-section ws-keep ws-cafe-q">
+            <h4>이 테이블의 질문</h4>
+            <div class="ws-more-pick">${tables.map((q, i) => `<label><input type="radio" name="cafe-sheet-q"> <b>테이블 ${i + 1}</b> ${q}</label>`).join("")}</div>
+            <p class="ws-cafe-how"><b>쓰는 법</b> ① 라운드마다 펜 색 바꾸기 ② 2라운드부터는 자리 주인이 앞 글을 짚어 가며 1분 동안 들려주기 ③ 앞 글 아래에 이어 쓰기 — ➕ 보태기 · ❓ 묻기 · 💡 새 생각 ④ 남의 글은 지우지 않고 화살표로 잇기</p>
+        </div>
+        ${CAFE_ROUND_ROWS.map((n, i) => `
+        <div class="ws-section ws-keep ws-cafe-round">
+            <h4>${i + 1}라운드 · ${i === 0 ? "처음 앉은 모둠" : "찾아온 손님 (주인의 이야기를 듣고 이어 쓰기)"} <span class="ws-cafe-pen">펜 색: ______</span></h4>
+            <table class="ws-table pano-table"><tr><th style="width: 18%;">적은 사람</th><th>생각 (➕ ❓ 💡 표시를 붙여 씁니다)</th></tr>${Array.from({ length: n }, row).join("")}</table>
+        </div>`).join("")}
+        <div class="ws-section ws-keep">
+            <h4>자리 주인의 정리 <span class="ws-cafe-pen">세 라운드의 생각을 한두 문장으로 모아 처음 모둠에게 들려주기</span></h4>
+            <textarea class="ws-textarea-box ws-cafe-sum" style="height: 44px;"></textarea>
+        </div>`;
+}
+// ── 책 밖으로 넓히기 · 교과와 사회의 논제로 (학습지 맨 뒤 별도 쪽) ─────────────
+// 1쪽이 이미 찬반을 다루는 기법에서, 그림책과 이어지는 교과·사회 논제 한두 개를 골라
+// 교육과정 개념(과목·단원·성취기준)과 근거까지 한 쪽에 자세히 다룬다.
+function bookExtendTopics(book) {
+    const props = book.debatePropositions || [];
+    return debateTopicsDB.filter(t => (t.books || []).includes(book.title) && !props.includes(t.claim))
+        .sort((a, b) => (b.subject ? 1 : 0) - (a.subject ? 1 : 0)).slice(0, 2);
+}
+const topicSubjectName = (t) => [].concat(t.subject || []).map(k => (SUBJECT_GUIDE.find(g => g.key === k) || {}).label).filter(Boolean).join("·");
+const sideGist = (x) => { const m = String(x || "").match(/^([^—]{2,30}?) — /); return m ? m[1] : TWS.plain(x); };
+function bookExtendPageHTML(book) {
+    const topics = bookExtendTopics(book);
+    const props = book.debatePropositions || [];
+    if (!topics.length && !props[1]) return "";
+    const ta = (h) => `<textarea style="height: ${h}px;"></textarea>`;
+    const line = () => `<input class="ws-line" type="text">`;
+    const cards = topics.length ? topics.map(t => {
+        const std = (t.std || []).filter(c => CURRICULUM[c]).slice(0, 2);
+        const where = [topicSubjectName(t), t.unit].filter(Boolean).join(" · ");
+        const srcs = [...(t.bg || []).map(k => (BG_SOURCES[k] || {}).label).filter(Boolean), "빅카인즈(뉴스)", "RISS(논문)"];
+        return `<label class="ws-ext-card">
+                <span class="ws-ext-claim"><input type="radio" name="ext-pick"> ${t.claim}</span>
+                <span class="ws-ext-meta">${(TOPIC_TYPE_INFO[t.type] || {}).label || "논제"} · ${where || "사회 논제"}</span>
+                ${std.map(c => `<span class="ws-ext-std"><code>[${c}]</code> ${CURRICULUM[c]}</span>`).join("")}
+                <span class="ws-ext-src">찾아볼 곳 · 교과서, ${srcs.join(", ")}</span>
+            </label>`;
+    }).join("") : `<label class="ws-ext-card"><span class="ws-ext-claim"><input type="radio" name="ext-pick"> ${props[1]}</span></label>`;
+    // 두 쪽 구성: 1쪽은 이해와 연결(논제 고르기·그림책과 잇기·개념 짚기), 2쪽은 쓰기(근거·반론·한 문단)
+    let n = 0;
+    const sec = (title, lead, body, cls = "") => `
+        <div class="ws-section ws-keep${cls}">
+            <h4>${++n}. ${title}</h4>
+            ${lead ? `<p class="ws-prompt">${lead}</p>` : ""}
+            ${body}
+        </div>`;
+    return `
+        <div class="worksheet-paper ws-book-paper ws-ext-page" style="page-break-before: always; break-before: page; margin-top: 40px; padding-top: 40px; border-top: 2px dashed var(--accent-sage);">
+            <div class="ws-cafe-head">
+                <p class="ws-cafe-badge">더 깊이 · 교과와 사회로 넓히기</p>
+                <h3>책 밖으로 넓히기 · 교과와 사회의 논제로</h3>
+                <p>《${book.title}》에서 나눈 생각을 교과에서 배우는 개념과 우리 사회의 논제로 이어 봅니다.</p>
+                <p class="ws-ext-name">학년: ______ 반: ______ 이름: ____________</p>
+            </div>
+            ${sec("논제 고르기", "그림책과 이어지는 교과·사회 논제입니다. 하나를 골라 표시하세요. 과목과 단원, 성취기준을 보면 어떤 개념을 쓰게 될지 알 수 있습니다.", `<div class="ws-ext-cards">${cards}</div>`)}
+            ${sec("그림책과 논제 잇기", "그림책의 어떤 장면이나 인물이 이 논제와 닮았는지, 또 어디가 다른지 적으세요.",
+                `<table class="ws-table pano-table"><tr><th style="width: 34%;">그림책 속 장면·인물</th><th style="width: 33%;">논제와 닮은 점</th><th>다른 점</th></tr><tr><td>${ta(64)}</td><td>${ta(64)}</td><td>${ta(64)}</td></tr></table>`)}
+            ${sec("개념 짚기", "이 논제를 따지는 데 필요한 교과 개념(낱말)을 두 가지 골라, 교과서·사전·배경 지식에서 뜻을 찾아 적으세요.",
+                `<table class="ws-table pano-table"><tr><th style="width: 22%;">교과 개념(낱말)</th><th style="width: 40%;">뜻 (어디에서 찾았는지 함께)</th><th>이 논제와 어떻게 이어지나</th></tr>${[1, 2].map(() => `<tr><td>${line()}</td><td>${ta(48)}</td><td>${ta(48)}</td></tr>`).join("")}</table>`)}
+            ${sec("근거 모으기", "나의 주장을 한 문장으로 적고, 그림책·교과 개념·자료에서 근거를 하나씩 찾으세요. 자료는 기관과 연도, 기사는 언론사와 날짜를 출처에 적습니다.",
+                `<div class="ws-ext-claimbox"><b>나의 주장</b>${ta(44)}</div>
+                <table class="ws-table pano-table"><tr><th style="width: 20%;">근거의 종류</th><th>내용</th><th style="width: 26%;">출처</th></tr>${["그림책 속 근거", "교과 개념·이론", "자료·통계·기사"].map(k => `<tr><th>${k}</th><td>${ta(64)}</td><td>${line()}</td></tr>`).join("")}</table>`, " ws-page-break")}
+            ${sec("반론 예상하고 답하기", "나와 다른 입장의 친구가 할 말을 미리 적고, 어떻게 답할지 정리하세요.",
+                `<table class="ws-table pano-table"><tr><th style="width: 50%;">예상되는 반론</th><th>나의 답</th></tr><tr><td>${ta(88)}</td><td>${ta(88)}</td></tr></table>`)}
+            ${sec("한 문단으로 정리하기", "주장 → 근거(그림책·교과·자료) → 반론에 대한 답 → 결론의 차례로 한 문단을 씁니다.", `<textarea class="ws-textarea-box" style="height: 200px;"></textarea>`)}
+        </div>`;
+}
+// 교사용 가이드에 싣는 '맨 뒤 쪽' 안내: 이어지는 논제와 예상 쟁점
+function bookExtendGuideHTML(book) {
+    const topics = bookExtendTopics(book);
+    if (!topics.length) return "";
+    return `<div class="ws-guide-box"><h4>맨 뒤 쪽 · 교과와 사회로 넓히기</h4><ul>${topics.map(t => {
+        const where = [topicSubjectName(t), t.unit].filter(Boolean).join(" · ");
+        return `<li><b>${t.claim}</b>${where ? ` <span class="ws-ext-meta">(${where})</span>` : ""}<br>찬성 쟁점: ${(t.pro || []).slice(0, 2).map(sideGist).join(", ")} / 반대 쟁점: ${(t.con || []).slice(0, 2).map(sideGist).join(", ")}</li>`;
+    }).join("")}</ul></div>`;
+}
 function bookWsMoreHTML(book, type) {
     const p = panoramaBookData(book.title) || {};
     const H = BOOK_WS_MORE_H;
@@ -22247,22 +22366,9 @@ function bookWsMoreHTML(book, type) {
             </table>
         </div>`);
 
-    if (BOOK_WS_ARGUE.includes(type)) {
-        const linked = debateTopicsDB.filter(t => (t.books || []).includes(book.title) && !props.includes(t.claim))
-            .sort((a, b) => (b.subject ? 1 : 0) - (a.subject ? 1 : 0));
-        const picks = linked.slice(0, 2).map(t => t.claim);
-        if (!picks.length && props[1]) picks.push(props[1]);
-        parts.push(`
-        <div class="ws-section ws-keep ws-more" data-more="extend">
-            <h4>책 밖으로 넓히기 · 교과와 사회의 논제로 ${keys("확장 · 적용 · 근거 잇기")}</h4>
-            <p class="ws-prompt">이 그림책과 이어지는 논제입니다. 하나를 골라 표시하고, 그림책 장면과 삶 속 사례를 함께 근거로 들어 봅시다.</p>
-            <div class="ws-more-pick">${picks.map(c => `<label><input type="radio" name="${nm}-pick"> ${c}</label>`).join("")}</div>
-            <table class="ws-table pano-table">
-                <tr><th style="width: 34%;">나의 주장</th><th style="width: 33%;">그림책 속 근거</th><th style="width: 33%;">삶과 사회 속 근거</th></tr>
-                <tr><td>${ta(H.extend)}</td><td>${ta(H.extend)}</td><td>${ta(H.extend)}</td></tr>
-            </table>
-        </div>`);
-    } else {
+    // 1쪽이 이미 찬반을 다루는 기법(BOOK_WS_ARGUE)은 '책 밖으로 넓히기 · 교과와 사회의 논제로'를
+    // 학습지 맨 뒤 별도 쪽(bookExtendPageHTML)에 자세히 싣는다. 나머지 기법은 여기서 논제를 두 쪽에서 따져 본다.
+    if (!BOOK_WS_ARGUE.includes(type)) {
         parts.push(`
         <div class="ws-section ws-keep ws-more" data-more="argue">
             <h4>논제를 두 쪽에서 따져 보기 ${keys("찬반 근거 · 균형 잡힌 판단")}</h4>
@@ -22339,8 +22445,10 @@ function bookWsPageCount(paper) {
 // 2쪽을 넘으면 먼저 '토론을 마치며' 칸을 조금씩 줄여 보고, 그래도 넘칠 때만 덧붙인 활동을 정한 차례대로 덜어 낸다
 // (그림책·기법마다 분량이 달라 만들 때마다 잰다)
 const BOOK_WS_DROP_ORDER = ["recall", "listen", "argue", "extend"];
+// 월드카페는 테이블마다 논제를 여러 갈래로 나누므로, 넘칠 때 '논제를 두 쪽에서 따져 보기'를 먼저 덜고 '이야기 다시 짚기'는 남긴다
+const BOOK_WS_DROP_FIRST = { worldcafe: ["argue"] };
 const BOOK_WS_CLOSE_STEPS = [96, 72];
-function fitBookWorksheet(out) {
+function fitBookWorksheet(out, type) {
     const paper = out && out.querySelector(":scope > .worksheet-paper.ws-book-paper");
     if (!paper) return 0;
     const keep = paper.getAttribute("style");
@@ -22350,17 +22458,22 @@ function fitBookWorksheet(out) {
     const hidden = [...paper.querySelectorAll(".no-print")].map(el => [el, el.style.display]);
     hidden.forEach(([el]) => { el.style.display = "none"; });
     let n = bookWsPageCount(paper);
+    const drop = (keys) => {
+        for (const k of keys) {
+            if (n <= 2) break;
+            const el = paper.querySelector(`.ws-more[data-more="${k}"]`);
+            if (el) { el.remove(); n = bookWsPageCount(paper); }
+        }
+    };
+    const first = BOOK_WS_DROP_FIRST[type] || [];
+    drop(first);
     const closeBoxes = paper.querySelectorAll('.ws-more[data-more="close"] textarea');
     for (const h of BOOK_WS_CLOSE_STEPS) {
         if (n <= 2 || !closeBoxes.length) break;
         closeBoxes.forEach(ta => { ta.style.height = h + "px"; });
         n = bookWsPageCount(paper);
     }
-    for (const k of BOOK_WS_DROP_ORDER) {
-        if (n <= 2) break;
-        const el = paper.querySelector(`.ws-more[data-more="${k}"]`);
-        if (el) { el.remove(); n = bookWsPageCount(paper); }
-    }
+    drop(BOOK_WS_DROP_ORDER.filter(x => !first.includes(x)));
     hidden.forEach(([el, d]) => { el.style.display = d; });
     if (keep === null) paper.removeAttribute("style"); else paper.setAttribute("style", keep);
     return n;
@@ -22734,7 +22847,8 @@ function buildTopicWorksheet(t, form, hints, audience = "both") {
         <div class="worksheet-paper ws-topic-page${i ? " ws-topic-break" : ""}">
             ${topicWsHeader(t, TOPIC_WS_FORMS[p])}
             ${TOPIC_WS_BUILDERS[p](t, hints)}
-        </div>`).join("");
+        </div>`).join("") + (form === "tech-worldcafe" ? `
+        <div class="worksheet-paper ws-topic-page ws-topic-break ws-cafe-sheet">${cafeTableSheetHTML(cafeTopicTables(t), t.claim)}</div>` : "");
     // 교사용은 학생용 뒤에 새 쪽부터 이어 붙인다 (교사용만일 때 첫 쪽은 쪽나눔 없이)
     const teacher = audience === "student" ? "" : pages.map((p, i) => {
         const html = buildTopicTeacherPage(t, p, i === pages.length - 1 ? form : null);
@@ -22828,8 +22942,10 @@ window.openTopicWorksheet = function (idx, form) {
 
 // 학습지 작성 내용 자동 저장 (같은 그림책·유형으로 다시 열면 복원)
 // (그림책 학습지 16개 유형: '이야기 다시 짚기' 장면 칸을 빈칸으로 바꾸면서 칸 순서가 달라져 저장 이름을 바꿈)
-const WS_LAYOUT_REV = { "panorama": 3, "topic-tech-panorama": 3,
-    ...Object.fromEntries(["basic", "brainwriting", "procon", "hotseating", "carousel", "socratic", "worldcafe", "argument", "doublepyramid", "angeldevil", "hexadebate", "traffic", "pmi", "twostray", "fan", "valueline"].map(t => [t, 2])) };
+// (월드카페: 테이블 기록지 쪽을 더함 / 찬반 기법 6개: '책 밖으로 넓히기'를 맨 뒤 별도 쪽으로 옮김 → 3)
+const WS_LAYOUT_REV = { "panorama": 3, "topic-tech-panorama": 3, "topic-tech-worldcafe": 2,
+    ...Object.fromEntries(["basic", "brainwriting", "hotseating", "carousel", "socratic", "hexadebate", "pmi", "twostray", "fan"].map(t => [t, 2])),
+    ...Object.fromEntries(["worldcafe", "procon", "argument", "traffic", "valueline", "doublepyramid", "angeldevil"].map(t => [t, 3])) };
 // ── 학습지를 파일로 받기 ─────────────────────────────────────────────
 // PDF: 인쇄와 같은 쪽 나눔(단계는 통째로, 표는 줄 단위로, 교사용은 새 쪽)으로 A4에 담는다. html2canvas·jsPDF는 누를 때 한 번만 불러온다.
 // 한글: 화면에 그려진 글자 크기·굵기·색과 표의 칸 너비·높이를 읽어 HWPX(한글 2014 이후에서 열림)로 옮긴다. 한글에서 고쳐 쓸 수 있다.

@@ -4631,6 +4631,62 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-more-scene-row { display: flex; align-items: flex-start; gap: 4px; }
 .ws-more-scene-row b { margin: 6px 4px 0 0; }
 .ws-more-scene-row textarea { flex: 1; min-width: 0; width: auto; }
+
+/* ── 월드카페: 나의 카페 여행 기록 + 테이블마다 한 장 놓는 테이블 기록지 ── */
+.ws-cafe-tables { list-style: none; margin: 0 0 8px; padding: 0; display: grid; gap: 4px; font-size: 0.9rem; line-height: 1.5; word-break: keep-all; }
+.ws-cafe-tables li { display: flex; gap: 8px; align-items: baseline; padding: 6px 10px; border: 1px solid #e5dccf; border-radius: 6px; background: #fbf8f3; color: #222; }
+.ws-cafe-tables b { flex: none; color: #6b4170; }
+.ws-cafe-role { display: grid; gap: 4px; font-size: 0.88rem; line-height: 1.5; color: #222; word-break: keep-all; }
+.ws-cafe-role > div { display: flex; flex-wrap: wrap; gap: 4px 14px; align-items: baseline; }
+.ws-cafe-role b { margin-right: 4px; color: #333; }
+.ws-cafe-role label { display: inline-flex; gap: 5px; align-items: baseline; }
+.ws-cafe-log td { vertical-align: top; }
+.ws-cafe-first { font-size: 0.82rem; color: #888; vertical-align: middle !important; text-align: center; word-break: keep-all; }
+.ws-cafe-note, .ws-cafe-host { font-size: 0.8rem; color: #777; margin: 4px 0 0; line-height: 1.45; word-break: keep-all; }
+.ws-cafe-host { margin: 0 0 4px; }
+.ws-cafe-head { text-align: center; margin-bottom: 12px; }
+.ws-cafe-head h3 { font-size: 1.45rem; color: #111; margin: 4px 0 6px; }
+.ws-cafe-head p { font-size: 0.86rem; color: #555; margin: 0; line-height: 1.5; word-break: keep-all; }
+.ws-cafe-head .ws-ext-name { margin-top: 6px; font-size: 0.92rem; }
+.ws-cafe-badge { display: inline-block; font-size: 0.78rem !important; color: #fff !important; background: #5B8DB8; border-radius: 20px; padding: 2px 12px; margin: 0 0 4px !important; letter-spacing: 0.04em; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+.ws-cafe-how { font-size: 0.84rem; color: #444; background: #f4f7fb; border-left: 4px solid #5B8DB8; border-radius: 4px; padding: 6px 10px; margin: 8px 0 0; line-height: 1.55; word-break: keep-all; }
+.ws-cafe-pen { font-size: 0.8rem; font-weight: 400; color: #777; margin-left: 8px; }
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-cafe-round .pano-table th,
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-cafe-round .pano-table td { padding: 2px 6px; }
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-cafe-round .ws-line { padding-top: 2px; padding-bottom: 2px; height: 24px; }
+#worksheet-paper > .worksheet-paper.ws-book-paper.ws-cafe-sheet .ws-section h4,
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-section h4 { margin-bottom: 4px; }
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-cafe-head h3 { margin: 2px 0 4px; }
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-cafe-sum { min-height: 0; display: block; overflow: hidden; padding: 6px 10px; }
+/* '테이블 1' 같은 이름표는 한 줄로 두고, 긴 질문만 다음 줄로 넘긴다 */
+#worksheet-paper > .worksheet-paper .ws-cafe-q .ws-more-pick label b { flex-shrink: 0; white-space: nowrap; }
+#worksheet-paper > .worksheet-paper .ws-cafe-round textarea { min-height: 0; }
+/* 칸 안의 입력란을 블록으로 두어 줄 아래 여백(글자 기준선 틈)이 생기지 않게 */
+#worksheet-paper > .worksheet-paper .ws-cafe-round textarea,
+#worksheet-paper > .worksheet-paper .ws-cafe-round .ws-line,
+#worksheet-paper > .worksheet-paper .ws-cafe-log textarea,
+#worksheet-paper > .worksheet-paper .ws-cafe-log .ws-line { display: block; margin: 0; }
+#worksheet-paper > .worksheet-paper .ws-cafe-round td { vertical-align: middle; }
+/* 테이블 기록지는 한 쪽에 들어가게 단계 사이를 조금 좁힌다 */
+#worksheet-paper > .worksheet-paper.ws-book-paper.ws-cafe-sheet .ws-section,
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-section { margin-bottom: 8px; }
+#worksheet-paper > .worksheet-paper.ws-cafe-sheet .ws-cafe-head { margin-bottom: 8px; }
+#worksheet-paper > .worksheet-paper .ws-cafe-round h4 { font-size: 0.98rem; }
+#worksheet-paper > .worksheet-paper .ws-cafe-q .ws-more-pick { font-size: 0.84rem; gap: 2px; margin-bottom: 4px; }
+.ws-cafe-gap { margin-left: 14px; }
+#worksheet-paper > .worksheet-paper .ws-cafe-tables { font-size: 0.86rem; }
+#worksheet-paper > .worksheet-paper .ws-cafe-tables li { padding: 4px 8px; }
+/* ── 책 밖으로 넓히기 · 교과와 사회의 논제로 (맨 뒤 별도 쪽) ── */
+.ws-ext-cards { display: grid; gap: 6px; }
+.ws-ext-card { display: grid; gap: 2px; padding: 8px 12px; border: 1px solid #e5dccf; border-radius: 8px; background: #fbf8f3; font-size: 0.86rem; line-height: 1.5; color: #333; word-break: keep-all; }
+.ws-ext-claim { font-size: 0.95rem; font-weight: 700; color: #1f2933; }
+.ws-ext-meta { font-size: 0.8rem; color: #8a5a44; }
+.ws-ext-std { font-size: 0.8rem; color: #555; }
+.ws-ext-std code { font-size: 0.78rem; color: #45633f; margin-right: 2px; }
+.ws-ext-src { font-size: 0.78rem; color: #777; }
+.ws-ext-claimbox { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; font-size: 0.9rem; }
+.ws-ext-claimbox b { flex: none; padding-top: 6px; }
+.ws-ext-claimbox textarea { flex: 1; min-width: 0; width: auto; }
 .ws-more-pick { display: flex; flex-direction: column; gap: 3px; font-size: 0.85rem; line-height: 1.5; color: #222; margin: 0 0 8px; word-break: keep-all; }
 .ws-more-pick label { display: flex; gap: 6px; align-items: flex-start; }
 .ws-more-pick input { margin-top: 4px; flex: none; }
