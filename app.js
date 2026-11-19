@@ -6298,7 +6298,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.7.3";
+    return "6.7.4";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -15945,12 +15945,12 @@ function setupWorksheetGenerator() {
             <div class="ws-section">
                 <h4>1. [독서 전 활동] 책 표지 탐험하기</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">책의 제목과 표지 디자인을 관찰하고 어떤 이야기가 펼쳐질지 상상하여 적어 보세요.</p>
-                <textarea class="ws-textarea-box" placeholder="표지에서 인상 깊은 단서나 느낌을 자유롭게 서술하세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
             <div class="ws-section">
                 <h4>2. [독서 중 활동] 마음에 닿은 순간 포착</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">책을 읽는 동안 가장 기억에 남는 장면(혹은 등장인물의 대사)과 그 이유를 적어 보세요.</p>
-                <textarea class="ws-textarea-box" placeholder="인상 깊은 장면과 그렇게 느낀 까닭을 구체적으로 서술하세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
             <div class="ws-section">
                 <h4>3. [독서 후 활동] 나의 질문과 주장</h4>
@@ -15961,7 +15961,7 @@ function setupWorksheetGenerator() {
                         ${book.debatePropositions ? book.debatePropositions.map(t => `<button type="button" class="recommend-topic-btn" onclick="this.closest('.ws-section').querySelector('textarea').value = this.innerText.substring(2); return false;" style="background:none; border:none; text-align:left; color:var(--accent-coral); cursor:pointer; font-weight:600; padding:0; font-family:inherit;">🔹 ${t}</button>`).join("") : '<span>추천 논제 정보가 없습니다.</span>'}
                     </div>
                 </div>
-                <textarea class="ws-textarea-box" placeholder="내 주장, 그렇게 보는 까닭, 덧붙일 설명의 차례로 적어 보세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "brainwriting") {
@@ -15977,21 +15977,21 @@ function setupWorksheetGenerator() {
                 <table class="ws-table">
                     <tr>
                         <th style="width: 26%;">작성 1 · 나<br><span class="pano-th-sub">처음 떠올린 해결 아이디어 3가지</span></th>
-                        <td><textarea style="height: 80px;" placeholder="내가 처음 떠올린 조언을 적어 주세요..."></textarea></td>
+                        <td><textarea style="height: 80px;"></textarea></td>
                     </tr>
                     <tr>
                         <th style="width: 26%;">작성 2 · 친구 A<br><span class="pano-th-sub">앞 생각을 보완하고 넓히기</span></th>
-                        <td><textarea style="height: 80px;" placeholder="앞사람이 쓴 것을 읽고, 어떻게 해 볼지를 더 자세히 보태 주세요..."></textarea></td>
+                        <td><textarea style="height: 80px;"></textarea></td>
                     </tr>
                     <tr>
                         <th style="width: 26%;">작성 3 · 친구 B<br><span class="pano-th-sub">한 층 더 새로운 대안 보태기</span></th>
-                        <td><textarea style="height: 80px;" placeholder="앞의 두 결론을 합치고, 뜻밖의 경우에 대비할 방법을 덧붙여 주세요..."></textarea></td>
+                        <td><textarea style="height: 80px;"></textarea></td>
                     </tr>
                 </table>
             </div>
             <div class="ws-section">
                 <h4>🌟 릴레이 융합으로 빚어낸 최고의 최종 모둠 추천안</h4>
-                <textarea class="ws-textarea-box" placeholder="모두의 손을 거쳐 돌아온 생각 가운데 가장 좋은 해결책을 골라 다듬어 적으세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "procon") {
@@ -16011,17 +16011,17 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="내 생각과 달라도 좋습니다. 찬성하는 자리에 서서 가장 그럴듯한 주장과 근거를 두 가지 이상 적으세요..."></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="편을 바꾼 뒤, 조금 전 내 주장의 빈틈을 스스로 짚어 가며 반대쪽에서 댈 수 있는 가장 좋은 근거를 적으세요..."></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="ws-section">
                 <h4>⚖️ 3단계. 양쪽을 다 맡아 본 뒤 정리하는 내 생각</h4>
-                <textarea class="ws-textarea-box" placeholder="양쪽을 모두 말해 보며 알게 된 것을 적어 보세요. 어느 한쪽으로만 나눌 수 없었던 까닭도 함께 적습니다..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "hotseating") {
@@ -16042,17 +16042,17 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 200px;" placeholder="질문 1:\n질문 2:\n질문 3:..."></textarea>
+                            <textarea style="min-height: 200px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 200px;" placeholder="주인공이 변명 대신 털어놓은 속사정과 슬픔을 받아 적어 정리하세요..."></textarea>
+                            <textarea style="min-height: 200px;"></textarea>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="ws-section">
                 <h4>✉️ 《${book.title}》 주인공에게 보내는 위로와 응원의 편지</h4>
-                <textarea class="ws-textarea-box" placeholder="주인공의 외로움을 헤아린 뒤, 더 나은 선택을 하도록 돕는 따뜻한 말을 적어 주세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "carousel") {
@@ -16075,23 +16075,23 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 180px;" placeholder="친구 이름:\n그가 제기한 기발한 찬/반 근거는?..."></textarea>
+                            <textarea style="min-height: 180px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 180px;" placeholder="친구 이름:\n그가 제기한 기발한 찬/반 근거는?..."></textarea>
+                            <textarea style="min-height: 180px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 180px;" placeholder="친구 이름:\n그가 제기한 기발한 찬/반 근거는?..."></textarea>
+                            <textarea style="min-height: 180px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 180px;" placeholder="친구 이름:\n그가 제기한 기발한 찬/반 근거는?..."></textarea>
+                            <textarea style="min-height: 180px;"></textarea>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="ws-section">
                 <h4>🌟 여러 의견을 듣고 한 걸음 나아간 내 생각</h4>
-                <textarea class="ws-textarea-box" placeholder="여러 친구와 짝 토론을 하는 동안 내 주장의 빈 곳이 어떻게 채워졌는지 정리해 보세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "socratic") {
@@ -16107,7 +16107,7 @@ function setupWorksheetGenerator() {
                         ${book.debatePropositions ? book.debatePropositions.map(t => `<button type="button" class="recommend-topic-btn" onclick="this.closest('.ws-section').querySelector('textarea').value = this.innerText.substring(2); return false;" style="background:none; border:none; text-align:left; color:var(--accent-coral); cursor:pointer; font-weight:600; padding:0; font-family:inherit;">🔹 ${t}</button>`).join("") : '<span>추천 논제 정보가 없습니다.</span>'}
                     </div>
                 </div>
-                <textarea style="width: 100%; min-height: 80px; padding: 10px; border:1px solid #ccc; border-radius:6px; margin-bottom: 16px;" placeholder="오늘의 큰 질문과, 내 생각을 받쳐 주는 책 속 문장을 쪽수와 함께 옮겨 적으세요..."></textarea>
+                <textarea style="width: 100%; min-height: 80px; padding: 10px; border:1px solid #ccc; border-radius:6px; margin-bottom: 16px;"></textarea>
                 
                 <table class="ws-table">
                     <tr>
@@ -16116,17 +16116,17 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 160px;" placeholder="친구의 말 가운데 나를 한 번 멈춰 세운 생각은 무엇이었나요?..."></textarea>
+                            <textarea style="min-height: 160px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 160px;" placeholder="토론 전에는 보이지 않았는데 오늘 새로 알게 된 책의 뜻을 쓰세요..."></textarea>
+                            <textarea style="min-height: 160px;"></textarea>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="ws-section">
                 <h4>📝 오늘 대화를 정리하는 글</h4>
-                <textarea class="ws-textarea-box" placeholder="오늘 나눈 이야기를 바탕으로 '함께 사는 일' 또는 '내 뜻대로 사는 일'에 대한 내 생각을 한 편의 글로 써 주세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "worldcafe") {
@@ -16168,24 +16168,24 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="~라고 생각합니다. (인물의 갈등에 대한 내 입장을 한 문장으로)"></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="왜냐하면 ~이기 때문입니다. (그렇게 보는 까닭)"></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="예를 들어 그림책 ○○쪽의 문장이나 그림을 보면 ~라고 나옵니다. (책에서 찾은 증거)"></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="두 번째 주장..."></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="두 번째 이유..."></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 150px;" placeholder="두 번째 근거..."></textarea>
+                            <textarea style="min-height: 150px;"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -16305,13 +16305,13 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="height: 58px;" placeholder="동의하는 이유를 적어 보세요..."></textarea>
+                            <textarea style="height: 58px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="height: 58px;" placeholder="반대하는 이유를 적어 보세요..."></textarea>
+                            <textarea style="height: 58px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="height: 58px;" placeholder="판단을 유보하거나 다른 고민이 되는 지점을 적어 보세요..."></textarea>
+                            <textarea style="height: 58px;"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -16319,12 +16319,12 @@ function setupWorksheetGenerator() {
             <div class="ws-section">
                 <h4>💬 토론 중 귀담아 들은 친구들의 다양한 생각</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">나와 다른 의견을 가졌던 친구들의 타당한 생각들을 요약해 보세요.</p>
-                <textarea class="ws-textarea-box" style="min-height: 68px;" placeholder="친구의 이름과 친구가 든 근거를 정리해 적어 보세요..."></textarea>
+                <textarea class="ws-textarea-box" style="min-height: 68px;"></textarea>
             </div>
             <div class="ws-section">
                 <h4>🚦 토론 후 최종 결정 및 나의 신호 변화</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">토론 전과 견주어 내 카드 색은 어떻게 바뀌었나요? 바뀐 까닭이나 더 굳어진 결론을 적으세요.</p>
-                <textarea class="ws-textarea-box" style="min-height: 64px;" placeholder="내 생각의 변화와 토론 후 최종 결정한 생각을 정리해 적어 주세요..."></textarea>
+                <textarea class="ws-textarea-box" style="min-height: 64px;"></textarea>
             </div>
         `;
     } else if (type === "pmi") {
@@ -16345,13 +16345,13 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea placeholder="이 결정이 가져다줄 좋은 결과와 이점들을 다각도로 적어 보세요..."></textarea>
+                            <textarea></textarea>
                         </td>
                         <td>
-                            <textarea placeholder="이 결정이 가져올 문제점, 우려 사항, 손실을 다각도로 적어 보세요..."></textarea>
+                            <textarea></textarea>
                         </td>
                         <td>
-                            <textarea placeholder="이 결정을 통해 새롭게 보게 된 관점이나 아이디어, 신선한 점들을 적어 보세요..."></textarea>
+                            <textarea></textarea>
                         </td>
                     </tr>
                 </table>
@@ -16359,7 +16359,7 @@ function setupWorksheetGenerator() {
             <div class="ws-section">
                 <h4>🔍 세 칸을 살펴본 뒤 내린 내 결론</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">좋은 점·아쉬운 점·흥미로운 점을 살핀 결과를 바탕으로, 나라면 어떻게 할지 적으세요.</p>
-                <textarea class="ws-textarea-box" placeholder="양쪽을 고루 살펴본 끝에 내가 내놓는 새 주장을 적어 보세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "twostray") {
@@ -16423,7 +16423,7 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="height: 64px;" placeholder="《${book.title}》의 갈등에 대해 내가 처음 떠올린 생각을 짧게 쓰세요..."></textarea>
+                            <textarea style="height: 64px;"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -16431,7 +16431,7 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="height: 70px;" placeholder="'앞사람 ○○는 ~라고 말했다. 나는 여기에 ~을 보태고 싶다' 틀에 맞춰 적어 보세요..."></textarea>
+                            <textarea style="height: 70px;"></textarea>
                         </td>
                     </tr>
                     <tr>
@@ -16439,7 +16439,7 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="height: 76px;" placeholder="모둠원 모두의 귀를 거치며 눈덩이처럼 불어난 마지막 생각을 쓰세요..."></textarea>
+                            <textarea style="height: 76px;"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -16536,7 +16536,7 @@ function setupWorksheetGenerator() {
                 
                 <div style="margin-bottom: 16px;">
                     <strong style="font-size: 0.9rem; color: #1e293b;">⚖️ 《${book.title}》의 의사결정 인물 및 상황 정의</strong>
-                    <textarea class="ws-textarea-box" style="min-height: 52px; margin-top: 6px;" placeholder="오늘 선택을 내려야 할 인물의 고민은 무엇인가요?..."></textarea>
+                    <textarea class="ws-textarea-box" style="min-height: 52px; margin-top: 6px;"></textarea>
                 </div>
 
                 <table class="ws-table">
@@ -16546,10 +16546,10 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 88px;" placeholder="옳고 그름, 남에 대한 배려, 지켜야 할 권리를 들어 주인공이 바른 선택을 하도록 설득해 보세요..."></textarea>
+                            <textarea style="min-height: 88px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 88px;" placeholder="손익을 따지는 현실적인 눈으로, 주인공이 가장 손해 보지 않는 길을 가도록 부추겨 보세요..."></textarea>
+                            <textarea style="min-height: 88px;"></textarea>
                         </td>
                     </tr>
                 </table>
@@ -16557,7 +16557,7 @@ function setupWorksheetGenerator() {
             <div class="ws-section">
                 <h4>🛡️ 결정의 무게 · 내 마지막 생각</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">양쪽 말을 다 들은 뒤, 내가 내린 결론과 그 까닭을 적으세요.</p>
-                <textarea class="ws-textarea-box" style="min-height: 64px;" placeholder="한쪽을 골랐나요, 둘을 아울렀나요? 내가 내린 결론과 그 까닭을 자세히 적으세요..."></textarea>
+                <textarea class="ws-textarea-box" style="min-height: 64px;"></textarea>
             </div>
         `;
     } else if (type === "doublepyramid") {
@@ -16575,30 +16575,30 @@ function setupWorksheetGenerator() {
                 <table class="ws-table">
                     <tr>
                         <th style="width: 26%;">1단계 · 나 혼자<br><span class="pano-th-sub">나의 처음 주장과 까닭</span></th>
-                        <td><textarea style="height: 64px;" placeholder="이 논제에 대한 내 주장과 그 까닭을 자유롭게 적으세요..."></textarea></td>
+                        <td><textarea style="height: 64px;"></textarea></td>
                     </tr>
                     <tr>
                         <th style="width: 26%;">2단계 · 짝과 함께<br><span class="pano-th-sub">짝과 합의한 가장 좋은 근거</span></th>
-                        <td><textarea style="height: 64px;" placeholder="짝과 생각을 맞춰 더 단단해진 하나의 주장을 적으세요..."></textarea></td>
+                        <td><textarea style="height: 64px;"></textarea></td>
                     </tr>
                     <tr>
                         <th style="width: 26%;">3단계 · 모둠 전체<br><span class="pano-th-sub">모둠이 함께 정한 대표 주장</span></th>
-                        <td><textarea style="height: 64px;" placeholder="모둠 전체(4~6명)가 짝마다 가져온 안을 놓고 이야기해 정한 대표 주장을 적으세요..."></textarea></td>
+                        <td><textarea style="height: 64px;"></textarea></td>
                     </tr>
                 </table>
             </div>
             <div class="ws-section">
                 <h4>🌟 찬성과 반대를 아우르는 새 해결책</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">찬성 쪽과 반대 쪽의 대표 주장을 합쳐, 모두가 함께 살아갈 새 해결책을 만들어 보세요.</p>
-                <textarea class="ws-textarea-box" style="min-height: 80px;" placeholder="찬성과 반대로 갈라서지 않고, 《${book.title}》의 문제를 함께 풀 수 있는 길을 적으세요..."></textarea>
+                <textarea class="ws-textarea-box" style="min-height: 80px;"></textarea>
             </div>
         `;
     } else if (type === "hexadebate") {
         const hexEx = ["두려움", "연대", "화합", "상실", "성장", ""];
-        const hexRow = (ex, ph) => `
+        const hexRow = () => `
                     <tr>
-                        <td><input type="text" style="width:100%; border:none; background:none; padding:4px;" placeholder="${ex}"></td>
-                        <td><textarea style="height: 46px;" placeholder="${ph}"></textarea></td>
+                        <td><input type="text" style="width:100%; border:none; background:none; padding:4px;"></td>
+                        <td><textarea style="height: 46px;"></textarea></td>
                     </tr>`;
         worksheetHTML += `
             <div class="ws-section">
@@ -16614,10 +16614,10 @@ function setupWorksheetGenerator() {
                 <div style="margin-bottom: 10px;">
                     <strong style="font-size: 0.9rem; color: #1e293b; display: block; margin-bottom: 6px;">⬡ 1단계: 우리가 고른 핵심 낱말 카드 6장</strong>
                     <div class="hex-cards">
-                        ${hexEx.map((ex, i) => `
+                        ${hexEx.map((_, i) => `
                             <div style="display: flex; align-items: center; gap: 4px; background: #fafafa; border: 1px solid #e2e8f0; border-radius: 8px; padding: 4px 6px;">
                                 <span style="font-weight: 700; font-size: 0.75rem; color: var(--accent-coral);">${i + 1}</span>
-                                <input type="text" style="width: 100%; min-width: 0; border: 1px solid #ccc; border-radius: 4px; padding: 4px; font-size: 0.8rem; text-align: center;" placeholder="${ex ? "예: " + ex : ""}">
+                                <input type="text" style="width: 100%; min-width: 0; border: 1px solid #ccc; border-radius: 4px; padding: 4px; font-size: 0.8rem; text-align: center;">
                             </div>
                         `).join("")}
                     </div>
@@ -16627,10 +16627,10 @@ function setupWorksheetGenerator() {
                     <tr>
                         <th style="width: 32%; background-color: #f1f5f9;">🔗 이을 낱말 (A ↔ B)</th>
                         <th style="background-color: #f1f5f9;">🧐 두 낱말이 이어지는 까닭 (책 속 근거)</th>
-                    </tr>${hexRow("예: '두려움' ↔ '연대'", `《${book.title}》의 줄거리를 근거로, 두 낱말이 왜 서로 이어지는지 설명해 보세요...`)}${hexRow("예: '연대' ↔ '화합'", "두 낱말이 인물의 마음이 달라지거나 갈등이 풀리는 데 어떤 몫을 했는지, 책의 장면을 들어 적으세요...")}${hexRow("예: '상실' ↔ '성장'", "이야기 전체를 꿰뚫는 연결 고리를 책 속 구절이나 결말을 인용해 적으세요...")}
+                    </tr>${hexRow()}${hexRow()}${hexRow()}
                     <tr>
                         <th style="background-color: #faf6ef;">🔮 헥사 맵 성찰<br><span class="pano-th-sub">낱말을 모두 이어 본 뒤</span></th>
-                        <td><textarea style="height: 64px;" placeholder="낱말들을 모두 이어 본 뒤, 《${book.title}》${josa(book.title, "이", "가")} 우리에게 하고 싶은 말이 무엇인지 정리해 보세요..."></textarea></td>
+                        <td><textarea style="height: 64px;"></textarea></td>
                     </tr>
                 </table>
             </div>
@@ -16702,7 +16702,8 @@ function setupWorksheetGenerator() {
                             <p>그림책 《${book.title}》${josa(book.title, "으로", "로")} 수업할 때 참고하세요.</p>
                         </div>
                         ${versionsGuide}
-                        ${versionsGuide && recall ? `<p class="ws-guide-part">버전 A · 그림책 속으로</p>` : ""}
+                        ${versionsGuide ? `<p class="ws-guide-part">버전 A · 그림책 속으로</p>` : ""}
+                        ${bookFieldHintsGuideHTML(type)}
                         ${recall}
                     </div>` : "") + versionBGuide;
             }
@@ -23114,6 +23115,76 @@ function fitBookWorksheet(out, type) {
 // roles: [[자리 이름, 설명]] 3개가 있으면 미리 채우고, 없으면 빈 자리 칸을 둔다.
 // 학생 학습지 칸 안의 안내 글은 학생 쪽에 싣지 않고, 교사용 가이드에 '칸마다 안내할 말'로 싣는다
 const BOOK_WS_FIELD_HINTS = {
+    basic: [
+        ["1. [독서 전 활동] 책 표지 탐험하기", "표지의 제목·그림·색에서 인상 깊은 단서나 느낌을 자유롭게 적게 합니다."],
+        ["2. [독서 중 활동] 마음에 닿은 순간 포착", "인상 깊은 장면(또는 인물의 말)과 그렇게 느낀 까닭을 구체적으로 적게 합니다."],
+        ["3. [독서 후 활동] 나의 질문과 주장", "내 주장 → 그렇게 보는 까닭 → 덧붙일 설명의 차례로 적게 합니다."]
+    ],
+    brainwriting: [
+        ["작성 1 · 나", "처음 떠올린 해결 아이디어(조언)를 적게 합니다."],
+        ["작성 2 · 친구 A", "앞사람이 쓴 것을 읽고, 어떻게 해 볼지를 더 자세히 보태게 합니다."],
+        ["작성 3 · 친구 B", "앞의 두 생각을 합치고, 뜻밖의 경우에 대비할 방법을 덧붙이게 합니다."],
+        ["릴레이 융합으로 빚어낸 최고의 최종 모둠 추천안", "모두의 손을 거쳐 돌아온 생각 가운데 가장 좋은 해결책을 골라 다듬어 적게 합니다."]
+    ],
+    procon: [
+        ["1단계: Pro (찬성 입장에서 세운 정당성)", "내 생각과 달라도 찬성하는 자리에 서서 가장 그럴듯한 주장과 근거를 두 가지 이상 적게 합니다."],
+        ["2단계: Con (역할 교대 후 반대 입장에서 세운 논리)", "편을 바꾼 뒤, 조금 전 내 주장의 빈틈을 스스로 짚어 가며 반대쪽에서 댈 수 있는 가장 좋은 근거를 적게 합니다."],
+        ["3단계. 양쪽을 다 맡아 본 뒤 정리하는 내 생각", "양쪽을 모두 말해 보며 알게 된 것과, 어느 한쪽으로만 나눌 수 없었던 까닭을 함께 적게 합니다."]
+    ],
+    hotseating: [
+        ["내가 캐릭터(주인공)에게 던질 예리한 질문 3가지", "'질문 1·2·3'처럼 번호를 붙여 인물에게 물을 질문 세 가지를 적게 합니다."],
+        ["핫시트의 주인공이 답변한 고백 요약", "주인공이 변명 대신 털어놓은 속사정과 마음을 받아 적어 정리하게 합니다."],
+        ["주인공에게 보내는 위로와 응원의 편지", "주인공의 처지와 마음을 헤아린 뒤, 더 나은 선택을 하도록 돕는 따뜻한 말을 적게 합니다."]
+    ],
+    carousel: [
+        ["1~4차 파트너 의견", "칸마다 짝의 이름과, 그 짝이 든 찬성 또는 반대 근거를 적게 합니다."],
+        ["여러 의견을 듣고 한 걸음 나아간 내 생각", "여러 짝과 이야기하는 동안 내 주장의 빈 곳이 어떻게 채워졌는지 정리하게 합니다."]
+    ],
+    socratic: [
+        ["대화 기록 첫 칸 · 오늘의 큰 질문", "오늘의 큰 질문과, 내 생각을 받쳐 주는 책 속 문장을 쪽수와 함께 옮겨 적게 합니다."],
+        ["세미나 중 큰 영감을 주었던 동료들의 해석", "친구의 말 가운데 나를 한 번 멈춰 세운 생각을 적게 합니다."],
+        ["동료들의 의견을 들으며 바뀐 나의 새로운 가치 정립", "토론 전에는 보이지 않았는데 오늘 새로 알게 된 책의 뜻을 적게 합니다."],
+        ["오늘 대화를 정리하는 글", "오늘 나눈 이야기를 바탕으로 '함께 사는 일' 또는 '내 뜻대로 사는 일'에 대한 내 생각을 한 편의 글로 쓰게 합니다."]
+    ],
+    argument: [
+        ["주장 (Claim)", "'~라고 생각합니다.'처럼 인물의 갈등에 대한 내 입장을 한 문장으로 적게 합니다."],
+        ["이유 (Reason)", "'왜냐하면 ~이기 때문입니다.'처럼 그렇게 보는 까닭을 적게 합니다."],
+        ["근거 (Evidence)", "'예를 들어 그림책 ○○쪽의 문장이나 그림을 보면 ~라고 나옵니다.'처럼 책에서 찾은 증거를 적게 합니다. 둘째 줄에는 두 번째 주장·이유·근거를 같은 방식으로 적습니다."]
+    ],
+    doublepyramid: [
+        ["1단계 · 나 혼자", "이 논제에 대한 내 주장과 그 까닭을 자유롭게 적게 합니다."],
+        ["2단계 · 짝과 함께", "짝과 생각을 맞춰 더 단단해진 하나의 주장을 적게 합니다."],
+        ["3단계 · 모둠 전체", "모둠 전체(4~6명)가 짝마다 가져온 안을 놓고 이야기해 정한 대표 주장을 적게 합니다."],
+        ["찬성과 반대를 아우르는 새 해결책", "찬성과 반대로 갈라서지 않고, 그림책 속 문제를 함께 풀 수 있는 길을 적게 합니다."]
+    ],
+    angeldevil: [
+        ["의사결정 인물 및 상황 정의", "오늘 선택을 내려야 할 인물과 그 인물의 고민이 무엇인지 적게 합니다."],
+        ["천사의 속삭임 (도덕, 이상, 신념)", "옳고 그름, 남에 대한 배려, 지켜야 할 권리를 들어 주인공이 바른 선택을 하도록 설득하는 말을 적게 합니다."],
+        ["악마의 속삭임 (현실, 이기심, 생존)", "손익을 따지는 현실적인 눈으로, 주인공이 가장 손해 보지 않는 길을 가도록 부추기는 말을 적게 합니다."],
+        ["결정의 무게 · 내 마지막 생각", "한쪽을 골랐는지, 둘을 아울렀는지 내가 내린 결론과 그 까닭을 자세히 적게 합니다."]
+    ],
+    hexadebate: [
+        ["1단계: 우리가 고른 핵심 낱말 카드 6장", "그림책에서 고른 핵심 낱말을 카드마다 하나씩 적게 합니다. 예: 두려움, 연대, 화합, 상실, 성장"],
+        ["이을 낱말 (A ↔ B)", "서로 이어진다고 생각하는 두 낱말을 적게 합니다. 예: '두려움' ↔ '연대', '연대' ↔ '화합', '상실' ↔ '성장'"],
+        ["두 낱말이 이어지는 까닭 (책 속 근거)", "첫째 줄은 줄거리를 근거로 두 낱말이 왜 이어지는지, 둘째 줄은 두 낱말이 인물의 마음이 달라지거나 갈등이 풀리는 데 어떤 몫을 했는지, 셋째 줄은 이야기 전체를 꿰뚫는 연결 고리를 책 속 구절이나 결말을 들어 적게 합니다."],
+        ["헥사 맵 성찰", "낱말들을 모두 이어 본 뒤, 그림책이 우리에게 하고 싶은 말이 무엇인지 정리하게 합니다."]
+    ],
+    traffic: [
+        ["토론 전 나의 신호 (찬성 · 반대 · 보류)", "고른 색의 칸에 동의하는 이유, 반대하는 이유, 또는 판단을 미루거나 고민되는 지점을 적게 합니다."],
+        ["토론 중 귀담아 들은 친구들의 다양한 생각", "친구의 이름과 친구가 든 근거를 정리해 적게 합니다."],
+        ["토론 후 최종 결정 및 나의 신호 변화", "내 생각이 어떻게 바뀌었는지와 토론 뒤 최종으로 정한 생각을 적게 합니다."]
+    ],
+    pmi: [
+        ["Plus (긍정적인 면 / 장점)", "이 결정이 가져다줄 좋은 결과와 이점을 여러 갈래로 적게 합니다."],
+        ["Minus (부정적인 면 / 단점)", "이 결정이 가져올 문제점, 걱정되는 점, 잃는 것을 여러 갈래로 적게 합니다."],
+        ["Interesting (흥미로운 지점 / 시사점)", "이 결정을 통해 새롭게 보게 된 관점이나 생각, 더 알아보고 싶은 질문을 적게 합니다."],
+        ["세 칸을 살펴본 뒤 내린 내 결론", "양쪽을 고루 살펴본 끝에 내가 내놓는 새 주장을 적게 합니다."]
+    ],
+    fan: [
+        ["1회차 회전: 나의 최초 아이디어 발언", "그림책의 갈등에 대해 처음 떠올린 생각을 짧게 적게 합니다."],
+        ["2회차 회전: 앞 친구 생각 요약 + 내 생각 누적 얹기", "'앞사람 ○○는 ~라고 말했다. 나는 여기에 ~을 보태고 싶다' 틀에 맞춰 적게 합니다."],
+        ["3회차 회전: 최종 융합 안건 정리", "모둠원 모두의 귀를 거치며 불어난 마지막 생각을 적게 합니다."]
+    ],
     reason: [
         ["인물의 행동 및 선택 분석", "그림책에서 가장 이해하기 어려웠던 인물의 행동을 하나 골라 적게 합니다."],
         ["그렇게 행동한 숨겨진 이유 추측", "인물이 안팎으로 겪은 갈등과, 왜 그렇게 정할 수밖에 없었는지 숨은 마음을 헤아려 적게 합니다."],
