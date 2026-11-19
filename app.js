@@ -5671,8 +5671,9 @@ function renderSubjectSection() {
     const topicRows = ownRows +
         (restShown.length ? (tp.own.length ? `<li class="subject-topic-divider">다른 분야에서 함께 쓸 만한 논제</li>` : "") + restShown.map(topicRow).join("") : "");
 
-    const srcLinks = (sub.sources || []).map(k => STAT_SOURCES[k]).filter(Boolean)
-        .map(s => `<a class="subject-src" href="${s.url}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${s.name}</a>`).join("");
+    const srcLinks = (sub.sources || []).filter(k => STAT_SOURCES[k])
+        .map(k => { const s = STAT_SOURCES[k]; const bk = k === "bigkinds" ? ` bk-link" data-alt="https://news.naver.com/" data-alt-label="네이버 뉴스 (빅카인즈 점검 중)" data-alt-title="빅카인즈가 점검 중이라 네이버 뉴스를 엽니다` : "";
+            return `<a class="subject-src${bk}" href="${s.url}" target="_blank" rel="noopener"><i class="fa-solid fa-arrow-up-right-from-square"></i> ${s.name}</a>`; }).join("");
 
     box.innerHTML = `
         <div class="subject-tabs" role="tablist" aria-label="교과 고르기">
@@ -6298,7 +6299,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.7.4";
+    return "6.7.5";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -7260,6 +7261,70 @@ function bigkindsUrl(q, years = 1) {
         encodeURIComponent(JSON.stringify({ indexName: "news", searchKey: q, searchKeys: [], startDate: ymd(start), endDate: ymd(end) }));
 }
 
+// ── 빅카인즈가 점검 중일 때는 네이버 뉴스로 ─────────────
+// 빅카인즈는 '시스템 점검' 때 모든 주소를 점검 안내 쪽(HTML)으로 넘긴다. 빅카인즈에 올라 있는 작은 기사 사진을 불러 보아
+// 열리면 정상, 열리지 않으면 점검 중(또는 접속할 수 없음)으로 보고, 빅카인즈로 가는 단추(.bk-link)를 data-alt(네이버 뉴스)로 돌린다.
+// '뉴스' 단추 옆의 작은 '네이버' 단추(.bk-alt)는 늘 같은 검색어로 네이버 뉴스를 열고, 점검 중일 때는 거꾸로 빅카인즈를 연다.
+// 사진은 단추에 마우스를 올리거나 누를 때 한 번만 불러 보고, 결과는 10분 동안 기억한다.
+const naverNewsUrl = (q) => "https://search.naver.com/search.naver?where=news&query=" + encodeURIComponent(q);
+const BK_PROBES = [
+    "https://www.bigkinds.or.kr/resources/images/01100101/2025/07/20/01100101.20250720210810002.01.jpg",
+    "https://www.bigkinds.or.kr/resources/images/01100101/2025/04/01/01100101.20250401165836001.01.jpg"
+];
+const BK_STATE_KEY = "pbc-bk-state";
+let bkState = (() => {
+    try { const v = JSON.parse(sessionStorage.getItem(BK_STATE_KEY) || "null"); return v && Date.now() - v.t < 600000 ? v.s : null; } catch (e) { return null; }
+})();
+function bkApply(a) {
+    if (bkState !== "down" || !a || a.dataset.bkSwapped) return;
+    a.dataset.bkSwapped = "1";
+    if (a.classList.contains("bk-link")) {
+        a.href = a.dataset.alt;
+        a.title = a.dataset.altTitle || "빅카인즈가 점검 중이라 네이버 뉴스에서 찾습니다";
+        // 이름이 '빅카인즈'로 적힌 단추는 가는 곳에 맞게 이름도 바꾼다
+        if (a.dataset.altLabel) {
+            const holder = a.querySelector(".news-tool-head") || a;
+            const tn = [...holder.childNodes].reverse().find(n => n.nodeType === 3 && n.textContent.trim());
+            if (tn) tn.textContent = " " + a.dataset.altLabel + " ";
+        }
+    } else if (a.classList.contains("bk-alt")) {
+        a.href = a.dataset.bk;
+        a.title = "빅카인즈에서 찾기 (점검이 끝났으면 열립니다)";
+        const lab = a.querySelector(".bk-alt-label");
+        if (lab) lab.textContent = "빅카인즈";
+    }
+}
+function bkProbe() {
+    if (bkState) return;
+    bkState = "checking";
+    let left = BK_PROBES.length, done = false;
+    const finish = (v) => {
+        if (done) return;
+        done = true; clearTimeout(timer); bkState = v;
+        try { sessionStorage.setItem(BK_STATE_KEY, JSON.stringify({ s: v, t: Date.now() })); } catch (e) { /* 저장이 막혀도 이번 화면에서는 쓴다 */ }
+        if (v === "down") document.querySelectorAll("a.bk-link, a.bk-alt").forEach(bkApply);
+    };
+    const timer = setTimeout(() => finish("down"), 6000);
+    BK_PROBES.forEach(src => {
+        const img = new Image();
+        img.referrerPolicy = "no-referrer";
+        img.onload = () => finish("up");
+        img.onerror = () => { if (--left === 0) finish("down"); };
+        img.src = src;
+    });
+}
+// 빅카인즈 단추에 다가가면 확인을 시작하고, 이미 점검 중으로 알면 그 자리에서 바꿔 둔다 (누르는 순간에도 한 번 더)
+["pointerover", "focusin", "touchstart"].forEach(ev => document.addEventListener(ev, (e) => {
+    const a = e.target && e.target.closest && e.target.closest("a.bk-link, a.bk-alt");
+    if (!a) return;
+    bkProbe();
+    (a.parentElement ? a.parentElement.querySelectorAll("a.bk-link, a.bk-alt") : [a]).forEach(bkApply);
+}, { passive: true }));
+document.addEventListener("click", (e) => {
+    const a = e.target && e.target.closest && e.target.closest("a.bk-link, a.bk-alt");
+    if (a) bkApply(a);
+}, true);
+
 // ── 논제 한눈에 보기: 배경 한 줄과 '근거 자료 찾기' 단추 ─────────────
 // 배경은 첫 문장만 보이고(전문은 마우스를 올리면), 검색 단추는 논제마다 정한 핵심어(kw)로 바로 찾는다.
 // 통계 검색만은 KOSIS 표 이름에 맞춘 짧은 통계 낱말(skw)을 따로 쓴다. 낱말을 바꿀 때는 실제로 검색 결과가 나오는지 확인한다.
@@ -7311,15 +7376,20 @@ function topicResearchLinks(t) {
     const kw = topicKeyword(t), e = encodeURIComponent, links = [];
     (t.stats || []).forEach(st => {
         const src = STAT_SOURCES[st.src];
-        if (src) links.push({ kind: "stat", icon: src.icon, label: st.label, org: src.org, url: statUrl(st), title: `${src.name} · ${src.org}` });
+        if (!src) return;
+        const bk = st.src === "bigkinds" && st.q;   // 빅카인즈 보도량 자료는 점검 중이면 네이버 뉴스로
+        links.push({ kind: "stat", icon: src.icon, label: st.label, org: src.org, url: statUrl(st), title: `${src.name} · ${src.org}`,
+            alt: bk ? naverNewsUrl(st.q) : "", altTitle: bk ? `빅카인즈가 점검 중이라 네이버 뉴스에서 '${st.q}' 찾기` : "" });
     });
     // 뉴스는 빅카인즈에서 최근 3년 기사를 최신순으로 연다. 검색어가 길어 기사가 적은 논제는 nkw(뉴스용 검색어)를 쓰고,
-    // 빅카인즈 기사가 거의 없는 추상적인 논제(nkw: "naver")는 네이버 뉴스로 찾는다
+    // 빅카인즈 기사가 거의 없는 추상적인 논제(nkw: "naver")는 네이버 뉴스로 찾는다.
+    // 빅카인즈로 가는 단추에는 같은 검색어의 네이버 뉴스 주소(alt)를 붙여, 빅카인즈가 점검 중이면 그쪽으로 연다
     if (t.nkw === "naver")
-        links.push({ kind: "news", icon: "fa-newspaper", label: "뉴스", url: "https://search.naver.com/search.naver?where=news&query=" + e(kw), title: `네이버 뉴스에서 '${kw}' 찾기` });
+        links.push({ kind: "news", icon: "fa-newspaper", label: "뉴스", url: naverNewsUrl(kw), title: `네이버 뉴스에서 '${kw}' 찾기` });
     else {
         const nkw = t.nkw || kw;
-        links.push({ kind: "news", icon: "fa-newspaper", label: "뉴스", url: bigkindsUrl(nkw, 3), title: `빅카인즈에서 '${nkw}' 기사 찾기 (최근 3년)` });
+        links.push({ kind: "news", icon: "fa-newspaper", label: "뉴스", url: bigkindsUrl(nkw, 3), title: `빅카인즈에서 '${nkw}' 기사 찾기 (최근 3년) · 점검 중이면 네이버 뉴스로 엽니다`,
+            alt: naverNewsUrl(nkw), altTitle: `빅카인즈가 점검 중이라 네이버 뉴스에서 '${nkw}' 찾기` });
     }
     links.push({ kind: "paper", icon: "fa-book-open-reader", label: "논문·보고서", url: "https://www.riss.kr/search/Search.do?isDetailSearch=N&searchGubun=true&viewYn=OP&query=" + e(kw), title: `RISS 학술연구정보서비스에서 '${kw}' 찾기` });
     links.push(...topicBackgroundLinks(t, kw));
@@ -7333,11 +7403,15 @@ function topicResearchLinks(t) {
 function topicResearchHTML(t, compact = false) {
     const links = topicResearchLinks(t);
     const short = (x, n) => x.length > n ? x.slice(0, n - 1) + "…" : x;
-    const chip = (l) => `<a class="topic-src topic-src-${l.kind}" href="${l.url}" target="_blank" rel="noopener noreferrer" title="${attrEsc(l.title)}"><i class="fa-solid ${l.icon}"></i> ${l.kind === "stat" ? short(l.label, 22) : l.label}</a>`;
+    const bkAttr = (l) => l.alt ? ` data-alt="${attrEsc(l.alt)}" data-alt-title="${attrEsc(l.altTitle)}"` : "";
+    // 빅카인즈 '뉴스' 단추 바로 옆에 같은 검색어의 '네이버' 단추를 둔다 (빅카인즈가 점검 중이면 둘이 자리를 바꾼다)
+    const naverChip = (l) => l.alt && l.kind === "news"
+        ? `<a class="topic-src topic-src-news-alt bk-alt" href="${l.alt}" data-bk="${attrEsc(l.url)}" target="_blank" rel="noopener noreferrer" title="빅카인즈가 점검 중이면 네이버 뉴스에서 같은 낱말로 찾습니다"><span class="bk-alt-label">네이버</span></a>` : "";
+    const chip = (l) => `<a class="topic-src topic-src-${l.kind}${l.alt ? " bk-link" : ""}" href="${l.url}"${bkAttr(l)} target="_blank" rel="noopener noreferrer" title="${attrEsc(l.title)}"><i class="fa-solid ${l.icon}"></i> ${l.kind === "stat" ? short(l.label, 22) : l.label}</a>` + naverChip(l);
     const stats = links.filter(l => l.kind === "stat"), rest = links.filter(l => l.kind !== "stat");
     const head = `<span class="topic-research-label"><i class="fa-solid fa-magnifying-glass"></i> 근거 자료 찾기 <em title="이 낱말로 검색합니다">${topicKeyword(t)}</em></span>`;
     if (compact) return `<span class="topic-research topic-research-compact">${head}<span class="topic-src-list">${links.map(chip).join("")}</span></span>`;
-    const statList = stats.map(l => `<a class="topic-stat" href="${l.url}" target="_blank" rel="noopener noreferrer" title="${attrEsc(l.title)}"><i class="fa-solid ${l.icon}"></i> ${l.label} <em>${l.org}</em></a>`).join("");
+    const statList = stats.map(l => `<a class="topic-stat${l.alt ? " bk-link" : ""}" href="${l.url}"${bkAttr(l)} target="_blank" rel="noopener noreferrer" title="${attrEsc(l.title)}"><i class="fa-solid ${l.icon}"></i> ${l.label} <em>${l.org}</em></a>`).join("");
     return `<div class="topic-research">${head}${statList ? `<div class="topic-stat-list">${statList}</div>` : ""}<div class="topic-src-list">${rest.map(chip).join("")}</div></div>`;
 }
 // 쟁점 한 줄: "요지 — 근거" 꼴이면 요지를 굵게 보여 준다 (사실 논제는 근거를 연구·통계로 구체적으로 적어 둔다)
@@ -7373,13 +7447,13 @@ const STAT_STEPS = [
 const NEWS_TOOLS = [
     {
         name: "뉴스 검색·분석", icon: "fa-magnifying-glass",
-        url: "https://www.bigkinds.or.kr/v2/news/index.do",
+        url: "https://www.bigkinds.or.kr/v2/news/index.do", alt: "https://news.naver.com/", altName: "네이버 뉴스",
         use: "논제와 맞닿은 실제 사례를 찾습니다.",
         tip: "검색 기간이 기본 3개월입니다. 그대로 두면 오래된 흐름을 놓칩니다."
     },
     {
         name: "키워드 트렌드", icon: "fa-chart-line",
-        url: "https://www.bigkinds.or.kr/v2/visuals/keywordStatistics.do",
+        url: "https://www.bigkinds.or.kr/v2/visuals/keywordStatistics.do", alt: "https://datalab.naver.com/", altName: "네이버 데이터랩",
         use: "이 문제가 언제부터 쟁점이 되었는지 보도량 그래프로 봅니다.",
         tip: "그래프가 솟은 시점을 짚고 '그때 무슨 일이 있었나'를 찾으면 배경 설명이 됩니다."
     },
@@ -7391,7 +7465,7 @@ const NEWS_TOOLS = [
     },
     {
         name: "옛 뉴스 아카이브", icon: "fa-clock-rotate-left",
-        url: "https://www.bigkinds.or.kr/v2/news/oldNews.do",
+        url: "https://www.bigkinds.or.kr/v2/news/oldNews.do", alt: "https://newslibrary.naver.com/", altName: "네이버 뉴스 라이브러리",
         use: "예전 기사까지 거슬러 봅니다.",
         tip: "'그때는 이것을 어떻게 생각했나'를 보여 주면 가치 논제가 깊어집니다."
     }
@@ -14251,7 +14325,7 @@ function renderStatPanel() {
 
             <div class="news-tools">
                 ${NEWS_TOOLS.map(t => `
-                    <a class="news-tool" href="${t.url}" target="_blank" rel="noopener noreferrer">
+                    <a class="news-tool${t.alt ? " bk-link" : ""}" href="${t.url}"${t.alt ? ` data-alt="${t.alt}" data-alt-label="${t.altName} (빅카인즈 점검 중)" data-alt-title="빅카인즈가 점검 중이라 ${t.altName}에서 엽니다"` : ""} target="_blank" rel="noopener noreferrer">
                         <span class="news-tool-head"><i class="fa-solid ${t.icon}"></i> ${t.name}<i class="fa-solid fa-arrow-up-right-from-square news-tool-go"></i></span>
                         <span class="news-tool-use">${t.use}</span>
                         <span class="news-tool-tip">${t.tip}</span>
@@ -14312,10 +14386,14 @@ function renderStatPanel() {
     box.querySelectorAll(".stat-quick-btn").forEach(b => b.addEventListener("click", () => go(b.dataset.q)));
 
     const newsForm = document.getElementById("news-key-form");
+    const newsQ = document.getElementById("news-key-q");
+    if (newsQ) newsQ.addEventListener("focus", bkProbe);
     if (newsForm) newsForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const q = (document.getElementById("news-key-q").value || "").trim();
-        const open = () => window.open(NEWS_TOOLS[0].url, "_blank", "noopener");
+        // 빅카인즈가 점검 중으로 확인되었으면 네이버 뉴스에서 그 낱말로 바로 찾는다
+        const open = () => window.open(bkState === "down" ? (q ? naverNewsUrl(q) : NEWS_TOOLS[0].alt) : NEWS_TOOLS[0].url, "_blank", "noopener");
+        if (bkState === "down" && q) { open(); return; }
         if (!q) { open(); return; }
         // 복사가 막힌 환경(구형 브라우저·권한 거부)에서도 창은 열리도록 한다
         const done = () => { showToast("‘" + q + "’을(를) 복사했습니다. 검색창에 붙여넣으세요."); open(); };
@@ -16803,7 +16881,7 @@ const topicWsStatsNote = (t) => {
     const org = (s) => ((STAT_SOURCES[s.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
     return `<p class="ws-prompt">찾아볼 자료 ·
         ${stats.length ? `<strong>통계·연구</strong> ${stats.map(s => `${s.label}(${org(s)})`).join(" / ")} — 기관과 조사(발표) 연도를 적으세요.<br>` : ""}
-        <strong>기사</strong> ${news.map(s => s.label).join(" / ")} (빅카인즈 등에서 검색) — 언론사와 보도 날짜를 적으세요.</p>`;
+        <strong>기사</strong> ${news.map(s => s.label).join(" / ")} (빅카인즈에서 검색, 점검 중이면 네이버 뉴스) — 언론사와 보도 날짜를 적으세요.</p>`;
 };
 
 const topicWsBookBlock = (t, prompt) => {
@@ -22492,7 +22570,7 @@ function bookVersionBGuideHTML(book, type, t, list) {
                         <ul>
                             ${bgs.length ? `<li><b>배경 지식</b> ${bgs.join(", ")}${t.bgq ? ` (검색어: ${t.bgq})` : ""}</li>` : ""}
                             ${stats.map(s => `<li><b>통계·연구</b> ${s.label}${org(s) ? `(${org(s)})` : ""}</li>`).join("")}
-                            <li><b>기사</b> 빅카인즈에서 논제의 핵심 낱말로 찾아봅니다.</li>
+                            <li><b>기사</b> 빅카인즈에서 논제의 핵심 낱말로 찾아봅니다. 빅카인즈가 점검 중이면 네이버 뉴스에서 같은 낱말로 찾습니다.</li>
                         </ul>
                     </div>
                     ${others.length ? `<div class="ws-guide-box">
@@ -23364,7 +23442,7 @@ const TWS = {
         if (st.src === "paper") return `[연구] '${topicKeyword(t)}' 관련 논문·연구 보고서 — RISS에서 찾아 연구자와 발표 연도를 적는다.`;
         if (st.src === "anystat") return `[통계] 논제와 이어지는 공식 통계 — KOSIS 국가통계포털이나 e-나라지표에서 가장 최근 수치를 찾아 기관과 연도를 함께 적는다.`;
         const org = ((STAT_SOURCES[st.src] || {}).org || "").replace(/\s*\(.*\)\s*/g, "");
-        if (st.src === "bigkinds") return `[기사] ${st.label} — 빅카인즈에서 찾아 언론사와 보도 날짜를 적는다. (예: ○○일보, 2026. ○. ○.)`;
+        if (st.src === "bigkinds") return `[기사] ${st.label} — 빅카인즈(점검 중이면 네이버 뉴스)에서 찾아 언론사와 보도 날짜를 적는다. (예: ○○일보, 2026. ○. ○.)`;
         if (st.src === "tong") return `[설문] ${st.label} — 학급 설문으로 조사해 응답 수와 조사 날짜를 적는다.`;
         return `[통계] ${st.label}${org ? ` (${org})` : ""} — 가장 최근 조사 연도의 수치를 찾아 기관과 연도를 함께 적는다.`;
     },

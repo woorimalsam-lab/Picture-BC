@@ -4849,6 +4849,9 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 .topic-src i { font-size: 0.85em; color: var(--accent-sage); }
 .topic-src-news i { color: var(--accent-coral); }
+/* 빅카인즈 '뉴스' 단추 옆의 작은 '네이버' 단추 (빅카인즈가 점검 중이면 '빅카인즈'로 바뀐다) */
+.topic-src-news-alt { padding: 3px 8px; margin-left: -2px; font-size: 0.68rem; font-weight: 600; color: var(--text-secondary); border-style: dashed; }
+.topic-src-news-alt:hover { color: #03a94d; border-color: #03a94d; }
 .topic-src-law i, .topic-src-stat i { color: var(--accent-gold); }
 .topic-src:hover { border-color: var(--accent-sage); color: var(--accent-sage); }
 .subject-topic-sides { display: block; margin-top: 6px; font-weight: 400; }
