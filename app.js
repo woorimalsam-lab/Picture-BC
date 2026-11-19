@@ -6298,7 +6298,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.7.1";
+    return "6.7.2";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -16462,10 +16462,10 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea placeholder="그림책에서 가장 이해하기 어려웠던 인물의 행동을 하나 골라 적어 보세요..."></textarea>
+                            <textarea></textarea>
                         </td>
                         <td>
-                            <textarea placeholder="인물이 안팎으로 겪은 갈등과, 왜 그렇게 정할 수밖에 없었는지 숨은 마음을 헤아려 적어 보세요..."></textarea>
+                            <textarea></textarea>
                         </td>
                     </tr>
                 </table>
@@ -16474,7 +16474,7 @@ function setupWorksheetGenerator() {
             <div class="ws-section">
                 <h4>🔎 내 생각을 받쳐 주는 책 속 단서 찾기</h4>
                 <p style="font-size: 0.85rem; color: #555555; margin-bottom: 8px;">내 생각을 받쳐 주는 책 속 문장이나 그림의 단서(색, 표정, 배경 물건 등)를 찾아 적으세요.</p>
-                <textarea class="ws-textarea-box" placeholder="예: '○○쪽 주인공의 표정이 어두운 것으로 보아 ~라고 생각한다'처럼 증거를 들어 적으세요..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "valueline") {
@@ -16514,10 +16514,10 @@ function setupWorksheetGenerator() {
                 </tr>
                 <tr>
                     <td>
-                        <textarea placeholder="내가 그 자리에 선 까닭을, 옳고 그름과 현실 형편 두 가지로 나눠 적어 보세요..."></textarea>
+                        <textarea></textarea>
                     </td>
                     <td>
-                        <textarea placeholder="친구들의 말을 듣고 자리를 옮겼나요? 옮겼는지 아닌지와 마지막 결론을 적어 보세요..."></textarea>
+                        <textarea></textarea>
                     </td>
                 </tr>
             </table>
@@ -16664,6 +16664,7 @@ function setupWorksheetGenerator() {
                         ${versionsGuide}
                         ${versionsGuide ? `<p class="ws-guide-part">버전 A · 그림책 속으로</p>` : ""}
                         ${type === "panorama" ? panoramaExamplesGuideHTML({ source: "book", book }) : ""}
+                        ${bookFieldHintsGuideHTML(type)}
                         <div class="ws-guide-grid">
                             <section>
                                 <h4>수업 흐름과 발문</h4>
@@ -23111,6 +23112,28 @@ function fitBookWorksheet(out, type) {
 
 // 학생용 2쪽: 1쪽 = 1·2단계, 2쪽 = 3·4·5단계. 그림책이면 책 속·책 밖 질문, 논제면 자료 속·자료 밖 질문.
 // roles: [[자리 이름, 설명]] 3개가 있으면 미리 채우고, 없으면 빈 자리 칸을 둔다.
+// 학생 학습지 칸 안의 안내 글은 학생 쪽에 싣지 않고, 교사용 가이드에 '칸마다 안내할 말'로 싣는다
+const BOOK_WS_FIELD_HINTS = {
+    reason: [
+        ["인물의 행동 및 선택 분석", "그림책에서 가장 이해하기 어려웠던 인물의 행동을 하나 골라 적게 합니다."],
+        ["그렇게 행동한 숨겨진 이유 추측", "인물이 안팎으로 겪은 갈등과, 왜 그렇게 정할 수밖에 없었는지 숨은 마음을 헤아려 적게 합니다."],
+        ["내 생각을 받쳐 주는 책 속 단서 찾기", "'○○쪽 주인공의 표정이 어두운 것으로 보아 ~라고 생각한다'처럼 쪽수와 단서(글·색·표정·배경 물건)를 들어 적게 합니다."]
+    ],
+    valueline: [
+        ["1. [토론 전] 내가 저 눈금 지점에 서게 된 이유", "내가 그 자리에 선 까닭을, 옳고 그름과 현실 형편 두 가지로 나눠 적게 합니다."],
+        ["2. [토론 후] 내 생각의 변화 및 수정된 위치(점수)", "친구들의 말을 듣고 자리를 옮겼는지 아닌지, 옮겼다면 몇 점으로 옮겼는지와 마지막 결론을 적게 합니다."]
+    ]
+};
+function bookFieldHintsGuideHTML(type) {
+    const list = BOOK_WS_FIELD_HINTS[type];
+    if (!list) return "";
+    return `
+        <div class="ws-guide-box ws-guide-hints">
+            <h4>칸마다 안내할 말</h4>
+            <p class="ws-guide-note">학생 학습지의 칸에는 안내 글을 싣지 않았습니다. 활동을 시작할 때 칸마다 무엇을 적는지 말로 안내하고, 막히는 학생에게 예를 들려주세요.</p>
+            <ul>${list.map(([k, v]) => `<li><b>${k}</b> ${v}</li>`).join("")}</ul>
+        </div>`;
+}
 // 파노라마 질문 예시: 그림책마다 정해 둔 것, 없으면 두루 쓰는 예시
 function panoramaBookExamples(book) {
     const p = panoramaBookData(book.title);

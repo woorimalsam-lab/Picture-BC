@@ -4729,6 +4729,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-guide-pano-ex { break-inside: avoid; page-break-inside: avoid; }
 .ws-guide-pano-ex ul { columns: 2; column-gap: 20px; }
 .ws-guide-pano-ex li { break-inside: avoid; page-break-inside: avoid; }
+.ws-guide-hints { break-inside: avoid; page-break-inside: avoid; }
+.ws-guide-hints li b { color: #8a5a44; margin-right: 4px; }
 /* 교사용 가이드 인쇄: 제목만 쪽 끝에 남지 않게, 작은 상자는 쪽 사이에서 갈리지 않게 */
 @media print {
     .ws-guide h4, .ws-guide-sub { break-after: avoid; page-break-after: avoid; }
