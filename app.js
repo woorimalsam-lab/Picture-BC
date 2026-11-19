@@ -6298,7 +6298,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.7.0";
+    return "6.7.1";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -16395,14 +16395,16 @@ function setupWorksheetGenerator() {
         `;
     } else if (type === "panorama") {
         // 그림책마다 세 자리·자리별 묻기·예시 질문·맺음말 (없는 책은 빈 자리 칸)
+        // 질문 예시(책 속·책 밖 질문, 자리별 예시 질문)는 학생 쪽에 싣지 않고 교사용 가이드에만 싣는다
         const pData = panoramaBookData(book.title);
-        const pEx = pData && pData.examples ? pData.examples : { inQ: "인물은 왜 그런 선택을 했을까?", outQ: "그 인물이 끝내 말하지 못한 속마음은 무엇일까?" };
+        const pEx = panoramaBookExamples(book);
         worksheetHTML += panoramaSheetHTML({
             source: "book",
             roles: pData ? pData.roles : null,
             ex: { inQ: "예: " + pEx.inQ, outQ: "예: " + pEx.outQ },
             ask: pData ? pData.ask : null,
-            closing: pData ? pData.closing : ""
+            closing: pData ? pData.closing : "",
+            showEx: false
         });
         } else if (type === "fan") {
         worksheetHTML += `
@@ -16661,6 +16663,7 @@ function setupWorksheetGenerator() {
                         ${tech.easy ? `<p class="ws-guide-easy"><strong>이 기법은</strong> ${tech.easy}</p>` : ""}
                         ${versionsGuide}
                         ${versionsGuide ? `<p class="ws-guide-part">버전 A · 그림책 속으로</p>` : ""}
+                        ${type === "panorama" ? panoramaExamplesGuideHTML({ source: "book", book }) : ""}
                         <div class="ws-guide-grid">
                             <section>
                                 <h4>수업 흐름과 발문</h4>
@@ -22352,7 +22355,7 @@ function bookVersionBHTML(book, type, t) {
     const back = extra("back", "🌱 다시 그림책으로", `토론을 마치고 《${book.title}》${josa(book.title, "을", "를")} 다시 떠올려 보세요. 처음 읽을 때와 무엇이 달리 보이나요?`, ta(48));
     let body;
     if (techId === "panorama") {
-        body = bridge + panoramaSheetHTML(Object.assign({ source: "topic", ex: { inQ: "예: 이 제도는 지금 어떻게 운영되고 있을까?", outQ: "예: 이 논제로 가장 크게 달라지는 사람은 누구일까?" } }, panoramaTopicData(t)));
+        body = bridge + panoramaSheetHTML(Object.assign({ source: "topic", ex: { inQ: "예: " + PANO_TOPIC_EX.inQ, outQ: "예: " + PANO_TOPIC_EX.outQ }, showEx: false }, panoramaTopicData(t)));
     } else if (!core) {
         body = bridge + concept + TOPIC_WS_BUILDERS.analysis(t, false) + back;
     } else {
@@ -22497,6 +22500,7 @@ function bookVersionBGuideHTML(book, type, t, list) {
                     </div>` : ""}
                 </aside>
             </div>
+            ${techId === "panorama" ? panoramaExamplesGuideHTML({ source: "topic", t }) : ""}
             ${topicSetukHTML(t, techId || "analysis")}
         </div>`;
 }
@@ -23107,14 +23111,46 @@ function fitBookWorksheet(out, type) {
 
 // 학생용 2쪽: 1쪽 = 1·2단계, 2쪽 = 3·4·5단계. 그림책이면 책 속·책 밖 질문, 논제면 자료 속·자료 밖 질문.
 // roles: [[자리 이름, 설명]] 3개가 있으면 미리 채우고, 없으면 빈 자리 칸을 둔다.
-function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null, closing = "" } = {}) {
+// 파노라마 질문 예시: 그림책마다 정해 둔 것, 없으면 두루 쓰는 예시
+function panoramaBookExamples(book) {
+    const p = panoramaBookData(book.title);
+    return p && p.examples ? p.examples : { inQ: "인물은 왜 그런 선택을 했을까?", outQ: "그 인물이 끝내 말하지 못한 속마음은 무엇일까?" };
+}
+const PANO_TOPIC_EX = { inQ: "이 제도는 지금 어떻게 운영되고 있을까?", outQ: "이 논제로 가장 크게 달라지는 사람은 누구일까?" };
+// 교사용 가이드에 싣는 파노라마 질문 예시 (학생 학습지에는 싣지 않는다)
+// source: "book"(버전 A) 또는 "topic"(버전 B, t는 논제)
+function panoramaExamplesGuideHTML({ source = "book", book = null, t = null } = {}) {
+    const isBook = source === "book";
+    const src = isBook ? "책" : "자료";
+    const ex = isBook ? panoramaBookExamples(book) : PANO_TOPIC_EX;
+    const data = isBook ? panoramaBookData(book.title) : panoramaTopicData(t);
+    const ask = data && data.ask ? data.ask : null;
+    const roles = data && data.roles ? data.roles.map(r => r[0]) : null;
+    // 가이드 아래에 전체 폭 목록으로 싣는다 (표보다 짧아 쪽 수가 덜 늘어난다)
+    return `
+        <div class="ws-guide-box ws-guide-pano-ex">
+            <h4>질문 예시</h4>
+            <p class="ws-guide-note">학생 학습지에는 싣지 않았습니다. 학생이 먼저 스스로 질문을 만들게 하고, 막히는 모둠에만 하나씩 들려주세요.</p>
+            <ul>
+                <li><b>2단계 · ${src} 속 질문</b> ${ex.inQ}</li>
+                <li><b>2단계 · ${src} 밖 질문</b> ${ex.outQ}</li>
+                ${ask && roles ? ask.map((a, i) => `<li><b>4단계 · ${roles[i] || `자리 ${i + 1}`}에게</b> <span class="ws-ver-where">${a[0]}</span>${a[1]}</li>`).join("")
+                    : `<li><b>4단계 · 각 자리에게</b> 그 자리에서는 이 일이 어떻게 보였나요? 가장 걱정되는 것은 무엇인가요?</li>`}
+            </ul>
+        </div>`;
+}
+// showEx: false면 '책 속 질문·책 밖 질문'과 '파노라마 펼치기'의 예시 질문을 학생 쪽에 싣지 않는다
+// (그림책 학습지는 예시를 교사용 가이드에만 싣는다 — panoramaExamplesGuideHTML). 빈 자리만큼 쓰는 칸을 늘린다.
+function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null, closing = "", showEx = true } = {}) {
     const isBook = source === "book";
     const src = isBook ? "책" : "자료";
     const h1 = isBook ? 78 : 32, h2 = isBook ? 58 : 28;   // 1쪽 칸 높이 (글씨를 키운 만큼 칸을 조금 줄여 2쪽에 맞춘다)
+    const EX_H = 20;                                       // 예시 한 줄의 높이 — 예시를 빼면 그만큼 칸을 키운다
     const cells = (n, h) => Array.from({ length: n }, () => `<td><textarea style="height: ${h}px;"></textarea></td>`).join("");
     const sub = (t) => `<br><span class="pano-th-sub">${t}</span>`;
     const keys = (t) => `<span class="pano-keys">${t}</span>`;
-    const exLine = (t) => t ? `<span class="pano-ex">${t}</span>` : "";
+    const exLine = (t) => t && showEx ? `<span class="pano-ex">${t}</span>` : "";
+    const exH = (t, h) => t && !showEx ? h + EX_H : h;
     const roleRow = roles
         ? roles.map(([r, d]) => `<td><label class="pano-role"><input type="radio" name="pano-role" value="${r}"><strong>${r}</strong><span>${d}</span></label></td>`).join("")
         : [1, 2, 3].map(n => `<td><label class="pano-role"><input type="radio" name="pano-role" value="${n}"><strong>자리 ${n}</strong><input class="ws-line" type="text" placeholder="예: 당사자 · 주변 사람 · 제도(사회)"></label></td>`).join("");
@@ -23122,7 +23158,7 @@ function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null,
     const askRows = (roles ? roles.map(r => r[0]) : [null, null, null])
         .map((r, i) => {
             const a = ask && ask[i];
-            return `<tr><td class="pano-who">${r ? `<strong>${r}</strong>에게` : `<input class="ws-line" type="text" style="width: 70%;">에게`}${a ? `<small>${a[0]}</small>` : ""}</td><td>${a ? exLine("예: " + a[1]) : ""}<textarea style="height: ${a ? 26 : 44}px;"></textarea></td></tr>`;
+            return `<tr><td class="pano-who">${r ? `<strong>${r}</strong>에게` : `<input class="ws-line" type="text" style="width: 70%;">에게`}${a ? `<small>${a[0]}</small>` : ""}</td><td>${a ? exLine("예: " + a[1]) : ""}<textarea style="height: ${a ? exH(a[1], 26) : 44}px;"></textarea></td></tr>`;
         }).join("");
     return `
         <div class="ws-section ws-keep">
@@ -23145,8 +23181,8 @@ function panoramaSheetHTML({ source = "book", roles = null, ex = {}, ask = null,
                     <th style="width: 50%;">${src} 밖 질문 — 답이 나와 있지 않은 것${sub(`${isBook ? "인물의 마음" : "자료 너머의 사정"}을 상상하며 나누는 질문`)}</th>
                 </tr>
                 <tr>
-                    <td>${exLine(ex.inQ)}<textarea style="height: ${h2}px;"></textarea></td>
-                    <td>${exLine(ex.outQ)}<textarea style="height: ${h2}px;"></textarea></td>
+                    <td>${exLine(ex.inQ)}<textarea style="height: ${exH(ex.inQ, h2)}px;"></textarea></td>
+                    <td>${exLine(ex.outQ)}<textarea style="height: ${exH(ex.outQ, h2)}px;"></textarea></td>
                 </tr>
             </table>
         </div>

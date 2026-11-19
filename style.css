@@ -4725,6 +4725,15 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .ws-guide-issues td { font-size: 0.78rem; line-height: 1.5; }
 .ws-guide-issues ul { margin: 0; padding-left: 16px; }
 #worksheet-paper > .ws-ver-b textarea { overflow: hidden; }
+.ws-guide-pano-ex li .ws-ver-where { display: block; }
+.ws-guide-pano-ex { break-inside: avoid; page-break-inside: avoid; }
+.ws-guide-pano-ex ul { columns: 2; column-gap: 20px; }
+.ws-guide-pano-ex li { break-inside: avoid; page-break-inside: avoid; }
+/* 교사용 가이드 인쇄: 제목만 쪽 끝에 남지 않게, 작은 상자는 쪽 사이에서 갈리지 않게 */
+@media print {
+    .ws-guide h4, .ws-guide-sub { break-after: avoid; page-break-after: avoid; }
+    .ws-guide-box, .ws-guide-say, .ws-guide-story, .ws-guide-line, .ws-guide-seat { break-inside: avoid; page-break-inside: avoid; }
+}
 .ws-more-pick { display: flex; flex-direction: column; gap: 3px; font-size: 0.85rem; line-height: 1.5; color: #222; margin: 0 0 8px; word-break: keep-all; }
 .ws-more-pick label { display: flex; gap: 6px; align-items: flex-start; }
 .ws-more-pick input { margin-top: 4px; flex: none; }
