@@ -6298,7 +6298,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.7.2";
+    return "6.7.3";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -16380,17 +16380,17 @@ function setupWorksheetGenerator() {
                     </tr>
                     <tr>
                         <td>
-                            <textarea style="min-height: 180px;" placeholder="우리 모둠이 《${book.title}》에 대해 정리한 주장..."></textarea>
+                            <textarea style="min-height: 180px;"></textarea>
                         </td>
                         <td>
-                            <textarea style="min-height: 180px;" placeholder="다른 모둠을 돌며 얻은, 우리 주장의 빈 곳을 채워 줄 생각들..."></textarea>
+                            <textarea style="min-height: 180px;"></textarea>
                         </td>
                     </tr>
                 </table>
             </div>
             <div class="ws-section">
                 <h4>🌟 다녀와 모은 생각을 더해 완성한 우리 모둠 정리</h4>
-                <textarea class="ws-textarea-box" placeholder="남아 있던 친구와 다녀온 친구가 함께 완성한 우리 모둠의 마지막 정리..."></textarea>
+                <textarea class="ws-textarea-box"></textarea>
             </div>
         `;
     } else if (type === "panorama") {
@@ -23122,6 +23122,11 @@ const BOOK_WS_FIELD_HINTS = {
     valueline: [
         ["1. [토론 전] 내가 저 눈금 지점에 서게 된 이유", "내가 그 자리에 선 까닭을, 옳고 그름과 현실 형편 두 가지로 나눠 적게 합니다."],
         ["2. [토론 후] 내 생각의 변화 및 수정된 위치(점수)", "친구들의 말을 듣고 자리를 옮겼는지 아닌지, 옮겼다면 몇 점으로 옮겼는지와 마지막 결론을 적게 합니다."]
+    ],
+    twostray: [
+        ["[우리의 잔류 생각] 모둠방 가이드가 방문객에게 설명한 의견", "우리 모둠이 그림책에 대해 정리한 주장과 그 까닭을 적게 합니다. 남는 두 사람은 이 칸을 보며 손님에게 설명합니다."],
+        ["[우리의 여행 배움] 배움 여행자가 타 모둠에서 수집한 생각", "다른 모둠을 돌며 얻은 생각 가운데 우리 주장의 빈 곳을 채워 줄 것을 골라 적게 합니다. 어느 모둠에서 들었는지도 함께 적으면 좋습니다."],
+        ["다녀와 모은 생각을 더해 완성한 우리 모둠 정리", "남아 있던 친구와 다녀온 친구가 함께 처음 주장을 고치거나 보태어 우리 모둠의 마지막 정리를 적게 합니다."]
     ]
 };
 function bookFieldHintsGuideHTML(type) {
