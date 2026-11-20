@@ -4854,6 +4854,19 @@ html, body { max-width: 100%; overflow-x: hidden; }
 .topic-src-news-alt:hover { color: #03a94d; border-color: #03a94d; }
 .topic-src-law i, .topic-src-stat i { color: var(--accent-gold); }
 .topic-src:hover { border-color: var(--accent-sage); color: var(--accent-sage); }
+/* 함께 읽을 책 (교과 논제마다 1~2권, 제목을 누르면 국립중앙도서관 검색) */
+.topic-reading { display: block; margin-top: 8px; font-weight: 400; }
+.topic-stats + .topic-reading { margin-top: 12px; }
+.topic-read-list { display: flex; flex-wrap: wrap; gap: 5px; }
+.topic-read {
+    display: inline-flex; align-items: baseline; gap: 5px; flex-wrap: wrap; padding: 3px 10px; border-radius: 10px;
+    border: 1px solid var(--border-color); background: var(--bg-primary);
+    font-size: 0.76rem; font-weight: 600; line-height: 1.5; color: var(--text-primary); text-decoration: none; word-break: keep-all;
+    transition: border-color 0.2s ease, color 0.2s ease;
+}
+.topic-read i { font-size: 0.85em; color: var(--accent-coral); }
+.topic-read em { font-style: normal; font-weight: 400; font-size: 0.92em; color: var(--text-secondary); }
+.topic-read:hover { border-color: var(--accent-coral); color: var(--accent-coral); }
 .subject-topic-sides { display: block; margin-top: 6px; font-weight: 400; }
 .subject-topic-sides summary { cursor: pointer; list-style: none; font-size: 0.76rem; font-weight: 700; color: var(--text-secondary); }
 .subject-topic-sides summary::-webkit-details-marker { display: none; }
