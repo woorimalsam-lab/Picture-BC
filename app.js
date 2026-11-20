@@ -6299,7 +6299,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.8.0";
+    return "6.8.1";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -7693,9 +7693,9 @@ function topicReadingHTML(t, compact = false) {
     const item = (r) => `<a class="topic-read" href="${nlTitleUrl(r.title)}" target="_blank" rel="noopener noreferrer" title="국립중앙도서관에서 『${attrEsc(r.title)}』 찾기"><i class="fa-solid fa-book"></i> 『${r.title}』 <em>${r.author} · ${r.pub} · ${r.year}</em></a>`;
     return `<span class="topic-reading${compact ? " topic-reading-compact" : ""}"><span class="topic-research-label"><i class="fa-solid fa-book-open"></i> 함께 읽을 책</span><span class="topic-read-list">${list.map(item).join("")}</span></span>`;
 }
-// 학습지에 넣은 '함께 읽을 책' 줄은 쪽 수를 늘리지 않고, 그 줄이 든 쪽 끝에 여유가 있을 때만 남긴다.
+// 학생용 학습지의 '함께 읽을 책' 줄(.ws-read-guide)은 쪽 수를 늘리지 않고, 그 줄이 든 쪽 끝에 여유가 있을 때만 남긴다.
 // (브라우저 인쇄는 화면에서 잰 것보다 조금 빡빡하게 나뉘므로 쪽 끝에 READ_FIT_MARGIN만큼은 비어 있어야 한다)
-// 책 정보는 교과별 논제 목록과 논제 카드에 늘 남아 있으므로, 인쇄 쪽 수를 지키는 쪽을 먼저 한다.
+// 교사용 쪽과 그림책 버전 B 가이드의 책 줄(.ws-read-teacher)은 쪽이 늘더라도 늘 남긴다.
 const READ_FIT_MARGIN = 60;
 function fitTopicReading(root) {
     if (!root.querySelector(".ws-read-guide") || typeof wsPageStarts !== "function") return;
@@ -7709,29 +7709,12 @@ function fitTopicReading(root) {
         const st = starts.filter(x => x <= bottom - 1).pop() || 0;
         return { n: starts.length, free: st + WS_EXPORT_PAGE_H - bottom };
     });
-    const hide = (el) => { const mark = document.createComment("read"); el.replaceWith(mark); return mark; };
-    // 여러 쪽에 후보로 넣은 줄(data-read-alt, 4쪽 전체 학습지의 교사용)은 한 자리에만 남긴다:
-    // 세특 틀이 붙는 마지막 쪽에 여유가 있으면 그곳, 없으면 여유가 가장 많은 쪽
-    const alts = [...root.querySelectorAll(".ws-read-guide[data-read-alt]")];
-    if (alts.length) {
-        const marks = alts.map(hide);
-        const base = measure().n;
-        const room = alts.map((el, k) => {
-            marks[k].replaceWith(el);
-            const m = measure(el), f = m.free;
-            el.replaceWith(marks[k]);
-            return m.n <= base && f >= READ_FIT_MARGIN ? f : -1;
-        });
-        const last = alts.length - 1;
-        const pick = room[last] >= 0 ? last : room.indexOf(Math.max(...room));
-        if (pick >= 0 && room[pick] >= 0) marks[pick].replaceWith(alts[pick]);
-    }
-    // 나머지 줄은 뒤쪽(교사용)부터 하나씩 따진다
-    for (const el of [...root.querySelectorAll(".ws-read-guide:not([data-read-alt])")].reverse()) {
-        const withIt = measure(el), f = withIt.free;
-        const mark = hide(el);
+    for (const el of [...root.querySelectorAll(".ws-read-guide")].reverse()) {
+        const withIt = measure(el);
+        const mark = document.createComment("read");
+        el.replaceWith(mark);
         const without = measure().n;
-        if (withIt.n <= without && f >= READ_FIT_MARGIN) mark.replaceWith(el);
+        if (withIt.n <= without && withIt.free >= READ_FIT_MARGIN) mark.replaceWith(el);
     }
 }
 // 쟁점 한 줄: "요지 — 근거" 꼴이면 요지를 굵게 보여 준다 (사실 논제는 근거를 연구·통계로 구체적으로 적어 둔다)
@@ -17777,7 +17760,7 @@ function buildTopicTechTeacherPage(t, techId) {
                 <h4>예상 쟁점</h4>
                 ${t.now ? `<p class="ws-prompt"><strong>지금은</strong> ${t.now}</p>` : ""}
                 <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${li(t.pro)}</td><td>${li(t.con)}</td></tr></table>
-                ${topicReadingCites(t) ? `<p class="ws-prompt ws-read-guide"><strong>함께 읽을 책</strong> ${topicReadingCites(t)}</p>` : ""}
+                ${topicReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>함께 읽을 책</strong> ${topicReadingCites(t)}</p>` : ""}
             </div>
             ${g.observe ? `<div class="ws-section ws-keep"><h4>관찰 포인트</h4>${li(g.observe)}</div>` : ""}
             ${g.rubric ? `<div class="ws-section ws-keep"><h4>평가 기준</h4>
@@ -22911,7 +22894,7 @@ function bookVersionBGuideHTML(book, type, t, list) {
                             ${bgs.length ? `<li><b>배경 지식</b> ${bgs.join(", ")}${t.bgq ? ` (검색어: ${t.bgq})` : ""}</li>` : ""}
                             ${stats.map(s => `<li><b>통계·연구</b> ${s.label}${org(s) ? `(${org(s)})` : ""}</li>`).join("")}
                             <li><b>기사</b> 빅카인즈에서 논제의 핵심 낱말로 찾아봅니다. 빅카인즈가 점검 중이면 네이버 뉴스에서 같은 낱말로 찾습니다.</li>
-                            ${topicReadingCites(t) ? `<li class="ws-read-guide"><b>함께 읽을 책</b> ${topicReadingCites(t)}</li>` : ""}
+                            ${topicReadingCites(t) ? `<li class="ws-read-teacher"><b>함께 읽을 책</b> ${topicReadingCites(t)}</li>` : ""}
                         </ul>
                     </div>
                     ${others.length ? `<div class="ws-guide-box">
@@ -24000,7 +23983,7 @@ const TOPIC_WS_ANSWERS = {
     }
 };
 
-function buildTopicTeacherPage(t, p, setukKey = null, readAlt = false) {
+function buildTopicTeacherPage(t, p, setukKey = null) {
     if (p.startsWith("tech-")) return buildTopicTechTeacherPage(t, p.slice(5));
     const meta = TOPIC_TYPE_INFO[t.type];
     return `
@@ -24012,7 +23995,7 @@ function buildTopicTeacherPage(t, p, setukKey = null, readAlt = false) {
                 <p class="ws-teach-lead">예시 답안은 이 논제의 배경·찬반 논거·통계·그림책 자료로 구성했습니다. 학급 수준에 맞게 다듬어 쓰시고, 학생 답이 예시와 달라도 근거가 타당하면 인정해 주세요.</p>
             </div>
             ${TOPIC_WS_ANSWERS[p](t)}
-            ${(setukKey || readAlt) && topicReadingCites(t) ? `<p class="ws-prompt ws-read-guide"${readAlt ? " data-read-alt" : ""}><strong>함께 읽을 책</strong> ${topicReadingCites(t)} — 책에서 근거를 가져오면 지은이와 쪽수를 함께 적게 합니다.</p>` : ""}
+            ${setukKey && topicReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>함께 읽을 책</strong> ${topicReadingCites(t)} — 책에서 근거를 가져오면 지은이와 쪽수를 함께 적게 합니다.</p>` : ""}
             ${setukKey ? topicSetukHTML(t, setukKey) : ""}
         </div>`;
 }
@@ -24032,7 +24015,7 @@ function buildTopicWorksheet(t, form, hints, audience = "both") {
         <div class="worksheet-paper ws-topic-page ws-topic-break ws-cafe-sheet">${cafeTableSheetHTML(cafeTopicTables(t), t.claim)}</div>` : "");
     // 교사용은 학생용 뒤에 새 쪽부터 이어 붙인다 (교사용만일 때 첫 쪽은 쪽나눔 없이)
     const teacher = audience === "student" ? "" : pages.map((p, i) => {
-        const html = buildTopicTeacherPage(t, p, i === pages.length - 1 ? form : null, pages.length > 1);
+        const html = buildTopicTeacherPage(t, p, i === pages.length - 1 ? form : null);
         return (audience === "teacher" && i === 0) ? html.replace(" ws-topic-break", "") : html;
     }).join("");
     return top + student + teacher;
