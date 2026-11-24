@@ -5645,7 +5645,7 @@ function renderSubjectSection() {
         const meta = TOPIC_TYPE_INFO[t.type] || {};
         return `<li class="subject-topic">
                 <span class="topic-chip topic-chip-${t.type}">${meta.label || ""}</span>
-                <span class="subject-topic-claim">${t.claim}${t.now ? `<small class="subject-topic-now"><b>지금은</b> ${t.now}</small>` : ""}${t.background ? `<small class="subject-topic-bg" title="${attrEsc(t.background)}"><b>배경</b> ${topicBrief(t)}</small>` : ""}${bookRow(t)}${topicResearchHTML(t, true)}${topicReadingHTML(t, true)}${topicSidesHTML(t)}</span>
+                <span class="subject-topic-claim">${t.claim}${t.now ? `<small class="subject-topic-now"><b>지금은</b> ${t.now}</small>` : ""}${t.background ? `<small class="subject-topic-bg" title="${attrEsc(t.background)}"><b>배경</b> ${topicBrief(t)}</small>` : ""}${bookRow(t)}${topicResearchHTML(t, true)}${topicReadingHTML(t, true)}${topicPictureReadingHTML(t)}${topicSidesHTML(t)}</span>
                 ${t.unit ? `<span class="subject-topic-unit">${t.unit}</span>` : `<span class="subject-topic-level">${t.level}</span>`}
                 <select class="subject-topic-techsel" aria-label="토론 기법으로 학습지 만들기" onchange="if (this.value) { openTopicWorksheet(${idx}, this.value); this.value = ''; }">
                     <option value="">기법으로 학습지 ▾</option>
@@ -6299,7 +6299,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.11.0";
+    return "6.12.0";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112];
@@ -7099,6 +7099,11 @@ window.openModal = function(type, key) {
                     </ul>
                 </div>
                 
+                ${pictureBookReadings(book.title).length ? `<div class="modal-section" style="margin-bottom:20px;">
+                    <h4><i class="fa-solid fa-book-bookmark"></i> 함께 읽을 책</h4>
+                    <span class="topic-read-list">${pictureBookReadings(book.title).map(readingLinkHTML).join("")}</span>
+                </div>` : ""}
+
                 <div class="modal-section" style="border-bottom:none;">
                     <h4><i class="fa-solid fa-comments"></i> 추천 토론 기법</h4>
                     <div style="background-color: var(--bg-secondary); border-radius:16px; padding:20px; border-left:4px solid var(--accent-sage);">
@@ -7706,19 +7711,145 @@ const TOPIC_READING = {
     "결혼식과 장례식 같은 통과 의례는 간소하게 치르는 것이 바람직하다.": [["통과의례", "A. 반 겐넵", "을유문화사", 2000], ["어떻게 죽을 것인가", "아툴 가완디", "부키", 2022]],
     "모든 중·고등학교 화장실에 생리대를 무료로 갖춰 두어야 한다.": [["생리 공감", "김보람", "행성B", 2018], ["안녕, 생리야", "첼라 퀸트", "파스텔하우스", 2022]]
 };
+// 교과 논제에 이어 둔 그림책마다 2권: [같은 주제의 다른 그림책, 더 깊이 읽을 청소년·일반 책]. 국립중앙도서관 소장 자료에서 서지를 확인했다.
+const PICTURE_BOOK_READING = {
+    "완벽한 아이 팔아요": [["완두", "다비드 칼리 글, 세바스티앙 무랭 그림", "진선아이", 2018], ["완벽에 대한 반론", "마이클 샌델", "와이즈베리", 2016]],
+    "밴드 브레멘": [["어느 개 이야기", "가브리엘 뱅상", "별천지", 2009], ["동물을 위한 정의", "마사 너스바움", "알레", 2023]],
+    "100만 번 산 고양이": [["오소리의 이별 선물", "수잔 발리", "푸른책들", 2009], ["죽음이란 무엇인가", "셸리 케이건", "웅진지식하우스", 2023]],
+    "30번 곰": [["북극곰 살아남다", "캔디스 플레밍 글, 에릭 로만 그림", "보물창고", 2023], ["2050 거주불능 지구", "데이비드 월러스 웰즈", "추수밭", 2020]],
+    "감기 걸린 물고기": [["늑대가 들려주는 아기돼지 삼형제 이야기", "존 셰스카 글, 레인 스미스 그림", "보림", 2008], ["뉴스를 보는 눈", "구본권", "풀빛", 2019]],
+    "강아지똥": [["민들레는 민들레", "김장성 글, 오현경 그림", "이야기꽃", 2014], ["우리들의 하느님", "권정생", "녹색평론사", 2008]],
+    "고슴도치 엑스": [["빨강", "마이클 홀", "봄봄", 2017], ["자유론", "존 스튜어트 밀", "마농지", 2025]],
+    "고양이는 나만 따라 해": [["엄마 마중", "이태준 글, 김동성 그림", "보림", 2024], ["솔로몬의 반지", "콘라트 로렌츠", "사이언스북스", 2000]],
+    "까마귀 소년": [["고맙습니다, 선생님", "패트리샤 폴라코", "대한교과서", 2001], ["가르칠 수 있는 용기", "파커 J. 파머", "한문화", 2024]],
+    "꽃을 선물할게": [["생명을 먹어요", "우치다 미치코 글, 모로에 가즈미 그림", "만만한책방", 2022], ["저 뚱뚱한 남자를 죽이겠습니까?", "데이비드 에드먼즈", "이마", 2015]],
+    "나는 강물처럼 말해요": [["단어수집가", "피터 레이놀즈", "문학동네", 2018], ["블랙 스완 그린", "데이비드 미첼", "문학동네", 2013]],
+    "나는 기다립니다": [["살아 있다는 건", "다니카와 슌타로 시, 오카모토 요시로 그림", "비룡소", 2020], ["모리와 함께한 화요일", "미치 앨봄", "살림", 2010]],
+    "나는 사실대로 말했을 뿐이야!": [["빨간 매미", "후쿠다 이와오", "책읽는곰", 2008], ["거짓말하는 착한 사람들", "댄 애리얼리", "청림출판", 2012]],
+    "난 황금알을 낳을 거야!": [["토끼들의 섬", "요르크 슈타이너 글, 요르크 뮐러 그림", "비룡소", 2002], ["마당을 나온 암탉", "황선미", "사계절", 2020]],
+    "낱말 공장 나라": [["말들이 사는 나라", "윤여림 글, 최미란 그림", "스콜라", 2019], ["돈으로 살 수 없는 것들", "마이클 샌델", "미래엔", 2012]],
+    "내 탓이 아니야": [["보이지 않는 아이", "트루디 루드위그 글, 패트리스 바톤 그림", "책과콩나무", 2013], ["예루살렘의 아이히만", "한나 아렌트", "한길사", 2022]],
+    "내가 라면을 먹을 때": [["긴 여행", "프란체스카 산나", "풀빛", 2017], ["왜 세계의 절반은 굶주리는가?", "장 지글러", "갈라파고스", 2016]],
+    "누가 내 머리에 똥 쌌어?": [["똥은 참 대단해!", "허은미 글, 김병호 그림", "웅진씽크빅", 2006], ["과학혁명의 구조", "토머스 S. 쿤", "까치글방", 2013]],
+    "단물고개": [["소금을 만드는 맷돌", "권규헌 글, 이수희 그림", "봄볕", 2018], ["소유냐 존재냐", "에리히 프롬", "까치글방", 2020]],
+    "돌멩이 국": [["달 샤베트", "백희나", "스토리보울", 2024], ["공유의 비극을 넘어", "엘리너 오스트롬", "랜덤하우스코리아", 2011]],
+    "돼지책": [["종이 봉지 공주", "로버트 먼치 글, 마이클 마르첸코 그림", "비룡소", 1998], ["보이지 않는 여자들", "캐럴라인 크리아도 페레스", "웅진지식하우스", 2020]],
+    "미어캣의 스카프": [["욕심쟁이 딸기 아저씨", "김유경", "노란돼지", 2012], ["소비의 사회", "장 보드리야르", "문예출판사", 2002]],
+    "벌집이 너무 좁아": [["도착", "숀 탠", "사계절", 2008], ["이주의 시대", "스티븐 카슬 외", "일조각", 2013]],
+    "부리 동물 출입 금지!": [["샌드위치 바꿔 먹기", "라니아 알 압둘라 왕비 외 글, 트리샤 투사 그림", "푸른책들", 2011], ["선량한 차별주의자", "김지혜", "창비", 2019]],
+    "블랙 독": [["괴물들이 사는 나라", "모리스 샌닥", "시공주니어", 2002], ["불안", "알랭 드 보통", "은행나무", 2020]],
+    "빨간 나무": [["마음이 아플까봐", "올리버 제퍼스", "아름다운사람들", 2010], ["한낮의 우울", "앤드루 솔로몬", "민음사", 2021]],
+    "빨간 벽": [["장벽", "피터 시스", "미래엔", 2010], ["장벽의 시대", "팀 마샬", "바다출판사", 2020]],
+    "샌지와 빵집 주인": [["내 거야!", "레오 리오니", "시공주니어", 2020], ["커먼즈란 무엇인가", "한디디", "빨간소금", 2024]],
+    "세 강도": [["제랄다와 거인", "토미 웅거러", "비룡소", 1996], ["레 미제라블", "빅토르 위고", "민음사", 2012]],
+    "슈퍼 토끼": [["슈퍼 거북", "유설화", "책읽는곰", 2014], ["회복탄력성", "김주환", "위즈덤하우스", 2019]],
+    "시애틀 추장": [["작은 집 이야기", "버지니아 리 버튼", "시공주니어", 2018], ["침묵의 봄", "레이첼 카슨", "에코리브르", 2024]],
+    "아낌없이 주는 나무": [["언제까지나 너를 사랑해", "로버트 먼치 글, 이세 히데코 그림", "북뱅크", 2017], ["사랑의 기술", "에리히 프롬", "문예출판사", 2026]],
+    "아름다운 실수": [["뭐 어때!", "사토 신 글, 돌리 그림", "길벗어린이", 2025], ["성공을 만드는 실패의 과학", "매슈 사이드", "에이지21", 2025]],
+    "우리, 집": [["동물원", "앤서니 브라운", "논장", 2002], ["동물원 동물은 행복할까?", "로브 레이들로", "책공장더불어", 2012]],
+    "원숭이 꽃신": [["토끼들의 섬", "요르크 슈타이너 글, 요르크 뮐러 그림", "비룡소", 2002], ["멋진 신세계", "올더스 헉슬리", "문예출판사", 2024]],
+    "지각대장 존": [["이유가 있어요", "요시타케 신스케", "봄나무", 2015], ["교사와 학생 사이", "하임 G. 기너트", "양철북", 2026]],
+    "착한 달걀": [["나쁜 씨앗", "조리 존 글, 피트 오즈월드 그림", "길벗어린이", 2018], ["미움받을 용기", "기시미 이치로 외", "인플루엔셜", 2022]],
+    "탁탁, 톡톡, 음매~ 젖소가 편지를 쓴대요": [["으뜸헤엄이", "레오 리오니", "마루벌", 2008], ["전태일 평전", "조영래", "아름다운전태일", 2020]],
+    "토끼와 거북이, 두 번째 경주": [["슈퍼 거북", "유설화", "책읽는곰", 2014], ["경쟁에 반대한다", "알피 콘", "산눈출판사", 2009]],
+    "트리갭의 샘물": [["내가 함께 있을게", "볼프 에를브루흐", "웅진씽크빅", 2007], ["노화의 종말", "데이비드 A. 싱클레어 외", "부키", 2020]],
+    "틀려도 괜찮아": [["발표하기 무서워요!", "미나 뤼스타 글, 오실 이르겐스 그림", "두레아이들", 2017], ["아이들은 왜 실패하는가", "존 홀트", "아침이슬", 2007]],
+    "프레드릭": [["티코와 황금 날개", "레오 리오니", "마루벌", 2008], ["예술이란 무엇인가", "레프 니콜라예비치 톨스토이", "바다출판사", 2026]],
+    "할머니의 여름휴가": [["오른발, 왼발", "토미 드 파올라", "비룡소", 1999], ["나이듦에 관하여", "루이즈 애런슨", "비잉", 2020]],
+    "행복한 청소부": [["우리 동네 슈퍼맨", "허은실 글, 이고은 그림", "창비", 2014], ["일의 기쁨과 슬픔", "알랭 드 보통", "은행나무", 2012]],
+    "플라스틱 섬": [["고래를 삼킨 바다 쓰레기", "유다정 글, 이광익 그림", "와이즈만북스", 2019], ["플라스틱 바다", "찰스 무어 외", "미지북스", 2013]],
+    "비무장지대에 봄이 오면": [["엄마에게", "서진선", "보림", 2014], ["두 개의 한국", "돈 오버도퍼 외", "길산", 2014]],
+    "적": [["왜?", "니콜라이 포포프", "현암사", 1997], ["서부 전선 이상 없다", "에리히 마리아 레마르크", "열린책들", 2009]],
+    "줄무늬가 생겼어요": [["내 귀는 짝짝이", "히도 반 헤네흐텐", "웅진출판", 1999], ["군중심리", "귀스타브 르 봉", "문예출판사", 2024]],
+    "세 가지 질문": [["달을 줄걸 그랬어", "존 무스", "달리", 2021], ["사람은 무엇으로 사는가", "레프 톨스토이", "더디퍼런스", 2022]],
+    "꽃들에게 희망을": [["달려 토토", "조은영", "보림", 2026], ["피로사회", "한병철", "문학과지성사", 2012]],
+    "구름빵": [["이상한 엄마", "백희나", "스토리보울", 2024], ["엄마의 탄생", "김보성 외", "오월의봄", 2014]],
+    "점": [["느끼는 대로", "피터 레이놀즈", "문학동네", 2004], ["훔쳐라, 아티스트처럼", "오스틴 클레온", "중앙북스", 2020]],
+    "행복을 나르는 버스": [["마일로가 상상한 세상", "맷 데 라 페냐 글, 크리스티안 로빈슨 그림", "북극곰", 2022], ["가난 사파리", "대런 맥가비", "돌베개", 2020]],
+    "장수탕 선녀님": [["알사탕", "백희나", "스토리보울", 2024], ["아파트 공화국", "발레리 줄레조", "후마니타스", 2007]],
+    "이파라파냐무냐무": [["고 녀석 맛있겠다", "미야니시 타츠야", "달리", 2004], ["편견", "제니퍼 에버하트", "스노우폭스북스", 2021]],
+    "오누이 이야기": [["팥죽 할멈과 호랑이", "박윤규 글, 백희나 그림", "시공주니어", 2006], ["옛이야기의 매력", "브루노 베텔하임", "시공주니어", 1998]],
+    "만희네 꽃밭": [["만희네 집", "권윤덕", "길벗어린이", 2006], ["정원의 쓸모", "수 스튜어트 스미스", "윌북", 2021]],
+    "엄마가 유령이 되었어!": [["잘 가, 안녕", "김동수", "보림", 2016], ["애도 일기", "롤랑 바르트", "걷는나무", 2018]],
+    "우리는 언제나 다시 만나": [["엄마, 난 도망갈 거야", "마거릿 와이즈 브라운 글, 클레먼트 허드 그림", "보물창고", 2009], ["부모와 아이 사이", "하임 G. 기너트 외", "양철북", 2003]],
+    "치킨 마스크": [["너는 특별하단다", "맥스 루케이도 글, 데이비드 웬첼 그림", "고슴도치", 2022], ["자존감 수업", "윤홍균", "심플라이프", 2018]],
+    "문 밖에 사자가 있다": [["용감한 아이린", "윌리엄 스타이그", "비룡소", 2017], ["마인드셋", "캐럴 드웩", "스몰빅라이프", 2023]],
+    "문 밖에 여전히 사자가 있다": [["곰씨의 의자", "노인경", "문학동네", 2016], ["콰이어트", "수잔 케인", "알에이치코리아", 2021]],
+    "나는 안내견이야": [["다녀왔습니다", "홍민정 글, 최정인 그림", "단비어린이", 2020], ["실격당한 자들을 위한 변론", "김원영", "사계절", 2018]],
+    "벽 속에 사는 아이": [["그냥 우리 오빠", "신티아 로베르츠 글, 메이 클레리시 그림", "지구의아침", 2026], ["뉴로트라이브", "스티브 실버만", "알마", 2018]],
+    "더 이상 아이를 먹을 수는 없어!": [["돼지 이야기", "김장성 글, 유리 그림", "이야기꽃", 2013], ["우리는 왜 개는 사랑하고 돼지는 먹고 소는 신을까", "멜라니 조이", "모멘토", 2021]],
+    "가만히 들어주었어": [["안녕, 코끼리", "로랑스 부르기뇽 글, 로랑 시몽 그림", "바람의아이들", 2023], ["모모", "미하엘 엔데", "비룡소", 2024]],
+    "고함쟁이 엄마": [["소피가 화나면, 정말 정말 화나면", "몰리 뱅", "책읽는곰", 2013], ["내 아이를 위한 감정코칭", "최성애 외", "해냄", 2020]],
+    "겁쟁이 빌리": [["걱정 상자", "조미자", "봄개울", 2021], ["불안 세대", "조너선 하이트", "웅진지식하우스", 2024]],
+    "무릎딱지": [["아빠, 잘 있어요?", "하세가와 요시후미", "천개의바람", 2022], ["상실 수업", "엘리자베스 퀴블러 로스 외", "인빅투스", 2014]],
+    "빈 화분": [["빨간 매미", "후쿠다 이와오", "책읽는곰", 2008], ["논어", "공자", "문예출판사", 2021]],
+    "줌, 그림 속 그림 여행": [["리줌, 그림 속 그림 여행", "이슈트반 바녀이", "진선아이", 2025], ["팩트풀니스", "한스 로슬링 외", "김영사", 2024]],
+    "여섯 사람": [["전쟁", "아나이스 보즐라드", "비룡소", 2001], ["아메리칸 프로메테우스", "카이 버드 외", "사이언스북스", 2023]],
+    "꽃할머니": [["끝나지 않은 겨울", "강제숙 글, 이담 그림", "보리", 2010], ["한 명", "김숨", "현대문학", 2016]],
+    "수학에 빠진 아이": [["수학의 저주", "존 셰스카 글, 레인 스미스 그림", "시공주니어", 1997], ["박사가 사랑한 수식", "오가와 요코", "현대문학", 2014]],
+    "여름이 온다": [["파도야 놀자", "이수지", "비룡소", 2009], ["뮤지코필리아", "올리버 색스", "알마", 2016]],
+    "미술관에 간 윌리": [["마티스의 정원", "사만사 프리드만 글, 크리스티나 아모데어 그림", "주니어RHK", 2014], ["서양미술사", "E.H. 곰브리치", "예경", 2017]],
+    "발레리나 벨린다": [["올리버 버튼은 계집애래요", "토미 드 파올라", "문학과지성사", 2005], ["히든 포텐셜", "애덤 그랜트", "한국경제신문", 2024]],
+    "축구 선수 윌리": [["윌리와 휴", "앤서니 브라운", "웅진닷컴", 2003], ["그릿", "앤절라 더크워스", "비즈니스북스", 2019]],
+    "엄마의 의자": [["감자 이웃", "김윤이", "고래이야기", 2023], ["노동의 배신", "바버라 에런라이크", "부키", 2012]],
+    "강냉이": [["나무 도장", "권윤덕", "평화를품은책", 2016], ["몽실 언니", "권정생", "창비", 2013]],
+    "세상에서 제일 힘센 수탉": [["우리 할아버지", "존 버닝햄", "비룡소", 2016], ["노년에 관하여", "키케로", "궁리", 2002]],
+    "잃어버린 영혼": [["천천히 천천히", "케이트 도피락 글, 크리스토퍼 실라스 닐 그림", "나는별", 2021], ["느리게 산다는 것의 의미", "피에르 쌍소", "동문선", 2000]],
+    "나의 를리외르 아저씨": [["도서관", "사라 스튜어트 글, 데이비드 스몰 그림", "시공주니어", 1998], ["장인", "리처드 세넷", "아르테", 2022]],
+    "나무를 심은 사람": [["미스 럼피우스", "바버러 쿠니", "시공주니어", 1996], ["희망의 이유", "제인 구달", "김영사", 2023]],
+    "평화란 어떤 걸까?": [["평화 책", "토드 파", "평화를품은책", 2016], ["전쟁은 여자의 얼굴을 하지 않았다", "스베틀라나 알렉시예비치", "문학동네", 2015]],
+    "아무도 지나가지 마!": [["장군님과 농부", "권정생 글, 이성표 그림", "창비", 2018], ["시민의 불복종", "헨리 데이빗 소로우", "은행나무", 2021]],
+    "늑대의 선거": [["괴물 학교 회장 선거", "이기규 글, 박우희 그림", "웅진씽크빅", 2010], ["어떻게 민주주의는 무너지는가", "스티븐 레비츠키 외", "어크로스", 2018]],
+    "건축물의 기억": [["씩스틴", "권윤덕", "평화를품은책", 2019], ["소년이 온다", "한강", "창비", 2014]],
+    "바나나가 더 일찍 오려면": [["첫차를 타는 사람들", "김숲 글, 강혜진 그림", "노란상상", 2025], ["뭐든 다 배달합니다", "김하영", "메디치", 2020]],
+    "당신을 측정해 드립니다": [["너는 특별하단다", "맥스 루케이도 글, 데이비드 웬첼 그림", "고슴도치", 2022], ["성과지표의 배신", "제리 멀러", "궁리", 2020]],
+    "타오 씨 이야기": [["내 이름이 담긴 병", "최양숙", "마루벌", 2008], ["깻잎 투쟁기", "우춘희", "교양인", 2022]],
+    "휘슬이 두 번 울릴 때까지": [["내 짝꿍 최영대", "채인선 글, 정순희 그림", "재미마주", 1997], ["경쟁에 반대한다", "알피 콘", "산눈출판사", 2009]],
+    "두 점 이야기": [["내 멋대로 공주", "배빗 콜", "비룡소", 2005], ["페미니즘의 도전", "정희진", "교양인", 2013]],
+    "멋진 민주 단어": [["민주주의가 뭐예요?", "박윤경 글, 송효정 그림", "비룡소", 2018], ["민주주의의 정원", "에릭 리우 외", "웅진지식하우스", 2017]],
+    "기린 대통령": [["장군님과 농부", "권정생 글, 이성표 그림", "창비", 2018], ["동물농장", "조지 오웰", "민음사", 2026]]
+};
 // 책 제목을 누르면 네이버 검색에서 제목과 지은이로 찾는다 (책 정보·서점·도서관 소장 정보가 함께 나온다)
-const naverBookUrl = (r) => "https://search.naver.com/search.naver?where=nexearch&query=" + encodeURIComponent(`${r.title} ${String(r.author).replace(/\s*외$/, "")}`);
+const naverBookUrl = (r) => "https://search.naver.com/search.naver?where=nexearch&query=" + encodeURIComponent(`${r.title} ${String(r.author).split(",")[0].replace(/(\s+(외|글|시))+$/, "")}`);
 function topicReadings(t) {
     return (TOPIC_READING[t && t.claim] || []).map(([title, author, pub, year]) => ({ title, author, pub, year }));
 }
 // 『제목』(지은이, 출판사, 연도) 꼴로 이어 쓴다 (학습지·교사용 안내에 쓰는 글자 목록)
-const topicReadingCites = (t) => topicReadings(t).map(r => `『${r.title}』(${r.author}, ${r.pub}, ${r.year})`).join(", ");
+const readingCite = (r) => `『${r.title}』(${r.author}, ${r.pub}, ${r.year})`;
+const topicReadingCites = (t) => topicReadings(t).map(readingCite).join(", ");
+// 그림책과 함께 읽을 책: 첫 권은 같은 주제의 다른 그림책, 둘째 권은 더 깊이 읽을 청소년·일반 책
+const PICTURE_READ_KINDS = ["같은 주제 그림책", "더 깊이 읽기"];
+function pictureBookReadings(title) {
+    return (PICTURE_BOOK_READING[title] || []).map(([name, author, pub, year], i) => ({ title: name, author, pub, year, kind: PICTURE_READ_KINDS[i] }));
+}
+// 교과 논제의 그림책별 목록. 논제의 '함께 읽을 책'이나 앞 그림책에 이미 나온 책은 되풀이하지 않는다
+function topicPictureReadings(t) {
+    if (!t || !TOPIC_READING[t.claim]) return [];
+    const seen = new Set(topicReadings(t).map(r => r.title));
+    return (t.books || []).map(book => {
+        const list = pictureBookReadings(book).filter(r => !seen.has(r.title));
+        list.forEach(r => seen.add(r.title));
+        return { book, list };
+    }).filter(x => x.list.length);
+}
+const topicPictureReadingCites = (t) => topicPictureReadings(t).map(x => `《${x.book}》 ${x.list.map(readingCite).join(", ")}`).join(" / ");
+// 버전 B 가이드: 학습지를 만든 그림책 한 권의 책만 적는다
+const bookReadingCitesFor = (title, t) => pictureBookReadings(title).filter(r => !topicReadings(t).some(x => x.title === r.title)).map(readingCite).join(", ");
 // compact: 교과별 목록 한 줄 안에 / 아니면 논제 카드 아래에. 제목을 누르면 네이버 검색 결과가 열린다
 function topicReadingHTML(t, compact = false) {
     const list = topicReadings(t);
     if (!list.length) return "";
-    const item = (r) => `<a class="topic-read" href="${naverBookUrl(r)}" target="_blank" rel="noopener noreferrer" title="네이버에서 『${attrEsc(r.title)}』 찾기"><i class="fa-solid fa-book"></i> 『${r.title}』 <em>${r.author} · ${r.pub} · ${r.year}</em></a>`;
-    return `<span class="topic-reading${compact ? " topic-reading-compact" : ""}"><span class="topic-research-label"><i class="fa-solid fa-book-open"></i> 함께 읽을 책</span><span class="topic-read-list">${list.map(item).join("")}</span></span>`;
+    return `<span class="topic-reading${compact ? " topic-reading-compact" : ""}"><span class="topic-research-label"><i class="fa-solid fa-book-open"></i> 함께 읽을 책</span><span class="topic-read-list">${list.map(readingLinkHTML).join("")}</span></span>`;
+}
+function readingLinkHTML(r) {
+    return `<a class="topic-read" href="${naverBookUrl(r)}" target="_blank" rel="noopener noreferrer" title="네이버에서 『${attrEsc(r.title)}』 찾기"><i class="fa-solid fa-book"></i> ${r.kind ? `<b class="topic-read-kind">${r.kind}</b> ` : ""}『${r.title}』 <em>${r.author} · ${r.pub} · ${r.year}</em></a>`;
+}
+// 교과 논제에 이어 둔 그림책별로 함께 읽을 책 (목록이 길어지지 않게 접어 둔다)
+function topicPictureReadingHTML(t) {
+    const rows = topicPictureReadings(t);
+    if (!rows.length) return "";
+    const n = rows.reduce((sum, x) => sum + x.list.length, 0);
+    return `<details class="topic-book-reading"><summary>그림책과 함께 읽을 책 ${n}권</summary>${rows.map(x => `<span class="topic-book-reading-row"><span class="topic-book-reading-from">《${x.book}》 곁에 두고</span><span class="topic-read-list">${x.list.map(readingLinkHTML).join("")}</span></span>`).join("")}</details>`;
 }
 // 학생용 학습지의 '함께 읽을 책' 줄(.ws-read-guide)은 쪽 수를 늘리지 않고, 그 줄이 든 쪽 끝에 여유가 있을 때만 남긴다.
 // (브라우저 인쇄는 화면에서 잰 것보다 조금 빡빡하게 나뉘므로 쪽 끝에 READ_FIT_MARGIN만큼은 비어 있어야 한다)
@@ -14728,6 +14859,7 @@ function renderTopicList(type) {
             ${bookBtns ? `<div class="topic-books"><span class="topic-books-label">연계 그림책</span>${bookBtns}</div>` : ""}
             <div class="topic-stats">${topicResearchHTML(t)}</div>
             ${topicReadingHTML(t)}
+            ${topicPictureReadingHTML(t)}
             <div class="topic-actions"><button type="button" class="topic-ws-btn" onclick="openTopicWorksheet(${debateTopicsDB.indexOf(t)})"><i class="fa-solid fa-file-pen"></i> 이 논제로 학습지 만들기</button></div>
         </article>`;
     };
@@ -17998,6 +18130,7 @@ function buildTopicTechTeacherPage(t, techId) {
                 ${t.now ? `<p class="ws-prompt"><strong>지금은</strong> ${t.now}</p>` : ""}
                 <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${li(t.pro)}</td><td>${li(t.con)}</td></tr></table>
                 ${topicReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>함께 읽을 책</strong> ${topicReadingCites(t)}</p>` : ""}
+                ${topicPictureReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>그림책과 함께 읽을 책</strong> ${topicPictureReadingCites(t)}</p>` : ""}
             </div>
             ${g.observe ? `<div class="ws-section ws-keep"><h4>관찰 포인트</h4>${li(g.observe)}</div>` : ""}
             ${g.rubric ? `<div class="ws-section ws-keep"><h4>평가 기준</h4>
@@ -23132,6 +23265,7 @@ function bookVersionBGuideHTML(book, type, t, list) {
                             ${stats.map(s => `<li><b>통계·연구</b> ${s.label}${org(s) ? `(${org(s)})` : ""}</li>`).join("")}
                             <li><b>기사</b> 빅카인즈에서 논제의 핵심 낱말로 찾아봅니다. 빅카인즈가 점검 중이면 네이버 뉴스에서 같은 낱말로 찾습니다.</li>
                             ${topicReadingCites(t) ? `<li class="ws-read-teacher"><b>함께 읽을 책</b> ${topicReadingCites(t)}</li>` : ""}
+                            ${bookReadingCitesFor(book.title, t) ? `<li class="ws-read-teacher"><b>그림책과 함께 읽을 책</b> ${bookReadingCitesFor(book.title, t)}</li>` : ""}
                         </ul>
                     </div>
                     ${others.length ? `<div class="ws-guide-box">
@@ -24233,6 +24367,7 @@ function buildTopicTeacherPage(t, p, setukKey = null) {
             </div>
             ${TOPIC_WS_ANSWERS[p](t)}
             ${setukKey && topicReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>함께 읽을 책</strong> ${topicReadingCites(t)} — 책에서 근거를 가져오면 지은이와 쪽수를 함께 적게 합니다.</p>` : ""}
+            ${setukKey && topicPictureReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>그림책과 함께 읽을 책</strong> ${topicPictureReadingCites(t)}</p>` : ""}
             ${setukKey ? topicSetukHTML(t, setukKey) : ""}
         </div>`;
 }
