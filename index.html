@@ -17,13 +17,13 @@
     <meta property="og:site_name" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta property="og:title" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta property="og:description" content="그림책 100여 권 × 토론 기법 20가지 × 토론 논제 500여 개. 그림책 학습지 18종과 논제 학습지 6종을 무료로 제공합니다.">
-    <meta property="og:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.13.0">
+    <meta property="og:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.14.0">
     <meta property="og:url" content="https://woorimalsam-lab.github.io/Picture-BC/">
     <meta property="og:locale" content="ko_KR">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta name="twitter:description" content="그림책 100여 권 × 토론 기법 20가지 × 토론 논제 500여 개. 수업에서 바로 쓰는 그림책 토론 자료.">
-    <meta name="twitter:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.13.0">
+    <meta name="twitter:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.14.0">
 
     <!-- 파비콘 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
@@ -36,7 +36,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=6.13.0">
+    <link rel="stylesheet" href="style.css?v=6.14.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -101,7 +101,7 @@
             </div>
             <div class="hero-image-container">
                 <div class="hero-art">
-                    <img id="hero-still" src="images/hero_poster.jpg?v=6.13.0"
+                    <img id="hero-still" src="images/hero_poster.jpg?v=6.14.0"
                          alt="책장에서 그림책을 골라 펼쳐 읽는 아이 일러스트" class="hero-art-base">
                     <video id="hero-video" class="hero-art-video" muted loop playsinline
                            preload="none" aria-hidden="true" tabindex="-1"></video>
@@ -188,10 +188,18 @@
     </section>
 
     <section id="books-section" class="books-section no-print">
-        <div class="section-title-wrapper">
+        <div class="section-title-wrapper library-title-wrapper">
             <span class="sub-title">Picture Book Library</span>
             <h2>그림책 서재</h2>
-            <p>토론 수업의 깊이를 더해주는 아름다운 그림책과 작가 소개, 줄거리입니다.</p>
+            <div class="library-intro">
+                <p>토론 수업의 깊이를 더해주는 아름다운 그림책과 작가 소개, 줄거리입니다.</p>
+                <div class="tech-search-box library-search-box" role="search">
+                    <i class="fa-solid fa-magnifying-glass search-icon" aria-hidden="true"></i>
+                    <input type="search" id="book-search-input" placeholder="제목, 작가, 토론 기법, 주제어" aria-label="그림책 검색" autocomplete="off">
+                    <button type="button" id="clear-book-search" class="clear-btn" aria-label="검색어 지우기"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <p class="library-search-status" id="book-search-status" aria-live="polite"></p>
         </div>
 
         <div class="books-grid" id="books-grid">
@@ -610,6 +618,6 @@
 
     <!-- Custom JS -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="app.js?v=6.13.0"></script>
+    <script src="app.js?v=6.14.0"></script>
 </body>
 </html>
