@@ -5083,3 +5083,16 @@ button.topic-read { font: inherit; text-align: left; cursor: pointer; }
 @media screen {
     .main-container.fit-header { padding-top: var(--main-top, 0px); }
 }
+
+/* 학습지 메이커 · 교과 논제로 만들기: 교과·교과목 고르기는 이 메뉴에서만, 논제 유형·학교급은 토론 논제 메뉴에서만 보인다 */
+#ws-topic-row[data-mode="subject"] .ws-topic-only,
+#ws-topic-row:not([data-mode="subject"]) .ws-subj-only { display: none; }
+.ws-hint-note {
+    margin: 8px 0 0; padding: 8px 12px; border-radius: 10px;
+    background: var(--bg-secondary); color: var(--text-secondary);
+    font-size: 0.84rem; line-height: 1.55;
+}
+.ws-hint-note i { color: var(--accent-sage); margin-right: 4px; }
+@media (max-width: 600px) {
+    .ws-mode-btn i { display: none; }
+}

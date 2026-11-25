@@ -7688,7 +7688,7 @@ function renderSubjectSection() {
                 <select class="subject-topic-techsel" aria-label="토론 기법으로 학습지 만들기" onchange="if (this.value) { openTopicWorksheet(${idx}, this.value); this.value = ''; }">
                     <option value="">기법으로 학습지 ▾</option>
                     <optgroup label="이 교과에 잘 맞는 기법">${sub.techs.map(x => techniques.find(tt => tt.id === x.id)).filter(Boolean).map(tt => `<option value="tech-${tt.id}">${techShortName(tt)}</option>`).join("")}</optgroup>
-                    <optgroup label="다른 기법">${techniques.filter(tt => !sub.techs.some(x => x.id === tt.id)).map(tt => `<option value="tech-${tt.id}">${techShortName(tt)}</option>`).join("")}</optgroup>
+                    <optgroup label="다른 기법">${techniquesByName().filter(tt => !sub.techs.some(x => x.id === tt.id)).map(tt => `<option value="tech-${tt.id}">${techShortName(tt)}</option>`).join("")}</optgroup>
                 </select>
                 <button type="button" class="subject-topic-ws" onclick="openTopicWorksheet(${idx})"><i class="fa-solid fa-file-pen"></i> 학습지</button>
             </li>`;
@@ -7845,7 +7845,7 @@ function gardenAreas() {
         ["교과별 토론", SUBJECT_GUIDE.map(s => s.label)],
         ["그림책 서재", titles(books.map(b => b.title))],
         ["토론 이론", (typeof debateTheory !== "undefined" ? debateTheory.sections.map(x => x.title) : [])],
-        ["토론 기법", techniques.map(t => techShortName(t))],
+        ["토론 기법", techniquesByName().map(t => techShortName(t))],
         ["토론 논제", ["사실 논제", "가치 논제", "정책 논제", "문학 작품 논제", "통계·근거 자료"]],
         ["토론 학습지", ["그림책 학습지", "논제 학습지", "교사용 가이드", "인쇄"]],
         ["추천가이드", ["상황별 맞춤 가이드", "열두 달 커리큘럼"]],
@@ -8359,7 +8359,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.14.0";
+    return "6.15.0";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112, 114, 115, 118, 123, 129, 132, 133, 137, 138, 142, 152, 153, 155, 161, 162, 165, 167, 170, 177, 179, 180, 181, 183, 184, 186, 187, 190, 191, 192, 193, 194, 195, 196, 198];
@@ -8428,11 +8428,16 @@ function fetchRealCover(bookTitle, domElement) {
     }
 }
 
+// 토론 기법은 화면에 보일 때 가나다순으로 늘어놓는다. 기법 자료(techniques)의 순서는 그대로 둔다 — 첫 기법을 기본값으로 쓰는 곳이 있다.
+// 'PMI 토론'은 '피엠아이'로 읽어 ㅍ 자리에 둔다.
+const techSortKey = (tech) => String(tech.name || "").trim().replace(/^PMI/, "피엠아이");
+const techniquesByName = () => techniques.slice().sort((a, b) => techSortKey(a).localeCompare(techSortKey(b), "ko"));
+
 function renderTechniques() {
     const container = document.getElementById("techniques-grid");
     if(!container) return;
     container.innerHTML = "";
-    techniques.forEach(tech => {
+    techniquesByName().forEach(tech => {
         let booksText = "준비중";
         if(typeof books !== 'undefined') {
             const matchedBooks = books.filter(b => b.technique && b.technique.includes(tech.name.split(" ")[0]));
@@ -19844,7 +19849,7 @@ function setupWorksheetGenerator() {
 
     if(btn && bookSelect && typeSelect && output) {
         btn.addEventListener("click", () => {
-            if (wsMode === "topic") { generateTopicWorksheet(); return; }
+            if (wsMode === "topic" || wsMode === "subject") { generateTopicWorksheet(); return; }
             const bookIdx = bookSelect.value;
             const type = typeSelect.value;
             const book = books[bookIdx];
@@ -20749,6 +20754,9 @@ const topicWsBookBlock = (t, prompt) => {
         </div>`;
 };
 
+// 학생용에 논제 내용(배경·쟁점 예시)을 실을지: 교과 논제는 학생이 스스로 찾게 비워 두고 교사용에만 싣는다
+const wsTopicHints = (t, hints) => hints && !t.subject;
+
 const TOPIC_WS_BUILDERS = {
     analysis: (t, hints) => {
         const meta = TOPIC_TYPE_INFO[t.type];
@@ -20757,7 +20765,7 @@ const TOPIC_WS_BUILDERS = {
         return `
             <div class="ws-book-info-box">
                 <h4>📌 논제 살펴보기</h4>
-                ${hints ? `<p style="margin-bottom:8px;">${t.background}</p>` : ""}
+                ${wsTopicHints(t, hints) ? `<p style="margin-bottom:8px;">${t.background}</p>` : ""}
                 <p style="margin-bottom:4px;"><strong>${meta.label}</strong>는 '${meta.tagline}'를 따지는 논제입니다. 문장 틀 · ${meta.frame}</p>
                 <p>${meta.burden}</p>
             </div>
@@ -20778,7 +20786,7 @@ const TOPIC_WS_BUILDERS = {
                 <h4>3. 쟁점 나누기</h4>
                 <table class="ws-table">
                     <tr><th>${A}</th><th>${B}</th></tr>
-                    ${hints ? `<tr><td>${hintList(t.pro)}</td><td>${hintList(t.con)}</td></tr>` : ""}
+                    ${wsTopicHints(t, hints) ? `<tr><td>${hintList(t.pro)}</td><td>${hintList(t.con)}</td></tr>` : ""}
                     <tr><td><textarea style="height:100px;" placeholder="내가 더 찾은 근거"></textarea></td><td><textarea style="height:100px;" placeholder="내가 더 찾은 근거"></textarea></td></tr>
                 </table>
             </div>
@@ -20838,7 +20846,7 @@ const TOPIC_WS_BUILDERS = {
             <div class="ws-section">
                 <h4>3단계 · 필수 쟁점 도출</h4>
                 <p class="ws-prompt">"이 논제가 성립하려면 무엇이 입증되어야 하는가?"를 <strong>질문 형태</strong>로 쪼갭니다. 양쪽 모두 할 말이 있는 대등한 질문이어야 하고, 2~4개가 알맞습니다.</p>
-                ${hints ? `<p class="ws-prompt">참고 · ${TWS.jo(A, "은", "는")} "${(t.pro || [])[0] || ""}"를, ${TWS.jo(B, "은", "는")} "${(t.con || [])[0] || ""}"를 내세웁니다. 이 둘이 부딪치는 지점을 질문으로 바꿔 보세요.</p>` : ""}
+                ${wsTopicHints(t, hints) ? `<p class="ws-prompt">참고 · ${TWS.jo(A, "은", "는")} "${(t.pro || [])[0] || ""}"를, ${TWS.jo(B, "은", "는")} "${(t.con || [])[0] || ""}"를 내세웁니다. 이 둘이 부딪치는 지점을 질문으로 바꿔 보세요.</p>` : ""}
                 <table class="ws-table ws-table-compact">
                     <tr><th style="width:12%;">쟁점</th><th>질문 형태로 쓴 쟁점</th></tr>
                     ${["1", "2", "3"].map(n => `<tr><td style="text-align:center; font-weight:700;">${n}</td><td><textarea style="height:50px;"></textarea></td></tr>`).join("")}
@@ -20892,7 +20900,7 @@ const TOPIC_WS_BUILDERS = {
                 </div>
                 <p class="ws-prompt" style="margin-top:8px;">${meta.burden}</p>
             </div>
-            ${hints ? `<div class="ws-book-info-box"><h4>참고 · 쟁점 예시</h4><p style="margin-bottom:4px;"><strong>${A}</strong> ${t.pro.join(" / ")}</p><p><strong>${B}</strong> ${t.con.join(" / ")}</p></div>` : ""}
+            ${wsTopicHints(t, hints) ? `<div class="ws-book-info-box"><h4>참고 · 쟁점 예시</h4><p style="margin-bottom:4px;"><strong>${A}</strong> ${t.pro.join(" / ")}</p><p><strong>${B}</strong> ${t.con.join(" / ")}</p></div>` : ""}
             ${meta.criteria.map((c, i) => `
             <div class="ws-section">
                 <h4>${i + 1}. ${c.label}</h4>
@@ -21133,7 +21141,7 @@ function buildTopicTechWs(t, techId, hints) {
         return `
         <div class="ws-book-info-box">
             <h4>📌 논제 살펴보기 · ${techShortName(tech)}</h4>
-            ${hints ? `<p style="margin-bottom:8px;">${t.background}</p>
+            ${wsTopicHints(t, hints) ? `<p style="margin-bottom:8px;">${t.background}</p>
             <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${hintList(t.pro)}</td><td>${hintList(t.con)}</td></tr></table>` : ""}
         </div>
         ${panoramaSheetHTML(Object.assign({ source: "topic", ex: { inQ: "예: 이 제도는 지금 어떻게 운영되고 있을까?", outQ: "예: 이 논제로 가장 크게 달라지는 사람은 누구일까?" } }, panoramaTopicData(t)))}`;
@@ -21148,7 +21156,7 @@ function buildTopicTechWs(t, techId, hints) {
     return `
         <div class="ws-book-info-box">
             <h4>📌 논제 살펴보기 · ${techShortName(tech)}</h4>
-            ${hints ? `<p style="margin-bottom:8px;">${t.background}</p>
+            ${wsTopicHints(t, hints) ? `<p style="margin-bottom:8px;">${t.background}</p>
             <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${hintList(t.pro)}</td><td>${hintList(t.con)}</td></tr></table>` : ""}
             <p style="margin:8px 0 0;"><strong>이렇게 진행해요</strong> · ${tech.steps.map((s, i) => `${i + 1}. ${s.title.replace(/\s*\([^)]*\)\s*$/, "")}`).join(" → ")}</p>
         </div>
@@ -21290,8 +21298,9 @@ function buildTopicTechTeacherPage(t, techId) {
                 ${g.quick ? `<p class="ws-prompt">짧게 할 때 · ${g.quick.how}</p>` : ""}
             </div>
             <div class="ws-section ws-keep">
-                <h4>예상 쟁점</h4>
+                <h4>${t.subject ? "논제 살펴보기 · 예상 쟁점" : "예상 쟁점"}</h4>
                 ${t.now ? `<p class="ws-prompt"><strong>지금은</strong> ${t.now}</p>` : ""}
+                ${t.background ? `<p class="ws-prompt"><strong>배경</strong> ${t.background}</p>` : ""}
                 <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${li(t.pro)}</td><td>${li(t.con)}</td></tr></table>
                 ${topicReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>함께 읽을 책</strong> ${topicReadingCites(t)}</p>` : ""}
                 ${topicPictureReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>그림책과 함께 읽을 책</strong> ${topicPictureReadingCites(t)}</p>` : ""}
@@ -27778,7 +27787,20 @@ const TOPIC_WS_ANSWERS = {
     }
 };
 
-function buildTopicTeacherPage(t, p, setukKey = null) {
+// 교과 논제의 학생용에서 뺀 배경·쟁점 예시를 교사용 첫 쪽에 모아 싣는다
+function topicTeacherOverview(t) {
+    const [A, B] = topicSides(t);
+    const li = (arr) => `<ul class="ws-hint">${arr.map(x => `<li>${x}</li>`).join("")}</ul>`;
+    return `
+            <div class="ws-book-info-box ws-keep">
+                <h4>📌 논제 살펴보기</h4>
+                <p style="margin-bottom:8px;">${t.background}</p>
+                <table class="ws-table ws-table-compact"><tr><th>${A}</th><th>${B}</th></tr><tr><td>${li(t.pro)}</td><td>${li(t.con)}</td></tr></table>
+                <p class="ws-prompt" style="margin:8px 0 0;">학생용 학습지에는 이 배경과 쟁점 예시를 싣지 않았습니다. 학생이 스스로 찾은 뒤 견주어 보게 하세요.</p>
+            </div>`;
+}
+
+function buildTopicTeacherPage(t, p, setukKey = null, first = true) {
     if (p.startsWith("tech-")) return buildTopicTechTeacherPage(t, p.slice(5));
     const meta = TOPIC_TYPE_INFO[t.type];
     return `
@@ -27789,6 +27811,7 @@ function buildTopicTeacherPage(t, p, setukKey = null) {
                 <h3 style="font-size:1.4rem; color:#111; margin:0 0 10px; line-height:1.45; word-break:keep-all;">${t.claim}</h3>
                 <p class="ws-teach-lead">예시 답안은 이 논제의 배경·찬반 논거·통계·그림책 자료로 구성했습니다. 학급 수준에 맞게 다듬어 쓰시고, 학생 답이 예시와 달라도 근거가 타당하면 인정해 주세요.</p>
             </div>
+            ${t.subject && first && p !== "analysis" ? topicTeacherOverview(t) : ""}
             ${TOPIC_WS_ANSWERS[p](t)}
             ${setukKey && topicReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>함께 읽을 책</strong> ${topicReadingCites(t)} — 책에서 근거를 가져오면 지은이와 쪽수를 함께 적게 합니다.</p>` : ""}
             ${setukKey && topicPictureReadingCites(t) ? `<p class="ws-prompt ws-read-teacher"><strong>그림책과 함께 읽을 책</strong> ${topicPictureReadingCites(t)}</p>` : ""}
@@ -27811,7 +27834,7 @@ function buildTopicWorksheet(t, form, hints, audience = "both") {
         <div class="worksheet-paper ws-topic-page ws-topic-break ws-cafe-sheet">${cafeTableSheetHTML(cafeTopicTables(t), t.claim)}</div>` : "");
     // 교사용은 학생용 뒤에 새 쪽부터 이어 붙인다 (교사용만일 때 첫 쪽은 쪽나눔 없이)
     const teacher = audience === "student" ? "" : pages.map((p, i) => {
-        const html = buildTopicTeacherPage(t, p, i === pages.length - 1 ? form : null);
+        const html = buildTopicTeacherPage(t, p, i === pages.length - 1 ? form : null, i === 0);
         return (audience === "teacher" && i === 0) ? html.replace(" ws-topic-break", "") : html;
     }).join("");
     return top + student + teacher;
@@ -27841,13 +27864,74 @@ function refreshTopicWsOptions() {
     const ty = typeSel.value, lv = lvSel.value, cur = topicSel.value;
     const TO = { fact: 0, policy: 1, value: 2 };
     const LO = { "초등·중학": 0, "중학·고등": 1, "고등": 2 };
-    const list = debateTopicsDB.map((t, i) => ({ t, i }))
+    const list = wsMode === "subject" ? wsSubjectTopicList()
+        : debateTopicsDB.map((t, i) => ({ t, i }))
         .filter(({ t }) => (ty === "all" || t.type === ty) && (lv === "all" || t.level === lv))
         .sort((a, b) => (TO[a.t.type] - TO[b.t.type]) || (LO[a.t.level] - LO[b.t.level]) || a.t.claim.localeCompare(b.t.claim, "ko"));
     topicSel.innerHTML = list.map(({ t, i }) => `<option value="${i}">[${TOPIC_TYPE_INFO[t.type].label.replace(" 논제", "")}·${t.level}] ${t.claim}</option>`).join("");
     if (list.some(x => String(x.i) === cur)) topicSel.value = cur;
     const cnt = document.getElementById("topic-ws-count");
     if (cnt) cnt.textContent = `${list.length}개`;
+    updateTopicWsHintNote();
+}
+
+// ── 교과 논제로 만들기: 교과 → 교과목 → 논제 ─────────────────────────
+// 교과 논제(subject가 있는 논제)만 모은다. 교과목은 논제의 성취기준이 속한 과목이나 단원 앞머리(과목 이름)로 정한다.
+const wsSubjectOf = (t) => [].concat(t.subject || []);
+function wsTopicCourses(t, subKey) {
+    const set = new Set();
+    (t.std || []).forEach(c => { const ab = curAbbr(c); const co = CURRICULUM_COURSES[ab]; if (co && co[1] === subKey) set.add(ab); });
+    const head = String(t.unit || "").split(" · ")[0];
+    Object.keys(CURRICULUM_COURSES).forEach(ab => { const co = CURRICULUM_COURSES[ab]; if (co[1] === subKey && co[0] === head) set.add(ab); });
+    return [...set];
+}
+function wsSubjectTopics(subKey) {
+    return debateTopicsDB.map((t, i) => ({ t, i })).filter(({ t }) => wsSubjectOf(t).includes(subKey));
+}
+function wsSubjectTopicList() {
+    const subSel = document.getElementById("subject-ws-subject");
+    const coSel = document.getElementById("subject-ws-course");
+    if (!subSel || !subSel.value) return [];
+    const subKey = subSel.value, ab = coSel ? coSel.value : "all";
+    const TO = { fact: 0, policy: 1, value: 2 };
+    return wsSubjectTopics(subKey)
+        .filter(({ t }) => ab === "all" || (ab === "etc" ? !wsTopicCourses(t, subKey).length : wsTopicCourses(t, subKey).includes(ab)))
+        .sort((a, b) => String(a.t.unit || "").localeCompare(String(b.t.unit || ""), "ko") || (TO[a.t.type] - TO[b.t.type]) || a.t.claim.localeCompare(b.t.claim, "ko"));
+}
+function fillWsSubjectCourses() {
+    const subSel = document.getElementById("subject-ws-subject");
+    const coSel = document.getElementById("subject-ws-course");
+    if (!subSel || !coSel) return;
+    const subKey = subSel.value, prev = coSel.value;
+    const list = wsSubjectTopics(subKey);
+    const count = {};
+    let etc = 0;
+    list.forEach(({ t }) => { const cs = wsTopicCourses(t, subKey); if (!cs.length) etc++; cs.forEach(ab => { count[ab] = (count[ab] || 0) + 1; }); });
+    const order = Object.keys(CURRICULUM_COURSES);
+    const TYPES = ["공통", "일반 선택", "진로 선택", "융합 선택", "계열 선택"];
+    const abs = Object.keys(count).sort((a, b) => (TYPES.indexOf(CURRICULUM_COURSES[a][2]) - TYPES.indexOf(CURRICULUM_COURSES[b][2])) || (order.indexOf(a) - order.indexOf(b)));
+    coSel.innerHTML = `<option value="all">전체 과목 (${list.length})</option>` +
+        abs.map(ab => `<option value="${ab}">${CURRICULUM_COURSES[ab][0]} · ${CURRICULUM_COURSES[ab][2]} (${count[ab]})</option>`).join("") +
+        (etc ? `<option value="etc">과목을 정하지 않은 논제 (${etc})</option>` : "");
+    if ([...coSel.options].some(o => o.value === prev)) coSel.value = prev;
+}
+function initWsSubjectMenu() {
+    const subSel = document.getElementById("subject-ws-subject");
+    const coSel = document.getElementById("subject-ws-course");
+    if (!subSel || !coSel || typeof SUBJECT_GUIDE === "undefined") return;
+    subSel.innerHTML = SUBJECT_GUIDE.map(s => ({ s, n: wsSubjectTopics(s.key).length })).filter(x => x.n)
+        .map(({ s, n }) => `<option value="${s.key}">${s.label} (${n})</option>`).join("");
+    fillWsSubjectCourses();
+    subSel.addEventListener("change", () => { coSel.value = "all"; fillWsSubjectCourses(); refreshTopicWsOptions(); });
+    coSel.addEventListener("change", refreshTopicWsOptions);
+}
+// 고른 논제가 교과 논제이면, 배경·쟁점 예시가 교사용에만 실린다는 것을 알려 준다
+function updateTopicWsHintNote() {
+    const note = document.getElementById("topic-ws-hint-note");
+    const sel = document.getElementById("topic-ws-topic");
+    if (!note || !sel) return;
+    const t = debateTopicsDB[Number(sel.value)];
+    note.hidden = !(t && t.subject);
 }
 
 function setWsMode(mode) {
@@ -27856,13 +27940,21 @@ function setWsMode(mode) {
     const bookRow = document.getElementById("ws-book-row");
     const topicRow = document.getElementById("ws-topic-row");
     if (bookRow) bookRow.style.display = mode === "book" ? "" : "none";
-    if (topicRow) topicRow.style.display = mode === "topic" ? "" : "none";
+    if (topicRow) {
+        const was = topicRow.dataset.mode;
+        topicRow.style.display = mode === "topic" || mode === "subject" ? "" : "none";
+        topicRow.dataset.mode = mode;
+        if ((mode === "topic" || mode === "subject") && was !== mode) refreshTopicWsOptions();
+    }
 }
 
 function initTopicWorksheet() {
     const modeBtns = document.querySelectorAll(".ws-mode-btn");
     if (!modeBtns.length || typeof debateTopicsDB === "undefined") return;
     modeBtns.forEach(b => b.addEventListener("click", () => setWsMode(b.dataset.wsMode)));
+    initWsSubjectMenu();
+    const topicSel = document.getElementById("topic-ws-topic");
+    if (topicSel) topicSel.addEventListener("change", updateTopicWsHintNote);
     ["topic-ws-type", "topic-ws-level"].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.addEventListener("change", refreshTopicWsOptions);

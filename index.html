@@ -17,13 +17,13 @@
     <meta property="og:site_name" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta property="og:title" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta property="og:description" content="그림책 100여 권 × 토론 기법 20가지 × 토론 논제 500여 개. 그림책 학습지 18종과 논제 학습지 6종을 무료로 제공합니다.">
-    <meta property="og:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.14.0">
+    <meta property="og:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.15.0">
     <meta property="og:url" content="https://woorimalsam-lab.github.io/Picture-BC/">
     <meta property="og:locale" content="ko_KR">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="생각의 꽃이 피는 그림책 토론 가이드">
     <meta name="twitter:description" content="그림책 100여 권 × 토론 기법 20가지 × 토론 논제 500여 개. 수업에서 바로 쓰는 그림책 토론 자료.">
-    <meta name="twitter:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.14.0">
+    <meta name="twitter:image" content="https://woorimalsam-lab.github.io/Picture-BC/images/hero_share.jpg?v=6.15.0">
 
     <!-- 파비콘 -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌸</text></svg>">
@@ -36,7 +36,7 @@
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css?v=6.14.0">
+    <link rel="stylesheet" href="style.css?v=6.15.0">
 </head>
 <body class="light-mode">
     <!-- Navigation Bar -->
@@ -58,7 +58,7 @@
                 <a href="#topic-section"><i class="fa-solid fa-scale-balanced"></i> 토론 논제</a>
                 <a href="#worksheet-section"><i class="fa-solid fa-file-invoice"></i> 토론 학습지</a>
                 <a href="#archive-section"><i class="fa-solid fa-folder-open"></i> 수업 자료실</a>
-                <a href="https://woorimalsam-lab.github.io/woorimalsam/tools/" class="nav-tools" title="수업 도구 페이지로 이동합니다"><i class="fa-solid fa-toolbox"></i> 수업 도구</a>
+                <a href="https://woorimalsam-lab.github.io/woorimalsam/tools/" class="nav-tools" target="_blank" rel="noopener" title="수업 도구 페이지를 새 창에서 엽니다"><i class="fa-solid fa-toolbox"></i> 수업 도구</a>
                 <a href="#helper-section"><i class="fa-solid fa-wand-magic-sparkles"></i> 추천가이드</a>
                 <a href="#reference-section"><i class="fa-solid fa-book-bookmark"></i> 참고 도서</a>
                 <a href="#garden-section"><i class="fa-solid fa-seedling"></i> 함께 가꾸기</a>
@@ -96,12 +96,12 @@
                     <a href="#worksheet-section" class="btn btn-secondary" onclick="const link = document.querySelector('.nav-links a[href=\'#worksheet-section\']'); if(link) link.click(); return false;"><i class="fa-solid fa-file-pen"></i> 학습지 즉석 제작</a>
                     <a href="#subject-section" class="btn btn-secondary" onclick="const link = document.querySelector('.nav-links a[href=\'#subject-section\']'); if(link) link.click(); return false;"><i class="fa-solid fa-chalkboard-user"></i> 내 교과에서 쓰기</a>
                     <a href="#garden-section" class="btn btn-secondary" onclick="const link = document.querySelector('.nav-links a[href=\'#garden-section\']'); if(link) link.click(); return false;"><i class="fa-solid fa-seedling"></i> 함께 가꾸기</a>
-                    <a href="https://woorimalsam-lab.github.io/woorimalsam/tools/" class="btn btn-secondary" title="수업 도구 페이지로 이동합니다"><i class="fa-solid fa-toolbox"></i> 수업 도구</a>
+                    <a href="https://woorimalsam-lab.github.io/woorimalsam/tools/" class="btn btn-secondary" target="_blank" rel="noopener" title="수업 도구 페이지를 새 창에서 엽니다"><i class="fa-solid fa-toolbox"></i> 수업 도구</a>
                 </div>
             </div>
             <div class="hero-image-container">
                 <div class="hero-art">
-                    <img id="hero-still" src="images/hero_poster.jpg?v=6.14.0"
+                    <img id="hero-still" src="images/hero_poster.jpg?v=6.15.0"
                          alt="책장에서 그림책을 골라 펼쳐 읽는 아이 일러스트" class="hero-art-base">
                     <video id="hero-video" class="hero-art-video" muted loop playsinline
                            preload="none" aria-hidden="true" tabindex="-1"></video>
@@ -273,6 +273,7 @@
                 <div class="ws-mode-tabs">
                     <button type="button" class="ws-mode-btn active" data-ws-mode="book"><i class="fa-solid fa-book"></i> 그림책으로 만들기</button>
                     <button type="button" class="ws-mode-btn" data-ws-mode="topic"><i class="fa-solid fa-comments"></i> 토론 논제로 만들기</button>
+                    <button type="button" class="ws-mode-btn" data-ws-mode="subject"><i class="fa-solid fa-graduation-cap"></i> 교과 논제로 만들기</button>
                 </div>
                 <div class="form-row" id="ws-book-row">
                     <div class="form-group">
@@ -285,23 +286,23 @@
                         <label for="worksheet-type-select"><i class="fa-solid fa-file-invoice"></i> 학습지 유형 선택</label>
                         <select id="worksheet-type-select">
                             <option value="basic" selected>독서 전-중-후 기본 활동지</option>
-                            <option value="brainwriting">브레인라이팅 (Brainwriting)</option>
-                            <option value="procon">프로콘 (Pro-Con) 토론</option>
-                            <option value="hotseating">핫시팅 (Hot-seating)</option>
-                            <option value="carousel">회전목마 토론 (Carousel)</option>
-                            <option value="socratic">소크라틱 세미나</option>
-                            <option value="worldcafe">월드카페 (World Cafe)</option>
-                            <option value="argument">논증 게임 (Argumentation Game)</option>
-                            <option value="doublepyramid">쌍 피라미드 토론</option>
-                            <option value="angeldevil">두 마음(천사-악마) 토론</option>
-                            <option value="hexadebate">헥사 토론</option>
-                            <option value="traffic">신호등 토론 (Traffic Light)</option>
-                            <option value="pmi">PMI 토론</option>
-                            <option value="twostray">둘 가고 둘 남기 (2 Stay 2 Stray)</option>
-                            <option value="panorama">파노라마 토론</option>
-                            <option value="fan">선풍기 토론</option>
-                            <option value="reason">이유찾기 토론</option>
                             <option value="valueline">가치수직선 토론</option>
+                            <option value="argument">논증 게임 (Argumentation Game)</option>
+                            <option value="angeldevil">두 마음(천사-악마) 토론</option>
+                            <option value="twostray">둘 가고 둘 남기 (2 Stay 2 Stray)</option>
+                            <option value="brainwriting">브레인라이팅 (Brainwriting)</option>
+                            <option value="fan">선풍기 토론</option>
+                            <option value="socratic">소크라틱 세미나</option>
+                            <option value="traffic">신호등 토론 (Traffic Light)</option>
+                            <option value="doublepyramid">쌍 피라미드 토론</option>
+                            <option value="worldcafe">월드카페 (World Cafe)</option>
+                            <option value="reason">이유찾기 토론</option>
+                            <option value="panorama">파노라마 토론</option>
+                            <option value="procon">프로콘 (Pro-Con) 토론</option>
+                            <option value="pmi">PMI 토론</option>
+                            <option value="hotseating">핫시팅 (Hot-seating)</option>
+                            <option value="hexadebate">헥사 토론</option>
+                            <option value="carousel">회전목마 토론 (Carousel)</option>
                         </select>
                     </div>
                     <div class="form-group" id="ws-curr-group">
@@ -311,7 +312,15 @@
                 </div>
                 <div id="ws-topic-row" style="display:none;">
                     <div class="form-row">
-                        <div class="form-group">
+                        <div class="form-group ws-subj-only">
+                            <label for="subject-ws-subject"><i class="fa-solid fa-shapes"></i> 교과</label>
+                            <select id="subject-ws-subject"></select>
+                        </div>
+                        <div class="form-group ws-subj-only">
+                            <label for="subject-ws-course"><i class="fa-solid fa-book-bookmark"></i> 교과목</label>
+                            <select id="subject-ws-course"></select>
+                        </div>
+                        <div class="form-group ws-topic-only">
                             <label for="topic-ws-type"><i class="fa-solid fa-layer-group"></i> 논제 유형</label>
                             <select id="topic-ws-type">
                                 <option value="all">전체</option>
@@ -320,7 +329,7 @@
                                 <option value="value">가치 논제</option>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group ws-topic-only">
                             <label for="topic-ws-level"><i class="fa-solid fa-school"></i> 학교급</label>
                             <select id="topic-ws-level">
                                 <option value="all">전체</option>
@@ -341,26 +350,26 @@
                                     <option value="full">전 과정 묶음 (분석지·입론서·흐름표·판정지)</option>
                                 </optgroup>
                                 <optgroup label="토론 기법으로 (20가지)">
-                                    <option value="tech-panorama">파노라마 토론</option>
                                     <option value="tech-valuebar">가치수직선 토론</option>
-                                    <option value="tech-brainwriting">브레인라이팅</option>
-                                    <option value="tech-procon">프로콘 토론</option>
-                                    <option value="tech-hotseating">핫시팅</option>
-                                    <option value="tech-carousel">회전목마 토론</option>
-                                    <option value="tech-socratic">소크라틱 세미나</option>
-                                    <option value="tech-worldcafe">월드카페</option>
                                     <option value="tech-argumentgame">논증 게임</option>
-                                    <option value="tech-trafficlight">신호등 토론</option>
-                                    <option value="tech-pmi">PMI 토론</option>
-                                    <option value="tech-2stay2stray">둘 가고 둘 남기</option>
-                                    <option value="tech-fan">선풍기 토론</option>
-                                    <option value="tech-reasoning">이유찾기 토론</option>
-                                    <option value="tech-havruta">하브루타</option>
-                                    <option value="tech-eraser-debate">지우개 토론</option>
-                                    <option value="tech-ai-assisted-debate">디지털/AI 보조 토론</option>
-                                    <option value="tech-doublepyramid">쌍 피라미드 토론</option>
                                     <option value="tech-angeldevil">두 마음(천사-악마) 토론</option>
+                                    <option value="tech-2stay2stray">둘 가고 둘 남기</option>
+                                    <option value="tech-ai-assisted-debate">디지털/AI 보조 토론</option>
+                                    <option value="tech-brainwriting">브레인라이팅</option>
+                                    <option value="tech-fan">선풍기 토론</option>
+                                    <option value="tech-socratic">소크라틱 세미나</option>
+                                    <option value="tech-trafficlight">신호등 토론</option>
+                                    <option value="tech-doublepyramid">쌍 피라미드 토론</option>
+                                    <option value="tech-worldcafe">월드카페</option>
+                                    <option value="tech-reasoning">이유찾기 토론</option>
+                                    <option value="tech-eraser-debate">지우개 토론</option>
+                                    <option value="tech-panorama">파노라마 토론</option>
+                                    <option value="tech-procon">프로콘 토론</option>
+                                    <option value="tech-pmi">PMI 토론</option>
+                                    <option value="tech-havruta">하브루타</option>
+                                    <option value="tech-hotseating">핫시팅</option>
                                     <option value="tech-hexadebate">헥사 토론</option>
+                                    <option value="tech-carousel">회전목마 토론</option>
                                 </optgroup>
                             </select>
                         </div>
@@ -370,6 +379,7 @@
                         <select id="topic-ws-topic"></select>
                     </div>
                     <label class="ws-hint-toggle"><input type="checkbox" id="topic-ws-hints" checked> 배경 지식과 쟁점 예시를 함께 싣기 <small>(끄면 학생이 스스로 찾는 빈칸형)</small></label>
+                    <p class="ws-hint-note" id="topic-ws-hint-note" hidden><i class="fa-solid fa-circle-info"></i> 교과 논제는 배경 지식과 쟁점 예시를 학생용에 싣지 않고, 교사용 첫 쪽의 '논제 살펴보기'에만 싣습니다.</p>
                     <div class="form-group ws-audience">
                         <label for="topic-ws-audience"><i class="fa-solid fa-chalkboard-user"></i> 출력 구성</label>
                         <select id="topic-ws-audience">
@@ -618,6 +628,6 @@
 
     <!-- Custom JS -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="app.js?v=6.14.0"></script>
+    <script src="app.js?v=6.15.0"></script>
 </body>
 </html>
