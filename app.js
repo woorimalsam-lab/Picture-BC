@@ -7609,6 +7609,10 @@ function subjectCurriculumHTML(sub, lv) {
             <p class="cur-note">2022 개정 고등학교 교육과정(교육부 고시 제2022-33호)에서 이 교과의 과목을 모두 모았습니다. 과목을 펼치면 논제와 이은 성취기준이 나오고, '모두 보기'를 누르면 그 과목의 성취기준 전체를 볼 수 있습니다. 수업 계획이나 세특에 성취기준 코드를 그대로 쓰면 됩니다.</p>
             ${groups}`;
 }
+// 교육과정 원문과 번호가 다르게 적힌 성취기준에 붙이는 안내
+const CUR_CODE_NOTE = {
+    "12스경02-03": "교육과정 원문(교육부 고시 제2022-33호 [별책 21])에는 이 성취기준 번호가 [12스경02-02]로 한 번 더 찍혀 있습니다. 여기서는 순서에 맞게 02-03으로 적었습니다."
+};
 // 과목별 성취기준 전문은 curriculum.json에 따로 두고, 누를 때 한 번만 불러온다
 let CUR_ALL = null;
 function loadCurriculumAll() {
@@ -7628,7 +7632,7 @@ function bindCurriculumAll(root, sub) {
         btn.textContent = "불러오는 중…";
         loadCurriculumAll().then(all => {
             list.innerHTML = (all[btn.dataset.ab] || []).map(([code, text]) => `
-                <li class="${byCode[code] ? "linked" : ""}"><p class="cur-std-text"><code>[${code}]</code> ${text}</p>${byCode[code] ? `<div class="cur-std-topics">${curTopicBtns(byCode[code])}</div>` : ""}</li>`).join("");
+                <li class="${byCode[code] ? "linked" : ""}"><p class="cur-std-text"><code>[${code}]</code> ${text}</p>${CUR_CODE_NOTE[code] ? `<p class="cur-std-note"><i class="fa-solid fa-circle-info"></i> ${CUR_CODE_NOTE[code]}</p>` : ""}${byCode[code] ? `<div class="cur-std-topics">${curTopicBtns(byCode[code])}</div>` : ""}</li>`).join("");
             list.hidden = false;
             linked.hidden = true;
             btn.innerHTML = `<i class="fa-solid fa-chevron-up"></i> 논제와 이은 성취기준만 보기`;
@@ -8359,7 +8363,7 @@ const ASSET_VERSION = (function () {
         const m = src.match(/[?&]v=([\d.]+)/);
         if (m) return m[1];
     } catch (e) {}
-    return "6.15.1";
+    return "6.15.2";
 })();
 
 const COVER_CONTAIN = [14, 21, 44, 46, 93, 94, 98, 99, 100, 105, 108, 112, 114, 115, 118, 123, 129, 132, 133, 137, 138, 142, 152, 153, 155, 161, 162, 165, 167, 170, 177, 179, 180, 181, 183, 184, 186, 187, 190, 191, 192, 193, 194, 195, 196, 198];
